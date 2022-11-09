@@ -1,0 +1,106 @@
+- Pod is wrapper arround (vỏ bọc bên ngoài của container)
+- Pod la thành phần nhỏ nhất trong cluster
+- Bên trong pod có thể là single or multiple container
+- Pod chứa toàn bộ resource để container khai thác: disk, memory, cpu, networking and storage .....
+- Pod:
+	+ Unit of scheduling
+		++ Alocating work
+		++ A process that's running in cluster
+	+ Unit of deployment
+		++ Cấu hình những thứ liên quan đến application
+		++ Resources: Networking and storage
+		
+- Pod được sinh ra để làm công việc high level abstraction container over a container (Tổ chức quản lí trực tiếp tại pod thay vì tương tác với container)
+- Manage container:
+	+ single container pod
+		+ Most common deployment scenario (Cách triển khai phổ biến nhất)
+		+ Generally a single process running in a container ( Là 1 process độc lập chạy trong container)
+		+ Thường được sử dụng vì dễ dang scale application
+		 
+	+ multiple container pod:
+**multiple container pod thường được sử dụng khi
+- Tightly coupled application (Ứng dụng có kết nối chặt chẽ)
+- Scheduling processes together ( Lên lịch các quy trình cùng nhau)
+- Requirement on some shared resource: Các container bên trong sẽ chia sẽ tài nguyên resource với nhau
+- usually something generating data while the other process consumes
+==> Lưu ý: Không sử dụng scheduling đối với multiple container , hãy sử dụng những kĩ thuật khác
+
+
+	+ init container: 
+*Initcontainer
+- Run before main application container started
+- Contain utlities or setop for apps (Chứa các tiện ích hoặc setup cho app)
+- Chạy cho đến khi completion thì nó sẽ terminate
+- Can have more than one per Pod (có thể có nhiều hơn 1 initContainer trong mỗi Pod)
+- Mỗi initContainer sẽ chạy tuần tự từ trên xuống dưới
+- Tất cả các container phải run to successful completion thì pod mới start
+- Khi có 1 container fials -> Container restartPolicy sẽ được apply
+=> Noted về restartPolicy:
+	- Có các cơ chế:
+		+> always: Luôn luôn restart
+		+> onfailure: Khi nào process trong container bị exit va exit status này phải !=0 thì nó mới restart
+		+> nerver: Có lỗi cũng không restart
+
+- Các trường hợp chạy initContainer:
+	+ Run tools or Utilities (Chạy tool hoặc các tiện ích)
+	+ Separation of Duties (tách biệt các nhiệm vụ)
+	+ Block Container startup (Để đảm bảo các block cần test đạt yêu cầu thì mới cho container run)
+Ex:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-containers
+spec:
+  initContainers:
+  - name: init-service
+    image: ubuntu
+    command: ['sh', '-c', "echo waiting for service; sleep 2"]
+  - name: init-database
+    image: ubuntu
+    command: ['sh', '-c', "echo waiting for database; sleep 2"]
+  containers:
+  - name: app-container
+    image: nginx
+
+
+*****Controller and pods
+- Controller giữ cho pod in the desired state
+- Responsible for starting and stopping pods
+- Application scale
+- Application recovery
+- Don't run bare/naked pods (không chạy pod dưới dạng bare <kiểu run trực tiếp> sẽ không manage được pod)
+- Khi chạy dưới dạng bare/naked thì nếu pod lỗi sẽ phải recreate bằng cơm (ko nên)
+
+
+*****Static pod
+- Được manage bởi kubelet trên node
+- Lưu trữ dưới dạng manifest tại thư mục: /etc/kubernetes/manifest
+- Configuration tại file config.yaml: /var/lib/kubelet/config.yaml
+- staticPodPath sẽ theo dõi và create 'a miror' Pod
+
+*****working with pod
+- Access pod: #kubectl exec -it  hello-world -- /bin/sh
+
+- Access pod with multiple container: #kubectl exec -it hello-worl -c CONTAINER_NAME -- /bin/bash
+
+- Expose network of pod: #kubectl expose pod POD_NAME LOCALPORT:CONTAINER_PORT
+
+- Check log pod of a container: #kubectl logs POD_NAME
+
+- Check log of pod with multiple container: #kubectl logs POD_NAME -c CONTAINER_NAME
+
+
+*******Share resource inside pod
+- Network:
+	+ connect với nhau thông qua loopback interface, Sử dụng để giao tiếp trên localhost
+	+ be mindful of application port conflicts( lưu ý có khả năng xung đột port)
+
+- Storage:
+	+ Mỗi container image đều sở hữu file system
+	+ Volume được defined bên trong Pod level
+	+ Có thể chia sẽ volume này cho tất cả các container ở bên trong
+	+ Cần phải thực hiện mount vào bên trong file system của container
+	+ Khi các container cùng mount đến 1 volume thì nó sẽ có chung dữ liệu
+	+ common way for exchange data (Đây là cách trao đổi dữ liệu thông dụng nhất)
+	
+#################---------LIFECYCLE POD----------############

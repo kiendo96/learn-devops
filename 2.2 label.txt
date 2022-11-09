@@ -1,0 +1,8 @@
+- Sử dụng label để đánh chỉ mục cho các pod, node (Kiểu sử dụng label để chia ra prod, stage, dev)
+- Label còn được sử dụng để selector đến các pod (dạng liên kết với nhau)
+- command:
+#k get pod --show-label (Show label cua pod)
+#kubectl get pod -l app=hello (show pod co label la app=hello)
+#kubectl get pod --selector app=hello( show pod chi dinh co label la app=hello)
+#kubectl label pod nginx -l app=DEBUG --overwrite (ghi de label)
+#kubectl label pod nginx another=Label (Add them label cho pod nginx)
