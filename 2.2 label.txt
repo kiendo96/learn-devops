@@ -6,3 +6,6 @@
 #kubectl get pod --selector app=hello( show pod chi dinh co label la app=hello)
 #kubectl label pod nginx -l app=DEBUG --overwrite (ghi de label)
 #kubectl label pod nginx another=Label (Add them label cho pod nginx)
+
+######  Namespace
+- Namespaces are a way to organize clusters into virtual sub-clusters 
