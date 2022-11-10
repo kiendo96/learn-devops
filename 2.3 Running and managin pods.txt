@@ -34,7 +34,7 @@
 - Can have more than one per Pod (có thể có nhiều hơn 1 initContainer trong mỗi Pod)
 - Mỗi initContainer sẽ chạy tuần tự từ trên xuống dưới
 - Tất cả các container phải run to successful completion thì pod mới start
-- Khi có 1 container fials -> Container restartPolicy sẽ được apply
+- Khi có 1 container fails -> Container restartPolicy sẽ được apply
 => Noted về restartPolicy:
 	- Có các cơ chế:
 		+> always: Luôn luôn restart
@@ -104,3 +104,92 @@ spec:
 	+ common way for exchange data (Đây là cách trao đổi dữ liệu thông dụng nhất)
 	
 #################---------LIFECYCLE POD----------############
+
+**Vòng đời
+- Step 1: Creation
+	+ Administratively
+	+ Controller
+
+- Step 2: Running
+	+ Scheduled to a Node
+
+- Step 3: Termination
+	+ Process is terminated/crashed
+	+ Pod is deleted (Chủ động deleted)
+	+ Evicted due to lack of resources (Thiếu resources) - Lỗi evicted
+	+ Node failure or maintenance (Node lỗi hoặc maintainance)
+	+ No pod is redeployed (Pod được tạo mới và không redeploy lại được)
+
+**Stopping/Terminating Pods
+- Grace Period Timer(30s default)(Sau khi sử dụng lệnh delete pod sẽ chuyển sang trạng thái terminate trong vòng 30s)
+- Pods change to Terminating (Sau đó Pod sẽ chuyển thành terminating)
+- SIGTERM (Gửi 1 sigterm để kill process của pod)
+- Service Endpoints and Controller updated (sau đó nó sẽ remove endpoint và controller sẽ watch desired state của pod)
+- SIGKILL (IF > Grace Period): Nếu thời gian terminating lớn hơn 30s thì SIGKILL sẽ thực hiện kill process
+- API and etcd are updated (Cuối cùng API server sẽ tiếp nhận và ghi vào etcd)
+
+# kubectl delete pod POD_NAME --grace-period=<second> (set thời gian trước khi terminate --grace-period=<second>)
+
+Forece Deletion - Immediately delete records in API and etcd (Kiểu nó sẽ không quan tâm các yếu tố khác mà xóa trực tiếp pod trong API và etcd)
+#kubectl delete pod POD_NAME --grace-period=0 --force
+
+ 
+
+##############Persistency of Pod (Độ bền của Pod) #################
+- A Pod is never redeployed( Bị lỗi sẽ không thể deploy lại)
+- If a Pod stops, a new one is created based on its controller (Nếu 1 pod stop thì pod mới sẽ được tạo dựa trên controller của nó)
+- Go back to the original container image(s) in the Pod definition (Nếu pod delete thì nó sẽ được go back lại về nguyên bản theo image và mọi data sẽ mất hết)
+
+###########Persistency of Pod (cơ chế lưu trữ của pod) ########
+- Configuration is managed externally thoong qua Pod manifest, secret and configMaps
+- Passing environment variable into containers (cho phép pass các biến môi trường vào trong container)
+- Data pesitency is managed externally
+	+ PersistentVolume
+	+ PersistentVolumeClaim
+
+#########Container Restart Policy #######
+
+- A container in  Pod can restart independent of the Pod (1 container trong Pod có thể restart độc lập )
+- Applies to containers inside a Pod and defined inside the Pod's Spec (Áp dụng cho container bên trong Pod và định nghĩa trong phần pod spec)
+- The Pod is the environment the container run in (pod là 1 môi trường để container có thể chạy- wrapper around)
+- Not rescheduled to another Node, but restarted by the Kubelet on that Node (Pod không được rescheduled sang node khác nhưng nó sẽ được restart container bởi thằng kubelet trên node hiện tại)
+- Restart with an exponential backoff , 10s, 20s, 40s capped at 5m and reset to ) after 10m of successful runtime
+- Policy chính:
+	+ always (default) - will restart all containers inside a pod ( luÔn restart container trong pod)
+	+ OnFailure - Non-graceful termination( Termination container và restart lại when process bị crash và exit code !-0)
+	+ Nerver ( không làm gì cả)
+	
+	
+#######Defining Pod Health###########
+- A Pod is considered Ready when all containers are Ready ( 1 Pod thực sự ready khi tất cả các container là Ready)
+- Nhưng không chỉ mình container ready mà còn phải hiểu cả về applciation của chúng ta
+- We can add additional intelligence to our Pod's state and health ( chính ta có thể ổ sung intelligence cho pod state và healt)
+- Container Probes:
+	+ livenessProbe
+	+ readinessProbe
+	+ startupProbe
+
+**livenessProbe:
+- Run a diagnostic check on a container ( Nó sẽ hạy chuẩn đoán(diagnostic) để kiểm tra trong 1 container)
+- Per container setting (được setup bên trong container level)
+- Container Restart Policy ( Nó được chạy dựa theo cơ chế restartPolicy)
+- OnFailure -> kubelet sẽ restart the container
+- linessProbe sẽ giúp Kubernetes hiểu hơn về ứng dụng của mình
+
+**readinessProbe
+- Cũng giống như livenessProbe nó sẽ chạy 1 diagnostic check on the container
+- Per container setting (Cũng được setup trong container level)
+- Won't receive traffic from a Service until it succeeds (Nó sẽ không nhận traffic từ Service cho đến khi nó succeeds)
+- OnFailure, removes Pod from load balancing (Khi lỗi nó sẽ lập tức remove endpoint của pod ra khỏi load balancing)
+- Khi đang run readinessProbe thì ứng dụng không thể nhận request va cũng k thể response lại
+- Prevents users from seeing error (Ngắn cản user nhìn thấy error của pod)
+
+
+**startupProbes
+- Cũng chạy diagnostic check on the container
+- Ensuring all container in Pod are ready (Nó đảm bảo tất cả các container trong pod đã ready)
+- Per container setting
+- On startup, all other probes are disable until the startupProbe succeeds ( Khi bắt đầu chạy thì tất cả các probes khác sẽ bị disable cho đến khi startupProbe hoàn thành)
+- OnFailure, the kubelet restarts the container according to the container restart policy ( Khi mà lỗi thì kubelet cũng sẽ restart container theo restartPolicy)
+- App have long startuptimes (Thường được sử dụng với những ứng dụng có thời gian start dài, để đảm bảo app run ok)
+- Compliments liveness and readiness probes (startupProbe thường được kết hợp cùng với livenessProbe và startupProbe)
