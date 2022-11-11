@@ -191,5 +191,20 @@ Forece Deletion - Immediately delete records in API and etcd (Kiểu nó sẽ kh
 - Per container setting
 - On startup, all other probes are disable until the startupProbe succeeds ( Khi bắt đầu chạy thì tất cả các probes khác sẽ bị disable cho đến khi startupProbe hoàn thành)
 - OnFailure, the kubelet restarts the container according to the container restart policy ( Khi mà lỗi thì kubelet cũng sẽ restart container theo restartPolicy)
-- App have long startuptimes (Thường được sử dụng với những ứng dụng có thời gian start dài, để đảm bảo app run ok)
+- App have long startuptimes (Thường được sử dụng với những ứng dụng có thời gian start dài, để đảm bảo app up running)
 - Compliments liveness and readiness probes (startupProbe thường được kết hợp cùng với livenessProbe và startupProbe)
+
+
+###### Type of Diagnostic checks for Probes ##########
+- Có 3 cơ chế diagnostic:
+	+ exec: Proccess exit code
+	+ tcpSocket: Successfully Open a Port
+	+ httpGet: Return Code (200 => and < 400)
+	
+
+###Configuring Container Probes
+- initialDelaySeconds: number of seconds after the container has started before running container probes, default 0  (sau khi container start thì nó đợi đúng số giây thì probes mới chạy)
+- periodSeconds: probe interval, default 10 seconds(Khi nó chạy 1 probes xong thì 10s sau mới chạy probe tiếp theo)
+- timeoutSeconds: Probe timeout 1 seconds (Thời gian quyết định timeout)
+- failureThreshold: number of missed checks before reporting failure, default 3 (Số lần fail trước khi report là failure)
+- successThreshold: number of probes to be considered successful and live, default 1 (Số lần success trước khi quyết định là running successful)
