@@ -1,0 +1,100 @@
+###Using controllers to deploy applications and deployment basic
+
+* Kubernetes Principles:
+- Phải đảm bảo được desired state
+- Triển khai bằng declarative 
+- Sử dụng cơ chế Controllers Control Loops để có thể monitor toàn bộ object trong k8s
+- Nó sẽ connect với kube apiserver để deploy
+
+*Controller Manager
+- Gồm 2 loại
+	+ kube-controller-manager: Nó quản lí toàn bộ các controller trong cluster
+	+ cloud-controller-manager: Chỉ xuất hiện khi sử dụng cluster trên cloud
+	
+*Pod controller
+- ReplicaSet
+- Deployment
+	+ Declarative updates: Khai báo để cập nhập deployment
+	+ Orchestration: Phụ trách đảm bảo số lượng instance trong cluster
+	+ Managing Application State: Quản lý các công việc như rollout, rollback, healcheck....
+		++ Creating deployment: Có 2 kiểu chính để create deployment là viết 1 declaratively (viết 1 file manifest) và imperatively (Sử dụng command)
+			++ Declarative:
+				++ Selector
+				++ Replicas
+				++ Pod Template
+			++ Imperatively:
+				#kubectl create deployment hello-world --image=nginx
+				#kubectl scale deployment hello-world --replicas=5
+		++ Updating
+		++ Scaling
+		
+- DaemonSet
+- StatefulSet
+- Job
+- CronJob
+
+*Other Controller:
+- Node
+- Service
+- Endpoint
+
+- Selector: được sử dụng để chọn những Pod thuộc quản lý của deployment. Có 2 loại selector
+  + matchLabels: Define label mà deployment sẽ selector(Kiểu định nghĩa ra 1 label và những con Pod có label đấy sẽ được deployment triggle)
+  Example:
+  ....
+  spec:
+    replicas: 2
+	selector:
+      matchLabels:
+	    app: hello-world
+	template:
+	  metadata:
+	    labels:
+		  app: hello-world
+	spec:
+	  container:
+	.....
+	
+  + matchExpression: Cũng giống với matchLabels nhưng được sử dụng cho môi trường có nhiều label vì nó có các toán tử => Sử dụng matchExpression để filter theo label
+	++ Operator: In, NotIn, Exists, DoesNotExist
+	++ Keys
+	++ Values
+	
+	Example:
+	...
+	spec:
+    replicas: 2
+	selector:
+      matchExpression: //Define a key là app với Operator In thì các pod mà có key là hello-world được phép thêm vào deployment
+	    - key: app
+		  operator: In
+		  values: hello-world
+	template:
+	  metadata:
+	    labels:
+		  app: hello-world
+	spec:
+	  container:
+	.....
+	
+
+##### understanding ReplicaSet
+- Deploys a defined number of Pods (defined số lượng pod được tạo ra)
+- Consists of a Selector, Number of replicas (pods) and a Pod template (ReplicaSet sẽ chứa selector và số lượng pod của replicas và pod template)
+
+
+#########ReplicaSet selector
+
+- ReplicaSet allow for more complex, set based selector (ReplicaSet cho phép nhiều complex dựa trên selector)
+
+######## ReplicaSet and failure
+- Pod failure => Rescheduled and a new pod is started in the cluster (Nếu pod failure thì nó sẽ rescheduled và đồng thời xóa pod cũ và tạo ra pod mới)
+- Node failure => Khi node down thì Replicaset sẽ không xóa pod nằm trên node mà nó sẽ chuyển trạng thái của pod về ERROR và khi node restart trở lại nó sẽ tạo lại pod nằm trên node đó
+- Transient failure:
+- Permanent failure => Là khi detroy node thì toàn bộ pod trên node này sẽ được move sang node khác
+- kube-controller-manager: default pod-eviction-timeout - 5 minutes
+
+####ReplicaSets or Deployment?
+
+- Deployment to manager our ReplicaSets (Deployment sẽ quản lý replicaset)
+- ReplicaSets are the building block of deployment (ReplicaSet là khối kiến trúc của deployment)
