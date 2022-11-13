@@ -1,0 +1,20 @@
+###Introducing DaemonSet
+- Đảm bảo rằng tất cả hoặc một vài Nodes run a Pod of DaemonSet
+- effectively an init daemon inside your cluster
+- Example workloads
+  + kube-proxy for entwork sẻvices
+  + Log collectors
+  + Metric servers
+  + Resource monitoring agents
+  + Starage daemonset
+  
+###DaemonSet Pod Scheduling
+- One Pod will be scheduled to each worker Node in a cluster by the default-scheduler
+- As Nodes are added to the cluster, they will get a Pod (1 node được add vào cluster thì scheduled sẽ deploy a pod to that node)
+- You can control which Nodes get Pods
+  + Node Selector
+  + Labeling the Nodes
+  
+####DaemonSet Update Strategy
+- RollingUpdate: Giống deployment nhưng by default chỉ create 1 pod tại 1 thời điểm
+- OnDelete: Phải vào manual delete pod thì nó mới tạo ra pod mới

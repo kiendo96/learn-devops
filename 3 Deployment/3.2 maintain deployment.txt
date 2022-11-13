@@ -1,0 +1,115 @@
+######Managing application state with deployment
+
+- Creating:
+  +
+- Updating:
+  + Rolling out a new container image
+  + Trigged by changing the Pod Template (Nó chỉ thay đổi thông tin khi thay đổi các thông số trong pod template)
+  + Other field can be changed without triggering update
+    ++ Updating a deployment object
+		#kubectl set image deployment hello-world image=hello-app:2.0
+		#kubectl set image deployment hello-world image=hello-app:2.0 --record (record sử dụng để ghi lại thông tin metadata cũ đã được thay đổi sau khi update)
+		#kubectl edit deployment hello-world
+		#kubectl apply -f hello-world.yaml --record
+
+- Scaling: Tăng số lượng pod
+
+####Checking deployment status
+
+#kubectl rollout status deployment [name]
+#kubectl describe deployment [name]
+
+- Deployment status:
+  + complete: all update work is finished
+  + progessing: update in flight (Vẫn đang trong quá trình update chưa hoàn thành)
+  + failed: Update could not complete
+  
+- Conditions:
+  + Available: MinimumReplicasAvailable (giới hạn số version cũ replicaset giữ lại) => Default bằng true
+  + Progressing: NewReplicaSetAvailable => Default bằng True
+
+
+
+####Using Deployments to change state
+- Control rollouts of a new version of your application (controll việc rollout 1 version mới của app)
+  + update Strategy
+  + Pause to make corrections (Khi bị lỗi nó sẽ dừng lại để fix sau đó mới tiếp tục)
+  + Rollback to an earlier version
+  + Restart a Deployment
+
+##### Controlling Rollouts with update stategy
+- Controll Pods rollout:
+  + RollingUpdate (default): A new ReplicaSet start scaling up and the old ReplicaSet start scaling down (1 replicaset mới sẽ được scale up và thằng relicaset hiện tại sẽ bị scale down)
+	++ maxUnavailable: Ensures only a certain number of Pods are unavailable being updated (đảm bảo số lượng pod unavailable nhất định)
+	++ maxSurge: Ensure that only a certain number of Pods are created above the desired number of Pods (khi mà pod được scale thì maxsurge sẽ quyết định số lượng pod tăng so với số lượng pod hiện tại)
+  
+  + Recreate:
+	++ Terminates all Pods in the current ReplicaSet set prior to scaling up the new ReplicaSet
+	++ Used when application don't support running different versions concurrently
+	
+  + Blue green deploy:
+	++ Sử dụng đồng thời 2 môi trường blue (staging) và green(product).
+	++ Môi trường blue thường được sử dụng để thử nghiệm các môi trường mới với người dùng sau đó mới chuyển dần sang môi trường green
+	++ Do phải triển khai 2 môi trường nên thường sẽ rất tốn chi phí
+	
+  + Canary deploy: 
+	++ Strategy này thường được sử dụng để release application or service cho từng nhóm nhỏ người dùng
+	++ Tất cả cơ sở hạ tầng trong môi trường đều được cập nhập theo từng giai đoạn nhỏ
+	++ strategy này là chiến lược ít rủi do nhất trong các strategy.
+  
+Example:
+apiVerison: apps/v1
+kind: Deployment
+...
+spec:
+  replicas: 20
+  strategy:
+    type: RollingUpdate
+	rollingUpdate:
+	  maxUnavailable: 20% -> khoảng 4 con 1 lần
+	  maxSurge: 5 -> tại 1 thời điểm có thể lên tối đa 25 con pod
+...
+  template:
+  ....
+    spec:
+	   container:
+  ...
+        readinessProbe:
+		  httpGet:
+		    path: /index.html
+			port: 8080
+	      initialDelaySeconds: 10
+		  periodSeconds: 10
+		  
+#########Pausing and Resuming a Deployment
+- Changes to the Deployment while paused are not rolled out
+- Batch changes together, then resume the rollout
+- The current state of the Deployment is maintained until it's resumed
+- Starts up a new ReplicaSet with the new changes:
+  #kubectl rollout pause deployment NAME_DEPLOYMENT
+  #kubectl rollout resume NAME_DEPLOYMENT
+  
+#######Rolling back a deployment
+- Rollout history: CHANGE_CAUSE Annotation Deployment
+- Revision History:
+  + revisionHistoryLimit default to 10
+  + Number of ReplicaSets retained in history
+  + Used for rolling back
+  + Can be set to 0 for immediate cleanup (Khi set thành 0 thì nó sẽ delete hết tất cả các version cũ)
+  
+  #kubectl rollout history deployment NAME_DEPLOYMENT  (view history)
+  #kubectl rollout history deployment NAME_DEPLOYMENT --revision=1
+  #kubectl rollout undo deployment NAME_DEPLOYMENT (rollbkack tới vesion trước)
+  #kubectl rollout undo deployment NAME_DEPLOYMENT --revision=1 (rollback tới version chỉ định)
+  
+ 
+####Restart a Deployment
+- Effectively restarts all the Pods (restart toàn bộ pod khi restart deployment)
+- But no Pod is ever "recreate" (Nhưng các pod sẽ không được tạo lại)
+- New ReplicaSet with the same Pod Spec (Nó sẽ tạo mới Replicaset mới nhưng pod sẽ vẫn có cấu hình cũ dựa theo pod template)
+- Uses Deployment's Update Strategy
+  + RollingUpdate
+  + Recreate
+  #kubectl rollout restart deployment NAME_DEPLOYMENT
+  
+  
