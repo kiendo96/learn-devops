@@ -1,0 +1,140 @@
+Question 1: RBAC
+Create a new ClusterRole named that only allows the creation of the following resource types:
+
+Deployment
+StatefulSet
+DaemonSet
+Create a new ServiceAccount named cicd-token in the existing namespace app-team1.
+Limited to namespace app-team1, bind the new ClusterRole -to the new ServiceAccount cicd-token.
+
+
+
+Question 2: Specify node to be unavailable
+Set the node named ek8s-node-1 as unavaliable and reschedule all the pods running on it.
+
+
+
+
+Question 3: Upgrading Kubernetes Nodes
+Given an existing Kubernetes cluster running version 1.20.0, upgrade all of Kubernetes control plane and node components on the master node only to version 1.20.1.
+
+You are also expected to upgrade kubelet and kubectl on the master node.
+
+Be sure to drain the master node
+before upgrading it and uncordon it after the upgrade.
+Do not upgrade the worker nodes, etcd, the container manager, the CNI plugin, the DNS service or any other addons.
+
+
+Question 4: etcd backup and restore
+First, create a snapshot of the existing etcd instance running on https://127.0.0.1:2379 and save the snapshot to /srv/data/etcd-snapshot.db.
+
+Creating a snapshot for a given instance is expected to complete within seconds. If the operation appears to hang, there may be a problem with the command. Use ctrl+c to cancel the operation and try again.
+
+Then restore the existing previous snapshot located at /var/lib/backup/etcd-snapshot-previous.db.
+
+
+Question 5: ① Create network rules in the same namespace
+Create a new NetworkPolicy named allow-port-from-namespace to allow Pods in the existing namespace internal to connect to port 9000 of other Pods in the same namespace.
+Ensure that the new NetworkPolicy:
+
+does not allow access to Pods not listening on port 9000.
+does not allow access from Pods not in namespace corp .
+
+
+Question 6: Create svc
+Reconfigure the existing deployment front-end and add a port specification named http exposing port 80/tcp of the existing container nginx .
+
+Create a new service named front-end-svc exposing the container prot http .
+
+Configure the new service to also expose the individual Pods via a NodePort on the nodes on which they are scheduled.
+
+
+
+Question 7: Create an Ingress
+Create a new nginx Ingress resource as follows:
+
+Name: ping
+Namespace: ing-internal
+Exposing service hi on path /hi using service port 5678
+The availability of service hi can be checked using the following command, which should return hi :
+curl -kL /hi
+
+
+Topic 8: Extend deployment
+task
+
+Scale the deployment load balancer to 6 pods
+
+
+
+Question 9: Deploy the pod to the specified node node
+task
+
+Schedule a pod as follows:
+
+Name: nginx-kusc00401
+Image: nginx
+Node selector:disk=spinning
+
+
+Question 10: Check how many node nodes are healthy
+Task
+Check to see how many nodes are ready (not including nodes tainted NoSchedule ) and write the number to /opt/KUSC00402/kusc00402.txt.
+
+
+Question 12: Create a Persistent Volume
+Task
+Create a persistent volume whit name app-config , of capacity 1Gi and access mode ReadOnlyMany . The type of volume is hostPath and its location is /srv/app-config .
+
+
+Question 13: Create PVC
+Task
+Create a new PersistentVolumeClaim :
+
+Name: pv-volume
+Class: csi-hostpath-sc
+Capacity: 10Mi
+Create a new Pod which mounts the PersistentVolumeClaim as a volume:
+
+Name: web-server
+Image: nginx
+Mount path: /usr/share/nginx/html
+Configure the new Pod to have ReadWriteOnce access on the volume.
+
+
+Question 14: Monitor pod logs
+Task:
+Monitor the logs of pod foobar and:
+
+Extract log lines corresponding to error unable-to-access-website
+Write them to /opt/KUTR00101/bar
+
+
+Question 15: Add sidecar container
+Context
+Without changing its existing containers, an existing Pod needs to be integrated into Kubernetes' build-in logging architecture (eg kubectl logs). Adding a streaming sidecar container is a good and common way to accomplish this requirement.
+
+Task
+Add a busybox sidecar container to the existing Pod legacy-app . The new sidecar container has to run the following command:
+
+/bin/sh -c tail -n+1 -f /var/log/legacy-app.log
+1
+Use a volume mount named logs to make the file **/var/log/legacy-app.log available to the sidecar container.
+
+Don't modify the existing container.
+Don't modify the path of the log file, both containers must access it at /var/log/legacy-app.log .
+————————————————
+
+
+Question 16: View the Pod with the highest CPU usage
+Form the pod label name-cpu-loader , find pods running high CPU workloads and write the name of the pod consuming most CPU to the file /opt/KUTR00401/KURT00401.txt (which already exists).
+
+View the CPU usage of the Pod with the label name=cpu-user-loader and write the name of the pod with the highest cpu usage into the /opt/KUTR00401/KUTR00401.txt file
+————————————————
+
+
+Question 17: Cluster Troubleshooting
+Task
+A Kubernetes worker node, named wk8s-node-0 is in state NotReady .
+Investigate why this is the case, and perform any appropriate steps to bring the node to a Ready state, ensuring that any changes are made permanent.
+————————————————

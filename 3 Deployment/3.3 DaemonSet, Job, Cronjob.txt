@@ -18,3 +18,25 @@
 ####DaemonSet Update Strategy
 - RollingUpdate: Giống deployment nhưng by default chỉ create 1 pod tại 1 thời điểm
 - OnDelete: Phải vào manual delete pod thì nó mới tạo ra pod mới
+
+
+############################################### - Job and cronjob #############################
+
+####Introducing Jobs
+- Jobs create one or more Pods ( job sẽ tạo 1 hoặc nhiều pod)
+- Runs a program in a container to completion (Nó sẽ chạy 1 chương trình, một đoạn script hay 1 command line bên trọng a container tới khi hoàn thành)
+- Ensure that the specified number of Pods complete successfully
+- Workload examples
+  + Ad-hoc
+  + Batch
+  + Data oriented tasks
+- Ensuring jobs run to completion
+  + Interrupted execution (Không bị gián đoạn thực thi)
+  + non-zero Exit Code (Không trả về các exit code !=0)
+  + Rescheduled
+  + restartPolicy
+  
+####Jobs Lifecycle
+- Jobs are tasks what we need to ensure run to completion
+- Khi 1 job hoàn thành hoàn toàn: Status của nó sẽ là completed
+  + The pods 
