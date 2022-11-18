@@ -97,3 +97,6 @@ export n='-n important-ns' # set this as needed
 
 ## destroy things without waiting
 export now='--grace-period 0 --force'
+
+
+https://github.com/ascode-com/wiki/tree/main/certified-kubernetes-administrator
