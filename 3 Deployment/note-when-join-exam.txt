@@ -1,0 +1,99 @@
+Certified Kubernetes Administrator (CKA)
+everything you need to ace the CKA
+
+video versions:
+
+youtube
+odysee
+intro
+took the June 2022 updated version of the CKA
+~1 month of general study with 3 days of exam prep
+120 minute exam, had ~50 minutes after my first passthrough
+passed with a score of 91% (66% pass threshold)
+outline
+how to study
+the testing environment
+finesse guide
+how to study
+complete a course
+acloudguru CKA is good but the scenarios are too easy
+the internet recommends kodecloud's course by Mumshad Mannambeth
+killer.sh
+2 free runs with exam purchase
+do ONCE (timed) then REVIEW
+the explanations are very well done, read them all.
+UPDATE: july 2022 now in a remote desktop like the updated exam!
+killer coda scenarios
+do each one and read the explanations
+the testing environment
+interface
+
+source: Kim Wuestkamp on itnext.io
+
+checkin process
+ID check and camera scan
+clean your testing area
+one monitor
+don't stress
+moved to remote desktop environment in June 2022
+XFCE, Firefox
+expect some lag
+multiple terminals and browser tabs allowed
+keyboard layout preserved
+copy/paste
+right click menu
+ctrl-shift-(c|v)
+one-click copy from instructions (recommended to avoid typos)
+copying from firefox will trigger a warning (and maybe miss a character)
+terminal
+kubectl is pre-aliased to k with autocompletion
+.vimrc is pre-set (no need to remember) shiftwidth=2; expandtab=true; tabstop=2
+vscode and webstorm available as well more here
+tmux available but not necessary
+misc recommendations
+use a big screen
+hide the PSI top bar
+maximize your comfort
+finesse guide
+mindset
+time is your most valuable resource, speed is your best friend
+be imperative first, declarative second
+k create|run ... -h
+copying yaml from docs is LAST RESORT
+just make the thing with k create|run
+add ... --dry-run=client -o yaml > resource.yaml if you need to add things before apply
+use the -h option
+tells you EXACTLY what can be created imperatively WITH EXAMPLES
+menu increases in detail with base command
+understand the k8s docs
+remember important pages and examples
+mentally bookmark templates that can't be created interactively (pv, pvc, netpol, etc.)
+ctrl-f kind: <MY RESOURCE> to quickly find example yaml
+use the one-pager api reference for specific details
+use shortnames
+never type out a full resource name if you can help it
+cm -> configmap
+pvc -> persistentvolumeclaim
+...
+check all shortnames with k api-resources
+aliases, functions, and variables
+memorize what you think you'll use
+# IMHO must-haves
+
+## create yaml on-the-fly faster
+export do='--dry-run=client -o yaml'
+
+## organize your files per question #
+mkcd() { mkdir -p "$@" && cd "$@" ; }
+# nice to haves
+
+## create/destroy from yaml faster
+alias kaf='k apply -f '
+alias kdf='k delete -f '
+
+## namespaces (poor man's `kubens`)
+export nk='-n kube-system'
+export n='-n important-ns' # set this as needed
+
+## destroy things without waiting
+export now='--grace-period 0 --force'
