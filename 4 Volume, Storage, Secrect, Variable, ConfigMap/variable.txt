@@ -1,0 +1,33 @@
+###Why do we need configuration as Data?
+- Abstraction(Trừu tượng)
+- Container images are Inmutable(Không thay đổi)
+- Services Discovery
+- Sensitive Information (sử dụng variable để bảo mật thông tin)
+
+###Configuring Applications in Pods
+- Command line Arguments
+- Evironment Variable
+- ConfigMaps
+
+
+###Enviroment Variables inside Pods
+- User defined:
+  + Pod Spec for each container
+  + Defined inside the container images
+  + Defined in name/value or valueFrom
+- System defined: Name of all Services available at the time the Pod was created (Tên của tất cả dịch vụ khả dụng tại thời điểm Pod được tạo)
+- Defined at container startup (Định nghĩa khi container statup)
+- Connot be updated once the Pod is created (Không thể update variable khi pod đã created)
+
+###Defining Environment Variables
+---
+spec:
+  containers:
+  - name: hello-world
+    image: nginx
+	env:
+	- name: DATABASE_SERVERNAME
+	  value: "sql.example.local"
+	- name: BACKEND_SERVERNAME
+	  value: "be.example.local"
+	  

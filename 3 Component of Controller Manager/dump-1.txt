@@ -6,12 +6,12 @@ StatefulSet
 DaemonSet
 Create a new ServiceAccount named cicd-token in the existing namespace app-team1.
 Limited to namespace app-team1, bind the new ClusterRole -to the new ServiceAccount cicd-token.
-
+------------------------
 
 
 Question 2: Specify node to be unavailable
 Set the node named ek8s-node-1 as unavaliable and reschedule all the pods running on it.
-
+-----------------------
 
 
 
@@ -31,6 +31,16 @@ First, create a snapshot of the existing etcd instance running on https://127.0.
 Creating a snapshot for a given instance is expected to complete within seconds. If the operation appears to hang, there may be a problem with the command. Use ctrl+c to cancel the operation and try again.
 
 Then restore the existing previous snapshot located at /var/lib/backup/etcd-snapshot-previous.db.
+
+
+ETCDCTL_API=3 etcdctl --endpoints 127.0.0.1:2379 \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  snapshot restore /srv/data/etcd-snapshot.db
+
+ETCDCTL_API=3 etcdctl --endpoints 127:2379 snapshot restore snapshotdb
+
 
 
 Question 5: ① Create network rules in the same namespace

@@ -1,0 +1,79 @@
+- Key value pairs exposed into a Pod used application configuration setting (được expose vào trong pod và được pod sử dụng cho application)
+- Defining application or environment specific settings
+- Decouple application and Pod configurations Maximizing our container images portability
+- Environment Variables or Files (dưới dạng variable hoặc file)
+
+###Using ConfigMaps in Pods
+- Environment variables: valueFrom and envFrom
+- Volumes and Files:
+  + Volume mounted inside a container (Sử dụng dưới dạng volume mount vào bên trong 1 container)
+  + Single file or directory ( 1 file hoặc 1 directory)
+  + Many files or directories (Nhiều file hoặc nhiều directory)
+  + Volume ConfigMaps can be updated (Volume configmap có thể updated)
+
+
+###Defining ConfigMaps
+
+- Create with a key=value
+#kubectl create configmap appconfigprod \
+  --from-literal=DATABASE_SERVERNAME=sql.example.local \
+  --from-literal=BACKEND_SERVERNAME=be.example.local
+
+- Create from a file
+#kubectl create configmap appconfigqa \
+  --from-file=appconfigqa
+
+- Create by manifest
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appconfigprod
+data:
+  BACKEND_SERVERNAME: be.example.local
+  DATABASE_SERVERNAME: sql.example.local
+
+
+
+###Using ConfigMap
+- Su dung truc tiep key value
+---
+spec:
+  containers:
+  ...
+  env:
+  - name: DATABASE_SERVERNAME
+    valueFrom:
+	  configMapKeyRef:
+	    name: appconfigprod
+		key: DATABASE_SERVERNAME
+  - name: BACKEND_SERVERNAME
+    valueFrom:
+	  configMapKeyRef:
+	    name: appconfigprod
+		key: BACKEND_SERVERNAME
+
+- Su dung truc tiep configmap Ref:
+---
+spec:
+  continers:
+  - name: hello-world
+  ...
+    envFrom:
+	- configMapRef:
+	  name: appconfigprod
+	  
+	  
+- Sử dụng configmap như 1 file mount vào bên trong container
+---
+spec:
+  volumes:
+    - name: appconfig
+	  configMap:
+	    name: appconfigqa
+  containers:
+  - name: hello-world
+    ...
+	volumeMounts:
+	- name: appconfig
+	   mountPath: "/etc/appconfig"
+	   

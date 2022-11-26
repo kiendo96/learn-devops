@@ -1,0 +1,92 @@
+#####Network policies
+- Nếu muốn control trafic flow ở cấp độ IP addess hoặc port (OSI layer 3 or 4) thì có thể cân nhắc sử dụng  Kubernetes NetworkPolicies cho các ứng dụng cụ thể trong cụm của mình
+- NetworkPolicies là 1 cấu trúc lấy ứng dụng làm trung tâm, cho phép bạn chỉ định cách một nhóm được giao tiếp với các network "entities" qua mạng
+- The entities that a Pod can communicate with are identified through a combination of the following 3 identifiers:
+	+ Other pod that are allow (exception: 1 nhóm không thể block truy cập của chính nó)
+	+ namespcaes that are allow
+	+ IP block (exception: traffic đến và đi từ node nơi mà pod đó đang running luôn được cho phép, bất kể địa chỉ IP của Pod hoặc Node)
+	
+- Khi define networkpolicies dựa trên a pod hoặc namespace, sẽ sử dụng a selector to specify traffic muốn allowed to and from the Pod that match the selector
+
+Mandatory Fields(Các trường bắt buộc): a networkpolicies needs apiVersion, kind and metadata fields.
+spec: khai báo tất cả các thông tin cần thiết của NetworkPolicies
+podSelector: Chỉ định pod theo label. Nếu để trống thì tất cả các pod in the namespcaes
+policyTypes: 
+  + Là danh sách các loại policy của networkpolicies, có thể là ingress, egress hoặc bao gồm cả 2
+  + Nếu không có policyTypes nào được chỉ định trên NetworkPolicies thì default Ingress sẽ luôn được set và Egress sẽ được set nếu NetworkPolicies có bất cứ Egress Rules nào
+  
+ingress(truy cập từ ngoài vào pod): Mỗi NetworkPolicies có thể bao gồm 1 list các ingress rules được phép. Mỗi rule cho phép traffic khớp với hai phần tử from và ports sections. 
+egress: set rule truy cập bên trong pod được phép truy cập ra những thành phần nào
+
+***Behavior of to and from selector
+- Có 4 loại selector có thể chỉ định cho 1 ingress from hoặc egress to:
+
+	+ podSelector: This selects particular Pod in same namespace sẽ cho phép ingress sources hoặc egress destinations
+	+ namespaceSelector: Chỉ định namespace cụ thể sẽ cho phép ingress sources hoặc egress destinations
+	+ namespaceSelector and podSelector: Chỉ định to/from cho cả 2 selector namespaceSelector và podSelector
+	+ ipBlock: Chọn range IP CIDR cụ thể để cho phép ingress sources hoặc egress destinations. Đây phải là cluster-external IP vì Pod IP là ephemeral and unpredicatable
+	
+
+###Allow all ingress traffic
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-ingress
+spec:
+  podSelector: {}
+  ingress:
+  - {}
+  policyTypes:
+  - Ingress
+  
+
+###Default deny all ingress traffic
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+
+
+###Default deny all egress traffic
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-egress
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+  
+###Allow all egress traffic
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-egress
+spec:
+  podSelector: {}
+  egress:
+  - {}
+  policyTypes:
+  - Egress
+  
+###Default deny all ingress and all egress traffic
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  
+###Targeting a range of ports

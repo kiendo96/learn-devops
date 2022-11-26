@@ -1,0 +1,27 @@
+###Scheduling in Kubernetes
+- Selecting a Node to start a Pod on kube-scheduler
+- Schedule dựa vào 2 yếu tố:
+  + Resource: cpu, memory
+  + Policy
+
+
+###Scheduling Process
+
+-> Watches the API server for Unscheduled Pods (Luôn kiểm tra xem có pod nào đang unscheduler)
+-> Node selection (Chọn ra 1 node available thích hợp cho Pod)
+-> Update nodeName in the pod object (update nodeName vào trong pod )
+-> Nodes kubeletes watch API server for work (Sau đó kubelet nhận được thông tin dựa vào nodeName và nó sẽ làm các công việc của nó -> thông báo cri)
+-> Signal container runtime to start container(s)
+
+####NODE SELECTION
+
+- Step 1: Filtering
+	+ From all Nodes
+	+ Apply Filters
+	+ Filtered Nodes
+	+ Hard constraints (Ràng buộc cứng)
+	
+- Step 2: Scoring (chấm điểm)
+	+ Scoring functions
+	+ Feasible Nodes (Tìm ra nodes khả thi)
+	+ Policy constraints (Ràng buộc chính sách)
