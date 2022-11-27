@@ -15,13 +15,126 @@
 
 ####NODE SELECTION
 
-- Step 1: Filtering
+- Step 1: Filtering => Filter xem có bao nhiêu node phù hợp với yêu cầu của POD
 	+ From all Nodes
-	+ Apply Filters
+	+ Apply Filters (Apply các nguyên tắc filter vào: resource, policy)
 	+ Filtered Nodes
-	+ Hard constraints (Ràng buộc cứng)
+	+ Hard constraints : Kiểm tra node còn phần cứng không 
 	
-- Step 2: Scoring (chấm điểm)
+- Step 2: Scoring (chấm điểm) => Tính điểm các Node để tìm ra node khả dụng
 	+ Scoring functions
 	+ Feasible Nodes (Tìm ra nodes khả thi)
 	+ Policy constraints (Ràng buộc chính sách)
+
+- Step 3: Binding
+	+ Selected  Nodes List
+	+ Tier are Broken
+	+ Update API object
+
+####Yếu tố đánh giá node: Resource request
+- Setting request will cause the scheduler to find a Node to fit the workload/Pod
+	request are guarantee
+		+ cpu
+		+ memory
+- Allocatable resources per Node (Tài nguyên có thể phân bổ cho mỗi node)
+- Pods that need to be scheduled but there not enough resources available will go Pending
+
+
+###Controlling Scheduling (Các cách schedule 1 con pod)
+- NodeSelector
+- Affinity and Anti-Affinity
+- Taint and Tolerations
+- Node cordoning
+- Manual Scheduling
+
+*nodeSelector
+- assign Pods to Nodes using Label and Selector
+- Apply Label to Nodes
+- Scheduler will assign a Pods to a Node with a matching Label (Scheduler sẽ gán 1 Pod tới 1 node matching với cái label)
+- Simple Key/value check based on `matchLabels`
+- Often used to map Pods to Nodes based on
+  + Special hardware requirement (Yêu cầu đặc biệt về phần cứng)
+  + Workload isolation (Cô lập 1 khối lượng công việc)
+Example:
+#kubectl label node control-plane hardware=local_gpu
+---
+spec:
+  containers:
+  - name: hello-world
+    image: nginx
+	ports:
+	- containerPort: 8080
+  nodeSelector:
+    hardware: local_gpu
+
+*Affinity and Anti-Affinity
+- nodeAffinity: Sử dụng Labels trên Nodes to make a scheduling decision with matchExpressions
+  + requiredDuringSchedulingIgnoredDuringExecution (nếu node affinity không match với matchExpressions thì nó sẽ không schedule)
+  + preferedDuringSchedulingIgnoredDuringExecution (nếu required ở trên không match mà nễu có trong prefered thì vẫn sẽ được schedule )
+
+- podAffinity - schedule Pods onto the same Node, Zone as some other Pod (schedule pod lên cùng 1 node hoặc 1 Zone)
+- podAntiAffinity - schedule Pods onto the different Node, Zone as some other Pod (schedule pod lên khác node và khác zone)
+
+#####Using Affinity to Control Pod Placement
+---
+spec:
+  containers:
+  - name: hello-world-cache
+  ...
+  affinity:
+    podAffinity:
+	  requiredDuringSchedulingIgnoredDuringExecution:
+	  - labelSelector:
+	  	  matchExpressions:
+		  - key: app
+		    operator: In
+			values:
+			- hello-world-web
+		topologyKey: "kubernetes.io/hostname"
+
+
+*Taint and Tolerations
+- Taint: ability to control which Pods are scheduled to Nodes (Chỉ định Pod nào sẽ được scheduled lên node)
+- Tolerations: allow a Pod to ignore a Taint and be scheduled as normal on Tainted Nodes (Cho phép chúng ta ignore Taint và có thể deploy lên Node như bình thương `Kiểu dạng bỏ qua taint trên node đã được taint`)
+- Useful in scenarios where the cluster administrator needs to influence scheduling without depending on the unscheduler
+	`key=value:effect` --> effect là ảnh hưởng. Check trên document
+	`kubectl taint nodes master key=MyTaint:NoSchedule`
+
+**Adding a Taint to a Nodes and a Toleration to a Pod
+#kubectl taint nodes master key=MyTaint:NoSchedule
+
+---
+spec:
+  containers:
+    - name: nginx
+	  image: nginx
+	  ports:
+	  - containerPort: 8080
+  tolerations:
+  - key: "key"
+    operator: "Equal"
+	value: "MyTaint"
+	effect: "NoSchedule"
+
+**Node cordoning
+- Marks a Node as unschedulable
+- Prevents new Pods from being scheduled to that Node (Ngăn chặn 1 pod mới có thể schedule lên Node này)
+- This is useful as a preparatory step before a Node reboot or maintenance
+	kubectl cordon control-plane
+- If you want to gracefully evict your Pods from a Node
+	kubectl drain NODE_NAME --ignore-daemonsets
+
+
+
+**Manually Scheduling Pod 
+- Scheduler populates nodeName
+- If you specify nodeName in your Pod definition on Pod will be started on that node
+- Node name must exist
+- Still subject to Node resource constraints
+
+
+####Configuring Multiple Scheduler
+- Implement your own scheduler (Thực hiện lịch trình riêng)
+- Run multiple scheduler concurrently
+	+ Define in your Pod Spec scheduler you want
+- Deploy your scheduler as a system Pod in the cluster
