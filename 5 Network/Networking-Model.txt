@@ -1,0 +1,58 @@
+###Kubernetes Networking Model
+- All pod can communicate with each other on all Nodes (Tất cả các pod trên cùng 1 node và khác node có thể giao tiếp với nhau)
+- Agents(Kubelet, kube-proxy) on a Node can communicate with all Pods on Node (Agent trên 1 node có thể giao tiếp với tất các các pod trên Node)
+- No Network Address Translation (Không có NAT)
+
+
+###Motivations for the Network Model
+- Simplicity: Đơn giản hóa việc xây dựng hệ thống network. Chuyển từ Human -> software define network
+- Hide Implementation Details: Nó ẩn đi các chi tiết triển khai và chúng ta không cần phải quan tâm tới các phần bên dưới
+- Administrator Controller: Người quản trị sẽ dễ dàng control
+- Define in code: Có thể define nó bên trong code
+- All Pods can communicate to each other (Tất cả các pod có thể giao tiếp với nhau)
+- Services Discovery and App configuration:
+
+###kubernetes Network Topology
+- Gồm 3 phần chính:
+    + Pod network: Do CNI quy định
+    + Node network: Do adminsitrator quy định
+    + Cluster network: Khi kubeadm init cluster thì sẽ define
+
+
+###Pod Netork and communicate
+- Inside a Pod
+- Pod to Pod within a Node
+    + Mỗi Pod sẽ được create a  interface eth0
+    + Các eth0 của pod kết nối với nhau thông qua Bridge/Tunnel
+- Pod to Pod on another Node
+    + Đầu tiên sẽ đi qua kube-proxy -> Layer 2/3 or overlay Network(calico)
+- Services
+    + Bên ngoài connect vào bên trong cluster phải connect qua services
+
+###Pod networking internal
+- Pod share a network namespace
+- Containers in a Pod communicate over localhost (container bên trong pod giao tiếp thông qua over localhost)
+- Pause/Infrastructure container //Pause sẽ đước start lên trước để khởi tạo networking namespace
+    +  Starts the networking namespace
+    + If the application container restart the network will persist (Nếu application container có restart thì networking sẽ vẫn được giữ lại)
+    + Lifecycle of the Pod
+
+///Container Network Interface - CNI
+- standardized Networking (Tất các các routing config bên trong cluster sẽ được CNI thực hiện)
+- CNI plugins
+- Implements Kubernetes Network Model
+- Network plugin
+
+*Noted
+- Giữa các pod connect với nhau thông qua tunnel0 ( source pod -> gateway of node -> tunnel0 -> gateway of another node -> destination ip apod )
+
+
+
+/////////Cluster DNS
+- DNS is available as a Services in a Cluster
+- Pods are configured to use this DNS
+- DNS records
+  + Services - A/AAAA records
+  + namespaces - subdomains
+- Core to Service discovery
+- Customize both the DNS Service and Pod configuration

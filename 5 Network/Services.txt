@@ -1,0 +1,55 @@
+///Understanding Services
+- Persistent endpoint access for clients (Duy trì endpoint cho clients)
+- Adds persistency to the ephemerality of Pods (Thêm tính bền bỉ cho Pods ephemeral) //Các pod bị xóa đi và khi tạo lại vẫn sẽ giữ được IP và DNS
+- Networking abstraction providing persistent virtual IP and DNS (Cung cấp 1 lớp trừ tượng (abstraction layer) duy trì virtual IP và DNS)
+- Load balances to the backend Pods (type=RoundRobin)
+- Automatically updated during Pod controller operations
+
+
+///Services Work
+- Services match Pods using Labels and Selector ////<Services sẽ watch các pod có label 'equals' selector và add nó vào backend của Services>
+- Create and register(Đăng ký) endpoint in the Services (Pod IP and Port pair)
+- Implemented(thực hiện) in the kube-proxy on the Node in iptables ///<Được thực hiện bởi kube-proxy đưa vào bên trong iptables>
+- kube-proxy watches the API Server and the endpoints
+
+///Services Types
+- ClusterIP: Được cấp khi kubeadm init cluster
+- NodePort:
+    + Bao gồm NodePort và ClusterIP
+    + flow of NodePort: -> IP of Node + port -> ClusterIP -> LoadBalancer (Layer 4) -> Pod 
+- LoadBalancer:
+    + Bao gồm: ExternalIP, NodePort, ClusterIP
+    + flow of LoadBalancer: -> access to IP of LoadBalancer -> IP of Node + port -> ClusterIP -> LoadBalancer (Layer 4) -> Pod
+- ExternalName
+
+///Defining Deployments and Services
+
+#Deployment
+---
+kind: Deployment
+...
+  template:
+    metadata:
+      labels:
+        run: hello-world
+    spec:
+      containers:
+....
+
+
+#Services
+---
+kind: Services
+...
+spec:
+  type: ClusterIP
+  selector:
+    run: hello-world   //-> macth with template of Deployment
+  ports:
+  - port: 80    ///-> port of Services
+    protocol: TCP
+    targetPort: 80880   //-> port of Pods (pause container)
+    nodePort: 30222     //-> Port of NodePort
+
+#kubectl create deployment nginx --image=nginx
+#kubectl expose deployment nginx --name=nginx-svc --port=80 --targetPort=8080 --type=ClusterIP
