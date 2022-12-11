@@ -53,3 +53,34 @@ spec:
 
 #kubectl create deployment nginx --image=nginx
 #kubectl expose deployment nginx --name=nginx-svc --port=80 --targetPort=8080 --type=ClusterIP
+
+
+/////Services discovery
+- Infrastructure independence
+- Static configuration
+- DNS
+- Environment variables
+
+- Services get DNS record in Cluster DNS
+  + `Normal` Services get A/AAAA record
+    <svc-name>.<ns>.svc.<cluster-domain>
+    hello-world.default.svc.cluster.local
+  + Namespaces get DNS subdomains
+    <ns>.svc.<cluster-domain>
+    ns1.svc.cluster.local
+  + Environment variables
+    Defined in Pods for each Services available at Pod start up (Khi pod được start thì Services sẽ được add vào bên trong pod)
+
+
+////Other type of Services
+- ExternalName:
+  + Services discovery for external services
+  + CNAME to resource
+- Headless (Dùng cho những loại application statefull application)
+  + DNS but NO ClusterIP
+  + DNS record for each endpoint
+  + Stateful applications
+- Without Selectors:
+  + Map to specific endpoint
+  + Manually create endpoint object
+  + Point to any IP inside or outsite cluster

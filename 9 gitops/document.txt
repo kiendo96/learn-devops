@@ -1,0 +1,74 @@
+///Gitops
+- Gitops là 1 operating model pattern for cloud native application & Kubernetes storing application & declarative infrastructure as code in Git as the source of truth used for automated continuous delivery
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////understanding GitOps Workflow
+
+//Gitops Operator Types
+- Cloud Infrasutcture (Infrasutcture Automation):
+    +   Terraform for setup/upgrade/modify
+    + Cloud Iaas(Infrasutcture as a services), IAM, Kubernetes cluster, Namespace, Ingress Controller, Services Mesh, Monitoring
+
+- Cluster(Application Automation): 
+    + K8s Manifest / helm charts
+    + For the application: Deployment, Pods, Services, ConfigMaps, Namespaces etc..
+
+///GitOps IaC Workflow - Kubestack
+- Kubestack's GitOps framework is Terraform & Kustomize based designed for fully automated GitOps infrastructure (Kubestack gitops framework dựa trên teraform và kustomize để thiết kế cơ sở hàng tầng tự động cho gitops )
+- Uses Terraform workspaces to differentiate between infrastructure (ops) & application (apps) environment
+- All changes start with a commit in a Git repo follow a GitOps process with changes following the same four steps every time( Tất cả các thay đổi sẽ bắt đầu từ 1 commit trên git repo tuân thủ theo 1 quy trình GitOps với các thay đổi thực hiện theo bốn bước giống nhau mỗi lần)
+- Git branches and tags determine the environment and pipeline step
+- Automation validates changes against the ops environment before it applies them to the apps environment 
+
+///GitOps IaC Workflow - Jenkins X
+- Full automated CI/CD pipelines to provision & provide GitOps for both infrastructure and application (Các pipeline cicd hoàn toàn tự động và cung cấp gitops cho cả infrastructure và application)
+- Has an infrastructure repository that holds Terraform code & a cluster repository that holds Kubernetes Manifest code (Có 1 repo giữ teraform code và 1 repo giữ kubernetes manifest code)
+- Run microservices on K8s cluster for Jenkins X arch including:
+    + jx-git-operator, jx, lighthouse, kuberhealthy, nginx ingress, secret-infra & tekton-pipeline
+
+
+///GitOps workflow with Flux:
+- Step 0:
+    + Action: commit infra code
+    + Detail: Create / change/ delete cloud and kubernetes infrastructure via Terraform / Kubestack / Jenkins X
+
+- Step 1a:
+    + Action: Commit App code
+    + Detail: Write application code and commit it to application Git repository (Github/ GitLab/ ADO etc..)
+
+- Step 1b:
+    + Action: Commit Cluster code
+    + Detail: Write Kubernetes cluster code (YAML manifest) and commit to deploy Repo for App/Cluster configuration
+
+- Step 2:
+    + Action: Merge / Trigger
+    + Detail: Pull request to merge and trigger container build
+
+- Step 3:
+    + Action: Push Image
+    + Detail: Push to Container/Helm repository
+
+- Step 4:
+    + Action: Update Deploy Repo
+    + Detail: If application configuration changes from the application Git repository update deployment Git repository so that the Flux operator can pick up changes
+
+- Step 5:
+    + Action: Operator Sync
+    + Detail: Flux operator syncs with deployment Git repository & Container/Helm Repository watching for changes and will apply manifest/s (Kubectl apply) to namespaces if changes are needed
+    

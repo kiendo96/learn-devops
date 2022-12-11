@@ -1,0 +1,49 @@
+///Logging in kubernetes
+- Containers and Pod: Log of container(app)
+- Nodes
+- Control plane (etcd, scheduler, controller manager, api server)
+- Events
+
+///Logging architecture - Pods and container
+- stdout and stderr
+- Logging driver: /var/log/containers
+- Two logs are retained on the Nodes
+- Log Aggregation (Có thể collect các log này đến các services elk, prometheus)
+- kubectl logs
+- Log rotation
+
+
+///Logging architecture - Nodes
+- kubelet:
+    + systemd services
+    + journald
+    + journalctl kubelet.services
+    + /var/log/kubelet.log
+    + Local operating system logs
+- kube-proxy:
+    + Pod
+    + kubectl logs
+    + /var/log/containers
+    + /var/log/kube-proxy
+    + Local operating system logs
+
+
+///Logging Architechture - control plane
+- Run as Pod:
+  + kubectl logs -n kube-system $PODNAME
+  + docker logs $CONTAINERSNAME
+  + /var/log/containers
+- Systemd based system logs to journald
+- Everywhere else...
+  + /var/log/kube-apiserver.log
+  + /var/log/kube-scheduler.log
+  + /var/log/kube-controleler-manager.log
+
+
+///Kubernetes Events
+- Logs for resource defined in the cluster (Logs của resource được define bên trong cluster)
+- Changes in resource state (Trạng thái thay đổi của resource)
+- Go to log for when something goes wrong
+    + kubectl get Events
+    + kubectl describe $TYPE $NAME
+- One hour retention (được giữ trong 1 giờ)

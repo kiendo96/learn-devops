@@ -1,0 +1,16 @@
+///Troubleshooting tool
+- kubectl logs
+- kubectl events
+- systemctl
+- journalctl
+- System logs
+
+
+///Troubleshooting - Nodes
+- Các bước troubleshoot cơ bản:
+-> Server online (server vật lý ok)
+-> Network reachability (Network connected)
+-> Systemd
+-> container runtime
+-> kubelet
+-> kube-proxy

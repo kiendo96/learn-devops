@@ -1,0 +1,178 @@
+///The Argo Project
+- Workflow engine for orchestrating parallel jobs on Kubernetes
+- Declarative, continuous delivery GitOps Operator for Kubernetes
+- Advanced deployment capabilities such as blue-green, canary & canary analysis
+- Event-driven workflow automation framework for Kubernetes
+
+
+///ArgoCD
+- Argo Cd is the core component of the Argo Project
+- Argo CD is a GitOps Operator that provides continuous delivery for Kubernetes
+- Has Application Controller to continuously monitor apps running on K8s cluster/s comparing the live app state against desired state defined in a Git repository
+
+///CD Workflow with ArgoCD
+- Argo CD operator pulls app configurations from a Git repo & deploys the app in a Kubernetes clusters
+- New app feature code committed & pull request  submitted to the Git Repo to modify app deployment
+- Pull request is merged with new code into main repo
+- Argo CD operator does a pull to the Git repo, sees changes, and updates app in Kubernetes cluster
+
+
+///Argo CD Architecture
+- API Server:
+    + a gRPC/REST server that exposes the API that is consumed by the Web UI, CLI, and CI/CD systems
+- Repository Server:
+    + An internal services that maintains a local cache of the Git repo holding the app manifests (Bản thân ArgoCD nó cũng là 1 internal repository, Nó sẽ thực hiện công việc đảm bảo manifest bên trong internal repo của nó sync với manifest external repo )
+- Application controller:
+    + A kubernetes controller that continuously monitors running app & compares the current, live state against the desired state in the Git repo (Thằng application sẽ monitors running app và compares the current, live state against the desired state bên trên Git repo -> nó giống như thằng deployment nó sẽ quản lí các container runtime bên trong cluster)
+
+///Argo CD components
+- Components (Deployments / Services):
+    + argocd-dex-server: Argo CD embeds and bundles Dex as part of its installation, for the purpose of delegating authentication to an external identity provider and handling SSO(singer sign on): Xử lí các xác thực từ bên ngoài vào bên trong argocd
+    + argocd-metrics / argocd-server-metrics: Argo CD exposes application metrics and API server metrics for Prometheus (Nó expose sẵn metric cho prometheus để monitor)
+    + argocd-redis: Redis used as chaching technology working with the Argo CD repository (Sử dụng làm bộ nhớ đệm)
+    + argocd-repo-server: Clones the Git repository, keeping it up to date and generating manifests using the appropriate tool (clone git repository và update đảm bảo nó sync giữ 2 repo internal và external)
+    + argocd-server: Runs the Run the ArgoCD API server (Thực hiện toàn bộ request liên quan tới api-server)
+
+///ArgoCD supported intergrated tooling
+- Kustomize
+- Helm
+- Ksonnet
+- Jenkins
+- Jsonnet
+
+//Argo CD tool Detection
+- When a new app is create in argoCD it is able to detect the tooling used to create that app. The tool is detected as follows:
+    + Jsonnet/Ksonnet if there are two files, one name app.yaml and one named components/parrams.libsonnet or any file matching *.jsonnet in a dirrectory app
+    + Helm if there's a file matching Chart.yaml
+    + Kustomize if there's a kustomization.yaml, kustomization.yml or Kuztomization
+
+
+///////////Deploy argoCD
+
+
+///ArgoCD Requirement
+- kubectl command-line tool installed
+
+- Kubernetes cluster to host Argo CD
+- Cluster Admin level access
+- kubeconfig configured to connect to your Kubernetes cluster
+
+- Access to GitHub (or other repo)
+
+
+///Types of argo CD installs
+- Non high Availability:
+    + Manifest = install.yaml
+    + Recommended for dev
+    + Single pods & replicas for Argo CD components
+
+- High Availability:
+    + Manifest = namespace-install.yaml
+    + Recommended for prod
+    + Tuned for high availability and resiliency
+    + Multiple replicas for supported components
+
+- Core install:
+    + Manifest = core-install.yaml
+    + Use when multi-tenancy features (web ui, API server ..) are not needed
+    + Installs the lightweight (non-HA) version of each component
+
+- Cluster level: Use when you have cluster level access & will deploy apps in the same k8s cluster that Argo CD runs on
+- Namespace level: Use when you have namespace level access & will deploy apps to external K8s cluster from where Argo CD is running
+
+
+///Install Argo CD
+- Create a namespace for Argo CD to deploy all of its components in:
+    #kubectl create namespace argocd
+
+- Install Argo CD into the new namespace you created. Reference Argo CD Github repository for the latest Argo CD operator
+    #kubectl apply -n argocd -f LINK_REPO_HELM
+
+
+///The Argo CD CLI
+- Argo CD has a command line interface to access the api server
+- Some activities can only be performed via the argo cd cli such as adding new cluster & managing user accounts
+- Script/Automate using Argo CD CLI
+- Có một vài thao tác ko thể sử dụng Web UI mà phải dùng CLI (Ex: Add user, reset password, add new cluster...)
+
+
+##Way install the Argo CD CLI
+- Windows: Chocolatey - choco install argocd-cli
+- MAC: homebrew - brew install argocd
+- Linux: apt,yum install argocd
+
+///Common Argo CD CLI commands
+#argocd login
+#argocd account
+#argocd proj
+#argocd app
+#argocd repo
+#argocd version
+#argocd-util
+#argocd cluster
+
+
+
+///Argo CD User Management
+- Option 1: Local Users
+    + This is good for small teams 5 or less & an API accounts for automation
+- Option 2: SSO Intergration
+    + This is good for larger teams & integrating with external identity providers
+
+
+///Argo CD - Local User
+- Argo CD local users are stored in a ConfigMap that is applied to Argo CD
+- Local Argo CD users don't have advanced features likes groups, loging, history ...
+- Each new user will need to be assigned a build in role
+    + readonly: read-only access to all resources
+    + admin: unrestricted access to all resources
+- Each new user will also need policy rules defines. Or they will default to policy.default
+These are;
+    + p, subject, resource, action, object, effect
+
+///Enabling Argo CD RBAC
+- Argo CD's RBAC feature enables restriction of access to Argo CD resources (Tính năng RBAC của Argo CD cho phép hạn chế quyền truy cập vào tài nguyên Argo CD)
+- Since Argo CD does not have its own user management system it requires SSO configuration or local users setup( Vì argoCD không có hệ thống quản lý người dùng riêng nên nó yêu cầu cấu hình SSO hoặc thiết lập người dùng cục bộ)
+- After either SSO or local users is setup in Argo CD more RBAC roles can be defined and local user or SSO users/groups can be mapped to these roles(Sau khi thiết lập SSO hoặc người dùng cục bộ trong ArgoCD có thể xác định nhiều vai trò RBAC hơn và người dùng cục bộ hoặc người dùng/nhóm SSO có thể được ánh xạ tới các vai trò này)
+
+#Argo CD rBAC - Built -in roles
+- role: readonly (read-only access to all resources)
+- role: admin (unrestricted access to all resources)
+
+#Resources & Actions
+- Resources: cluster, projects, applications, repositories, certificates, accounts, gpgkeys
+- Actions: get, create, update, delete, sync, override, action
+
+#Permissions
+- All resources except applications: p, <role/user/group>, <resource>, <action>, <object>
+- Application (tied to an AppProject): p, <role/user/group>, <resource>, <action>, <appproject>/<object>
+
+
+///Sensitive Information in Argo CD
+- Argo CD never return sensitive data from its API, and redacts all sensitive data in API payloads and logs. This includes:
+    + cluster credentials
+    + Git creadentials
+    + OAuth2 client secrets
+    + Kubernetes Secret values
+
+///securing External Cluster Credentials in Argo CD
+- Argo CD stores the credentials of the external cluster as a Kubernetes Secret in the argocd namespace
+- This secret contains the K8s API bearer token associated with the argocd-manager Service account created during argocd cluster add
+
+///Secrets in Argo CD
+- Secret Management functionality is not built directly into ArgoCD (Secret management sẽ không built vào bên trong ArgoCD)
+- We utilize a third-party solution to serve this need (Sẽ sử dụng third-party solution)
+
+- GitOps Secret Management Solutions:
+    + Bitnami Sealed Secrets
+    + GoDaddy Kubernetes External Secrets
+    + External Secrets Operator
+    + Hashicorp Vault
+    + Banzai cloud Bank-Vaults
+    + Helm Secrets
+    + Kustomize secret generator plugins
+    + aws-secret-operator
+    + KSOPS
+    + argocd-vault-plugins
+
+

@@ -1,0 +1,20 @@
+///Introducing etcd
+- Key value datastore
+- Stores cluster state data and object
+- Backup and restore
+- High Availability
+
+////Backup etcd
+- Backup with snapshot using etcdctl
+- Secured and/or encrypted to protect sensitive information stored
+- Copied offsite as soon as possible
+- Schedule backup as a Cronjob
+- Default data directory: /var/lib/etcd (Được mount từ pod ra ngoài)
+    hostPath mounted into a Pod
+
+//Restoring etcd with etcdctl
+-> Restore backup to another location
+-> Move the original data out of the way
+-> Stop etcd
+-> Move the restored data to /var/lib/etcd
+-> Kubectl will restart etcd

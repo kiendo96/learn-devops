@@ -1,0 +1,21 @@
+////Ingress Architecture
+- Ingress object
+- ingress controller
+
+
+///Ingress overview
+- API object
+- Defines rules for external access to Services (Định nghĩa rules access cho services)
+- Loadbalancing to endpoint
+- Name-based virtual hosts
+- Path-based routing
+- TLS termination
+=> Managing Ingress Traffic pattern for kubernetes services
+
+///Why ingress Rather Than LoadBalancer
+- Layer 7 (Có header dễ dàng manage và control)
+- Path-based routing (Cơ chế path /)
+- Name-based routing (Gán host name)
+- Higher level capabilities
+- Single resource (chỉ 1 resource)
+- Reduced latency (Giảm chi phí và độ trễ)

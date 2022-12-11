@@ -1,0 +1,4 @@
+///Accessing object data with JSONPath
+- kubectl support JSONPath
+- Write expression to access, filter, sort and format object data
+- Precise operations an objects
