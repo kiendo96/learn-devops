@@ -176,3 +176,59 @@ These are;
     + argocd-vault-plugins
 
 
+///High Availability, backup, and disaster Recovery with Argo CD
+
+#Argo CD High Availability
+- Argo CD is made up of mostly stateless components (argo cd được thiết kế dưới dạng stateless components)
+- For any data in argo cd that needs to persist it is stored in Kubernetes objects in the etcd database (Đối với bất kì dữ liệu argocd nào cần persist thì nó sẽ stored in Kubernetes object in the etcd database)
+- Redis in Argo CD is designed as throw-away cache that will be rebuilt when lost(redis trong argo cd được thiết kế dưới dạng bộ nhớ đệm tạm thời sẽ được tạo lại khi bị mất)
+- Argo CD can be deployed in a High Availability mode( Argo CD có thể deployed in a high availability mode)
+
+#Detail HA
+- Argo cd high availability deployment requires at least three diffrent nodes for pod anti-affinity roles
+- To deploy argo CD in high Availability mode you will need to use the HA manifests (chạy nhiều replicaset)
+- The HA manifests run more replicas (containers) & rns Redis in HA mode
+
+#Types of Argo CD High Availability
+- ha/install.yaml : Deploys multiple replicas for supported argo CD components. Use when you have cluster level access & will deploy apps in the same cluster that Argo CD runs on (deploy multi replicas và deploy trên cùng 1 cluster)
+- ha/namespace-install.yaml: Deploys multiple replicas for supported Argo CD components. Use when you have namespace level access & will deploy apps to external cluster from where Argo CD is running( Deploy multi replicas và được deploy app lên external cluster) -> Cluster A -> deploy app to cluster B
+
+
+#Back up and Disater Recovery
+- argocd admin can export and import Argo CD data
+#docker run -v ~/.kube:/home/argocd/.kube --rm argoproj/argocd:$VERSION argocd admin export > backup.yaml
+#docker run -i -v ~/.kube:/home/argocd/.kube --rm argoproj/argocd:$VERSION argocd admin import -< backup.yaml
+
+
+///Argo CD Webhook
+- Argo CD supports Git webhook notifications from GitHub, GitLab, Bitbucket & Gogs
+- The Argo CD API server can be configured to receive webhook events instead of relying on polling a Git Repository
+
+///Argo cd monitoring
+- Argo CD exposes two sets of Prometheus metrics including: API Server Metrics & Application Metrics
+- Argo CD has built-in health assessment that is surfaced up to the overall Application health status. This status comes from health checks on serveral standard K8s types:
+    + Deployment, ReplicaSet, StatefulSet, DaemonSet
+    + Service
+    + Ingress
+    + PersistentVolumeClaim
+
+#API Server monitoring
+- Metrics about API Server/API request & response activity scraped at the argocd-server-metrics:8083/metrics-endpoint
+- API request and response activities include:
+- request totals (Tổng lượng request tới Argo Cd)
+- response codes (Tổng lượng code response)
+
+#API App monitoring
+- Metrics about applications are scraped at the argocd-metrics:8082/metrics endpoint
+- Metrics include:
+    + Gauge for application health status
+    + Gauge for application sync status
+    + Counter for application sync history
+
+///Argo CD notifications
+- Notification functionality is not built directly into Argo CD (Notification không được built trực tiếp vào bên trong Argo CD)
+- We utilize a third-party solution to serve this need
+
+- ArgoCD Notification: Argo CD specific notification system that continuously monitors ArgoCD applicaiton & integrates with various notification Services such as Slack, SMTP, Telegram, Discord, ...
+- Argo Kube Notifier: - Generic Kubernetes resource controller that allows monitoring any Kubernetes resource and sends a notification when the configured role is metric
+- kube Watch:  a Kubernetes watcher that publishes notifications to Slack, hipchat, mattermost & flock channels. It watches the cluster for resource changes and notifies the channels through webhooks
