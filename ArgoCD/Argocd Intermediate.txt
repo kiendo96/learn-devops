@@ -1,0 +1,68 @@
+1. Reconciliation loop & git webhook configuration
+
+1.1/ Reconcilication loop
+$ kubectl -n argocd describe pod argocd-repo-server | grep -i "ARGOCD_RECONCILIATION_TIMEOUT:" -B1 //Show reconciliation time of repo server
+Environment:
+ARGOCD_RECONCILIATION_TIMEOUT: <set to the key 'timeout.reconciliation' of config map 'argocd-cm'> Optional: true
+
+   
+$ kubectl -n argocd patch configmap argocd-cm --patch='{"data":{"timeout.reconciliation":"300s"}}'  //Sử dụng command để change time reconciliation to 300s, default is 600s
+$ kubectl -n argocd describe pod argocd-repo-server | grep -i "ARGOCD_RECONCILIATION_TIMEOUT:" -B1  //Show lại config sau khi change
+    ARGOCD_RECONCILIATION_TIMEOUT=300s
+
+1.2 Git Webhook configuration
+-> Vào webhook của git config trigger đến argocd: https://[IP]/api/webhook 
+-> Và sau khi config thì mỗi thay đổi trên repo sẽ được trigger ngay lập tức tới application của argocd
+
+2.Application health
+- Status:
+    - health: All resource are 100% healthy
+    - Progressing: Resource is unhealthy, but could still be healthy given time
+    - Degraded: Resource status indicates a failure or an inability to reach a healthy state
+    - Missing: Resource is not present in the cluster
+    - Suspended: Resource is suspended(đình chỉ) or paused. Typical example is a paused Deployment
+    - Unknown: Health assessment failed and actual health status is unknown
+
+- Services:
+    - Load Balancer   //Xác định xem services có phải type loadBalancer
+    - status.loadBalancer.ingress //verify bằng cách check this is not empty
+    - hostname or IP  //Và cuối cùng là check xem hostname và ip có 1 giá trị nào hay không
+
+- Ingress:
+    - status.loadBalancer.ingress
+    - hostname or IP
+    -> Check tương tự như với services
+
+- PersistentVolumeClaim
+    - status.phase = Bound  //nó sử dụng field này để kiểm tra xem pvc đã được bound hay chưa
+
+- With Controller Manager: Deployment, replicaset, statefullsets and daemonset
+    - Observed Gen = Deserved Gen
+
+- ArgoCD have supports custom health check written in Lua script
+    
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+    name: php-color-cm
+    data:
+    TRIANGLE_COLOR: white
+
++ step 1: Define a custom Health check in argocd-cm ConfigMap
+    
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+    name: argocd-cm
+    data:
+    resource.customizations.health.ConfigMap: |
+    hs = {}
+    hs.status = "Healthy"
+    if obj.data.TRIANGLE_COLOR == "white" then
+    hs.status = "Degraded"
+    hs.message = "Use a different COLOR"
+    end
+    return hs
+    timeout.reconciliation: 300s
+
++ step 2: Contribute a custom health check //Recheck tình trạng health check

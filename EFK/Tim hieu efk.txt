@@ -1,0 +1,8 @@
+- Elasticsearch: Là một công cụ tìm kiếm phân tán và có thể mở rộng, thường được sử dụng để sàng lọc khối lượng lớn data log. Nó là 1 NoSQL database dựa trên công cụ tìm kiếm Lucene (search library from Apache). Công việc chính của nó là lưu trữ log và truy xuất logs từ fluentd
+- Fluentd:
+	+ là 1 công cụ vận chuyển logs. It is an open source log collection agent, nó hỗ trợ nhiều data sources và output format. 
+	+ Nó cũng có thể forward logs to solutions như Stackdriver, Cloudwatch, elasticsearch, Splunk, Bigquery và nhiều hơn thế
+- Kibana: UI tool để query log, data visualization and dashboards. It is a query engine which allows you to explore your log data through a web interface, build visualizations for events log, query-specific to filter information for detecting issues. You can virtually build any type of dashboards using Kibana. Kibana Query Language (KQL) is used for querying elasticsearch data. Here we use Kibana to query indexed data in elasticsearch
+
+**Khi nhắc đến Kubernetes thì Fluentd là lựa chọn tốt hơn logstash vì Fluentd có thể parse container logs mà không cần bất kì cấu hình bổ sung nào. Hơn nữa nó là 1 dự án của CNCF
+

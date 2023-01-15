@@ -1,0 +1,191 @@
+﻿/////////How Argo CD?
+- Argo CD is declarative, GitOps continuous delivery tool for Kubernetes resources defined in a Git repository
+(ArgoCd là công cụ CD, khai báo GitOps cho các tài nguyên k8s được defined trên git )
+- Continuous monitor running applications and comparing their live state to the desired state
+(Monitor running app liên tục và so sánh live state với desired state)
+- It reports the deviation and provides visulizations to help developers manually or automatically sync the live state with the desired state
+
+
+///////////Why use ArgoCD?
+- It extends the benefits of declarative specifications and Git-based configuration management
+(Nó mở rộng lợi ích của việc khai báo các thông số kĩ thuật và quản lí cấu hình dựa trên Git)
+- It is first step in achieving continuous operations based on monitoring, analytics and automated remediation
+- It can deploy to multiple clusters and is Enterprise-friendly (auditability, compliance, security, RBAC, SSO and lot more)
+(Nó có khả năng deploy to multiple cluster và thân thiện với doanh nghiệp())
+
+/////////////How ArgoCD workds?
+- It follows the GitOps pattern by using Git repository as the source of truth for the desired state of app and the target  deployment envs:
+	+ Kustomize applications
+	+ Helm charts
+	+ Ksonnet applications
+	+ Jsonnet files
+	+ YAML/JSON maifests
+- It automates the synchronization of the desired application state with each of the specified target environments
+(Nó tự động đồng bộ hóa trạng thái ứng dụng mong muốn với từng môi trường mục tiêu được chỉ định)
+
+
+//////////ArgoCD concepts & terminology
+- Application: A group of Kubernetes resources as defined by a manifest //Reousces của k8s được sử dụng để defined 1 file manifest
+- Application source type: The tool used to build the application. (helm, Kustomize, Ksonnet) //Công cụ được sử dụng để xây dựng ứng dụng
+- Project: Provide a logical grouping of applications, which is useful when ArgoCD is used by multiple teams.
+(Project cung cấp 1 logical grouping của applications. Nó rất có lợi ích khi ArgoCd được sử dụng cho multiple teams)
+
+- Target state: The desired state of an application, as represented by files in a Git repository
+(Trạng thái mong muốn của 1 application, được đại diện bằng files in a Git repo)
+- Live state: The live state of that application. What pods, configmap, secrets, etc are created/deployed in a Kubernetes cluster
+(live state là trạng thái hiện tại của ứng dung. Các thành phần nào đã được triển khai trong cụm)
+
+#When an ArgoCd application is created:
+- Sync status: Whether or not the live state matches the target state. Is the deployed application the same as Git says it should be?
+(Hiển thị trạng thái live state có matches với target state hay không. App được deployed có giống với git repo hay không)
+- Sync: The process of making an application move to its target state. E.g. by applying changes to a Kubernetes cluster.
+(Quá trình để chuyển 1 application trở thành trạng thái target state)
+- Sync operation status: Whether or not a sync succeeded (Đồng bộ hóa có thành công hay không thành công)
+
+- Refresh: Compare(so sánh) the latest code in Git with the live state. Figure out(Tìm ra) what is different and can initiate an automated sync(Tìm ra điểm khác nhau và có thể bắt đầu tự đồng bộ hóa)
+- Health: The health of application, is it running correctly? Can it serve requests?(Sức khỏe của ứng dụng nó có chạy chính xác không? Nó có thể phục vụ các yêu cầu không?)
+
+////////Argo CD Features:
+- 1.Automated deployment of applications to specified target environment in multiple clusters
+- 2.Support for multiple config management/templating tools(Kustomize, Helm, Ksonnet, Jsonnet, plain-YAML)
+- 3.SSO Intergration(OIDC, OAuth2, LDAP, SAML 2.0, GitHub, GitLab, Microsoft, Linkedin)
+- 4.Multi-tenancy and RBAC policies for authorization
+- 5.Rollback/Roll-anywhere to any application configuration commited in Git repository
+- 6.Health status analysis of application resources and we can also create our own custom health checks as well
+- 7.Automated configuration drift(trôi dạt) detection(phát hiện) and visualization
+- 8.Out-of-the-box Prometheus metrics
+- 9.Audit trails for applications events and API calls
+- 10.Presync, sync, PostSync hooks to support complex application rollouts(blue/green & canary upgrade)
+- 11.It also synchronizes the application based on webhooks intergrations (GitHub, BitBucket, GitLab)
+- 12.CLI and access tokens for automation an CI integration
+- 13.Web UI which provieds real-time view of application activity
+- 14.Automated or manual syncing of applications to its desired state
+
+
+
+
+//////ArgoCD Architecture
+
+
+/////Install options
+- Core: Sử dụng cho cá nhan
+- Multi-Tenant: Sử dụng cho doanh nghiệp hoặc teams. Có 2 kiểu multi-Tenant:
+  + non-High Avaibility -> install.yaml & namespace-install.yaml
+  + High Avaibility -> ha/install.yaml & ha/namespace-install.yaml (component same non-HA nhưng defined thêm replicaset)
+
+//install ArgoCD
+- Install by manifest (Non-HA)
+#kubectl create namespace argocd
+#kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+- install by manifest (HA)
+#kubectl create namespace argocd
+#kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.6/manifests/ha/install.yaml
+
+- Install by helm
+#helm repo add argo https://argoproj.github.io/argo-helm
+#helm install my-argo-cd argo/argo-cd --version 4.8.0
+
+- Install CLI
+#curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+#chmod +x /usr/local/bin/argocd
+
+
+
+////Command
+#login
+argocd login [IP]
+
+#show app list
+argocd app list
+
+
+
+/////ArgoCD App & Projects
+- Application: Custom resource defined which represented a deployed application in a cluster(Dùng để defined config vào bên trong cluster)
+	+ Source: Mapped to a Git repository where the desired state of our Kubernetes manifest live
+	+ Destination: server namespace
+
+#CLI command create app
+#argocd app create color-app \
+--repo https://github.com/sid/app-1.git \
+--path team-a/color-app \
+--dest-namespace color \
+--dest-server https://kubernetes.default.svc
+
+##Demo1: deploy application argocd-guestbook with UI
+Connect with this Repository: https://github.com/kiendo96/argocd-guestbook
+-> Sau khi connect thì repo này sẽ được lưu trữ vào secrets của cluster
+-> Khi get secrets json thì trong trường data sẽ có nhưng field thông tin đã base64. Có thể decode để xem thông tin
+root@master:~# k get secrets -n argocd 
+NAME                          TYPE     DATA   AGE
+argocd-initial-admin-secret   Opaque   1      6d21h
+argocd-notifications-secret   Opaque   0      6d21h
+argocd-secret                 Opaque   5      6d21h
+repo-2419619145               Opaque   3      2m58s
+root@master:~# k get secrets -n argocd repo-2419619145 -o json
+{
+    "apiVersion": "v1",
+    "data": {
+        "project": "ZGVmYXVsdA==",
+        "type": "Z2l0",
+        "url": "aHR0cHM6Ly9naXRodWIuY29tL2tpZW5kbzk2L2FyZ29jZC1ndWVzdGJvb2s="
+    },
+    "kind": "Secret",
+    "metadata": {
+        "annotations": {
+            "managed-by": "argocd.argoproj.io"
+        },
+        "creationTimestamp": "2023-01-14T05:16:18Z",
+        "labels": {
+            "argocd.argoproj.io/secret-type": "repository"
+        },
+        "name": "repo-2419619145",
+        "namespace": "argocd",
+        "resourceVersion": "521095",
+        "uid": "30fab0b7-3dc5-427a-80b6-b8a79ad4c8d5"
+    },
+    "type": "Opaque"
+}
+root@master:~# k get secrets -n argocd repo-2419619145 -o jsonpath='{ .data.url }'
+aHR0cHM6Ly9naXRodWIuY29tL2tpZW5kbzk2L2FyZ29jZC1ndWVzdGJvb2s=
+root@master:~# k get secrets -n argocd repo-2419619145 -o jsonpath='{ .data.url }' | base64 -d
+https://github.com/kiendo96/argocd-guestbook
+
+##Demo2: deploy application argocd-guestbook with CLI
+- Connect with this Repository: https://github.com/kiendo96/argocd-guestbook
+- Use command:
+#argocd app create guestbook \
+--repo https://github.com/kiendo96/argocd-guestbook.git \
+--path ./guestbook \
+--dest-namespace guestbook \
+--dest-server https://kubernetes.default.svc
+
+-> check status of app
+root@master:~# argocd app list
+NAME              CLUSTER                         NAMESPACE  PROJECT  STATUS     HEALTH   SYNCPOLICY  CONDITIONS  REPO                                              PATH         TARGET
+argocd/guestbook  https://kubernetes.default.svc  guestbook  default  OutOfSync  Missing  <none>      <none>      https://github.com/kiendo96/argocd-guestbook.git  ./guestbook  
+
+-> It is OutOfSync -> Tiến hành sync app
+root@master:~# argocd app sync guestbook
+
+-> Sau khi sync hoan thành kiểm tra lại trạng thái
+root@master:~# argocd app list
+NAME              CLUSTER                         NAMESPACE  PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                              PATH         TARGET
+argocd/guestbook  https://kubernetes.default.svc  guestbook  default  Synced  Healthy  <none>      <none>      https://github.com/kiendo96/argocd-guestbook.git  ./guestbook  
+
+=> Done
+
+
+
+
+//////////ArogCD Project
+
+- List project:
+root@master:~# argocd proj list
+
+- show application
+root@master:~# k get applications -n argocd
+
+- show application project
+root@master:~# k get appproj -n argocd

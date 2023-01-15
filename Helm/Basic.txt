@@ -1,0 +1,8 @@
+///Cấu trúc file helm chart
+
+ourchart	#Chart name
+  - chart.yaml		#Contains description of the Chart
+  - values.yaml		#Contains default values for the chart
+  - chart/			#Contains other Chart
+  - templates/		#Contains yaml files for the Chart
+  
