@@ -1,0 +1,18 @@
+- Services mesh(sidecar): Đứng ra trung gian để manager network ra vào giữa các application(client <-> svm <-> web <-> svm <-> database)
+
+1. Services mesh features
+- Traffic Management:
+    + Discovery & routing
+    + Load-balancing
+    + Failure handling
+
+- Security:
+    + Encryption
+    + Authentication
+    + Authorization
+
+- Observability:
+    + Visualization
+    + Tracing
+    + Monitoring
+

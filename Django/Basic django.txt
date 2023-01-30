@@ -1,0 +1,151 @@
+- Django là 1 framework mạnh mẽ phát triển dễ dàng, nhanh chóng các ứng dụng Web phức tạp. Django hoạt động theo mô hình MVT (Model View Template)
+
+    Client -> URL <-> View -> Model
+                        -> Template
+    Trong đó:
+    - Model: được sử dụng mới mô hình ORM(code first)
+    - View: Trong django thì view giống với controller trong mô hình MVC. Nó được sử dụng để xử lý request và response data
+    - Tempalte: Giao diện (FrontEnd)
+
+- Là mô hình ORM (code first) : Sử dụng code để tổ chức cơ sở dữ liệu
+
+- Cài đặt môi trường:
+#pip install django
+
+- Tạo project:
+#django-admin startproject <project-name>
+
+- Tạo app:
+#django-admin startapp <app-name>
+
+
+#note
+- Sau khi tạo project thì có 1 số file chính được tạo tự động trong project:
+    + file manage.py : Cấu hình mặc định để khởi tạo server
+    + bên trong sub folder của project:
+        + setting: Bao gồm các thông tin cấu hình của django project (secret, debug, installed_apps, middleware)
+        + url: Sử dụng để khai báo các URLs cho django project
+        + asgi: Dùng cho các web server tương thích ASGI (Asynchronous Server Gateway)
+        + wsgi: Dùng cho các web server tương thích WSGI (web server gateway interface)
+
+#file settings:
+- SECRET_KEY : giống với secret trong flask
+- debug = true (default): Khi triển khai product phải chuyển về false tránh lộ thông tin
+- INSTALLED_APPS: 
+    + Những app đã được cài đặt sẵn (vd: admin, auth, sessions, messages, staticfiles)
+    + Và khi muốn cài đặt thêm app mới mà muốn django miration được app này thì phải khai báo trong biến này
+- middleware: Giữa các tầng nên sử dụng middleware để chặn lại các gói tin và kiểm tra
+- database: 
+    + mặc định khi khởi tạo project sẽ sử dụng sqllite
+    + Django có thể sử dụng đồng thời nhiều database 
+- ALLOW_HOST: Danh sách các chuỗi là tên host hoặc domain được phép sử dụng dịch vụ của django site. Thuộc tính này thường rỗng khi DEBUG=True.
+- APPEND_SLASH: nếu là True thì các URL không kết thúc bằng slash(/). HTTP được redirect tới cùng URL như kèm slash ở cuối
+- AUTH_USER_MODEL: chỉ định lớp model đại diện cho một User, mặc định là "auth.User"
+
+#Viết courses/views.py
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, template_name='index.html', context={ 'name':'Kien do'})
+
+
+#Tạo courses/urls.py của app
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name="index"),
+]
+
+=> Sau khi tạo url của app thì cần phải add thêm vào url của project để client có thể access từ ngoài vào
+
+#Thêm url của app vào url của project (Chỉnh sửa coursesapp/urls.py)
+
+from django.contrib import admin
+from django.urls import path, include   //import include
+
+urlpatterns = [
+    path('', include('courses.urls')),  //Add path trỏ tới url của app
+    path('admin/', admin.site.urls),
+]
+
+Trong đó: include dùng để tham chiếu URL con khác
+
+
+
+#Kết nối database
+- Biến DATABASE trong settings.py dùng cấu hình kết nối CSDL, mặc định trong database được cấu hình sử  dụng SQLite có sẵn:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+- Chú ý: Nếu sử dụng engine không phải SQLite thì phải đảm bảo CSDL chỉ định đã có sẵn
+
+Trong đó:
+- ENGINE: Chỉ định engine hệ quản trị csdl sẽ sử dụng:
+    + django.db.backends.sqlite3
+    + django.db.backends.mysql
+    + django.db.backends.postgresql
+- Name: tên cơ sở dữ liệu
+- USER: username của cơ sở dữ liệu
+- PASSWORD: pasword của csdl
+- HOST: host chứa CSDL
+
+VD: kết nối tới mysql
+DATABASE = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'coursedb',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST': '' #mặc định là localhost
+    }
+}
+
+
+#Cài đặt mysql driver
+pip install mysqlclient
+
+
+#Model
+- Một model là nơi duy nhất thực sự tương tác với dữ liệu. Mỗi model là một class kế thừa
+    + django.db.models.Model
+- Model chưa các trường (field) và hành vi (behavior) dữ liệu được lưu trữ
+- Mỗi trường trong model đại diện cho một trường của bảng trong CSDL
+- Ta cần cho django biết về sự tồn tại của courses app thông qua biến INSTALLED_APPS trong tập tin cấu hình setting.py
+
+- Lệnh makemigrations cho django biết có sự thay đổi trong models.py và ta muốn lưu các thay đổi trong makemigrations
+$python manage.py makemigrations courses
+
+- Ta cũng có thể sử dụng sqlmigrate để xem SQL sẽ được tạo ra từ một migration để thực thi trong CSDL
+$python manage.py sqlmigrate courses 0001
+
+- Lệnh migrate thực thi migration để áp dụng những thay đổi trong models xuống lược đồ cơ sở dữ liệu
+$python manage.py migrate
+
+- Một migrattions được thực thi sẽ được lưu trong bảng django_migrations và nó sẽ không chạy lại lần nữa
+- Lệnh migrate chỉ chạy cho các app định nghĩa bên trong biến INSTALLED_APPS
+
+
+
+#Note mot so command mysql
+service mysql start
+show databases;
+show tables;
+select user from mysql.user;
+
+#Create database
+CREATE DATABASE `coursedb` \
+DEFAULT CHARACTER SET utf8 \
+DEFAULT COLLATE utf8_general_ci;
+
+use coursedb;
+
+create user 'kiendt'@'localhost' identified with mysql_native_password BY 'kiendt_dev';
+GRANT ALL PRIVILEGES ON coursedb.* TO 'kiendt'@'localhost';

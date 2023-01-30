@@ -66,3 +66,36 @@ $ kubectl -n argocd describe pod argocd-repo-server | grep -i "ARGOCD_RECONCILIA
     timeout.reconciliation: 300s
 
 + step 2: Contribute a custom health check //Recheck tình trạng health check
+
+
+8. Deploy apps using helm chart
+
+//Using CLI deploy my helm chart in my repository:
+> argocd app create helm-random-shapes \
+--repo http://172.16.1.10:30002/kiendo/argocd-project \
+--path helm-chart \
+--helm-set replicaCount=2 \
+--helm-set color.circle=pink \
+--helm-set color.square=green \
+--helm-set service.type=NodePort \
+--dest-namespace default \
+--dest-server https://kubernetes.default.svc
+
+- Show application defined
+> argocd app list
+
+- Show detail of application
+> argocd app list [name-of-app]
+
+//Using CLI deploy helm chart of Bitnami
+
+- Step 1: Add repo helm to Repository
+- Step 2: Create application for helm repo
+- Step 3: Choose repository helm & choose name of services you would install & choose version
+- Step 4: Sync & check 
+
+9. Multi-cluster appplication deployment
+
+
+//List Target cluster of argocd server
+> argocd cluster list
