@@ -1,0 +1,48 @@
+#grep
+
+- grep: Global Regular Expression - print lines that match patterns
+- Grep tìm kiếm các dòng text match với pattern từ STDIN hoặc từ file
+- parttern: Một chuỗi các kí tự định nghĩa một mẫu (template) tìm kiếm
+- Cú pháp chung: grep [option] pattern [file]
+
+- Basic Regular Expression:
+    . one character
+    .* multiple character
+    ^ begin lines
+    $ end lines
+    ^$ anchor expression
+    [...] bracket expression
+
+- Extended regular expression: Phức tạp
+- Controlling matching:
+    -v: invert matching
+    -i: bỏ qua case-sensitive
+    -w: match cả từ (word)
+    -x: match cả dòng
+
+- Controlling output:
+    -o matching only
+    -c count
+    -n line number
+    -l only matching filename    
+
+- Directory:
+    -r recursively
+    -R == -r
+    -d recurse == -r
+
+- Phim tat khi dung vim:
+    y: yanking == copy
+    d: delete == cut
+    p: paste from buffer
+
+Trên dòng:
+copy 1 dòng hiện tại: yy
+paster buffer sau dòng cursor: p
+
+5yy: copy 5 dòng bên dưới
+5dd: delete 5 dòng bên dưới
+
+
+:10,15y
+:10,15d

@@ -1,0 +1,37 @@
+- tar: Tape Archive(tarball) - Chương trình cho phép lưu trữ nhiều file dưới dạng file (chỉ đóng gói)
+- tar không phải định dạng nén
+- Thực tế: tar file thường được nén sau khi được đóng gói. 2 định dạng nén phổ biến là gzip và bzip
+
+- gzip:
+    + Extention: tar.gz hoặc tgz
+    + Nén và giải nén tốc độ, nhưng độ nén (compressed) không cao
+
+- bz2:
+    + Extention: tar.bz2 hoặc tb2
+    + Nén và giải nén tốn nhiều thời gian hơn gzip do thuật toán nén có độ nén cao hơn
+
+
+- Options:
+    + c - tạo mới file tar
+    + v - verbose (kiểu dạng list các file đã nén hoặc giải nén sau khi chạy command)
+    + z - liên quan định dạng gzip
+    + j - liên quan định dạng bz2
+    + x - extract (giải nén) file tar (untar)
+    + C - chỉ định thư mục đích khi giải nén file tar
+    + t - xem nội dung file tar
+    Ex: Giải nén single file: tar -xvf package.tar file
+
+
+#Use streams, pipes and redirects
+- Trên linux mọi đối tượng (object) đều là file
+- File descriptor: là 1 số interger dùng để phân loại các file được mở bởi các process
+- STDOUTLL: 1 (command fail)
+- STDERR: 2 (command Error)
+- Có thể check bằng cách:
+    #echo $?
+    //trả ra 0 hoặc 1 (Nó trả ra result của last command)
+- Mặc định redirection STDOUT và STDERR vào terminal
+- Redirection operator:
+    > write vào 1 file
+    >> append vào 1 file(thêm vào cuối file)
+- Mặc định > và >> đang sử dụng "file descriptor" là 1

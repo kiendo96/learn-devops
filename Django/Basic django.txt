@@ -149,3 +149,152 @@ use coursedb;
 
 create user 'kiendt'@'localhost' identified with mysql_native_password BY 'kiendt_dev';
 GRANT ALL PRIVILEGES ON coursedb.* TO 'kiendt'@'localhost';
+
+
+##Một số field thông dụng
+
+//Sử dụng shell
+$python manage.py shell
+
+//Một số câu lệnh tương tác với DB
+#import hàm trong model
+>>> from courses.models import *
+#Gán c = tên hàm và thêm giá trị
+>>> c = Category(name="Lap trinh java") 
+#Save data vào DB
+>>> c.save()
+
+#Có thể sử dụng trực tiếp objects để tương tác với db như sau:
+>>> Category.objects.create(name="Lap trinh Django") 
+<Category: Category object (2)>
+
+#Có 1 số hàm như get_or_create thì nó sẽ create và get để kiểm tra xem giá trị đó đã tồn tại trong DB chưa.
+#Nếu có nó sẽ trả tra True và add vào DB. Còn ngược lại sẽ là false và không add vào db
+>>> Category.objects.get_or_create(name="Thiet ke web") 
+(<Category: Category object (3)>, True)
+>>> Category.objects.get_or_create(name="Thiet ke web")
+(<Category: Category object (3)>, False)
+
+#Create a course
+>>> c = Category.objects.get(pk=1)
+>>> c
+<Category: Category object (1)>
+>>> c.__dict__
+{'_state': <django.db.models.base.ModelState object at 0x0000015CF7681310>, 'id': 1, 'name': 'Lap trinh java'}
+>>> Course.objects.create(subject="Core Java", description="Nhap mon java", category=c)
+<Course: Course object (1)>
+
+#filter
+>>> Category.objects.filter(name__contains="java")  //Lưu ý là các phương thức contains hay startswith có phân biệt hoa thường. Nếu không muốn phân biệt hoa thường thì sử dụng icontains
+<QuerySet [<Category: Category object (1)>]>
+>>> Category.objects.filter(name__startswith="java") 
+<QuerySet []>
+>>> Category.objects.filter(name__endswith="java")   
+<QuerySet [<Category: Category object (1)>]>
+
+
+###Meta options của model
+- abstract: Thiết lập lớp model là trừu tượng
+- app_label: tên app chứa model, nếu models được khai báo ngoài app thì thuộc tính này bắt buộc phải khai báo
+- db_table: tên bảng CSDL sẽ được tạo cho models, mặc định {app_name}_{model_name} với các ký tự thường (lowercase)
+- unique_together: thiết lập ràng buộc giá trị duy nhất cho nhiều trường kết hợp
+- ordering: Chỉ định các trường dùng sắp xếp khi truy vấn dữ liệu. Mặc định là sắp xếp tăng, nếu thêm dấu "-" trước tên trường là sắp xếp giảm
+- constraints: Thiết lập một số ràng buộc trong CSDL
+
+###Mối quan hệ ManyToOne
+- Sử dụng lớp models.ForeignKey để thiết lập quan hệ ManyToOne. Lớp này yêu cầu 2 đối số:
+    + Model được tham chiếu tới
+    + Giá trị đối số on_delete
+- Các trường ForeignKey sẽ tự động được tạo index(db_index=True)
+- Khi thực hiện migrate để tạo CSDL thì django sẽ tự thêm đuôi _id sau tên trường ForeignKey. Ví dụ category, dưới CSDL sẽ là category_id
+
+- Giá trị on_delete cho biết cách xử lý nếu đối tượng được tham chiếu bởi ForeignKey bị xóa:
+    + SET_NULL: thiết lập null cho trường ForeignKey, khi đó thuộc trính null=True trong ForeignKey
+    + SET_DEFAULT: Thiết lập giá trị mặc định, sử dụng thêm thuộc tính default trong ForeignKey
+    + CASCADE: Các đối tượng có chứa khai báo ForeignKey sẽ bị xóa theo
+    + PROTECT: Ngăn không cho đối tượng được tham chiếu bị xóa, bằng cách ném ngoại lệ ProtectedError
+    + RESTRICT: ngăn không cho đối tượng được tham chiếu bị xóa, bằng cách ném ngoại lệ RestrictedError. Nó khác PROTECT, đối tượng được tham chiếu cũng có thể được xóa, nếu nó chứa ForeignKey(on_delete=CASCADE) tới một models khác
+    + SET(), DO_NOTHING
+
+VD: Tạo thêm 1 model Lesson. Trong đó một bài học (Lesson) phải thuộc một khóa học (Course), trong khóa học có thể có nhiều loại bài học. Giả sử quy định:
+    + Trong cùng một khóa học thì tựa đề các bài học là duy nhất
+    + Khi các khóa học bị xóa thì các bài học của nó cũng sẽ bị xóa theo
+
+class Lesson(ModelBase):
+    class Meta:
+        unique_together= ('subject', 'course')
+    
+    subject = models.CharField(max_length=255)
+    content = models.TextField()
+    course = models.ForeignKey(
+        Course, on_delete=models.CASCADE,
+        related_name='lessons',
+        related_query_name='my_lession'
+    )
+    
+    def __str__(self):
+        return self.subject
+
+    + related_name: Chỉ định tên được sử dụng bởi đối tượng tham chiếu khóa ngoại. Nếu ta không muốn django tạo quan hệ truy vấn ngược (backward) trong ForeignKey thì thiết lập giá trị thuộc tính này là "+" hoặc kết thúc là "+"
+    + related_query_name: tên dùng để lọc dữ liệu từ đối tượng được tham chiếu khóa ngoại(mặc định là giá trị từ related_name)
+
+    +Course không khai báo related_name trong ForeignKey tới Category
+    + Từ category truy vấn danh sách course của nó:
+        c = Category.objects.get(pk=1)
+        c.course_set.all()  #course_set ngầm định được thêm
+        <QuerySet [<Course: Các công nghệ lập trình hiện đại]>
+
+    + Lesson có khai báo related_name trong ForeignKey tới course
+    + Từ Course truy vấn danh sách lesson của nó:
+        c = Course.objects.get(pk=1)
+        c.lessons.all() #lessons khai báo bởi related_name
+        <QuerySet [<Lesson: Giới thiệu>]>
+
+
+-> Thực thi makemigrations courses
+-> Thực thi migrate
+-> Tạo 1 dòng dữ liệu mẫu cho lession:
+c = Course.objects.get(pk=1)
+Lesson.objects.create(subject="Giới thiệu", content="Giới thiệu các công nghệ lập trình hiện đại", course=c)
+<Lesson: Giới thiệu>
+-> Truy vấn trong quan hệ khóa ngoại
+courses = Course.objects.filter(category__name__icontains="tin")
+print(courses.query) -> Nó sẽ trả ra query dưới dạng ngôn ngữ database
+
+    
+###Mối quan hệ ManyToMany
+- Sử dụng lớp ManyToManyField bắt buộc một đối số là model có liên quan trong quan hệ
+- Các thuộc tính quan trọng:
+    + related_name: Tương tự ForeignKey
+    + related_query_name: Tương tự ForeignKey
+    + throught: Chỉ định bảng model trung gian cho quan hệ ManyToMany
+    + symmetrical: Sử dụng khi định nghĩa quan hệ ManyToMany đến chính nó
+- Django sẽ tự động tạo bảng trung gian của quan hệ ManyToMany dưới dạng CSDL
+- Tuy nhiên nếu ta muốn chỉ định bảng trung gian thì sử dụng through chỉ định model trung gian tại bảng trung gian
+
+VD: 
+- Thêm model Tag:
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+- Tại model Lesson thiết lập mối quan hệ ManyToMany:
+class Lesson(ModelBase):
+    tags = models.ManyToManyField('Tag', blank=True, related_name='lessons')
+
+==> Tóm lại thì thằng mối quan hệ này để truy vấn ngược xuôi giữa table này và table khác
+
+
+- Tạo và thực thi migration để áp dụng vào DB
+- Một bảng trung gian tự động được tạo courses_lesson_tags
+- Thêm Tag vào Lesson
+t = Tag.objects.create(name="Nhập môn")
+l = Lesson.objects.get(pk=1)
+l.tags.add(t)
+l.save
+
+- Xem danh sách Lesson của Tag và ngược lại
+l.tags.all()
+t.lessons.all()

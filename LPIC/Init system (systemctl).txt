@@ -1,0 +1,72 @@
+#init system: type of units
+- service: Quản lí hoạt động của chương trình
+- socker: quản lý các kết nối
+- device
+- mount
+- automount
+- swap
+- target
+- path
+- timer: lập lịch
+- snapshot
+- slice: quản lý các tiến trình
+- scope
+
+
+#Init system
+- systemctl: Chương trình quản lí
+- Cú pháp chung: systemctl [option] command [name]
+    systemctl get-default
+    systemctl list-units
+    systemctl list-units --type target --state active
+    runlevel
+    systemctl set-default
+    systemctl cat file.service
+    systemctl {start/stop/restart/enable/disable/status} file.service
+    systemctl daemon-reload
+    systemctl isolate multi-user.target
+
+
+Runlevel            Target Unit                 Target Unit Description
+0                   runlevel0.target            Changing your system to runlevel0 will shutdown the system and power off your server
+                    or
+                    poweroff.target
+
+
+1                   runlevel1.target            Also known as single mode the rescue runlevel is use for system troubleshooting and various system administrator tasks
+                    or rescue.target
+
+
+2                   runlevel2.target            Use defined runlevel. By default, identical to runlevel3
+                    or
+                    multi-user.target
+
+3                   runlevel3.target            This is a multi-user and non-graphical runlevel. Multiple users can login in via local consoles/terminals or remote network access
+                    or
+                    multi-user.target
+
+4                   runlevel4.target            User defined runlevel. By default, identical to runlevel3
+                    or
+                    multi-user.target
+
+5                   runlevel5.target            This is a multi-user graphical runlevel. Multiple users can login in via local consoles/terminals or remote network access
+                    or
+                    graphical.target
+
+6                   runlevel6.target            Changing your system to this runlevel will reboot your system
+                    or
+                    reboot.target
+
+
+
+#Init system: location
+- Service unit files - được ưu tiên theo thứ tự sau
+    /etc/systemd/system/: local configuration
+    /run/systemd/system/: runtim unit
+    /lib/systemd/system/: installed packages units
+
+- Edit unit file:
+    1. Copy và override theo thứ tự ưu tiên
+    2. Tạo thư mục cùng tên với unit + ".d". Sử dụng file config .conf: override hoặc extend
+
+

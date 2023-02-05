@@ -1,0 +1,12 @@
+- Các ví dụ:
+    awk '{print $1}'
+    awk -F:'{print $1}' /etc/passwd
+    echo "Linux is what" | awk '{$2="Kernel"; print $0}'
+    awk -F: -f script_file /etc/passwd  #sử dụng script_file để process text
+    awk '{if ($1 > 30) print $1}' testfile sử dụng điều kiện
+
+- Data field variables:
+    $0 cả dòng
+    $1 field đầu tiên
+    $n field thứ n
+

@@ -1,0 +1,142 @@
+1. know elasticsearch
+- Nodes store the data that we add to Elasticsearch
+- A cluster is a collection of Nodes
+- Data is stored as documents, which are JSON objects
+- Documents are grouped together with indices
+ 
+#Rest API
+
+- This is command use check healthy of cluster
+    + _cluster: this is API
+    + health: command (have more difference option command)
+root@es-master:~# curl -XGET localhost:9200/_cluster/health?pretty
+{
+  "cluster_name" : "elasticsearch", #can be edit in file elasticsearch.yml
+  "status" : "yellow", #state of cluster
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 21,
+  "active_shards" : 21,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 8,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 72.41379310344827
+}
+
+- This command show nodes in cluster (with option "v" is show title)
+root@es-master:~# curl -XGET localhost:9200/_cat/nodes?v
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name
+127.0.0.1           38          96   3    0.06    0.31     0.35 cdfhilmrstw *      es-master
+
+
+
+#Benefits of kibana's consoles
+- The easiest way to run Elasticsearch queries
+- formatting of query results
+- Automatically sets the Content-Type and authentication headers
+- Auto completion when writing queries
+
+#sharding and scalability
+- cluster elasticsearch có thể kết hợp tài nguyên của nhiều node (ví dụ dùng chung disk của các node)
+- How does that actually work?
+    + Elasticsearch thực hiện điều này bằng cách sử dụng sharding"
+        +> Sharding is a way to divide indices into smaller pieces (Là 1 cách để chia các indices thành các mảnh riêng biệt)
+        +> Each piece is a referred to as a shard (trong mỗi piece(mảnh) được gọi là 1 shard)
+        +> Sharding is done at the index level (sharding được thực hiện ở index level và không phải ở cluster hay node level)
+        +> The main purpose is to horizontally scale the data volume 
+        => Đây là lý do tại sao 1 index có thể chứa hàng triệu document còn 1 index khác chỉ chứa vài trăm
+    + Let's dive a bit deeper
+        +> A shard is an independent index ... kind of (Mỗi shard là 1 index độc lập)
+        +> Each shard is an Apache Lucene index (mỗi shard là 1 Apache Lucene index)
+        +> An elasticsearch index consists of one or more Lucene indices(1 elasticsearch index bao gồm 1 hoặc nhiều Lucene indices)
+        +> A shard has no predefined size; it grows as documents are added to it (1 shard không định nghĩa trước size của nó. Nó luôn tăng khi có documents được thêm vào nó)
+        +> A shard my store up to about two billion documents (1 shard chỉ có thể lưu trữ khoảng 2 tỷ documents)
+    + The purpose of sharding
+        +> Mainly to be able to store more documents
+        +> To easier fit large indices onto nodes
+        +> improved performance
+            -> Paralleliation of queries increases the throughput of an index (Có nghĩa là: 1 query search có thể được chạy trên nhiều phân đoạn cùng 1 lúc -> giúp tăng performance and throughput)
+    + Configuring the number of shards
+        +> An index contains a single shard by default
+        +> Indices in Elasticsearch < 7.0.0 version were create with five shards (Từ version 7.0 trở lên có thể create 5 shards)
+            -> This often led to over-sharing(Có quá nhiều shard)
+        +> reduce the number of shards with the Shrink API
+    => Number of shards for an index is one and that this can be chaned if need.
+
+- curl indices
+root@es-master:~# curl -XGET localhost:9200/_cat/indices?v
+health status index                             uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   filebeat-7.17.6-2023.02.05-000003 CyWNCdRwTD2HOPWZtYMQdA   1   1          0            0       226b           226b
+
+- Trong đó: pri: primary shard
+
+
+##Introduction to replication
+- What happens if a node's hard drive fails?
+- Hardware can fail at any time, so we need to handle that somehow
+- Elasticsearch supports replication for fault tolerance (ES support replication để chịu lỗi)
+- Replication is supported natively and enabled by default (Replication được bật mặc định)
+- With many databases, setting up replication can be a pain (Với nhiều database thì việc setting replica có thể sẽ khó khăn)
+
+
+##Cách replication work
+- Replication is configured at the index level
+- Replication works by creating copies of shards, referred to as replica shards (Replication hoạt động bằng cách tạo ra các bản sao của shards. Nó được gọi là replicas or replica shards)
+- A shard that has been replicated, is called a primary shard (1 shard đã được replicated 1 hoặc nhiều lần thì được gọi là primary shard)
+- A primary shard and its replica shards are referred to as a replication group (1 primary shard và các replica shards của chính nó được gọi là 1 replication group)
+- Replica shards are a complete copy of a shard(replica shard là 1 bản sao hoàn chỉnh của shard)
+- A replica shard can be serve requests, exactly like its primary shard(Vì vậy nên 1 replica shard cũng có thể search request giống như primary shard)
+- when creating an index, we can choose how many replicas of each shard we want, with one being the default value (khi khởi tạo 1 index chúng ta có thể chọn có thể có bao nhiêu replicas. Mặc định là 1)
+- replica shard sẽ không bao giờ được lưu trữ trên cùng 1 nodes với primary shard để tránh trường hợp disk lỗi thì mất tất cả
+
+#Choosing the number of replica shards
+- How many replica shards are ideal, depends on the use case
+- Is the data stored elsewhere, such as in a RDBMS?
+- Is it ok for data to be unavailable while you restore it?
+- For mission critical systems, downtime is not acceptable
+- Replicate shards one if data loss is not a disaster
+- For critical systems, data should be replicated at least twice
+
+
+##snapshot
+- Elasticsearch supports talking snapshots as backups
+- Snapshots can be used to restore to a given point in time
+- Snapshots can be taken at the index level or for the entire cluster (Có thể snapshot các indices cụ thể hoặc là toàn bộ cluster)
+- Use snapshots for backups and replication for high availability (and performance)
+    + replicas chỉ hoạt độn với "live data". Điều này về cơ bản có nghĩa là replicas đảm bảo rằng sẽ không mất dữ liệu index lưu trữ tại thời điểm hiện tại.
+    + snapshots thì khác là nó cho phép export the current state of the cluster to a file. Và file này có thể sử dụng để khôi phục trạng thái của cụm hay trạng thái của indices.
+- Noted difference of replication and snapshots:
+    + Snapshots thường được sử dụng để  daily backups and manual snapshots có thể được thực hiện trước khi áp dụng changes to data, chỉ để đảm bảo rằng là một cách để khôi phục các thay đổi trong trường có sự cố
+    + Replication chỉ đảm bảo rằng các indices có thể recover khi 1 node failure and keep serving request, as if nothing had happened
+    + Replication actually serves a secondary purpose as well. Ngoài việc ngăn ngừa mất dữ liệu, nó có thể được sử dụng để tăng thông lượng của 1 index.
+
+- Increasing query throughput with replication(Tăng lượng query với replication):
+    + Replica shards of a replication group can serve different search requests simultaneously(relica shard của một replication group có thể phục vụ đồng thời các yêu cầu tìm kiếm khác nhau)
+        This increases the number of requests that can be dandled at the same time(Điều này làm tăng số lượng yêu cầu có thể được xử lý cùng 1 lúc)
+    + Elasticsearch intlligently routes requests to the best shard (more on that later) (Elasticsearch định tuyến các request tới best shard)
+    + CPU parallelization improves performance if multiple replica shards are stored on the same node(Song song hóa CPU cải thiện hiệu năng nếu multiple replica shards được lưu trữ trên cùng node)
+    + Elasticsearch will automatically select the shard that will execute a given query(Es sẽ tự động select shard sẽ thực hiện query)
+    -> Điều này có nghĩa là: Nếu có 3 request gửi đến cùng 1 index trong 1 lúc thì có thể được thực thi trên 3 shards khác nhau: primary shard and both of the replica shard
+
+#GET shards
+root@es-master:~# curl -XGET localhost:9200/_cat/shards?v
+index                                                         shard prirep state       docs   store ip        node
+filebeat-7.17.6-2022.11.08-000002                             0     p      STARTED        0    226b 127.0.0.1 es-master
+filebeat-7.17.6-2022.11.08-000002                             0     r      UNASSIGNED
+.kibana_task_manager_7.17.6_001                               0     p      STARTED       17     2mb 127.0.0.1 es-master
+
+    -with:
+        + p: primary shard
+        + r: replica shard
+        + state:
+            + STARTED: có nghĩa nó complete hoạt động bình thường
+            + UNASSIGNED: Chưa được phân bổ tới 1 node nào (Đây cũng là lý do khiến cluster có state là yellow nếu chỉ dùng 1 node vì replica shard bắt buộc phải được assigned to another node in cluster)
+
+            
+        + với kibana thì replica shard khi có 1 node thì nó sẽ là 0 và khi add thêm node vào nó sẽ tăng lên 1. Bởi vì indices của kibana được cấu hình tự động với setting name "auto_expand_replicas"
+        
