@@ -1,0 +1,59 @@
+#######################
+#### Global option ####
+#######################
+# File: syslog-ng.conf
+
+options { chain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);
+          dns_cache(no); owner("root"); group("adm"); perm(0640);
+          stats_freq(0); bad_hostname("^gconfd$");
+          create-dirs(yes);
+          log-msg-size(10240);
+};
+
+
+##########################
+#### Log only MESSAGE ####
+##########################
+destination d_file {
+    file("/data/${YEAR}.${MONTH}.${DAY}/${HOST}.log"
+         template("${MESSAGE}\n"));
+};
+
+log {
+    source(s_net);
+    destination(d_file);
+};
+
+
+#############################
+#### Filter by source IP ####
+#############################
+filter f_pfsense {
+    netmask(172.16.253.130/24);
+};
+
+destination d_pfsense {
+    file("/data/pfSense/${HOST}.log"
+         template("${MESSAGE}\n"));
+};
+
+log {
+    source(s_net);
+    filter(f_pfsense);
+    destination(d_pfsense);
+};
+
+
+###########################
+#### Default catch all ####
+###########################
+# File: conf.d/50-default.conf
+
+destination d_default {
+    file("/data/${YEAR}.${MONTH}.${DAY}/${HOST}.log");
+};
+
+log {
+    source(s_net);
+    destination(d_default);
+};

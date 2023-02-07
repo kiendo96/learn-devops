@@ -1,0 +1,81 @@
+---------------------------------------------------------------------------------------------------------------------------
+##### Input sample 
+{"time_local":"20/Jul/2021:22:02:11 +0700","remote_addr":"::1","method":"GET","request":"/index.html?a=1&b=2&c=3","status": "200","request_time":"0.000","http_referrer":"","http_user_agent":"curl/7.68.0"}
+
+##### Logstash configuration sample
+input {
+  udp {
+    port => 5100
+    codec => json
+  }
+}
+
+filter {
+  json {
+    source => "message"
+  }
+
+  grok {
+    match => {
+      "request" => "\/%{DATA:filename}\?%{GREEDYDATA:tmp_params}"
+    }
+  }
+
+  kv {
+    source => "tmp_params"
+    field_split => "&"
+    target => "uri_params"
+  }
+
+
+}
+
+output {
+  elasticsearch {
+    hosts => ["172.16.253.11:9200","172.16.253.12:9200","172.16.253.13:9200"]
+    index => "nginx-%{+YYYY.MM.dd}"
+  }
+
+  stdout {
+   codec => rubydebug
+  }
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+##### Access log structure
+$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"
+
+##### Input sample
+109.67.210.45 - - [21/Jul/2021:09:58:29 +0200] "GET /icons/blank.gif HTTP/1.1" 200 439 "http://isrolab.com/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5"
+
+##### Logstash configuration sample
+input {
+  udp {
+    port => 5100
+    codec => json
+  }
+}
+
+filter {
+  grok {
+    match => {
+      "message" => "%{IPORHOST:remote_addr} - %{USER:remote_user} \[%{HTTPDATE:timestamp}\] \"%{WORD:request_method} %{NOTSPACE:request_uri} %{NOTSPACE:http_version}\" %{NUMBER:status} %{NUMBER:body_bytes_sent} \"%{DATA:http_referer}\" \"%{DATA:http_user_agent}\""
+    }
+  }
+
+  geoip {
+    source => "remote_addr"
+  }
+
+}
+
+output {
+  elasticsearch {
+    hosts => ["172.16.253.11:9200","172.16.253.12:9200","172.16.253.13:9200"]
+    index => "nginx-%{+YYYY.MM.dd}"
+  }
+
+  stdout {
+   codec => rubydebug
+  }
+}

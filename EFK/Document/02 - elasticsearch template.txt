@@ -1,0 +1,36 @@
+##### Get template by name
+GET _index_template/nginx
+
+
+##### Create new index template
+PUT _index_template/nginx
+{
+  "index_patterns": ["nginx-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp" : {
+          "type" : "date"
+        },
+        "geoip": {
+          "dynamic": true,
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            }
+          }
+        },
+        "@version" : {
+          "type" : "keyword"
+        }
+      }
+    },
+    "aliases": {
+      "mydata": { }
+    }
+  }
+}

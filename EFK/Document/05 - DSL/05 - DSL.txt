@@ -1,0 +1,244 @@
+I. Elasitcsearch DSL (Domain specific language) thiết lập các query ở dạng JSON. Bao gồm 2 loại:
+	1. Leaf query clauses: tìm kiếm các giá trị cụ thể trên các field cụ thể.
+		+ match
+		+ term
+		+ range
+
+	2. Compound query clauses (mệnh đề truy vấn kết hợp): là một tập hợp các "leaf query clause" hoặc các "Compound query clauses" được truy vấn theo kiểu logic (bool)
+
+
+II. Leaf query clauses
+
+	1. Match all
+		{
+		   "query":{
+		      "match_all":{}
+		   }
+		}
+
+	2. Match query (ưu tiên dùng để search text field) ==
+		{
+		   "query":{
+		      "match" : {
+		         "status": 200
+		      }
+		   }
+		}
+
+	3. Multi match
+		{
+		   "query":{
+		      "multi_match" : {
+		         "query": "CN",
+		         "fields": [ "geoip.country_code2", "geoip.country_code3" ]
+		      }
+		   }
+		}
+
+	4. String query
+		{
+		   "query":{
+		      "query_string":{
+		         "query": "China"
+		      }
+		   }
+		}  
+
+		{
+		  "query": {
+		    "query_string": {
+		      "query": "(200) OR (401)"    
+		  	}
+		  }
+		}
+
+
+5. Term-level query
+	+ exists query: Returns documents that contain any indexed value for a field. 
+	+ fuzzy query: Returns documents that contain terms similar to the search term. Elasticsearch measures similarity, or fuzziness, using a Levenshtein edit distance. 
+	+ ids query: Returns documents based on their document IDs. 
+	+ prefix query: Returns documents that contain a specific prefix in a provided field. 
+	+ range query: Returns documents that contain terms within a provided range. 
+	+ regexp query: Returns documents that contain terms matching a regular expression. 
+	+ term query: Returns documents that contain an exact term in a provided field. 
+	+ terms query: Returns documents that contain one or more exact terms in a provided field. 
+	+ terms_set query: Returns documents that contain a minimum number of exact terms in a provided field. You can define the minimum number of matching terms using a field or script. 
+	+ type query: Returns documents of the specified type. 
+	+ wildcard query: Returns documents that contain terms matching a wildcard pattern. 
+
+	5.1 IDs query
+		{
+		  "query": {
+		    "ids" : {
+		      "values" : ["1", "4", "100"]
+		    }
+		  }
+		}
+
+	5.2 Wildcard query (keyword field, text and wildcard fields)
+		{
+		  "query": {
+		    "wildcard": {
+		      "status": {
+		        "fieldname": "value*"
+		      }
+		    }
+		  }
+		}
+
+	5.3 Terms query
+		{
+		  "query": {
+		    "terms": {
+		      "user.id": [ "user1", "user2" ]
+		    }
+		  }
+		}
+
+		{
+		   "query":{
+		      "term":{"status": "200"}
+		   }
+		}
+
+6. Range query
+    + gte − greater than equal to >=
+    + gt − greater-than >
+    + lte − less-than equal to =<
+    + lt − less-than <
+
+	{
+	   "query":{
+	      "range":{
+	         "status":{
+	            "gte": 300 >= 300
+	         }
+	      }
+	   }
+	}
+
+	6.1 Range with date
+		{
+		  "query": {
+		    "range": {
+		      "@timestamp": {
+		        "gte": "now-1d/d",
+		        "lt": "now/d"  
+		      }
+		    }
+		  }
+		}
+
+
+	6.2 Range with date and time zone
+		{
+		  "query": {
+		    "range": {
+		      "timestamp": {
+		        "time_zone": "+01:00",        
+		        "gte": "2020-01-01T00:00:00", 
+		        "lte": "now"                  
+		      }
+		    }
+		  }
+		}
+
+
+III. Compound Queries clauses
+
+	1. Boolean query
+		+ must: The clause (query) must appear in matching documents and will contribute to the score.
+
+		+ filter: The clause (query) must appear in matching documents. However unlike must the score of the query will be ignored. Filter clauses are executed in filter context, meaning that scoring is ignored and clauses are considered for caching.
+
+		+ should: The clause (query) should appear in the matching document.
+
+		+ must_not: The clause (query) must not appear in the matching documents. Clauses are executed in filter context meaning that scoring is ignored and clauses are considered for caching. Because scoring is ignored, a score of 0 for all documents is returned.
+
+	{
+	  "query": {
+	    "bool" : {
+	      "must" : {
+	        "term" : { "user.id" : "kimchy" }
+	      },
+	      "filter": {
+	        "term" : { "tags" : "production" }
+	      },
+	      "must_not" : {
+	        "range" : {
+	          "age" : { "gte" : 10, "lte" : 20 }
+	        }
+	      },
+	      "should" : [
+	        { "term" : { "tags" : "env1" } },
+	        { "term" : { "tags" : "deployed" } }
+	      ],
+	      "minimum_should_match" : 1,
+	      "boost" : 1.0
+	    }
+	  }
+	}
+
+
+	{
+	  "query": {
+	    "bool": {
+	      "must_not": {
+	        "match": {
+	          "geoip.country_name": "China"
+	        }
+	      },
+	      "filter": {
+	        "term": {
+	          "status": "200"
+	        }
+	      }
+	    }
+	  }
+	}
+
+
+IV. Selected fields
+
+	{
+	  "query": {
+	    "range": {
+	      "@timestamp": {
+	        "gte": "2021-07-31T00:00:00",
+	        "lte": "now"
+	      }
+	    }
+	  },
+	  "fields": [
+	    "status",
+	    "geoip.*",
+	    {
+	      "field": "@timestamp",
+	      "format": "epoch_millis"
+	    }
+	  ],
+	  "_source": false
+	}
+			
+
+	{
+	  "query": {
+	    "range": {
+	      "@timestamp": {
+	        "gte": "2021-07-31T00:00:00",
+	        "lte": "now"
+	      }
+	    }
+	  },
+	  "fields": [
+	    "status",
+	    "geoip.*",
+	    {
+	      "field": "@timestamp",
+	      "format": "YYYY-MM-dd HH:mm:ss"
+	    }
+	  ],
+	  "_source": false
+	}
+
+	

@@ -1,0 +1,22 @@
+######################
+#### Nginx syslog ####
+######################
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Nginx >= 1.7.1
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Nginx logs to local syslog
+access_log syslog:server=unix:/dev/log,facility=local7,tag=nginx,severity=info;
+error_log syslog:server=unix:/dev/log,facility=local7,tag=nginx,severity=error;
+
+
+### Rsyslogd configuration
+local7.*   /var/log/mynginx.log
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Nginx logs to remote syslog
+access_log syslog:server=172.16.253.10:514,facility=local7,tag=nginx,severity=info;
+error_log syslog:server=172.16.253.10:514,facility=local7,tag=nginx,severity=error;

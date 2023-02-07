@@ -1,0 +1,42 @@
+1. Phép tính:
+    +1h: Add one hour
+    -1d: Subtract one day
+    /d: Round down to the nearest day
+
+2. Kí hiệu:
+    y Years
+
+    M Months
+
+    w Weeks
+
+    d Days
+
+    h Hours
+
+    H Hours
+
+    m Minutes
+
+    s Seconds 
+
+3. Ví dụ:
+now == 001-01-01 12:00:00
+
+    now+1h == 2001-01-01 13:00:00
+
+    now-1h == 2001-01-01 11:00:00
+
+    now-1h/d == 2001-01-01 00:00:00
+
+    2001.02.01\|\|+1M/d ==  2001-03-01 00:00:00 
+
+
+4. Ví dụ với Index name:
+    <logstash-{now/d}> == logstash-2024.03.22
+
+    <logstash-{now/M}> == logstash-2024.03.01
+
+    <logstash-{now/M{yyyy.MM}}> == logstash-2024.03
+
+    <logstash-{now/M-1M{yyyy.MM}}> == logstash-2024.02

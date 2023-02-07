@@ -1,0 +1,31 @@
+### Generating Certificate
+./bin/elasticsearch-certutil cert --ca elastic-stack-ca.p12 --name packetbeat  --ip  172.16.253.1 --pem
+./bin/elasticsearch-certutil cert --ca elastic-stack-ca.p12 --name packetbeat  --dns beat1.abc.com --pem
+
+### Create API KEY
+POST /_security/api_key
+{
+  "name": "packetbeat_host001", 
+  "role_descriptors": {
+    "packetbeat_writer": { 
+      "cluster": ["monitor", "read_ilm", "read_pipeline"],
+      "index": [
+        {
+          "names": ["packetbeat-*"],
+          "privileges": ["view_index_metadata", "create_doc"]
+        }
+      ]
+    }
+  }
+}
+
+### Configuration
+output.elasticsearch:
+  hosts: ["172.16.253.11:9200"]
+  protocol: "https"
+
+  api_key: "t05f_HoBvIRVv0lpCMh4:DMRddUDLQc67jAEF8ir0zA"
+
+  ssl.certificate_authorities: ["/etc/packetbeat/elasticsearch-ca.pem"]
+  ssl.key: "/etc/packetbeat/packetbeat.key"
+  ssl.certificate: "/etc/packetbeat/packetbeat.crt"
