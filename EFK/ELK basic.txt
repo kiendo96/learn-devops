@@ -6,3 +6,16 @@
 
 **Khi nhắc đến Kubernetes thì Fluentd là lựa chọn tốt hơn logstash vì Fluentd có thể parse container logs mà không cần bất kì cấu hình bổ sung nào. Hơn nữa nó là 1 dự án của CNCF
 
+
+
+
+3. Installation
+- Container: Sử dụng docker container
+- OS package manager: apt, yum, dnf, ..
+- package: download, extract and run
+
+- Virtual memory: Elasticsearch sử dụng nmapfs, tối thiểu 262144
+	+ sysctl -w vm.max_map_count=262144			//Bị mất khi reboot
+	+ /etc/sysctl.conf: vm.max_map_count = 262144
+
+########INPUT

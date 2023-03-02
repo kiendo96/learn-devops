@@ -1,0 +1,28 @@
+ #Syslog - overview
+ - Syslog - system logging protocol, một giao thức tiêu chuẩn để  gửi nhật ký hệ thống (system log), thông báo sự kiện đến một server chỉ định - syslog server
+ - Syslog mặc định có trên các thiết bị chạy Linux hoặc Unix, trên các thiết bị mạng (router, switch, firewall), trên các ứng dụng trên nền tảng Linux hoặc Unix
+ - Một số đặc điểm:
+    + Chỉ có thể push, không thể pull
+    + Syslog server thường là local trên chính thiết bị sử dụng syslog (syslog local)
+    + Syslog server remote thường cho mục địch CLM (syslog remote)
+    + Syslog remote mặc định sử dụng UDP và port 514
+- 2 standard syslog mesage format:
+    + BSD-syslog hay legacy-syslog: RFC 3164
+    + IETF-syslog: RFC 5424
+
+#Syslog - legacy structure
+<PRI> <HEADER> <MSG>
+    + PRI: Thông số tính toán độ ưu tiên của message
+    + HEADER: Chứa các thông tin định danh về message
+    + MSG: Chứa thông điệp được sinh ra bởi ứng dụng
+PRI: (facility value * 8) + (severity value)
+HEADER:
+    + Timestamp: MMmm dd hh:mm:ss
+    + Hostname || IP address
+MSG:
+    + Application
+    + message
+
+
+- Sample: <133> Apr 01 10:20:07 elasticsearch-01 syslogd: restart
+
