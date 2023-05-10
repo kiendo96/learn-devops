@@ -1,0 +1,17 @@
+#Kubelet
+- Secure Kubelet vì cần đảm bảo kubelet chỉ nhận lệnh từ api-server
+- Kubelet open trên 2 port:
+    + 10250: Server API that allow full access
+    + 10255: Serves API that allows unauthentcated read-only access (Không cho phép authen mà chỉ được phép read-only access)
+- Theo mặc định thì kubelet cho phép truy cập ẩn danh vào API của nó. "Nếu không muốn bất cứ ai cũng có thể truy cập vào cluster thì check trong /etc/systemd/system/kuubelet.service.d/10-kubeadm.conf và tìm tới /var/lib/kubelet/config.yaml => trong file này sẽ có 1 phần gọi là authentication.anonymous => Có thể chỉnh enable thành false => Không phải bất cứ ai cũng có thể access cluster"
+Ex: curl -sk https://localhost:10250/pods/
+
+#Kubelet
+- Để secure kubelet thì bất kỳ yêu cầu nào đến với Kubelet thì đầu tiên nó sẽ được autenticated và sau đó sẽ được authorization
+- Authentication: Sẽ quyết định người dùng hoặc 1 ai đó request có thể access vào API hay không. Có 2 cơ chế authentication trong kubelet:
+    + Certificates (X509): Dựa trên certificates
+        VD: Để kube-apiserver có thể gửi request công việc tạo pod hoặc container runtime tới kubelet thì giữa kubelet và kube-apiserver sẽ phải có certificates để secure với nhau (Trong trường hợp này thì kube-apiserver sẽ là client access tới kubelet)
+    + API Bearer Tokens: Dựa trên token api
+
+- Authorization: quyết định những gì user or services có thể thực hiện với cluster. Default thì thằng này cũng là allow tất cả các quyền. Nhưng để secure hơn thì k8s đã modify nó về Webhook (trigger để xác định xem mỗi request có được  authorized hay không)
+
