@@ -1,152 +1,78 @@
 Article Directory
-
 1. Mirror scan ImagePolicyWebhook
-
 2. sysdig detect pod
-
 3. cluster role
-
 4. AppArmor
-
 5. Pod Security Policy
-
 6. Network Policy
-
 7. Dockerfile detection and yaml file problems
-
 8. pod security
-
 9. Create SAs
-
 10. Trivy detects image security
-
 11. Create a secret
-
 12. kube-bench
-
 13. gVsior
-
 14. Audit
-
 15. Default Network Policy
-
 16. falco detection output log format
-
 kubernetes exam in action exam information
-
 2 hours
-
 15-20 topics
-
 The appointment time is the same as CKA, and the results will be available within 32 hours
-
 Full score of less than 100, 87 or 93 but a passing score of 67
-
 simulated environment
-
 4 environments and 1 console
-
 NAT network segment 192.168.26.0
-
 Mock exam questions
-
 1. Mirror scan ImagePolicyWebhook
-
 Switch cluster kubectl config use-context k8s
-
 context
-
 A container image scanner is set up on the cluster, but It's not yet fully integrated into the cluster's configuration When complete, the container image scanner shall scall scan for and reject the use of vulnerable images.
-
-task:
-
+task
 You have to complete the entire task on the cluster's master node, where all services and files have been prepared and placed
-
 Glven an incomplete configuration in directory /etc/kubernetes/aa and a functional container image scanner with HTTPS sendpitont http://192.168.26.60:1323/image_policy
-
 1.enable the necessary plugins to create an image policy
-
 2. validate the control configuration and chage it to an implicit deny
-
 3. Edit the configuration to point the provided HTTPS endpoint correct
-
 Finally, test if the configureion is working by trying to deploy the valnerable resource /csk/1/web1.yaml
-
 problem solving ideas
-
 ImagePolicyWebhook
-
 Key words: image_policy, deny
-
 1. Switch the cluster and view master, sshmaster
-
 2. ls /etc/kubernetes/xxx
-
 3. vi /etc/kubernetes/xxx/xxx.yaml change true to false
-
 The address of https in vi /etc/kubernetes/xxx/xxx.yaml
-
 Volume needs to be mounted in
 4. Enable the ImagePolicyWebhook and - --admission-control-config-file=
-
 5. systemctl restart kubelet
-
 6.kubectl run pod1 --image=nginx
-
 case:
-
 Configure /etc/kubernetes/manifests/kube-apiserver.yaml
-
 Add ImagePolicyWebhook related policies
-
 Restart api-server, systemctl restart kubelet
-
 Failed to create a pod after verifying the image
-
 Modify /etc/kubernetes/admission/admission_config.yaml policy defaultAllow: true
-
 Revalidate the image to create the pod
-
 $ ls /etc/kubernetes/aa/
-
 admission_config.yaml apiserver-client-cert.pem apiserver-client-key.pem external-cert.pem external-key.pem kubeconf
-
 $ cd /etc/kubernetes/aa
-
 $ cat kubeconf
-
 apiVersion: v1
-
 kind: Config
-
 # clusters refers to the remote service.
-
 clusters:
-
 - cluster:
-
 certificate-authority: /etc/kubernetes/aa/external-cert.pem # CA for verifying the remote service.
-
 server: http://192.168.26.60:1323/image_policy # URL of remote service to query. Must use 'https'.
-
 name: image-checker
-
 contexts:
-
 - context:
-
 cluster: image-checker
-
 user: api-server
-
 name: image-checker
-
 current-context: image-checker
-
 preferences: {}
-
 # users refers to the API server's webhook configuration.
-
 users:
 
 - name: api-server
