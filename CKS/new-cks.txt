@@ -175,6 +175,8 @@ Key word: sysdig
 2. Using sysdig, pay attention to the required format and time, and redirect the result to the corresponding file
 3. sysdig -M 30 -p "*%evt.time,%user.uid,%proc.name" container.id=container id >/opt/2/report
 the case
+
+
 3. cluster role
 Switch cluster kubectl config use-context k8s
 context
@@ -192,8 +194,6 @@ $ kubectl edit role role-1 -n monitoring
 2. Remember that --verb is permission --resource is an object
 $ kubectl create role role-2 --verb=update --resource=persistentvolumeclaims -n
 monitoring
-
-
 3. Create a binding The binding is the corresponding sa
 $ kubectl create rolebinding role-2-bindding --role=role-2 --
 serviceaccount=monitoring:sa-dev-1 -n monitoring
