@@ -1,0 +1,505 @@
+
+Survive CKS	Ultimate Cheats in Three Days
+Exam experience
+I recently passed the CKS exam, and I will tell you about the process of preparing for the exam, as well as some precautions.
+
+How can I get the CKS certificate? I believe everyone can do it, but there is a good method that will make us get twice the result with half the effort.
+
+First of all, based on my experience, I have a total of about three days to actually do the questions . But these three days are composed of many things and have prerequisites. I think you can do it in three days too.
+
+There are currently sixteen questions for cks. On the first day, you have to go through all the sixteen questions ** to know what there is. **After going through this, you have to type on the question bank by yourself, the whole process of doing the questions and which module the document is in.
+
+If you haven't been exposed to it before, it is a bit difficult on this first day, so stick to it.
+
+For the second day, we have to break through one by one and do each question in detail. For some questions, we need to remember the answer, and we also need to remember the location of the official document, so that we can find it faster during the exam.
+
+The third day is also a very important day. The exam time is two hours, so if we want to finish it within two hours, we need to simulate the exam environment on the third day , and start timing to do the questions by ourselves, usually two or three times, the first time to see what you don’t understand place, to make up for it. The second pass is done more quickly. See if your own needs require a third pass.
+
+The overall approach is more or less like this. The whole topic is below, take a look for yourself if you need it. If there is an answer, please contact us if you need it. You can also find it through the official documents. I also indicated the location of the documents in the title.
+
+Exam syllabus
+ 
+
+CKS Exam Introduction	
+01 kube-bench repair unsafe items	There are kube-apiserver, etcd and kubelet, remember the paths corresponding to the 3 files
+02 Pod specifies ServiceAccount	Note that automountServiceAccountToken: false
+03 Default Network Policy	ingress + egress
+04 RBAC-RoleBinding	Send sub-questions
+
+05[Error-prone] log audit log audit	When changing the kube-apiserver, be careful to align. There are 4 rules. If it is not correct, you will not be able to connec cluster. There is a little more content. The mount and volume names must correspond
+06 Create Secret	Send sub-questions
+07 Dockerfile detection	The root before CMD needs to be changed to nobody, delete SYS_ADMIN, and ensure privileged=false
+08 Sandbox running container gVisor	After the runtimeClass is created, the three deployments must be changed, and the Pod will be rebuilt after the chan
+09 Container security, delete privileged Pod	
+To remove privileged and volume bound pods, privileged=true and with hostPath
+10 Network Policy NetworkPolicy	There are two conditions, all two from, the podSelector of the second from cannot add a horizontal line (-)
+11Trivy scans image security vulnerabilities	
+Send sub-questions, but it takes time to scan, it should be noted that quotation marks cannot be added after -s
+
+*12 AppArmor	It is not very easy to understand, it involves the core knowledge of linux, just follow the steps and remember it a few time
+taking the test
+13 Sysdig & falco	To be familiar with the usage of sysdig, read more help documents if you don’t remember
+
+15 Enable API server authentication	Send a sub-question, ssh to master01 to find the corresponding field and change it, and finally delete the anonymou clusterrolebinding and it will be OK
+ 
+
+CKS Exam Introduction	
+16ImagePolicyWebhook container image scanning	
+Need to understand that the admission controller is a plug-in system, configure kube-apiserver
+
+
+exam questions
+
+1.	Kube-bench repairs unsafe items:
+
+ 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+twent twen
+ 
+Context
+针对 kubeadm 创建的 cluster 运行 CIS 基准测试工具时，发现了多个必须立即解决的问题。
+
+Task
+通过配置修复所有问题并重新启动受影响的组件以确保新的设置生效。修复针对 API 服务器发现的所有以下违规行为：
+1.2.7	Ensure that the --authorization-mode argument is not set to AlwaysAllow FAIL
+1.2.8	Ensure  that  the  --authorization-mode  argument  includes  Node  FAIL
+1.2.9	Ensure that the --authorization-mode argument includes RBAC FAIL
+1.2.18 Ensure that the --insecure-bind-address argument is not set FAIL （v1.26 考题中这项没给出，但最好也检查一下，模拟环境是里修复针对 kubelet 发现的所有以下违规行为：
+Fix all of the following violations that were found against the kubelet:
+4.2.1	Ensure that the anonymous-auth argument is set to false FAIL
+4.2.2	Ensure that the --authorization-mode argument is not set to AlwaysAllow FAIL
+注意：尽可能使用 Webhook 身份验证/授权。修复针对 etcd 发现的所有以下违规行为：
+Fix all of the following violations that were found against etcd:
+2.2 Ensure that the --client-cert-auth argument is set to true FAIL
+模拟环境里，初始化这道题的脚本为 kube-bench.sh
+ 
+
+ 
+twent twent
+ 
+#注意看清楚题目中给的要求，然后注意配置文件的备份，万一会错误，要注意位置。
+ 
+
+ 
+
+
+2.	Pod specifies ServiceAccount
+
+Context
+Your organization's security policy includes:
+⚫ ServiceAccount must not automatically mount API credentials
+⚫ ServiceAccount name must end with "-sa"
+The Pod specified in the manifest file /cks/sa/pod1.yaml cannot be scheduled due to an incorrect ServiceAccount specification. Please complete the following items:
+task
+\1. Create a new ServiceAccount named backend-sa in the existing namespace qa , Make sure this ServiceAccount does not automatically mount API credentials.
+\2. Use the manifest file in /cks/sa/pod1.yaml to create a Pod.
+\3. Finally, clean up any unused ServiceAccounts in namespace qa.
+1.	Create a new sa yaml file.
+2.	Modify the pod file in the existing yaml
+3.	First check sa in grep, then delete.
+
+
+
+3.	Default network
+
+Context
+A default-deny NetworkPolicy avoids accidentally exposing Pods in a namespace that does not define any other NetworkPolicy. task
+Create a new default deny NetworkPolicy named denypolicy in namespace testing for all traffic of type Ingress + Egress. This new NetworkPolicy must deny all Ingress + Egress traffic in namespace testing.
+Apply the newly created default deny NetworkPolicy to all Pods running in namespace testing.
+ 
+You can find a template manifest file at /cks/net/p1.yaml.
+#Concept, service, load balancing and networking, network strategy. Denied access, namespace.
+#Final check: kubectl describe networkpolicy denypolicy -n testing
+
+
+
+4.	RBAC-RoleBinding
+
+1	Context
+2	绑定到 Pod 的 ServiceAccount 的 Role 授予过度宽松的权限。完成以下项目以减少权限集。
+3	Task
+4	一个名为 web-pod 的现有 Pod 已在 namespace db 中运行。
+5	编辑绑定到 Pod 的 ServiceAccount service-account-web 的现有 Role，仅允许只对 services 类型的资源执行 get 操作。
+6	在 namespace db 中创建一个名为 role-2 ，并仅允许只对 namespaces 类型的资源执行 delete 操作的新 Role。
+7	创建一个名为 role-2-binding 的新 RoleBinding，将新创建的 Role 绑定到 Pod 的 ServiceAccount。
+8	注意：请勿删除现有的 RoleBinding。
+9
+10
+11	#参考，api访问，RBAC鉴权、
+12	1、check role的name 。kubectl describe rolebinding -n db 看清楚。然后进行edit，注意资源，以及权限。
+13	进 行 检 查 ：kubectl describe role role-1 -n db
+14	2、创建通过命令行方式：kubectl create role role-2 --verb=delete --resource=namespaces -n db
+15	kubectl create rolebinding role-2-binding --role=role-2 --serviceaccount=db:account-web -n db
+16
+17	3\ 检 查 ：kubectl describe robindings -n db
+18
+19	记住 --verb 是权限，可能考 delete 或者 update 等 --resource 是对象，可能考 namespaces 或者 persistentvolumeclaims 等。
+
+5.	Log audit log audit
+
+task
+ 
+Enables audit logging in the cluster. To do this, enable the logging backend, and make sure:
+⚫ Logs are stored in /var/log/kubernetes/audit-logs.txt
+⚫ Log files can be kept for 10 days
+⚫ Keep up to 2 old audit log files
+/etc/kubernetes/logpolicy/sample-policy.yaml provides the basic policy. It only specifies what not to log. Note: The basic policy is located on the master node of the cluster.
+Edit and extend the base policy to document:
+⚫ Persistentvolumes change at RequestResponse level
+⚫ Request body for configmaps changes in namespace front-apps
+⚫ Changes to ConfigMap and Secret in all namespaces at Metadata level Also, add a catch-all rule to log all other requests at the Metadata level.
+NOTE: Don't forget to apply the modified policy.
+In the simulation environment, the script to initialize this question is log-audit.sh #Tasks, monitoring logs and debugging, cluster troubleshooting, auditing.
+The main thing is to see clearly the strategy correspondence, and then carefully, don't get it wrong. Finally, modify the four policies in kubeapiserver, at the bottom of the document.
+
+
+6.	Create Secret
+
+1	task
+2	在 namespace istio-system 中获取名为 db1-test 的现有 secret 的内容
+3	将 username 字段存储在名为 /cks/sec/user.txt 的文件中，并将 password 字段存储在名为 /cks/sec/pass.txt 的文件中。
+4	注意：你必须创建以上两个文件，他们还不存在。
+5	注意：不要在以下步骤中使用/修改先前创建的文件，如果需要，可以创建新的临时文件。
+6	在 istio-system namespace 中创建一个名为 db2-test 的新 secret，内容如下：
+7	username : production-instance
+8	password : KvLftKgs4aVH
+9	最后，创建一个新的 Pod，它可以通过卷访问  secret db2-test：
+10	Pod 名 称 secret-pod
+11	Namespace istio-system
+12	容器名 dev-container
+13
+ 
+14
+15
+16
+17
+18
+19
+20
+twent twent twent twent 25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+ 
+镜 像 nginx
+卷 名 secret-volume
+挂载路径 /etc/secret
+
+
+#任务，管理secrets。(解密)
+kubectl  get  secret  -n  istio-system  db1-test  -o  jsonpath='{.data.username}'  |  base64  -d  >  /cks/sec/user.txt kubectl  get  secret  -n  istio-system  db1-test  -o  jsonpath='{.data.password}'  |  base64  -d  >  /cks/sec/pass.txt
+
+kubectl create secrt generic db2-test -n istio-system -from-literal=username=production-instance --from-literal=password=KvL
+
+
+
+#为pod创建secret，在概念，配置，secret。
+spec:
+containers:
+-	name:  dev-container  #容器名字
+image: nginx #镜像名字
+volumeMounts: #挂载路径
+-	name:  secret-volume  #卷名
+mountPath: /etc/secret volumes:
+-	name:  secret-volume  #卷名
+secret:
+secretName: db2-test # 名 为 db2-test 的 secret
+ 
+
+ 
+
+7.	Dockerfile detection
+task
+
+Analyze and edit a given Dockerfile /cks/docker/Dockerfile (based on ubuntu:16.04 image), And fix two directives that have outstanding security/best practice issues in the file.
+ 
+Analyze and edit the given manifest file /cks/docker/deployment.yaml,
+
+And fix two fields that have prominent security/best practice issues in the file.
+
+Note: Do not add or remove configuration settings; just modify existing configuration settings so that neither configuration setting above is a security/best practice issue.
+
+Note: If you need an unprivileged user to execute any projects, use user nobody with user ID 65535. Just modify it, no need to create it.
+8.	Sandbox running container gVisor
+
+1	Context
+2	该 cluster 使用 containerd 作为 CRI 运行时。containerd 的默认运行时处理程序是 runc。
+3	containerd 已准备好支持额外的运行时处理程序 runsc (gVisor)。
+4	Task
+5	使用名为 runsc 的现有运行时处理程序，创建一个名为 untrusted 的 RuntimeClass。
+6	更新 namespace  server 中的所有 Pod  以在 gVisor 上运行。
+7	您可以在 /cks/gVisor/rc.yaml 中找到一个模版清单。
+8
+9
+10
+11	#概念，容器，（运行时，runtimeclass）注意处理程序name
+12	没有namespace
+13
+14	更新的pod时deployment 每一个都要更新，更的时name。
+15
+16	注意位置。
+
+9.	Network Policy Network Policy
+ 
+
+task
+Create a NetworkPolicy called pod-restriction to restrict access to Pod products-service running in namespace dev-team. Only allow the following Pods to connect to Pod products-service
+⚫ Pods in namespace qaqa
+⚫ Pods in any namespace with label environment: testing Note: Make sure to apply the NetworkPolicy.
+You can find a template manifest file at /cks/net/po.yaml. Note the two labels, ns, pod.
+The entry and exit rules mainly lie in any ns, podselector.
+
+
+
+10.	Trivy scans image security vulnerabilities
+
+1	Task
+2	使用 Trivy 开源容器扫描器检测 namespace kamino 中 Pod 使用的具有严重漏洞的镜像。
+3	查找具有 High 或 Critical 严重性漏洞的镜像，并删除使用这些镜像的 Pod。
+4	注意：Trivy 仅安装在 cluster 的 master 节点上，
+5	在工作节点上不可使用。
+6	你必须切换到 cluster 的 master 节点才能使用 Trivy
+7
+8
+9	#参考，kubectl命令，最后，看image
+10	kubectl  get  pods  -n  kamino  --output=custom-columns="NAME:.metadata.name,IMAGE:.spec.containers[*].image"
+11
+12
+13	一个一个加入。
+14
+15	for  i  in  {};  do  trivy  image  -s  HIGH,CRITICAL  $i  >>  1.txt  ;done
+16	for  i  in  `kubectl  describe  pod  -n  kamino  |  grep  -i  image:  |  awk  '{print  $2}'`  ;do  trivy  image  -s  HIGH,CRITICAL  $i  >>  1.txt  ;
+
+ 
+11.	App Armor
+
+Context
+APPArmor has been enabled on the worker node node02 of the cluster. An APPArmor profile exists, but has not been implemented. task
+On the worker node node02 of the cluster, implement the existing APPArmor configuration file located at /etc/apparmor.d/nginx_apparmor. Edit the existing manifest file located at /cks/KSSH00401/nginx-deploy.yaml to apply the AppArmor profile.
+Finally, the manifest file is applied and the pods specified in it are created.
+Please note that APPArmor is on the working node in the exam question, so you need to ssh to the working node written at the beginning. In the simulation environment, you need to ssh to the working node node02.
+Start this directory file on node02. Fall back to the original node.
+#Add annotations, the name of kubernetes.io/podx should be the same as the name in containers, and nginx-profile-3 is the name of the apparmor policy module executed on worker node02.
+annotations:
+container.apparmor.security.beta.kubernetes.io/podx: localhost/nginx-profile-3 #Note to modify.
+detection. Verify that the container is actually running with that profile by checking the proc attr for that profile: kubectl exec podx --cat /proc/1/attr/current
+
+
+12.	Sysdig & falco
+
+1	Task：
+2	使用运行时检测工具来检测 Pod redis123 单个容器中频发生成和执行的异常进程。
+3	有两种工具可供使用：
+4	⚫ sysdig
+5	⚫ falco
+6	注： 这些工具只预装在 cluster 的工作节点 node02 上，不在 master 节点。
+7	使用工具至少分析 30 秒 ，使用过滤器检查生成和执行的进程，将事件写到 /opt/KSR00101/incidents/summary 文件中，
+8	其中包含检测的事件， 格式如下：
+9	timestamp,uid/username,processName
+10
+ 
+12
+13
+14
+15
+16
+17
+18
+19
+20
+twent twent twent twent 25
+26
+27
+28
+29
+30
+31
+32
+33
+ 
+
+容器唯一的标识
+crictl ps | grep redis123 falco # /etc/falco/local
+-	rule: rule1 desc: rule1
+condition: container.name = "redis123"
+output: "%evt.time,%user.uid,%proc.name" priority: WARNING
+
+-	rule: rule1 desc: rule1
+condition: container.name = "redis123"
+output: "%evt.time,%user.uid,%proc.name" priority: WARNING
+
+sudo  falco  -M  31  -r  /etc/falco/falco_rules.local.yaml  >>	/opt/KSR00101/incidents/summary
+
+#执行两次。
+ 
+
+ 
+
+13.	Container security context
+
+1	Context
+2	Container Security Context 应在特定 namespace 中修改 Deployment。
+3	Task
+4	按照如下要求修改 sec-ns 命名空间里的 Deployment secdep
+5	一、用 ID 为 30000 的用户启动容器（设置用户 ID 为: 30000）
+6
+ 
+7	二、不允许进程获得超出其父进程的特权（禁止 allowPrivilegeEscalation）
+8	三、以只读方式加载容器的根文件系统（对根文件的只读权限）
+9
+10
+11
+12	#任务，配置pods和容器，为pod或容器配置安全上下文。
+13	注意下面的	在两个容器下都要配置。
+14	securityContext:
+15	allowPrivilegeEscalation: fasle
+16	readOnlyRootFilesystem: true
+17
+18	#spec：下设置。
+19	securityContext:
+runAsUser: 30000
+
+
+14.	Enable API server authentication
+
+1	Context
+2	由 kubeadm 创建的 cluster 的 Kubernetes API 服务器，出于测试目的，
+3	临时配置允许未经身份验证和未经授权的访问，授予匿名用户 cluster-admin 的访问权限.
+4	Task
+5	重新配置 cluster 的 Kubernetes APl 服务器，以确保只允许经过身份验证和授权的 REST 请求。
+6	使用授权模式  Node,RBAC  和准入控制器  NodeRestriction。
+7	删除用户  system:anonymous  的  ClusterRoleBinding  来进行清理。
+8	注意：所有 kubectl 配置环境/文件也被配置使用未经身份验证和未经授权的访问。
+9	你不必更改它，但请注意，一旦完成 cluster 的安全加固， kubectl 的配置将无法工作。
+10	您可以使用位于 cluster 的 master 节点上，cluster 原本的 kubectl 配置文件
+11	/etc/kubernetes/admin.conf ，以确保经过身份验证的授权的请求仍然被允许。
+12	模拟环境里，初始化这道题的脚本为 api.sh
+13
+14
+15	#参考，组件工具，kube-apiserver
+ 
+16
+17
+18
+19
+20
+twent twent
+ 
+--enable-admission-plugin=NodeRestriction
+
+
+--authorization-mode=Node,RBAC
+
+
+
+kubectl  get  clusterrolebinding  system:anonymous
+kubectl  delete  clusterrolebinding  system:anonymous
+ 
+
+ 
+
+15.	TLS security configuration
+
+ 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+twent twent
+ 
+Task
+通过 TLS 加强 kube-apiserver 安全配置，要求
+1、kube-apiserver 除了 TLS 1.3 及以上的版本可以使用，其他版本都不允许使用。
+2、密码套件（Cipher suite）为 TLS_AES_128_GCM_SHA256
+通过 TLS 加强 ETCD 安全配置，要求
+1、密码套件（Cipher suite）为 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+
+
+#参考，组件，kubeapiserver
+
+ssh master01 sudo -i
+
+
+
+
+--tls-min-version=VersionTLS13
+--tls-cipher-suites=TLS_AES_128_GCM_SHA256
+
+
+
+etcd.yaml
+--cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ 
+
+ 
+
+kubectl get pod -n kube-system
+
+
+16.	ImagePolicyWebhook container image scanning
+
+1	cluster 上设置了容器镜像扫描器，但尚未完全集成到 cluster 的配置中。
+2	完成后，容器镜像扫描器应扫描并拒绝易受攻击的镜像的使用。
+3	Task
+4	注意：你必须在 cluster 的 master 节点上完成整个考题，所有服务和文件都已被准备好并放置在该节点上。
+5	给定一个目录 /etc/kubernetes/epconfig 中不完整的配置，
+6	以及具有 HTTPS 端点 https://image-bouncer-webhook.default.svc:1323/image_policy 的功能性容器镜像扫描器：
+7	1. 启用必要的插件来创建镜像策略
+8	2. 校验控制配置并将其更改为隐式拒绝（implicit deny）
+9	3. 编辑配置以正确指向提供的 HTTPS 端点
+10	最后，通过尝试部署易受攻击的资源 /cks/img/web1.yaml 来测试配置是否有效。
+11	模拟环境里，初始化这道题的脚本为 imagePolicy.sh
+12
+13
+14	json: false
+15
+16	server: https://image-bouncer-webhook.default.svc:1323/image_policy
+17
+18	--admission-control-config-file
+19	--enable-admission-plugin=ImagePolicyWebhook,NodeRestriction
+
+
+The knowledge points of the article are matched with the official knowledge files, and relevant knowledge can be further learned
