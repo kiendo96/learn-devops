@@ -188,9 +188,8 @@ copy code
 modify deployment.yaml
 # Annotate securityContext
 
-# securityContext:
-
-# { " Capabilities " : { ' add ' :{NET_BIND_SERVICE}, ' drop: [] ' }, ' privileged ' : TRUE}
+securityContext:
+  {'capabilities': {'add': [ET_BIND_SERVICE], 'drop': ['all']}, ' privileged': False, 'readOnlyRootFilesystem': True, 'runAsUser': 65535}
 
 
 
@@ -395,3 +394,6 @@ And a functional container image scanner with HTTPS endpoint https://image-bounc
 2. Validate the control configuration and change it to implicit deny
 3. Edit the configuration to correctly point to the provided HTTPS endpoint
 Finally, test that the configuration works by trying to deploy the vulnerable resource /cks/img/web1.yaml
+
+
+https://www.cnblogs.com/dagongzhe/category/2264105.html
