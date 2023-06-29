@@ -1,37 +1,13 @@
-- tar: Tape Archive(tarball) - Chương trình cho phép lưu trữ nhiều file dưới dạng file (chỉ đóng gói)
-- tar không phải định dạng nén
-- Thực tế: tar file thường được nén sau khi được đóng gói. 2 định dạng nén phổ biến là gzip và bzip
-
-- gzip:
-    + Extention: tar.gz hoặc tgz
-    + Nén và giải nén tốc độ, nhưng độ nén (compressed) không cao
-
-- bz2:
-    + Extention: tar.bz2 hoặc tb2
-    + Nén và giải nén tốn nhiều thời gian hơn gzip do thuật toán nén có độ nén cao hơn
+#Tìm hiểu về oop trong java
+- Lập trình hướng đôi tượng là một mô hình lập trình máy tính dựa trên khái niệm lớp và đôi tượng
+- Lấy đôi tượng làm nền tảng để xây dựng giải thuật, xây dựng chương trình và thực hiện xử lý dữ liệu đôi tượng đã định nghĩa đó
+- Nhằm tối ưu hóa việc quản lý mã nguồn (source code), tái sử dụng mã nguồn, tóm gọn các thủ tục đã biết trước tính chất thông qua việc sử dụng đối tượng
+- Một đôi tượng có thể được định nghĩa là một trường dữ liệu có các thuộc tính và các hành động của riêng nó
 
 
-- Options:
-    + c - tạo mới file tar
-    + v - verbose (kiểu dạng list các file đã nén hoặc giải nén sau khi chạy command)
-    + z - liên quan định dạng gzip
-    + j - liên quan định dạng bz2
-    + x - extract (giải nén) file tar (untar)
-    + C - chỉ định thư mục đích khi giải nén file tar
-    + t - xem nội dung file tar
-    Ex: Giải nén single file: tar -xvf package.tar file
-
-
-#Use streams, pipes and redirects
-- Trên linux mọi đối tượng (object) đều là file
-- File descriptor: là 1 số interger dùng để phân loại các file được mở bởi các process
-- STDOUTLL: 1 (command fail)
-- STDERR: 2 (command Error)
-- Có thể check bằng cách:
-    #echo $?
-    //trả ra 0 hoặc 1 (Nó trả ra result của last command)
-- Mặc định redirection STDOUT và STDERR vào terminal
-- Redirection operator:
-    > write vào 1 file
-    >> append vào 1 file(thêm vào cuối file)
-- Mặc định > và >> đang sử dụng "file descriptor" là 1
+//Ví dụ về định nghĩa đối tượng để giải phương trình bậc 2
+public class PTB2 {
+	//Khai báo thuộc tính của phương trình bậc 2
+  private double a, b, c;
+	
+}
