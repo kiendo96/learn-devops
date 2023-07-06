@@ -1,0 +1,32 @@
+//AWS Regions and Availability Zones
+
+#> AWS Regions:
+- Each regions is in a specific geographic location
+(Mỗi regions sẽ nằm ở một vị trí địa lý xác định)
+- Each geographic location has a cluster of data centers
+(Mỗi vị trí địa lý sẽ có 1 cluster of data centers)
+- AWS currently has 22 launched regions
+(Hiện tại thì aws có 22 regions đang hoạt động trên khắp thế giới)
+
+#> Availability Zones
+- Consists of one or more data centers
+(Bao gồm 1 hoặc nhiều datacenter)
+- Multiple availability zones are included with each AWS Regions
+(Bao gồm nhiều Avaibility Zones ở bên trong mỗi AWS Regions)
+- Located within the geographic area of the AWS Regions
+(Vị trí địa lí nằm bên trong 1 AWS regions)
+- Redundant power, networking and connectivity
+- There are currently 69 availability zones globally
+(Hiện tại đang có 69 avaibility zones trên toàn cầu)
+
+#> Avaibility
+- Extent to which an application is fulfilling its intended business purpose. Applications that are highly-available are built in a manner where a single failure won't lessen th application's ability to be fully operational
+(Là mức độ đảm bảo mà một application hoàn thành mục đích kinh doanh dự định của nó. Các applications sẽ có highly-avaibility được xây dựng theo cách mà 1 lỗi đơn lẻ sẽ không làm giảm khả năng hoạt động đầy đủ của ứng dụng đó)
+=> Nói đơn giản thì avaibility là tính bảo toàn của ứng dụng. Nó sẽ được đảm bảo răng application sẽ được deploy trên nhiều datacenter -> AZ -> Region khác nhau (Có tính HA). Khi có 1 data center có sự cố thì ứng dụng vẫn sẽ được đảm bảo hoạt động bình thường không có down time.
+
+#>Edge location
+- Used as nodes of a global content delivery network(CDN)
+(Được sử dụng như 1 node của 1 mạng lưới )
+- Utilized by Amazone CloudFont and Amazone Route 53
+- Located globally at over 200 different locations
+- Allows AWS to serve content from locations closest to users
