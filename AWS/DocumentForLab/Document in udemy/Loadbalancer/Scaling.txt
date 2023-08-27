@@ -11,3 +11,27 @@
     + Tự động hóa việc mở rộng & phục hồi sự cố
 - ASG sử dụng Launch Template để biết được cần phải launch EC2 như thế nào
 - Để thực hiện được việc scale, Auto Scaling Group phải kết hợp với việc monitor các thông số của các thành phần trong hệ thống ddeer biết được khi nào cần scale-out, khi nào cần scale-in => Cần sử dụng CloudWatch
+
+//Launch Configuration and Launch Template
+- Mục đích: chỉ đẫn cho AutoScalingGroup biết được cần phải launch instance như thế nào
+- Các thông tin có thể định nghĩa trong launch tempalte:
+    + AMI
+    + Instance type
+    + Keypair(Trong trường hợp cần login vào instance sau khi tạo)
+    + Subnet (Thường không chọn mà để AutoScalingGroup quyết định)
+    + Security Group(s)
+    + Volume(s)
+    + Tag(s)
+    + Userdata (script tự động chạy khi instance start)
+
+//Các phương pháp scale hệ thống
+- Có các option sau để scale một AutoScalingGroup:
+    + No Scale: Duy trì 1 số lượng cố định instance (nếu instance chết thì tạo con mới để bổ sung ngoài ra không làm gì cả)
+    + Manually Scalling: Điều chỉnh 3 thông số: min/max/desire để quyết định số lượng instance trong ASG
+    + Dynamic Scaling: tự động scale dựa trên việc monitor các thông số
+        <> Target tracking scaling: Monitor thông số ngay trên chính cluster. VD: CPU, Memory, Network in-out
+        <> Step scaling: điều chỉnh số lượng instance (tăng/giảm) dựa trên 1 tập hợp các alarm (có thể đến từ các resource khác không phải bản thân cluster)
+        <> Simple scaling: Tương tự Step scalling tuy nhiên có apply "cool down period"
+    + Schedule Scaling: Đặt lịch để tự động tăng giảm số instance theo thời gian, phù hợp với các hệ thống có workload tăng vào 1 thời điểm cố định trong ngày
+    + Predict Scaling: AWS đưa ra dự đoán dựa vào việc học từ thông số hàng ngày, hoằng tuần để điều chỉnh số lượng instance 1 cách tự động. Độ chính xác phụ thuộc vào thời gian application đã vận hành và tính ổn định của traffic đi vào hệ thống
+    
