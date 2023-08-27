@@ -1,0 +1,79 @@
+##ELB là gì
+- Là 1 dịch vụ AWS có nhiệm vụ điều hướng request từ client đến các target server(backend), đảm bảo được cân bằng giữa các target
+- ELB là 1 dịch vụ managed hoàn toàn bởi AWS, dễ dàng setup, có đầy đủ các đặc tính cần thiết như:
+    + High Availability
+    + Scalability   (Về lý thuyết thì là không có giới hạn về scale)
+    + High Security: nếu kết hợp với các dịch vụ khác như WAF, Security Group
+- ELB có thể đễ dàng kết hợp với đa dạng backend sử dụng EC2, Container, Lambda
+
+
+##Các thành phần cơ bản của Load Balancer
+- Load Balancer cho phép setting các listener(trên 1 port nào đó vd HTTP:80, HTTPS:443)
+- Mỗi Listener cho phép cấu hình nhiều rule
+- Request sau khi đi vào listener, được đánh giá bởi các rule sẽ được forward tới target group phù hợp
+- Target group: có nhiệm vụ health check để phát hiện và loại bỏ target un-healthy
+
+
+##Type of Load Balancer
+- Các ELB được phân chia phụ thuộc vào việc nó hoạt động trên layer nào của mô hình OSI layer
+
+1> Application Load Balancer
+- Là loại LB thường dùng, phù hợp cho đa số các nhu cầu
+- Hoạt động trên layer 7 - Application
+- Do hoạt động trên layer 7 nên có một số ưu thế vượt trội so với các loại LB khác:
+    + Hỗ trợ Path routing condition
+    + Hỗ trợ host condition, cho phép dùng nhiều domain cùng trỏ vào 1 ALB
+    + Hỗ trợ routing dựa trên thuộc tính của request(header, IP...)
+    + Tích hợp được với Lambda, Container services
+    + Hỗ trợ trả về custom HTTP respone
+
+2> Network Load Balancer
+- Hoạt động trên layer 4 - Transport
+- Hỗ trợ 2 giao thức TCP và UDP
+- Không hỗ trợ nhiều hình thức rule routing
+- Thường dùng cho những hệ thống có workload rất cao, lên tới hàng triệu request/s
+
+3> Classic Load Balancer
+- Sử dụng để điều phối traffic đi tới các Classic EC2 Instance
+<Hiện tại đã ngừng hỗ trợ EC2-Classic Network từ 15/08/2022, do vậy để tạo ELB loại này bạn phải có sẵn EC2 chạy dưới mode classic network>
+
+4> Gateway Load Balancer
+- Giúp triển khai, scale và quản lý các Virtual Application(3rd party)
+- Mục đích: Firewall, phát hiện ngăn chặn xâm nhập (intrusion detection and prevention systems), kiểm tra gói tin chuyên sâu
+- Hoạt động trên Layer 3 (network) và Layer 4 (Transport)
+- GLB listen trên tất cả các port và forward trafic đến các target group dựa trên các rule
+- GLB sử dụng GLB Endpoint để trao đổi trafic giữa VPC của service provider và VPC của consumer 
+
+//Example:
+- Gateway LB được đặt bên trong VPC của Security provider
+- Traffic đi vào và đi ra hệ thống bên VPC của consumer được cấu hình routing để đi qua Gateway LB trước khi đến được target cần đến
+
+##Cách hoạt động của load Balancer
+- Mặc định LB sẽ phân phối request từ client -> target trong 1 Target Group theo tỷ lệ cân bằng (Round Robin) //kể cả khi target nằm trong nhiều hơn 1 target Group
+- LB có thể điều hướng tới nhiều hơn 1 target. Trong trường hợp multi-target, việc điều hướng tới target nèo sẽ được quyết định bởi 1 số rule sau:
+    + Listener port
+    + Path pattern (Application LB only)
+    + Fixed ratio
+        VD: Target group 01 nhận 20% traffic
+            Target group 02 nhận 80% traffic
+
+
+##ELB cost
+- Mặc định Elastic Load Balancer tính tiền theo giờ ($/hour) giá phụ thuộc vào region
+- Ngoài ra còn tính phí dựa trên số lương request, lượng data transfer qua Load Balancer quy đổi ra Load Balancer Capacity Units (LCUs)
+- Khi estimate cho ELB, user sẽ input các thông số như:
+    + Số lượng request per second (RPS)
+    + Lưu lượng data (GB/TB per hour)
+    + Số lượng connection new
+    + Thời gian trung bình cho một connection
+    + Số lượng rule
+- AWS sẽ quy đổi thành LCUs để ước tính chi phí
+
+
+##Cross zone Load Balancer
+- ELB là 1 dịch vụ hoạt động cross zone (AWS suggest chọn tất cả các zone có thể khi khởi tạo ELB)
+- Nếu Cross zone load balance được enable, ELB sẽ điều hướng request từ client một cách cân bằng tới các target => Không cần biết bao nhiêu Zone
+- Nếu Cross zone load balance được disable, ELB sẽ điều hướng request từ client một cách cân bằng tới mỗi Zone => Trong mỗi Zone sẽ chia đều cho các Instance
+*Noted:
+    + By default, Application Load Balancer sẽ Enable cross zone, không thể tắt
+    + By default, Network Load Balancer sẽ Disable cross zone. Cần enable sau khi khởi tạo

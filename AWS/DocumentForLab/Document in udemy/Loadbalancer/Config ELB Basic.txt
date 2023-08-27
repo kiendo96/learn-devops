@@ -1,0 +1,67 @@
+Request:
+1. Tạo 2 instance A và B, Trong quá trình tạo sử dụng userdata đã được chuẩn bị sẵn, mục đích là để có sự khác biệt về GUI khi truy cập 2 instance
+2. Tạo 1 target group TG-01, register 2 instance ở step trước
+3. Tạp 1 application LB (ALB), cấu hình listener port 80 trỏ vào tg-01
+4. Cấu hình Security Group
+5. Truy cập ALB thông qua DNS link
+6. Remove instance B khỏi tg-01. Tạo 1 target group mới tg-02 và add instance B vào đó
+7. Tạo thêm 1 listener port 8080 trỏ tới tg-02
+8. Truy cập ALB thông qua DNS link với 2 port 80 và 8080
+9. [Optional] Thiết lập tỷ lệ 1:3 cho traffic đến 2 target group tg-01 và tg-02 trên cùng 1 listener port 80, thử truy cập xem ALB có điều hướng tới 2 targets theo đúng tỷ lệ không
+
+
+
+Configure:
+Step 1:
+- Create two ec2 instance with user data (script):
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chconfig httpd on
+
+cd /var/www/html
+echo "<html>" > index.html
+
+echo "<h1 style='color:blue;'>Welcome to Udemy instance - A</h1>" >> index.html
+echo "<h4 style='color:red;'>You are running instance from this IP (For debug only!!!!Do not public this to user):</h4>" >> index.html
+
+export TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+
+echo "<br>Private IP: " >> index.html
+curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/local-ipv4 >> index.html
+
+echo "<br>Public IP: " >> index.html
+curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/public-ipv4 >> index.html 
+echo "</html>" >> index.html
+
+
+
+Step 2:
+- Create a new target group in EC2 console
+    => Create target group => Choose a target type: "instance"  
+        => target group name    
+            => choose VPC 
+                => Choose protocol    
+                    => choose Health check "HTTP or HTTPS" and Health check Path
+                        => choose "Instance need add to Target Group"
+
+
+Step 3:
+=> Create a new Load Balancer
+    =>  Choose "Application Load Balancer"
+        =>  Basic Configure
+            => Chọn max AZ trong "Mappings" 
+                => Config listener trên port mong muốn và trỏ tới Target Group ở step 2 (Hoặc cần thiết)
+
+##bắt đầu từ câu 6:
+=> Truy cập vào tg-01 và delete 1 con instance
+    => Create a new Target Group name is "tg-02" => Add instance "website-02" vào target group này
+        => Chỉnh sửa Security Group open thêm port 8080
+            => Quay lại ALB => listener: add thêm 1 listener port 8080
+                => Sử dụng dns link để access vào ALB với port 80 và 8080
+
+=> Để chia tỷ lệ 1:3 tới 2 target group: tg-01 và tg-02
+    => Xóa listener 8080 vừa tạo ở trên
+        => Edit listener 80 => tại Forward To: select new target group "tg-02"  => Weight: tg-01 = 1 ; Weight: tg-02 = 3
+            => Try connect by DNS link  => Sẽ thấy ALB trỏ đến tg-02 nhiều hơn (75%)
