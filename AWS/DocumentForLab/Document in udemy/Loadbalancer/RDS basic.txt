@@ -9,3 +9,21 @@
   + Scale virtical:Tăng hoặc giảm cấu hình instance
   + Scale horizontal: Thêm hoặc bớt node tuy nhiên node này chỉ có thể read(read-replica)
 - Có giới hạn về dung lượng ổ cứng tối đa(64TB đối với MySql, mariadb,... 16TB đối với Microsoft SQL)
+
+//Tính năng
+- Cho phép tạo các DB instance hoặc cụm cluster một cách nhanh chóng
+- Tự động fail-over giữa master-slave instance khi có sự cố
+- High-Availability: Tự động cấu hình instance stand by, người dùng chỉ cần chọn
+- Tự động scale dung lượng lưu trữ (optinal)
+- Liên kết với CloudWatch để giám sát dễ dàng
+- Automate backup & Manage retention
+- Dễ dàng chỉnh sửa setting ở cấp độ Database sử dụng parameter group
+
+ //Các engines RDS support:
+- Amazon Aurora
+- MySql
+- MariaDB
+- PostgreSQL
+- Oracle
+- Microsoft SQL Server
+
