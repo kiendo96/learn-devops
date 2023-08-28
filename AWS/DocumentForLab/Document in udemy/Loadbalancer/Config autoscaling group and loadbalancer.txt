@@ -1,0 +1,15 @@
+Request:
+1. Enable auto start for service httpd
+2. Tạo AMI từ 1 instance đang chạy 
+3. Tạo Launch Template
+4. Tạo Auto Scaling Group, chọn target group cho ASG là tg-01
+5. Cấu hình Application Load Balancer trỏ vào tg-01
+6. Kiểm tra số lượng instance tạo ra phù hợp chưa
+7. Thử terminate xem ASG có tự tạo lại instance khác để bổ sung không?
+8. Điều chỉnh số lượng instance trong ASG (Tăng hoặc giảm size min+ desire capacity)
+9. Thử access liên tục xem ASG có tự add thêm instance không? (trước đó có cấu hình bật auto-scale)
+10. Thử setting Schedule Auto Scaling (Lưu ý: chọn thời gian gần để test)
+
+
+//Step 1:
+
