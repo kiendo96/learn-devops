@@ -29,4 +29,7 @@ Request:
       => Choose "VPC"
         => Choose "max Availability Zone and subnets"
           => Instance type requirements -> "Override launch template"  -> Manually ađ instance types
-            => Load balancing -> Attach to an existing load balancer 
+            => Load balancing -> Attach to an existing load balancer `-> Choose "target Group"
+              => Turn on Helth check if need
+                => Group size (Chọn tùy theo nhu cầu VD: desired capacity = 2, minimum capacity = 2, maximum capacity = 4
+  
