@@ -12,4 +12,21 @@ Request:
 
 
 //Step 1:
+- Enable httpd# sudo systemctl enable httpd
 
+//Step 2:
+- Create new AMI từ 1 instance đang chạy
+
+//Step 3:
+- Access: "Launch template"
+    => create "Launch temlate"  -> Choose "AMI"  -> Choose "Instance type" -> Choose "Key pair" -> Choose "Security Groups"
+      => Attach resource tag
+
+//Step 4:
+- Access: "Auto Scaling Group"
+  => Enter "Name ASG"
+    => Choose "Launch template"
+      => Choose "VPC"
+        => Choose "max Availability Zone and subnets"
+          => Instance type requirements -> "Override launch template"  -> Manually ađ instance types
+            => Load balancing -> Attach to an existing load balancer 
