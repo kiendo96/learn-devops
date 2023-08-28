@@ -27,3 +27,14 @@
 - Oracle
 - Microsoft SQL Server
 
+//RDS Usecase
+- RDS được sử dụng trong hầu hết các trường hợp cần database dạng quan hệ
+VD: Lưu trữ thông tin của user, website e-commerce, education...
+- RDS thích hợp cho các bài toàn OLAP (online Analatical processing) nhờ khả năng truy vấn mạnh mẽ, cấu hình có thể scale theo yêu cầu
+
+//RDS Pricing
+- Về cơ bản RDS tính tiền dựa theo các thông số:
+  + Instance size: Instance size càng lớn cost càng cao. Có hỗ trợ reserve instance tương tự EC2
+  + Lượng data lưu trữ (GB/month)
+  + Dung lượng các bản snapshot được tạo ra
+  + Các tính năng khác vd: Backtracking đối với Aurora
