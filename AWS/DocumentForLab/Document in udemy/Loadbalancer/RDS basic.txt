@@ -1,0 +1,11 @@
+//RDS(Relational Database Service)
+- Là một service giúp người dùng tạo và quản lý các relational Database(database quan hệ)
+
+//Đặc trưng
+- Là một DB as a Service. User không cần quan tâm tới hạ tầng ở bên dưới
+- Cho phép người dùng tạo ra các database instance độc lập hoặc cụm instance hoạt động dưới mode cluster
+- Không thể login vào instance level (khác với việc tự cài DB lên 1 EC2 instance)
+- Có thể scale theo 2 hình thức:
+  + Scale virtical:Tăng hoặc giảm cấu hình instance
+  + Scale horizontal: Thêm hoặc bớt node tuy nhiên node này chỉ có thể read(read-replica)
+- Có giới hạn về dung lượng ổ cứng tối đa(64TB đối với MySql, mariadb,... 16TB đối với Microsoft SQL)
