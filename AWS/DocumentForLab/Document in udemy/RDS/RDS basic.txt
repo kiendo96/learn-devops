@@ -38,3 +38,21 @@ VD: Lưu trữ thông tin của user, website e-commerce, education...
   + Lượng data lưu trữ (GB/month)
   + Dung lượng các bản snapshot được tạo ra
   + Các tính năng khác vd: Backtracking đối với Aurora
+
+
+//Mô hình triển khai RDS
+- RDS có thể triển được triển khai theo một số mô hình sau:
+  + Single Instance
+  + Single Instance with multi-AZ option = yes
+  + Master - Read Only cluster
+  + Master - Read Only cluster with Multi-AZ option = yes
+  + Master - Multi Read cluster
+
+1> Single Instance
+- Chỉ có 1 database instance duy nhất được tạo trên 1 Availability Zone (AZ)
+- Nếu có sự cố xảy ra ở cấp độ AZ thì database không thể truy cập
+- Phù hợp với môi trường Dev-Test để tiết kiệm chi phí
+
+2> Single Instance with Multi-AZ option enabled
+- Một bản sao của instance sẽ được tạo ra ở AZ khác và hoạt động dưới mode standby
+- Nhiệm vụ của instance standby này là sync data từ master, không thể truy cập instance này.
