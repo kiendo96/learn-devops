@@ -32,4 +32,16 @@ Request:
             => Load balancing -> Attach to an existing load balancer `-> Choose "target Group"
               => Turn on Helth check if need
                 => Group size (Chọn tùy theo nhu cầu VD: desired capacity = 2, minimum capacity = 2, maximum capacity = 4
-  
+
+//7.
+- Thử xóa 1 con instance và đợi 1 lúc xem nó có được khởi tạo lại hay không
+
+//8.
+- Vào ASG: Edit Auto scaling group: "Group size - desrice state" -> lên 3 xem nó có tạo thêm 1 instance hay không
+
+
+//9.
+=> Choose automatic scalling => Create dynamic scaling policy => Choose about "type" want to autoscalling
+
+//10
+-> access ACS -> Create "Scheduled action" ->Setup about thông tin 
