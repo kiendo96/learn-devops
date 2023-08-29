@@ -1,0 +1,9 @@
+Requirement:
+*Cài đặt tool DB(such as MySQL Workbench)
+1. Login to AWS console, navigate to RDS
+2. Tạo 1 RDS instance với cấu hình cơ bản db.t3.medium, engine MySQL
+3. Kết nối tới instance sử dụng MysqlWorkbench
+4. Thực hiện 1 số câu lệnh CRUB cơ bản 
+5. Tạo thêm instance với role Read Replica
+6. Kết nối tới Read instance sử dụng Mysql Workbench
+7. Thực hiện 1 số câu lệnh CRUB cơ bản => Read Only
