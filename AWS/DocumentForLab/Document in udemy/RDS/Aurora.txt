@@ -28,3 +28,35 @@ Note: Khác với RDS thông thường, Aurora sử dụng tâng Storage để r
 - Aurora Serverless là 1 công nghệ cho phép tạo Database dưới dạng serverless
 - Thay vì điều chỉnh cấu hình của DB instance, người dùng sẽ điều chỉnh ACU (Aurora Capacity Unit), ACU càng cao hiệu suất DB càng mạnh
 - Phù hợp cho các hệ thống chưa biết rõ workload, hoặc workload có đặc trưng thay đổi lên xuống thường xuyên
+
+//Parameter Groups
+- RDS là một managed service do đó không thể login vào instance. Nếu muốn can thiệp vào setting ở cấp độ DB (Không phải setting OS) ta cần thông qua 1 cơ chế gián tiếp
+- Khi tạo RDS nếu không chỉ định AWS sẽ sử dụng Parameter Group default của hệ database đang chọn. Default Parameter Group không thể chỉnh sửa
+- Custom Parameter Group được tạo ra bằng cách copy default Parameter Group sau đó chỉnh sửa những tham số phù hợp với nhu cầu
+- Parameter Groups có 2 loại là Cluster Parameter Groups và Instance Parameter Group. Hai loại này khác nhau về scope có thể apply
+
+//Một số Parameter thường được custom riêng theo nhu cầu hệ thống
+- max_connections: 
+  + Ý nghĩa: Số lượng connection tối đa mà Database có thể tiếp nhận đồng thời. 
+  + Default: Tùy theo size của instance
+  + Allowed value: 50 - 12000
+
+- long_query_time:
+  + Ý nghĩa: Query chạy vượt quá số này sẽ được tính là Slow query
+  + Default: 0
+  + Allowed value: 0 - 31536000
+
+- slow_query_log:
+  + Ý nghĩa: Có log ra những câu query bị coi là slow query hay không
+  + Default: 0
+  + Allowed value: 0, 1
+
+- max_allowed_packet:
+  + Ý nghĩa: Package tối đa có thể gửi nhận tới database
+  + Default: 1073741824
+  + Allowed value: 1024 - 1073741824
+
+- general_log:
+
+
+
