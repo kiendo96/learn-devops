@@ -56,3 +56,31 @@ VD: Lưu trữ thông tin của user, website e-commerce, education...
 2> Single Instance with Multi-AZ option enabled
 - Một bản sao của instance sẽ được tạo ra ở AZ khác và hoạt động dưới mode standby
 - Nhiệm vụ của instance standby này là sync data từ master, không thể truy cập instance này.
+- Khi có sự cố, instance standby sẽ được chuyển lên thành master(việc này được aws thực hiện tự động, endpoint url được giữ nguyên)
+- Nêu enable multi AZ, số tiền bỏ ra sẽ được x2
+- Phù hợp cho Database Production
+
+3> Master - Read only cluster
+- Một instance với mode ReadOnly sẽ được tạo ra và liên tục replica data từ master instance
+- Instance này chỉ có thể đọc data. Phù hợp cho hệ thống có workload read>write, muốn tối ưu performance của Database
+- Sau khi thiết lập quan hệ, instance được tạo ra sẽ kết hợp thành 1 cluster
+- Trong trạng thái 2 instance đã hìnht thành cluster, nêu Master instance gặp sự cố, failover sẽ được tự động thực hiện, ReadOnly instance được promote lên làm master
+Noted:
+  + Nêu 2 instance được tạo ra riêng biệt -> then, mới thiết lập mối quan hệ read-replica, endpoint của 2 instance sẽ riêng biệt nên sau khi failover, cần chỉnh lại connection từ App
+  + Nên tạo cluster sau đó mới add node read vào để quản lý connection ở cluster level (Số lượng node rea có thể tùy chọn)
+
+4> Master - Read Only cluster with Multi-AZ option = yes
+- Tương tự mô hình Master-Read Only tuy nhiên các node đều được bật multi-AZ enable
+- Chi phí sẽ gấp 4 lần mô hình single Instance
+
+5> Master - Multiple read cluster
+- Với mô hình này, nhiều hơn 1 reader instance sẽ được tạo ra
+
+
+//Nên tạo RDS cluster hay RDS instance
+- AWS cung cấp cơ chế cho phép tạo ra 1 cluster RDS giúp quản lý node và failover dễ dàng hơn
+- Ưu điểm so với việc tạo RDS instance thông thường:
+  + Quản lý endpoint ở cấp độ cluster, không bị thay đổi khi instance trong cluster gặp sự cố
+  + Failover tự động
+  + Scale read instance dễ dàng
+
