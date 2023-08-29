@@ -57,6 +57,19 @@ Note: Khác với RDS thông thường, Aurora sử dụng tâng Storage để r
   + Allowed value: 1024 - 1073741824
 
 - general_log:
+  + Ý nghĩa: Có log ra general query hay không
+  + Default: 0
+  + Allowed value: 0, 1
+
+- time_zone:
+  + Ý nghĩa: Setting time zone cho database
+  + Default: Same as region
+  + Allowed value:  Ex: Asia/Tokyo
+
+//Option Groups
+- Tương tự Parameter Group tuy nhiên Option Group định nghĩa những setting liên quan tới Security là chủ yếu
+
+
 
 
 
