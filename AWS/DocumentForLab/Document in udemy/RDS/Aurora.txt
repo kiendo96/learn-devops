@@ -68,8 +68,18 @@ Note: Khác với RDS thông thường, Aurora sử dụng tâng Storage để r
 
 //Option Groups
 - Tương tự Parameter Group tuy nhiên Option Group định nghĩa những setting liên quan tới Security là chủ yếu
+- Một số ví dụ về option group:
+  + SERVER_AUDIT_EVENTS: Loại action sẽ được log ra
+      VD: CONNECT, QUERY, QUERY_DDL, QUERY_DML, QUER
+  + SERVER_AUDIT_INCL_USERS: Include users vào audit log
+  + SERVER_AUDIT_EXCL_USERS: Loại trừ users khỏi audit log
+  + SERVER_AUDIT_LOGGING: Bật tắt audit logging
 
 
-
-
+//RDS Proxy
+- RDS cung cấp cơ chế proxy giúp quản lý connection tới các instance một cách hiệu quả, hạn chế bottle neck
+  VD: do application quản lý connection không tốt gây ra
+- Khi sử dụng proxy, application sẽ không kết nôi trực tiếp tới RDS mà không qua proxy endpoint
+- Chi phí sẽ phát sinh thêm cho proxy
+- Hiện tại hỗ trợ 3 engine: MySQL, PostgreSQL, SQL server
 
