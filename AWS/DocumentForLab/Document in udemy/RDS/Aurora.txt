@@ -23,3 +23,8 @@
   + Failover, Disaster recovery: rút ngắn RTO và giảm thiểu RPO khi xảy ra sự cố ở cấp độ region
 - Mặc định cluster ở region thứ 2 trở đi chỉ có thể read, tuy nhiên có thể enable write forwarding để điều hướng request tới primary cluster
 Note: Khác với RDS thông thường, Aurora sử dụng tâng Storage để replicate data giữa master-read nodes.
+
+//Aurora serverless
+- Aurora Serverless là 1 công nghệ cho phép tạo Database dưới dạng serverless
+- Thay vì điều chỉnh cấu hình của DB instance, người dùng sẽ điều chỉnh ACU (Aurora Capacity Unit), ACU càng cao hiệu suất DB càng mạnh
+- Phù hợp cho các hệ thống chưa biết rõ workload, hoặc workload có đặc trưng thay đổi lên xuống thường xuyên
