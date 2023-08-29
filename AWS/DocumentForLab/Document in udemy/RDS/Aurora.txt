@@ -1,0 +1,25 @@
+//Aurora
+- Aurora là công nghệ database độc quyền của AWS, hỗ trợ 2 loại engine là MySQL và PostgreSQL
+- Aurora có 2 hình thức triển khai:
+  + Cluster (Master + Multi Read Replica)
+  + Serverless
+- Những tính năng vượt trội của Aurora so với RDS thông thường
+  + Hiệu năng tốt hơn(so với RDS instance cùng cấu hình)
+  + Hỗ trợ backtracking (1 tính năng cho phép revert database về trạng thái trong quá khứ tối đa 72h). Khác với restore từ snapshot đòi hỏi tạo instance mới, backtracking restore ngay trên chính cluster đang chạy
+  + Tự động quản lý Write endpoint, Read enpoint ở cấp độ cluster
+
+//Mô hình cluster của Aurora
+- Cluster Aurora bao gồm:
+  + 1 Master node (Primary instance)
+  + 1 hoặc nhiều Replica node (tối đa 15)
+- Data của Aurora cluster được lưu trên 1 storage layer gọi là Cluster volume span trên nhiều AZ để tăng HA
+- Data được Cluster Volume tự động replicate trên nhiều AZ. (Số lượng replica không phụ thuộc vào số lượng instance của cluster)
+- Cluster volume tự động tăng size dựa vào nhu cầu của người dung(Không thể fix cứng size)
+
+//Aurrora Global Cluster
+- Là một cơ chế cho phép tạo ra cụm cluster cross trên nhiều regions
+  + Tăng tốc độ read tại mỗi region tương đương với local read
+  + Mở rộng khả năng scale số lượng node read (Limit 15 read nodes cho 1 cluster)
+  + Failover, Disaster recovery: rút ngắn RTO và giảm thiểu RPO khi xảy ra sự cố ở cấp độ region
+- Mặc định cluster ở region thứ 2 trở đi chỉ có thể read, tuy nhiên có thể enable write forwarding để điều hướng request tới primary cluster
+Note: Khác với RDS thông thường, Aurora sử dụng tâng Storage để replicate data giữa master-read nodes.
