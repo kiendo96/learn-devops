@@ -20,3 +20,20 @@
   + File output -> S3 hoặc EFS
   + Data output -> RDS Database hoặc DynamoDB
 - Lambda cũng cần được cấp IAM Role để có thể tương tác với các resource khác. Mặc định Lambda khi tạo ra sẽ được gán Role có các quyền cơ bản (VD: Write log to CloudWatch)
+- Lambda không chỉ chứa 1 file code mà có thể chứa các file library, file common,... Để tiện dụng ta có thể gom nhóm chúng lại thành các layer và tái sử dụng ở nhiều function, tránh duplicate code
+- Khi có nhiều request từ client, Lambda scale horizontal bằng cách gia tăng số lượng concurent execute. Giới hạn này mặc định khi tạo account AWS là 10 concurent executions. Cần request tăng số này lên trước khi release production
+- Lambda có thể được set một số reserve concurent để tránh bị ảnh hưởng bởi các lambda khác
+
+//Lambda Pricing
+- Lambda là 1 dịch vụ có idle cost = 0. Người dùng chỉ trả tiền cho chi phí chạy thực tế, cụ thể:
+  + Thời gian execute của lambda. Đơn vị GB* second
+      VD: Singapore price: $0,0000167/GB*second
+  + $0.2/1 millions requests
+VD: Có 1 lambda 512MB memory, mỗi request chạy trong 5s, 1 tháng có 100000 request
+  => 250000GB*second = $4.175
+  => (250000/1000000)*0.2 = %0.05
+  Total: $4.225
+
+//Hệ sinh thái Lambda
+- Lambda là 1 service có thể liên kết với gần như tất cả các service khác của AWS, miễn là nó được cấp IAM role phù hợp
+VD: CloudWatch, RDS, S3, DynamoDB, API Gateway, SNS, Kinesis, IoT, SQS, EventBridge....
