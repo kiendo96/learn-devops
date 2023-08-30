@@ -2,4 +2,21 @@
 - Là 1 service serverless của AWS cho phép người dùng thực thi code mà không cần quan tâm tới hạ tầng phía sau
 - Lambda hỗ trợ các ngôn ngữ (runtime) sau:
   + Java
+  + Python
+  + .NET
+  + GO
+  + Ruby
+  + Custom Runtime
+  + Container
 
+//Đặc trưng
+- Khi tạo 1 lambda function, bạn quyết định cấu hình thông qua số Memory. Min = 128MB, Max = 10GB. Memory càng cao, CPU được allocate càng lớn
+- Lambda khi khởi chạy được cấp phát 1 vùng nhớ tạm min = 512MB, max = 10GB, sẽ bị xóa khi lambda thực thi xong
+- Timeout tối đa 15 phút (quá thời gian này nếu execute chưa xong vẫn tính là failed và bị thu hồi resource)
+- Lambda có thế được trigger từ nhiều nguồn: Trigger trực tiếp (Console or CLI), API Gateway, event từ các service khác(S3, SQS, DynamoDB, Kinesis, IoT...) hoặc chạy theo lịch (trigger từ EventBridge)
+- Lambda có 2 mode chạy là chạy ngoài VPC và chạy trong VPC. Thông thường nêu lambda cần kết nối với RDS database thì nên để trong VPC (Lưu ý đến số lượng IP của subnet chưa lambda)
+- Lambda sau khi chạy xong sẽ không lưu lại bất cứ gì
+  + Log > CloudWatch log
+  + File output -> S3 hoặc EFS
+  + Data output -> RDS Database hoặc DynamoDB
+- Lambda cũng cần được cấp IAM Role để có thể tương tác với các resource khác. Mặc định Lambda khi tạo ra sẽ được gán Role có các quyền cơ bản (VD: Write log to CloudWatch)
