@@ -37,3 +37,31 @@ VD: Có 1 lambda 512MB memory, mỗi request chạy trong 5s, 1 tháng có 10000
 //Hệ sinh thái Lambda
 - Lambda là 1 service có thể liên kết với gần như tất cả các service khác của AWS, miễn là nó được cấp IAM role phù hợp
 VD: CloudWatch, RDS, S3, DynamoDB, API Gateway, SNS, Kinesis, IoT, SQS, EventBridge....
+
+//Ưu điểm của Lambda
+- Không tốn effort cho quản trị hạ tầng, High Availability
+- Zero idle cost. Do lambda chỉ phát sinh chi phí khi chạy, nếu hệ thống không phát sinh nhu cầu sử dụng -> cost gần như bằng zero
+- Kết hợp được với nhiều service của AWS
+- Khả năng scale mạnh mẽ (Bằng cách nhân bản số lượng concurrent)
+- Support nhiều ngôn ngữ
+- Dễ dàng triển khai bằng tool do AWS phát hành hoặc 3rd party
+
+//Nhược điểm
+- Cold start: Code cần thời gian để nạp lên memory trước khi thực sự bắt đầu chạy (Gần đây đã được cải thiện vấn đề này rất nhiều)
+- Giới hạn về bộ nhớ: 10GB. Không phù hợp cho các tác vụ nặng
+- Khó tích hợp. Hệ thống để deploy lên lambda cần chia nhỏ do đó làm tăng tính phức tạp và khó debug
+- Giới hạn về thời gian chạy, max 15minute. Không phù hợp với các tác vụ tính toán tốn thời gian
+- Không lưu lại trạng thái sau khi chạy. Cần có external storage, database, logging
+
+
+//Các trường hợp nên sử dụng lambda
++ Tác vụ automation trên AWS, nhận trigger từ các AWS service như S3, DynamoDb, SNS, SQS...
++ Backend cho API hoặc IOT
++ Xử lý data trong bài toán data ETL
++ Hệ thống có kiến trưc microservice nói chung
++ Công ty startup muốn tối ưu cost cho giai đoạn bắt đầu
+
+//Những usecase không nên sử dụng lambda
++ Hệ thống Monolithic (do source code quá nặng) hoặc team không có kinh nghiệm phát triển microservice
++ Xử lý dữ liệu lớn, phân tích, tổng hợp data (hoặc chạy nhiều hơn 15p)
++ Machine Learning.
