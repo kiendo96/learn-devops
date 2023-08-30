@@ -1,0 +1,5 @@
+//Lambda
+- Là 1 service serverless của AWS cho phép người dùng thực thi code mà không cần quan tâm tới hạ tầng phía sau
+- Lambda hỗ trợ các ngôn ngữ (runtime) sau:
+  + Java
+
