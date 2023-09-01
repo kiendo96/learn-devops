@@ -1,0 +1,8 @@
+Requirement:
+1. Tạo 1 Lambda layer sử dụng zip file được cung cấp.
+2. Tạo 1 lambda python theo mẫu, Add thêm layer đã tạo ở step 1
+3. Cấu hình IAM role cho lambda, add thêm policy S3FullAccess
+4. Setting strigger từ S3 cho thư mục /images
+5. Thử upload một file định dạng .jpg
+6. Kiểm tra log của lambda
+7. Kiểm tra xem các file resized có được tạo ra và lưu vào thư mục tương ứng
