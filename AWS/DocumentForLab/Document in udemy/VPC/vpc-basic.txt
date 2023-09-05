@@ -104,3 +104,19 @@
     + VPC peering không có tính chất bắc cầu.
         VD: VPC-A peer VPC-B, VPC-B peer VPC-C không có nghĩa là VPC-A cũng peer với VPC-C
     + Hai VPC muốn peering được với nhau phải có dải IP CIDR không overlap
+
+- Transit Gateway:
+    + Đóng vai trò như 1 hub trung chuyển giữa On-Premise và AWS Cloud hoặc giữa nhiều VPC trên Cloud
+    + Thường sử dụng kết hợp với Site-to-Site VPN hoặc Direct Connect
+- Site to Site VPN:
+    + Là hình thức kết nối network Onpremise với network trên AWS Cloud
+    + Customer gateway: Thiết bị vật lý hoặc virtual appliance ở phía On-Premise có nhiệm vụ điều hướng traffic
+    + Thông tin được truyền giữa On-Premise và AWS Cloud được mã hóa
+    + Bandwidth khoảng ~4Gbps
+- Direct Connect:
+    + Hình thức kết nôi từ On-Premise lên AWS Cloud thông qua một kênh connect low latency, high speed
+    + Connection được duy trì thông qua một đường truyền chuyên dụng không qua public internet
+    + Thông tin truyền đi giữa On-Premise và AWS cloud không được mã hóa by default
+    + Bandwidth dao động từ 50Mbps-100Gbps
+    + Khó setup hơn so với VPN, cần làm việc với nhà cung cấp direct connection
+
