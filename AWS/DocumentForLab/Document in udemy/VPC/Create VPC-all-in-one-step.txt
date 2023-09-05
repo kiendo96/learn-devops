@@ -8,3 +8,5 @@ Requirement:
 7. Confirm các resource được tạo ra
 8. Xóa VPC đã tạo để tránh phát sinh chi phí
 
+//Step
+- Create VPC -> VPC and more - > config theo nhu cầu
