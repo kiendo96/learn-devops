@@ -95,4 +95,12 @@
     + Traffic: data đi ra ngoài interrnet
     + etc
 
-
+//VPC advanced section
+- VPC peering:
+    + Là hình thức đơn giản nhất để kết nôi 2 VPC trên AWS. 2 VPC có thể cùng account hoặc khác account
+    + Để thiết lập, một phía sẽ phải đưa ra peering request (requester) và bên còn lại sẽ accept request (Accepter)
+    + Sau khi đã thiết lập quan hệ peering, cần cấu hình lại Route Table(Thêm route đi ra peering connection) và setting Security Group thích hợp để resource ở 2 VPC có thể connect lẫn nhau thông qua private IP(Không đi ra internet)
+*Lưu ý:
+    + VPC peering không có tính chất bắc cầu.
+        VD: VPC-A peer VPC-B, VPC-B peer VPC-C không có nghĩa là VPC-A cũng peer với VPC-C
+    + Hai VPC muốn peering được với nhau phải có dải IP CIDR không overlap
