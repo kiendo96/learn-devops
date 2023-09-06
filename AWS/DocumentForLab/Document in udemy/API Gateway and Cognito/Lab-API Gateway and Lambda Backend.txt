@@ -1,0 +1,14 @@
+//Lab 1 - API Gateway + Lambda backend
+1. Tạo 1 Lambda function với code mẫu (Python)
+2. Tạo một API Gatewway
+3. Tạo resource & path
+	VD: /caculate method post , forward sang lambda
+4. Deploy API gateway thành 1 stage. VD: dev
+5. Sử dụng Postman để test API
+
+From Step 2:
+=> access "API gateway" => Create new api gateway "REST API"
+	=> action "create new resource" => Resource name "test"
+		=> action "create methods" chọn "POST" => chọn lambda function và config
+			=> actions "deploy API" => create new stage "dev"
+=> lấy API và vào postman test
