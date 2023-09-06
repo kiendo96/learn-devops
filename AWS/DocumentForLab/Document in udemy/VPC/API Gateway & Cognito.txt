@@ -90,9 +90,22 @@ From Step 2:
 - Số lượng User trên 1 user pool: 40M (contact AWS nêu muốn tăng)
 - Số lượng user pool tôi đa: default 1000, max 10000
 - Custom attribute: 50
-Hạn chế về tần suất Admin API call
+- Hạn chế về tần suất Admin API call
 VD:
   + UserCreation: 50 RPS. Tăng thêm 10RPS cho mỗi 1 triệu MAU
   + AdminUserRead: 120RPS. Tăng thêm 40RPS cho mỗi 1 triệu MAU
   + RevokeToken: 120RPS. Tăng thêm 40RPS cho mỗi 1 triệu MAU
   + UserUpdate: 25 RPS không thể tăng thêm
+- Lưu ý cơ chế verify token của Cognito
+  + JWT Token do Cognito phát hành thông thường sẽ dùng client side verify(Sử dụng public key do Cognito cung cấp)
+  + Việc này đồng nghĩa với việc nếu user logout thì access-token vẫn có hiệu lực cho tới khi expired
+  + Nếu hệ thống có nhu cầu revoke access-token đã phát hành khi user có các hành động như change password, log-out thì không thể thực hiện với Cognito. Tất nhiên có thể workaround sử dụng các kĩ thuật caching/DB
+
+//Lab Cognito basic
+Requirement:
+- Login to AWS -> Cognito
+- Tạo một user pool với các thông tin cơ bản
+- Username, cho phép dùng email đã verify làm username
+- Cho phép tùy chọn username (user có thể change)
+- Tạo tử một user
+- Tạo tử một group, gán user vào group
