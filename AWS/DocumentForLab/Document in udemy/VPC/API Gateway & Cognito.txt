@@ -43,3 +43,11 @@ Với REST API:
 - API gateway cung cấp 2 method authen tích hợp trực tiếp (authorizer) thường được sử dụng đo là:
 	+ Cognito Authorizer: Liên kết tực tiếp với một Cognito User Pool sử dụng làm authorizer. Khi access API, client passing trực tiếp token lấy được thông qua login với Cognito, API gateway sẽ check token và allow access nếu token hợp lệ
 	+ Lambda Authorizer(custom authorizer): Khi sử dụng loại authorizer này, bạn sẽ tự implement logic authen trên Lambda. Có 2 hình thức authen là dựa vào TOKEN (JWT) hoặc request parameter based (VD username/pasword)
+
+//Lab 1 - API Gateway + Lambda backend
+1. Tạo 1 Lambda function với code mẫu (Python)
+2. Tạo một API Gatewway
+3. Tạo resource & path
+	VD: /caculate method post , forward sang lambda
+4. Deploy API gateway thành 1 stage. VD: dev
+5. Sử dụng Postman để test API
