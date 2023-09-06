@@ -38,3 +38,8 @@ Với REST API:
 - Với Web socket:
 	+ Message number (đối với Web socket). VD: $1.15/1M message với block 32KB
 	+ Connection minutes: $0.288/1M connections minutes
+
+//Authentication cho API gateway
+- API gateway cung cấp 2 method authen tích hợp trực tiếp (authorizer) thường được sử dụng đo là:
+	+ Cognito Authorizer: Liên kết tực tiếp với một Cognito User Pool sử dụng làm authorizer. Khi access API, client passing trực tiếp token lấy được thông qua login với Cognito, API gateway sẽ check token và allow access nếu token hợp lệ
+	+ Lambda Authorizer(custom authorizer): Khi sử dụng loại authorizer này, bạn sẽ tự implement logic authen trên Lambda. Có 2 hình thức authen là dựa vào TOKEN (JWT) hoặc request parameter based (VD username/pasword)
