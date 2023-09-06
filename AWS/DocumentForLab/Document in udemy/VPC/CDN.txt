@@ -1,0 +1,9 @@
+//Content Delivery Network CloudFont
+//What is CloudFront
+- Là CDN service của AWS
+=> What is CND?
+- CND(Content Delivery Network): Là 1 mạng lưới giúp delivery nội dung tới người dùng cuối một cách nhanh chóng nhờ vào việc điều hướng request của họ tới các máy chủ chứa tài nguyên gần nhất
+//Mô hình hoạt động của 1 mạng CDN
+- Khi không có CDN, tài nguyên của server sẽ được deliver tới clinet một cách trực tiếp
+  => Tùy vào khoảng cách địa lý mà tốc độ truy cập sẽ nhanh hay chậm
+- Khi có CND, tài nguyên server sẽ được cache trên các máy chủ Edge Location, request của user tới một tài nguyên trên CloudFront sẽ được redirect tới máy chủ Edge gần nhất
