@@ -65,3 +65,34 @@ From Step 2:
 - API key: Create API key -> name, Auto generate => Khi khởi tạo API key mà muốn tương tác với API gateway thì phải có api key
 - Stage and Canary deployment => tạo môi trường stage và sử dụng canary deploy để muốn bao nhiêu % người dùng có thể trãi nghiệm version mới
 - Custom domain
+
+
+//Cognito
+- AWS Cognito là một dịch vụ quản lý danh tính và xác thực người dùng của AWS. Dịch vụ này cho phpes người dùng tạp ra các ứng dụng web và di động an toàn với khả năng xác thực người dùng, phân quyền và đăng nhập với nhiều tùy chọn như user account, Social login hoặc đăng nhập qua Identity Provider.
+//Tính năng cơ bản Cognito
+- Đăng kí & xác thực người dùng sử dụng username/password/email hoặc tài khoản mạng xã hội
+- Phân quyền người dùng vào các ứng dụng hoặc tài nguyên
+- Xác thực email/số điện thoại
+- Tích hợp với các dịch vụ khác (API Gateway, Lambda) để xây dựng ứng dụng
+- Hỗ trợ cho ứng dụng di động (IOS, Android) thông qua SDK
+- Cognito sync: sync data giữa các mobile device với nhau
+- Advanced Security: giám sát & phânt tích truy cập của user để phát hiện và ngăn chặn truy cập bất thường (optional)
+
+// Cognito Pricing
+- Pricing của Cognito dựa trên:
+  + Số lượng Monthly Active User: 
+	VD: ở singapore là $0.0055/MAU (càng lên cao càng rẻ)
+  + User sign in thông qua SAML hoặc OIDC: $0.015/MAU
+  + Tính năng Advance Security: $0.05/MAU nêu enable
+  + SMS trong trường hợp gửi message MFA: Tùy theo khu vực
+
+//Hạn chế của Cognito
+- Số lượng User trên 1 user pool: 40M (contact AWS nêu muốn tăng)
+- Số lượng user pool tôi đa: default 1000, max 10000
+- Custom attribute: 50
+Hạn chế về tần suất Admin API call
+VD:
+  + UserCreation: 50 RPS. Tăng thêm 10RPS cho mỗi 1 triệu MAU
+  + AdminUserRead: 120RPS. Tăng thêm 40RPS cho mỗi 1 triệu MAU
+  + RevokeToken: 120RPS. Tăng thêm 40RPS cho mỗi 1 triệu MAU
+  + UserUpdate: 25 RPS không thể tăng thêm
