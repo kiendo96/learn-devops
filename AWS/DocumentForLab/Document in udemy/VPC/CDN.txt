@@ -7,3 +7,8 @@
 - Khi không có CDN, tài nguyên của server sẽ được deliver tới clinet một cách trực tiếp
   => Tùy vào khoảng cách địa lý mà tốc độ truy cập sẽ nhanh hay chậm
 - Khi có CND, tài nguyên server sẽ được cache trên các máy chủ Edge Location, request của user tới một tài nguyên trên CloudFront sẽ được redirect tới máy chủ Edge gần nhất
+
+//Các khái niệm cơ bản của CloudFront
+- Distribution: AWS CloudFront phân phối nội dung từ origin đến các Edge Location thông qua 1 distribution. Một distribution định nghĩa cách CloudFront phân phối nội dung, bao gồm địa chỉ origin, các Edge Location được sử dụng, các thiết lập security & caching
+- Edge Location: AWS CloudFront sử dụng một mạng lưới toàn cầu các edge location là các điểm đặt máy chủ trên khắp thế giới, để phân phối nội dung đến người dùng ở gần nhất vị trí đó
+- Origin: Đây là nơi lưu trữ nội dung gốc(origin content) của bạn, bao gồm các tập tin, ứng dụng web, API và database. Origin có thể là 1 web server, s3 bucket hoặc các dịch vụ aws khác
