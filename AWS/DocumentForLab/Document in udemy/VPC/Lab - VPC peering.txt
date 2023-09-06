@@ -12,4 +12,10 @@ Steps:
 
 => Create a new VPC (1 và 2) => config các cấu hình cần thiết
   => Create a new security group
-    => 
+    => Peering connection => create peering connections => create "name" => Select another VPC to peer with = another account "Account ID: 11111111" => Choose Region 
+=> Switch account 2:
+  => go to peering connection  => accept peering
+
+//Modify route table
+=>Go to VPC-01 => Edit route "add ip of VPC-02" - choose "Peering Connection" 
+  => VPC-02 tương tự
