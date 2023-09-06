@@ -58,3 +58,10 @@ From Step 2:
 		=> action "create methods" chọn "POST" => chọn lambda function và config
 			=> actions "deploy API" => create new stage "dev"
 => lấy API và vào postman test
+
+
+//API Gateway advanced option
+- Throttle: Sử dụng để thay đổi bandwith của api gateway => accesss Usage Plans => create Usage plan "enable throttling -> config rate (request/second and burst (request)"
+- API key: Create API key -> name, Auto generate => Khi khởi tạo API key mà muốn tương tác với API gateway thì phải có api key
+- Stage and Canary deployment => tạo môi trường stage và sử dụng canary deploy để muốn bao nhiêu % người dùng có thể trãi nghiệm version mới
+- Custom domain
