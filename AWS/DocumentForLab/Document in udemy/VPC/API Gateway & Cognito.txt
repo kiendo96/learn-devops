@@ -1,1 +1,40 @@
+//API Gateway & Cognito
 
+//API Gateway
+- Một dịch vụ API gateway được cung cấp bởi AWS. Nó cung cấp một cách đơn giản để xây dựng, quản lí và bảo mật các RESTful API hoặc WebSocket.
+- API gateway là 1 dịch vụ quan trọng trong kiến trúc dựa trên các dịch vụ của AWS (AWS-Based microservices architecture) và thường được sử dụng cùng với các dịch vụ AWS khác như AWS Lambda, EC2, S3, Amazon DynamoDB
+- API Gateway cung cấp các tính năng cơ bản:
+	+ Cho phép thiết kế và phát triển API RESTful hoặc WebSocket thông qua web GUI
+	+ Điều phôi các yêu cầu API dến các hệ thống hoặc dịch vụ khác nhau
+	+ Authen/Author request tới các API
+	+ Quản lý và giám sát các yêu cầu API
+		VD: số lượng request, response time ...
+	+ AWS API Gateway cũng cung cấp các tính năng bảo mật, bao gồm chứng thực và uỷ quyền các yêu cầu API và mã hoá secure communicate giữa các hệ thống khác nhau
+
+//Đặc trưng API Gateway
+- Là 1 fully managed service của AWS
+- Khả năng scale và High Availability không giới hạn
+- Zero idle cost
+- Easy to setup
+- Dễ dàng kết nối với các dịch vụ khác như: CloudWatch, WAF cho mục đích monitor & security
+
+//Hệ sinh thái API gateway
+- API gateway là một service chủ yếu có nhiệm vụ nhận request của client sau đó forward tới các service phía sau
+	VD: Cognito, DynamoDB, Lambda, EC2, EKS, S3, StepFunctions, IoT...
+
+//Khi nào nên sử dụng API Gateway
+- API gateway phù hợp cho những usecase:
+	+ Kiến trúc Micro-service sử dụng Lambda làm backend
+	+ Backend API cho hầu hết các use case(web API, IoT)
+	+ Gateway nhận data trực tiếp từ client sau đó lưu vào DynamoDB (DB first)
+	+ Web socket cho những hệ thống realtime communication
+
+//API gateway pricing
+- API Gateway là 1 dịch vụ có idle cost = 0. Người dùng chỉ trả tiền cho chi phí chạy thực tế, cụ thể
+Với REST API:
+	+ Số lượng request (VD: Singapore region: $ 4.25/1M requests)
+	+ Data transfer out ($/GB)
+	+ Caching size tính theo GB/hour
+- Với Web socket:
+	+ Message number (đối với Web socket). VD: $1.15/1M message với block 32KB
+	+ Connection minutes: $0.288/1M connections minutes
