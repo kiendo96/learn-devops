@@ -12,3 +12,17 @@
 - Distribution: AWS CloudFront phân phối nội dung từ origin đến các Edge Location thông qua 1 distribution. Một distribution định nghĩa cách CloudFront phân phối nội dung, bao gồm địa chỉ origin, các Edge Location được sử dụng, các thiết lập security & caching
 - Edge Location: AWS CloudFront sử dụng một mạng lưới toàn cầu các edge location là các điểm đặt máy chủ trên khắp thế giới, để phân phối nội dung đến người dùng ở gần nhất vị trí đó
 - Origin: Đây là nơi lưu trữ nội dung gốc(origin content) của bạn, bao gồm các tập tin, ứng dụng web, API và database. Origin có thể là 1 web server, s3 bucket hoặc các dịch vụ aws khác
+- Cache: AWS CloudFont lưu trữ các tài nguyên tại edge location để giảm thời gian phản hồi và tăng tốc độ tải trang web. Các tài nguyên ngày bao hồm hình ảnh, file css và javascript
+- Logging and Reporting: AWS CloudFont cung cấp các báo cáo về hoạt động của distribution, bao gồm lưu lượng và số lần truy cập
+- Security: AWS CloudFront hỗ trợ nhiều tính năng bảo mật, bao gồm kết nối HTTPS, chữ ký số (Certificate) và xác thực người dùng
+- Customize at the Edge: Thông qua cơ chế Lambda@Edge, cho phép người dùng thực thi các function trên các sự kiện CloudFront. Lợi thế về tốc độ và hiệu suất so với thực thi ở Origin. Một số use-case có thể kể đến như: Authen/Author, xử lý tính toán đơn giản, SEO, Intelligent routing, AntiBot, Realtime image transformation, A/B Testing, User, prioritilization
+
+//Cách CloudFront deliver content to user
+1. User access website, request một tài nguyên
+  VD: HTML file, Image, CSS...
+2. DNS điều hướng request của user tới CloudFront edge location gần nhất (dựa theo độ trễ)
+3.
+a) CloudFront forward request tới Origin server (Một HTTP server hoặc s3 bucket)
+b) Origin server trả kết quả cho Edge location
+c) Ngay sau khi nhận được firstbyte response, edge location forward object tới end-user đồng thời cache lại nội dung cho request lần sau
+=> Từ lần thứ 2 trở đi, mặc định edge location sẽ trả về object được yêu cầu mà không gọi tới origin server -> tăng tốc độ truy cập
