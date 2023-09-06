@@ -109,3 +109,9 @@ Requirement:
 - Cho phép tùy chọn username (user có thể change)
 - Tạo tử một user
 - Tạo tử một group, gán user vào group
+//Lab - Combine Cognito with API Gateway
+Requirement: Đã có 1 API Gateway chạy được với method đơn giản
+- Cấu hình Authorizer cho API Gateway sử dụng Cognito user pool đã tạo
+- Sử dụng hosted UI(Lab 3) để login và lấy token
+- Thử truy cập API mà không có token -> Access denied
+- Thử truy cập API có token lấy được từ step trước -> Allow
