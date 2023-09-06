@@ -1,0 +1,15 @@
+Requirement:
+- Đảm bảo instance giữa 2 VPC có thể connect được với nhau. VPC-01 <-> VPC-02
+Steps:
+1. Tạo nhanh 2 VPC có CIDR không overlap. Không cần tạo NAT Gateway. Mỗi VPC có 2 subnet prublic
+2. Tạo 2 security group đơn giản
+  VD: vpc-01-sg, vpc-02-sg
+3. Tạo và accept VPC peering cho 2 VPC
+4. Modify route table cho cả 2 VPC để nhận biết CIDR của nhau
+5. Modify security group của VPC-02, allow traffic từ CIDR của nhau
+6. Tạo 2 EC2 instance nằm trong 2VPCs, thử ping từ instance trong VPC-01 sang instance trong VPC-02 bằng private IP
+7. Clear các resource đã tạo để trành phát sinh chi phí
+
+=> Create a new VPC (1 và 2) => config các cấu hình cần thiết
+  => Create a new security group
+    => 
