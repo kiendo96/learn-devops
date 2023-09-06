@@ -26,3 +26,33 @@ a) CloudFront forward request tới Origin server (Một HTTP server hoặc s3 b
 b) Origin server trả kết quả cho Edge location
 c) Ngay sau khi nhận được firstbyte response, edge location forward object tới end-user đồng thời cache lại nội dung cho request lần sau
 => Từ lần thứ 2 trở đi, mặc định edge location sẽ trả về object được yêu cầu mà không gọi tới origin server -> tăng tốc độ truy cập
+
+
+//Usecase của CloudFront
+- CloudFront được sử dụng cho một số usecase sau:
+  + Tăng tốc website(Image, CSS, Document, Video,...)
+  + On demand video & video streaming
+  + Field level encrypt: CloudFront tự động mã hóa data được gửi lên từ người dùng, chỉ backend application có key có thể giải mã
+  + Customize at the edge: Trả về mã lỗi khi server maintain hoặc authorize user trước khi forward request tới backend. Cần sử dụng Lambda@Edge
+//CloudFront pricing
+- CloudFront tính toán chi phí dựa trên các tiêu chí:
+  + No Up-front free, người dùng chỉ trả tiền cho những gì sử dụng
+  + Lượng data thực tế tranasfer out to internet
+  + CloudFront function, Lambda@Edge
+  + Invalidation Request(clear cache)
+  + Real-time log
+  + Field level encrypt
+
+//CloudFront behavior
+- Một cloudFront distribution có thể có nhiều hơn 1 Origin server phía sau
+VD: Một hệ thống gồm 1 S3 bucket host static website, 1 backend server gồm ALB+Container muốn sử dụng chung một CloudFront distribution
+  => Cần có cơ chế phân biệt request nào sẽ điều hướng tới đaua
+- Behavior cho phép định nghĩa request tới các pattern khác nhau sẽ được forward tới các origin khác nhau
+- Bằng việc cấu hình các behavior khác nhau, CloudFront giúp điều hướng request của người dùng tới đúng origin mong muốn
+*Lưu ý khi setting behavior cần quan tâm tới thứ tự trước sau của các behavior, vì khi match 1 path rồi sẽ không đánh giá path tiếp theo
+
+Example topology:
+Client -> Browser(/index.html, /image/xxx, /videos/yyy, /api/login) -> CloudFront with Behaviors:
+                                                                                    -> /api/*       -> Backend APi
+                                                                                    -> /images/*, /videos/*    -> Media bucket
+                                                                                    -> /*           -> Website bucket
