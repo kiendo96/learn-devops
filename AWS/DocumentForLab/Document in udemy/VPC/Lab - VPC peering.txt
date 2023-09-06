@@ -23,4 +23,4 @@ Steps:
 //Modify security group của 2 VPC
 -> Edit inbound rules -> add ping rule
 
-=> Create 2 server và ping từ con 1 qua con 2 hoặc con 2 qua con 1
+=> Create 2 server và ping từ con 1 qua con 2 hoặc con 2 qua con 1  => Nhớ để assign public IP để access vào test
