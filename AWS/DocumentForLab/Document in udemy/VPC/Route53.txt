@@ -33,3 +33,22 @@
   + Failover routing policy: Sử dụng khi cấu hình một cặp resource hoạt động theo cơ chế active - passive failover. Thường sử dụng trong private hosted zone
   + Geolocation routing policy: Điều hướng traffic từ user tới các target dựa trên vị trí địa lý của user
   + Geoproximity routing policy: Sử dụng khi bạn muốn điều hướng traffic dựa trên vị trí của resource. Cũng có thể shift traffic từ resource location này sang resource ở location khác.
+  + Latency routing policy: Sử dụng khi có nhiều resource trên multi regions và muốn điều hướng traffic tới region có latency tốt nhất
+  + IP-based routing policy: Điều hướng traffic dựa trên location của user và dựa trên IP address mà traffic bắt nguồn
+  + Multivalue answer routing policy: Sử dụng khi muốn query up-to 8 record healthy được lựa chọn ngẫu nhiên
+  + Weight routing policy: Phân chia tỉ lệ điều hướng tới target theo tỷ lệ nhất định theo mong muốn
+
+//Lab-Mua domain sử dụng route 53
+1. Login vào AWS console, vào dịch vụ Route 53
+2. Kiểm tra một trên miền xem còn available không
+3. Sau khi kiểm tra tên miền available, tiến hành add to cart và thanh toán
+4. Đợi tên miền active thành công
+5. Kiểm tra hosted zone được tạo ra với type là public
+
+//Lab-Thực hành với A Record
+1. Login vào AWS Console, tạo 1 EC2 instance với website đơn giản
+2. Test access thành công bằng public IP
+3. Vào dịch vụ Route 53
+4. Tạo một sub domain với type A-Record trỉ đến public IP của instance
+5. Test truy cập bằng sub-domain vừa tạo
+
