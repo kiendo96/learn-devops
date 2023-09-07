@@ -88,3 +88,11 @@ Steps:
 5. Cấu hình security group cho phép 2 server ping nhau
 6. Thử ping lẫn nhau bằng ip priavte
 7. Thử ping lẫn nhau bằng sub-domain đã tạo ở bước trên
+
+///Route 53 Pricing
+- Về cơ bản Route 53 tính tiền dựa trên các yêu tố
+  + Giá của tên miền (Khác nhau tùy đuôi VD: .com, .net, .click) sẽ có phí thường niên khác nhau
+  + Hosted Zone: $0.5/month
+  + Query: Ví dụ - $0.4/1M query standard, $0.6/1M query latency
+  + Health check: $0.5/health check/month
+  + Log: Phụ thuộc vào giá của CloudWatch
