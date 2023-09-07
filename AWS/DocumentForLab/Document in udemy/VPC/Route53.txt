@@ -60,4 +60,21 @@ Steps:
 2. Tạo một subdomain với type C-Name. Vd website.kiendt.click, value trỏ đến DNS của cloudfront
 3. Test truy cập bằng sub-domain vừa tạo
 
+//Route53 health check
+- Route 53 định kì thực hiện các call tới endpoint bạn muốn thực hiện health check. Nêu response failed hoặc không trả về response, Route 53 sẽ raise alarm tới CloudWatch Alarm kết hợp với SNS đề notify tới người nhận
+- Các thông số có thể setting health check bao gồm:
+  + IP/Domain name cần check
+  + Protocol(TCP, HTTP, HTTPS)
+  + Interval
+  + Failure threshold. VD: 3 lần không có response thì tính là fail
+  + Notification (Optional) kết hợp với CloudWatch Alarm và SNS
+
+//Lab-Health check
+1. Login vào AWS Console, vào dịch vụ Route53
+2. Tạo một Health check trỏ tới Instance Public IP
+3. Setting các thông số: protocal: HTTP, Interval: 5s, threshold: 3
+4. Setting CloudWatch alarm ->SNS -> Email
+5. Login vaof server, stop service httpd
+6. Kiểm tra Alarm status và Notification tới Email đã subscribe
+
 
