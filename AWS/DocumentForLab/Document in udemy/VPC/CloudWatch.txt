@@ -25,5 +25,20 @@
 - CloudWatch Metrics có quy định về thời gian lưu trữ cho metrics, cụ thể như sau:
   + 1 second metrics are available for 3 hours
   + 60 second metrics are available for 15 days
+  + 5 minute metrics are available for 63 days
+  + 1 hours metrics are available for 455 days( 15 months)
+=> Điều này đồng nghĩa với việc những khoảng thời gian càng lâu sẽ càng ít detail hơn (độ dày của data point ít hơn)
 
+//CloudWatch Metrics - Custom metrics
+- Một số thông số trên EC2 instance mặc định không thể được thu thập bởi AWS, cần phải cài đặt agent lên để thu thập và gửi metrics lên CloudWatch.
+  VD: về agent:CloudWatch agent, Prometheus, Data Dog agent, Telegraf, StatsD
+- Các metrics có thể được tính toán để tạo ra một metrics khác phụ vụ nhu cầu autoscaling, alarm
+VD: (Số lượng instance) / (số lượng message trên SQS)
 
+//CloudWatch Alarm
+- CloudWatch Alarm cho phép tạo ra cảnh báo tự động dựa trên các giá trị Metrics. Khi một cloudwatch alarm được định cấu hình, nó kiểm tra liên tục các giá trị Metrics và kích hoạt cảnh báo nếu các giá trị vượt quá hoặc thỏa mãn các ngưỡng xác định
+- Khi một CloudWatch Alarm được kích hoạt, nó có thể thực hiện các hành động xác định trước, bao gồm:
+  + Gửi thông báo qua email (Kết hợp với SNS, SES)
+  + Gửi thông báo qua tin nhắn văn bản (SMS) khi kết hợp với SNS
+  + Kích hoạt các hành động tự động: CloudWatch Alarm có thể kích hoạt các hành động tự động, chẳng hạn như restart EC2, adjust storage, hoặc call API đến các dịch vụ khác trong AWS
+  + Các CloudWatch Alarm có thể được tạo dựa trên nhiều điều kiện khác nhau, bao gồm giá trị metrics vượt ngưỡng, giá trị Metrics thấp hơn ngưỡng, trung bình hay tổng hợp các giá trị metrics trong một khảng thời gian nhất định, và nhiều diẹn khác nữa
