@@ -45,7 +45,16 @@ VD: (Số lượng instance) / (số lượng message trên SQS)
 
 //CloudWatch Log
 - CloudWatch Log là một dịch vụ cho phép lưu trữ, xem và phân tích các logs từ các ứng dụng và hệ thống trong môi trường AWS cũng như on-primese
-- Nhiều Service của AWS có optinion cho expert thẳng log ra CloudWatcj, chị cần enable là có thể xem được
+- Nhiều Service của AWS có optinion cho expert thẳng log ra CloudWatch, chỉ cần enable là có thể xem được
 - CloudWatch Log hỗ trợ các thao tác:
   + Xem các logs theo thời gian thực trong giao diện CloudWatch Logs hoặc sử dụng API để truy xuất logs
   + Lọc và tìm kiếm Logs: CloudWatch logs cung cấp công cụ để lọc và tìm kiếm logs theo các điều kiện xác định. Có thể tìm kiếm các mẫu. Có thể tìm kiếm các mẫu, từ khóa hoặc các thuộc tính đặc biệt trong logs để tìm kiếm và phân tích thông tin cần thiết
+  + Lưu trữ logs: CloudWatch logs cho phép bạn lưu trữ logs trong một kho lưu trữ lâu dài để duy trì lịch sử và thực hiện phân tích sau này
+  + Phân tích logs: Bạn có thể sử dụng các dịch vụ và công cụ khác của AWS như Amazon Athena, Amazon Elasticsearch hoặc các công cụ khác để phân tích logs từ CloudWatch Logs và trích xuất thông tin hữu ích
+//CloudWatch Log - Concepts
+- Log Group: Level cao nhất của CloudWatch Log. Thông thường mỗi nhóm service hoặc resource sẽ push log ra một log group cụ thể
+- Log Stream: Đơn vị nhỏ hơn trong log group
+- Log Metrics Filter: Định nghĩa các pattern  của log để thống kê. Khi log message 
+- Log retention: Thời gian log tồn tại trên cloudWatch, được set riêng cho từng log group
+- Log streaming and archive: Bạn có thể export log ra các service như S3 nhằm mục đích lưu trữ lâu dài và giá rẻ hoặc stream sang Kinesis phục vụ mục đích realtime analytic
+
