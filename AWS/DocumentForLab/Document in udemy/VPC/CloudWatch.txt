@@ -100,6 +100,16 @@ Requirement: Yêu cầu tạo alarm dành cho EC2 có notification sang email, g
 -> Create a EC2 server -> Access "CloudWatch" -> access "Alarm" => Create new alarm -> select metric -> Browse "add EC2 Graph"
 
 
+//Một số chú ý khi sử dụng CloudWatch Alarm:
+- Naming rule: dễ đọc, dễ hiểu, nhìn vào biết hệ thống nào, môi trường nào, resource nào, vấn đề gì
+  Tham khảo naming rule: <system-name>-<env>-<resource>-<alarm>
+  VD: ACBBank-dev-master_database-CPU-is-higher-80%-in-10-mins
+- Threshold phải hợp lí. Điều này phải được kiểm chứng thông qua quá trình performance test và turning, rất khó để setting kiểu "Một phát ăn ngay"
+- Phân chia notification target cho những nhóm resource và người phụ trách phù hợp. Có thể tách mỗi nhóm resource thành 1 topic SNS
+- Xác nhận với khách hàng/người thiết kế về những thông số cần collect/set alarm từ giai đoạn sớm của dự án
+
+
+
 
 
 
