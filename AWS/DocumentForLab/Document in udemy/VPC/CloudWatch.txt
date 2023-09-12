@@ -1,4 +1,29 @@
 //What is cloudwatch?
 - AWS CloudWatch là 1 dịch vụ được thiết kế để giám sát và quản lý hệ thống và ứng dụng trên nên tảng AWS. Nó cung cấp khả năng thu thập, xử lý và hiển thị các thông tin liên quan đến hiệu suất, khả năng mở rộng và lỗi của các tài nguyên trong môi trường AWS
-- CloudWatch cho phép bạn theo dõi các thông số quan trọng như CPI usage, network traffic, storage, database. Nó cũng cung cấp các dịch vụ ghi log để lưu trữ và phân tích các sự kiện quan trọng từ các ứng dụng và hệ thống. Bạn có thể sử dụng CloudWatch để tạo ra và báo cáo để theo dõi hiệu suất và tình trạng của các ứng dụng và hệ thống AWS
+- CloudWatch cho phép bạn theo dõi các thông số quan trọng như CPU usage, memory usage, network traffic, storage, database. Nó cũng cung cấp các dịch vụ ghi log để lưu trữ và phân tích các sự kiện quan trọng từ các ứng dụng và hệ thống. Bạn có thể sử dụng CloudWatch để tạo ra và báo cáo để theo dõi hiệu suất và tình trạng của các ứng dụng và hệ thống AWS
 - CloudWatch cũng hỗ trợ các cảnh báo tự động (Alarm) dựa trên ngưỡng mà người dùng đặt để thông báo khi các tài nguyên vượt giới hạn hoặc xảy ra lỗi. Điều này cho phép user tự động phản ứng kịp thời và giải quyết các vấn đề trong hệ thống của mình
+
+//Component of cloudWatch
+- Alarm: Cảnh báo
+- Rule
+- Event(time-based)
+- Event(event-based)
+- Logs
+- Metrics Insights
+- Synthetics: Đóng vai trò như enduser access vào hệ thống để monitor health check
+- RUM
+- Evidently
+- Cross-account observability
+- Data protection (Mã hóa log)
+
+//CloudWatch Metrics
+- Metric là các thông số đo lường được thu thập và lưu trữ bởi CloudWatch. Chúng đại diện cho các giá trị số hoặc các điểm dữ liệu liên quan đến hoạt động của các tài nguyên trong môi trường AWS
+  VD: EC2, RDS, Elastic Load Balancer hoặc các dịch vụ tạo bởi người dùng
+- Metrics hiểu cơ bản là một tập hợp time-series data.
+- Có 2 loại metrics là default metrics (do AWS thu thập) và custom metrics (do người dùng tự định nghĩa)
+- Metrics được dùng để làm input cho Alarm hoặc hiển thị trên graph của dashboard phục vụ mục đích giám sát
+- CloudWatch Metrics có quy định về thời gian lưu trữ cho metrics, cụ thể như sau:
+  + 1 second metrics are available for 3 hours
+  + 60 second metrics are available for 15 days
+
+
