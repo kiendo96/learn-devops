@@ -58,3 +58,48 @@ VD: (Số lượng instance) / (số lượng message trên SQS)
 - Log retention: Thời gian log tồn tại trên cloudWatch, được set riêng cho từng log group
 - Log streaming and archive: Bạn có thể export log ra các service như S3 nhằm mục đích lưu trữ lâu dài và giá rẻ hoặc stream sang Kinesis phục vụ mục đích realtime analytic
 
+//CloudWatch Log Insight
+- Một công cụ cho phép truy vấn log thông qua một cú pháp do AWS định nghĩa
+
+//CloudWatch Insight
+- Cung cấp công cụ hỗ trợ đơn giản hóa việc collect metrics và log một cách chi tiết
+- Áp dụng cho ứng dụng chạy trên Container và Lambda
+
+//X-Ray
+- Cung cấp cái nhìn toàn cảnh và chi tiết đường đi của request trong application, giúp điều tra, visualize dựa theo function, api, service
+
+AWS X-Ray -> Collect traces -> Record traces -> View service map -> Analyze issues
+
+
+//CloudWatch Dashboard
+- CloudWatch Dashboard cho phép bạn theo dõi nhiều resource (cross regions) trên một view duy nhất
+- Bạn có thể add nhiều biểu đồ (widget) với nhiều hình dạng, customize size, màu sắc, title, đơn vị, vị trí...
+- Widget có thể là biểu đồ, con số biểu diễn một metrics của một resource hoặc danh sách log từ một log group
+
+//Lưu ý khi thiết kế monitor:
+- Hệ thống có những resource nào cần monitor
+- Với mỗi resource cần monitor những thông số nào
+- Những thông số nào cần set alarm? Thông số nào cần visualize(dashboard)?
+- Những resource nào cần collect log?
+- Với mỗi resource có log, collect những loại log nào
+- Có set alarm cho log không
+- Metrics và Log lưu trữ ở đâu? (Native service or tự dụng)
+- Khi có alarm cần thông báo tới ai
+- Những yêu cầu khác liên quan quy trình vận hành
+
+
+//Lab - Cloudwatch Alarm
+Requirement: Yêu cầu tạo alarm dành cho EC2 có notification sang email, giả lập usage cao (VD CPU, Network) và tiến hành test alarm
+1. Tạo một EC2 server, sử dụng script để cài httpd, test truy cập thành công
+2. Tạo một alarm cho Network In, thresthold 2000, notify đến email
+3. Tạo một alarm cho CPU Usage, threshold 20%, notify đến email
+4. Truy cập liên tục website, confirm alarm Network gửi đến email
+5. Giả lập CPU usage cao, confirm alarm CPU gửi đến email
+
+
+-> Create a EC2 server -> Access "CloudWatch" -> access "Alarm" => Create new alarm -> select metric -> Browse "add EC2 Graph"
+
+
+
+
+
