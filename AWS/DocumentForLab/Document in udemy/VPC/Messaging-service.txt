@@ -22,3 +22,9 @@
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
 - Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợ không có message nào trên queue
 
+//Lab 1- SQS thao tác cơ bản
+1. Login vào AWS console, navigate tới dịch vụ SQS
+2. Tạo một Queue với các thông số cơ bản
+3. Thử gửi và nhận message trên queue
+4. Thử xóa một message
+5. Thử purge queue (xóa toàn bộ message)
