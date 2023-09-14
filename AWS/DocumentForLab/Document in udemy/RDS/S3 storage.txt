@@ -118,3 +118,24 @@ Response:
   + Glacier Flexible Retrieval (Normal Glacier): phù hợp cho data không yêu cầu access ngay hoặc chưa rõ, thời gian cần để access file có thể từ vài phú tới vài giờ. Phù hợp cho việc lưu data backup hoặc archive
   + Glacier Deep Archive: Phù hợp cho việc lưu trữ lâu dài lên tới 7-10 năm tùy theo tiêu chuẩn ngành như tài chính, y tế, ... data được lưu trên các băng đĩa từ (magnetic tap). AWS cam kết có thể access data trong vòng 12h khi cần
 - S3 on Outposts:Cho phép sử dụng S3 ở on-premise
+
+//Lab - Practice storage class
+1. Upload 1 file và chọn Storage class là Standard IA (loại data ít khi access nhưng cần có thể truy cập ngay)
+2. Upload 1 file và chọn storage class là OneZone IA (Rẻ hơn 20% so với Standard IA, loại data dễ dàng tạo ra vì nó dễ mất)
+3. Upload 1 file và chọn storage class là Glacier Instant Retrieval (Rẻ hơn 63% so với S3 standard IA, Loại data cần lưu trữ dài nhưng ít khi sử dụng. Loại này có thể dùng được ngay khi cần).
+4. Upload 1 file và chọn storage class là Glacier Flexibal Retrival (Giống Glacier Instant Retrieval, nhưng thời gian access cần từ vài phút tới vài giờ)
+  => Đối với thằng glacier flexibal retrival này sau khi upload lên không thể download được ngay -> action -> Initiate restore
+          => Đối với option Retrieval tier có 3 mode  => Sau khi chọn mode phải nhập "Number of days that the restore copy is available" số ngày nó sẽ available
+                + Bulk retrieval: Đợi 5 -12 tiếng
+                + Standard retrieval: đợi 3 đến 5 hours
+                + Expedited retrieval: Đợi 1 đến 5 phút khi file nhỏ hơn 250Mb
+
+5. Access 1 file được lưu trữ dưới dạng class Glacier Deep Archie
+6. Xóa các file đã upload
+
+
+//S3 Life Cycle:
+- Tính năng cho phép tự động move object xuống các class lưu trữ thấp hơn hoặc xóa luôn sau một khoảng thời gian nhằm tiết kiệm chi phí
+- Khác với Intelligent Tiering, người dùng sẽ tự quyết định life cycle cho objects (hoặc 1 thư mục)
+  VD: sau 90 ngày thì cho xuống Glacier, sau 270 ngày thì xóa hoàn toàn
+- Phù hợp cho các bài toán lưu trữ Log đã biết trước thời gian thường xuyên access và thời gian có thể xóa
