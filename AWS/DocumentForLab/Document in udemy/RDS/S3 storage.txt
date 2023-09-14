@@ -34,4 +34,11 @@
 - S3                         -> Automation process -> Lambda
 - S3                         -> Data source > Glue
 
+//S3 có thể kết hợp với các dịch vụ nào
+- Dùng làm nơi lưu trữ file cho các ứng dụng chạy trên EC2, Container, Lambda. Các file có thể đa dạng về loại & kích thước (Image, Video, Document)
+- Dùng làm nơi chứa/archive log cho hầu hết các dịch vụ khác của AWS(VPC, ALB, APIGateWay..)
+- Dùng làm data source cho các bài toán big data & data ware house
+- Nơi lưu trữ dữ liệu gửi lên từ các thiết bị IoT
+- Vùng lưu trữ tạm thơi cho bài toán ETL ( Extract - Transform - Load) khi kết hợp với lambda
+- Host 1 website tĩnh (Html, CSS, JS) khi kết hợp với CloudFront
 
