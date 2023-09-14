@@ -52,3 +52,29 @@
 7. Chỉnh sửa object metadata để trình duyệt quyết định hành động default với file khi open (view trực tiếp hoặc popup download)
 8. Thực hiện xóa file
 
+//S3 Bucket Policy
+- S3 là một trong số các resource có hỗ trợ Resource Level Policy để giới hạn quyền truy cập bên cạnh IAM Policy 
+- Bản chất S3 bucket policy hoạt động như 1 IAM policy nhưng chỉ trong phạm vi bucket và những resource bên trong nó (folder/file)
+- S3 bucket policy sẽ cho phép (allow) hoặc chặn (Deny) truy cập tới bucket hoặc các resource bên trong
+- Áp dụng cho những bucket yêu cầu security cao, cần được setting giới hạn truy cập một cách chặt chẽ
+
+//Access control list
+- Access Control List: Quy định quyền access của một AWS Account hoặc nhóm user (Group) đến bucket hoặc resource bên trong
+- Thường dùng trong trường hợp muốn cấp access cho một resource cụ thể bên trong bucket mà không muốn thay đổi bucket policy
+- *Gần đây AWS khuyến nghị người dùng không nên xài ACL trừ khi có yêu cầu đặc biệt, thay vào đo hãy sử dụng bucket policy & pre-sign URL là đủ để cover hầu hết các usecase
+
+//S3 versioning
+- Sử dụng khi có nhu cầu lưu trữ nhiều version của cùng 1 object
+- Tránh được việc mất mát khi tao tác xóa nhầm hoặc ghi đè ( Có thể lấy lại version trước đó)
+- Chi phí theo đó sẽ tăng lên so với khi không bật versioning
+- Sau khi bật versioning, nếu tắt versioning thì những object trước khi tắt vẫn sẽ có nhiều version, những object sinh sau khi tắt sẽ không có version
+
+//Lab - Versioning
+1. Yêu cầu chuẩn bị một file text có nội dung bất kì
+2. Bật tính năng versioning của Bucket lên
+3. Upload file lên S3
+4. Chỉnh sửa nội dung, upload file với cùng tên. Confirm xem có một version mới được tạo ra
+5. Tiến hành xóa file. Kiểm tra versioning với Delete Flag
+6. Phục hồi file đã bị xóa bằng cách xóa Delete flag
+7. Tắt versioning
+8. Chỉnh sửa nội dung, upload file với cùng tên. Confirm xem file có bị ghi đè? Các version trước khi tắt versioning có còn không?
