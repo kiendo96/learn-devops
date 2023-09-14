@@ -147,3 +147,32 @@ Response:
 2. Tạo 1 life cycle rule xóa hoàn toàn object trong /image sau 270 ngày
 
 => Access bucket -> Management -> Create life cycle rule -> "Chọn scope và đặt prefix + chọn lifecycle rule actions" 
+
+
+//S3 Static Website hosting
+- S3 có hỗ trợ người dùng host 1 website tĩnh (chỉ bao gồm html, css, js, image ...)
+- Được thừa hưởng toàn bộ đặc tính của S3 (Durability, HA)
+- Không cần duy trì server, giảm effort Administrator
+- Hỗ trợ setting CORS nhằm tránh tài nguyên bị khai thác bởi website khác
+- Kết hợp với dịch vụ CDN(Cloud Front) có thể giúp tăng tốc độ truy cập khi user nằm ở các region khác nhau
+=> Hầu hết các framework frontend hiện nay như Angular, Vue, Nodejs đều hỗ trợ build ra 1 website tĩnh để có thể deploy lên S3 sau khi code xong
+
+
+//S3 event trigger
+- cung cấp cơ chế trigger 1 event sang dịch vụ khác khi có thay đổi đối với object(upload, delete)
+- Target của trigger có thể là lambda function, SNS, SQS
+- Sample usecase
+  + Resize image khi có người upload image lên S3 bucket, lưu vào các thư mục size khác nhau
+  + Giải nén 1 file zip khi có người upload
+  + Extract csv file, xử lý data rồi lưu vào database
+  + Notification tới Operator khi có ai xóa 1 file
+....
+
+//Lab - Combine S3 event with lambda
+1. Tạo 1 lambda function đơn giản với chức năng in ra event nhận được từ S3 bao gồm tên bucket, object key (code python)
+2. Thiết lập s3 trigger sang lambda khi có ai đó upload file
+3. Test upload 1 file bất kì
+4. Check xem lambda có được kích hoạt và chạy thành công không
+
+//Best Practices for S3
+- Chọn region của S3 
