@@ -1,0 +1,6 @@
+//Lab-Mua domain sử dụng route 53
+1. Login vào AWS console, vào dịch vụ Route 53
+2. Kiểm tra một trên miền xem còn available không
+3. Sau khi kiểm tra tên miền available, tiến hành add to cart và thanh toán
+4. Đợi tên miền active thành công
+5. Kiểm tra hosted zone được tạo ra với type là public

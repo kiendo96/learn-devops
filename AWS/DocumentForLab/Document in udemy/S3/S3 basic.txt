@@ -42,15 +42,6 @@
 - Vùng lưu trữ tạm thơi cho bài toán ETL ( Extract - Transform - Load) khi kết hợp với lambda
 - Host 1 website tĩnh (Html, CSS, JS) khi kết hợp với CloudFront
 
-//Lab-S3 basic Operation
-1. Login to AWS Console, navigate to s3
-2. Tạo 1 bucket 
-3. Thực hiện tạo folder
-4. Thực hiện upload file/ folder
-5. Thực hiện move file
-6. Download file
-7. Chỉnh sửa object metadata để trình duyệt quyết định hành động default với file khi open (view trực tiếp hoặc popup download)
-8. Thực hiện xóa file
 
 //S3 Bucket Policy
 - S3 là một trong số các resource có hỗ trợ Resource Level Policy để giới hạn quyền truy cập bên cạnh IAM Policy 
@@ -69,17 +60,6 @@
 - Chi phí theo đó sẽ tăng lên so với khi không bật versioning
 - Sau khi bật versioning, nếu tắt versioning thì những object trước khi tắt vẫn sẽ có nhiều version, những object sinh sau khi tắt sẽ không có version
 
-//Lab - Versioning
-1. Yêu cầu chuẩn bị một file text có nội dung bất kì
-2. Bật tính năng versioning của Bucket lên
-3. Upload file lên S3
-4. Chỉnh sửa nội dung, upload file với cùng tên. Confirm xem có một version mới được tạo ra
-5. Tiến hành xóa file. Kiểm tra versioning với Delete Flag
-6. Phục hồi file đã bị xóa bằng cách xóa Delete flag
-7. Tắt versioning
-8. Chỉnh sửa nội dung, upload file với cùng tên. Confirm xem file có bị ghi đè? Các version trước khi tắt versioning có còn không?
-
-
 //S3 Presign URL
 - Khi muốn cấp access tạm thời cho người dùng public tới một object trên S3, AWS cung cấp cơ chế Presign URL
 - User có thể dùng Presign URL để dowload/upload object trên s3 trong thời gian quy định (setting lúc phát hành URL)
@@ -92,15 +72,6 @@ Request:
 1. Request file -> [Backend server] -> 2.Request Presign URL -> [S3] -> 3.Create Presign URL -> xxx-bucket -> Object
 Response:
 4. S3 -> Return Presign URL -> Backend Server -> 5.Return URL -> Client -> 6.Client download via internet trực tiếp tới S3
-
-//Lab - Pre-sign URL(Sử dụng CLI)
-1. Yêu cầu đã cài sẵn aws CLI để thiết lập profile tại máy local
-2. Upload 1 file bất kì lên S3
-3. Phát hành 1 Presign url cho object trên S3 bằng command
-4. Sử dụng URL để download file trên trình duyệt
-5. Đợi hết thời gian hiệu lực của url, thử lại => expired
-
--> Connect CLI to S3 -> up thử 1 file -> use command: "aws s3 presign [S3Uri] --expires-in [time=second]" -> Copy URL to browser 
 
 //S3 Storage Classes
 - S3 cung cấp nhiều storage class khác nhau nhằm giúp người dùng linh động trong việc lựa chọn class phù hợp với nhu cầu, tiết kiệm chi phí
@@ -119,35 +90,11 @@ Response:
   + Glacier Deep Archive: Phù hợp cho việc lưu trữ lâu dài lên tới 7-10 năm tùy theo tiêu chuẩn ngành như tài chính, y tế, ... data được lưu trên các băng đĩa từ (magnetic tap). AWS cam kết có thể access data trong vòng 12h khi cần
 - S3 on Outposts:Cho phép sử dụng S3 ở on-premise
 
-//Lab - Practice storage class
-1. Upload 1 file và chọn Storage class là Standard IA (loại data ít khi access nhưng cần có thể truy cập ngay)
-2. Upload 1 file và chọn storage class là OneZone IA (Rẻ hơn 20% so với Standard IA, loại data dễ dàng tạo ra vì nó dễ mất)
-3. Upload 1 file và chọn storage class là Glacier Instant Retrieval (Rẻ hơn 63% so với S3 standard IA, Loại data cần lưu trữ dài nhưng ít khi sử dụng. Loại này có thể dùng được ngay khi cần).
-4. Upload 1 file và chọn storage class là Glacier Flexibal Retrival (Giống Glacier Instant Retrieval, nhưng thời gian access cần từ vài phút tới vài giờ)
-  => Đối với thằng glacier flexibal retrival này sau khi upload lên không thể download được ngay -> action -> Initiate restore
-          => Đối với option Retrieval tier có 3 mode  => Sau khi chọn mode phải nhập "Number of days that the restore copy is available" số ngày nó sẽ available
-                + Bulk retrieval: Đợi 5 -12 tiếng
-                + Standard retrieval: đợi 3 đến 5 hours
-                + Expedited retrieval: Đợi 1 đến 5 phút khi file nhỏ hơn 250Mb
-
-5. Access 1 file được lưu trữ dưới dạng class Glacier Deep Archie
-6. Xóa các file đã upload
-
-
 //S3 Life Cycle:
 - Tính năng cho phép tự động move object xuống các class lưu trữ thấp hơn hoặc xóa luôn sau một khoảng thời gian nhằm tiết kiệm chi phí
 - Khác với Intelligent Tiering, người dùng sẽ tự quyết định life cycle cho objects (hoặc 1 thư mục)
   VD: sau 90 ngày thì cho xuống Glacier, sau 270 ngày thì xóa hoàn toàn
 - Phù hợp cho các bài toán lưu trữ Log đã biết trước thời gian thường xuyên access và thời gian có thể xóa
-
-
-//Lab - S3 Life Cycle
-1. Tạo 1 life cycle rule move object trong 1 folder
-  VD: /images xuống Glacier sau 90 ngày
-2. Tạo 1 life cycle rule xóa hoàn toàn object trong /image sau 270 ngày
-
-=> Access bucket -> Management -> Create life cycle rule -> "Chọn scope và đặt prefix + chọn lifecycle rule actions" 
-
 
 //S3 Static Website hosting
 - S3 có hỗ trợ người dùng host 1 website tĩnh (chỉ bao gồm html, css, js, image ...)
@@ -167,12 +114,6 @@ Response:
   + Extract csv file, xử lý data rồi lưu vào database
   + Notification tới Operator khi có ai xóa 1 file
 ....
-
-//Lab - Combine S3 event with lambda
-1. Tạo 1 lambda function đơn giản với chức năng in ra event nhận được từ S3 bao gồm tên bucket, object key (code python)
-2. Thiết lập s3 trigger sang lambda khi có ai đó upload file
-3. Test upload 1 file bất kì
-4. Check xem lambda có được kích hoạt và chạy thành công không
 
 //Best Practices for S3
 - Chọn region của S3 cùng region với application (EC2, ECS) để tối ưu performance

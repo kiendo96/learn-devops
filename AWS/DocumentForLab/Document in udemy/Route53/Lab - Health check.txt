@@ -1,0 +1,7 @@
+//Lab-Health check
+1. Login vào AWS Console, vào dịch vụ Route53
+2. Tạo một Health check trỏ tới Instance Public IP
+3. Setting các thông số: protocal: HTTP, Interval: 5s, threshold: 3
+4. Setting CloudWatch alarm ->SNS -> Email
+5. Login vaof server, stop service httpd
+6. Kiểm tra Alarm status và Notification tới Email đã subscribe

@@ -1,0 +1,11 @@
+//Lab - Private Hosted Zone
+*Mất phí khoảng 0.5$
+1. Tạo nhanh 2 EC2 instance (Không cần cài web), login thành công. Đặt tên server A/B
+2. Acess Route53 service
+3. Tạo 1 private hosted zone tương ứng với một PVC.
+  VD: udemy.local
+4. Tạo 1 A-Record trên hosted zone trỏ tới Server A/B private tương ứng
+  VD:server-a.udemy.local, server-b.udemy.local
+5. Cấu hình security group cho phép 2 server ping nhau
+6. Thử ping lẫn nhau bằng ip priavte
+7. Thử ping lẫn nhau bằng sub-domain đã tạo ở bước trên

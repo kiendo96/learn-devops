@@ -1,0 +1,9 @@
+//Lab-Log Metrics Filters
+Requirement: Metrics filter trên log group "access_log", setting alarm nếu xuất hiện ERROR log trên 3 lần trong 1 phút thì thông báo notification
+1. Tạo một Log Metrics filter trên log group "access_log" với keyword là "ERROR"
+2. Tạo một alarm dựa trên Metrics filter vừa tạo
+  - Thresheld: 3
+  - Duration: 1 min
+  - Statistic: sum
+3. Thử ghi log dummy có keyword ERROR vào trong "access_log" file
+4. Confirm alarm được kích hoạt và gửi email

@@ -1,0 +1,10 @@
+//Lab - Cloudwatch Alarm
+Requirement: Yêu cầu tạo alarm dành cho EC2 có notification sang email, giả lập usage cao (VD CPU, Network) và tiến hành test alarm
+1. Tạo một EC2 server, sử dụng script để cài httpd, test truy cập thành công
+2. Tạo một alarm cho Network In, thresthold 2000, notify đến email
+3. Tạo một alarm cho CPU Usage, threshold 20%, notify đến email
+4. Truy cập liên tục website, confirm alarm Network gửi đến email
+5. Giả lập CPU usage cao, confirm alarm CPU gửi đến email
+
+
+-> Create a EC2 server -> Access "CloudWatch" -> access "Alarm" => Create new alarm -> select metric -> Browse "add EC2 Graph"

@@ -1,0 +1,7 @@
+//Lab-Thực hành với C-Name
+*Yêu cầu có sẵn một tên miền với hosted zone (public)
+*Yêu cầu có sẵn một CloudFront trỏ tới website đang hoạt động (Xem lại bài CloudFront)
+Steps:
+1. Login vào AWS console, vào dịch vụ route 53
+2. Tạo một subdomain với type C-Name. Vd website.kiendt.click, value trỏ đến DNS của cloudfront
+3. Test truy cập bằng sub-domain vừa tạo

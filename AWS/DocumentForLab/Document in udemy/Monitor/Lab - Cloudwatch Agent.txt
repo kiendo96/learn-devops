@@ -1,0 +1,9 @@
+//Lab-Cloudwatch Agent
+Requirement: Tạo 1 EC2 instance, thực hiện cài đặt CWAgent lên trên đó, cấu hình CWAgent đẩy các thông số như memory, disk, log lên CloudWatch
+1. Tạo một EC2 instance với AMI Amazon linux 2 2023, cài httpd, test truy cập
+2. Cấp IAM role phù hợp cho EC2 instance (CloudWatchAgentServerPolicy)
+3. Cài đặt CloudWatch Agent
+4. Cấu hình CloudWatch Agent (Collect access log của httpd, Memory, disk usage)
+5. Enable Service CloudWatch Agent khởi động cùng OS và theo dõi log của CW agent xem hoạt động thành công
+6. Xem metrics có được gửi lên CloudWatch metrics thành công không
+7. Thử access website, confirm log được gửi lên CW log không
