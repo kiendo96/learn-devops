@@ -87,9 +87,34 @@
   + Muốn cấp access public cho 1 object nhưng không muốn thay đổi ACL hoặc tạo thêm bucket policy
   + Cần authen người dùng hoặc yêu cầu họ làm gì đó trước khi được download file (VD xem quảng cáo)
   + Ngăn chặn resource để public vô thời hạn khiến cho tài nguyên bị khai tác bởi bên khác
-*Example flow of S3 Presign URL
+*Example flow of S3 Presign URL trong thực tế
 Request:
 1. Request file -> [Backend server] -> 2.Request Presign URL -> [S3] -> 3.Create Presign URL -> xxx-bucket -> Object
 Response:
 4. S3 -> Return Presign URL -> Backend Server -> 5.Return URL -> Client -> 6.Client download via internet trực tiếp tới S3
 
+//Lab - Pre-sign URL(Sử dụng CLI)
+1. Yêu cầu đã cài sẵn aws CLI để thiết lập profile tại máy local
+2. Upload 1 file bất kì lên S3
+3. Phát hành 1 Presign url cho object trên S3 bằng command
+4. Sử dụng URL để download file trên trình duyệt
+5. Đợi hết thời gian hiệu lực của url, thử lại => expired
+
+-> Connect CLI to S3 -> up thử 1 file -> use command: "aws s3 presign [S3Uri] --expires-in [time=second]" -> Copy URL to browser 
+
+//S3 Storage Classes
+- S3 cung cấp nhiều storage class khác nhau nhằm giúp người dùng linh động trong việc lựa chọn class phù hợp với nhu cầu, tiết kiệm chi phí
+- Việc lựa chọn class phụ thuộc vào các yếu tố như:
+  + Durability, High Availability
+  + Thời gian lưu trữ (1 tháng, 1 năm, 5 năm ...)
+  + Tần suất truy cập, thời gian cần có file khi có yêu cầu
+  + Mục đích sử dụng: Document, image, log file, backup file, archive
+- S3 Standard: Chuẩn storage class mặc định khi tạo object mà không chỉ định classes. Phù hợp cho hầu hết các usecase
+- S3 Intelligent Tiering: Monitor tần suất access của các object một cách tự động để move xuống các class rẻ tiền hơn giúp tiết kiệm chi phí. Chỉ apply cho object >= 128Kb. KH phải chịu thêm phí monitor
+- S3 standard infrequently access (Standard IA): Phù hợp cho các data ít khi được access nhưng khi request cần có ngay. Availability 99.9% (nhỏ hơn standard 99.99%)
+- S3 One-Zone infrequently access (One Zone IA): rẻ hơn standard IA 20% do chỉ lưu trữ trên 1 AZ. Phù hợp cho các data có thể dễ dàng tạo ra nếu không may bị mất (report, file image resized). Availability 99.5%)
+- S3 Glacier: Phù hợp cho việc lưu trữ những data có yêu cầu thời gian lưu trữ lên tới vài năm nhưng ít khi được sử dụng. Tùy theo nhu cầu khi access mà Glacier lại chia ra 1 số sub class:
+  + Glacier Instant Retrieval: rẻ hơn tới 68% so với S3 Standard IA. Cho phép access 1 file với thời gian ngắn khi có nhu cầu. VD hồ sơ phim chụp của bệnh nhân ở bệnh viện ít khi cần lục lại muốn xem phải có ngay
+  + Glacier Flexible Retrieval (Normal Glacier): phù hợp cho data không yêu cầu access ngay hoặc chưa rõ, thời gian cần để access file có thể từ vài phú tới vài giờ. Phù hợp cho việc lưu data backup hoặc archive
+  + Glacier Deep Archive: Phù hợp cho việc lưu trữ lâu dài lên tới 7-10 năm tùy theo tiêu chuẩn ngành như tài chính, y tế, ... data được lưu trên các băng đĩa từ (magnetic tap). AWS cam kết có thể access data trong vòng 12h khi cần
+- S3 on Outposts:Cho phép sử dụng S3 ở on-premise
