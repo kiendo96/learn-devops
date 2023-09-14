@@ -175,4 +175,11 @@ Response:
 4. Check xem lambda có được kích hoạt và chạy thành công không
 
 //Best Practices for S3
-- Chọn region của S3 
+- Chọn region của S3 cùng region với application (EC2, ECS) để tối ưu performance
+- Sử dụng bucket policy cho những data quan trọng. Cấp quyền vừa đủ cho user/role, hạn chế cấp S3FullAccess
+- Bật versioning để bảo vệ data tránh bị mất, xóa nhầm
+- Mã hóa data nhạy cảm (client side or server side)
+- Enforce TLS để yêu cầu sd HTTPS khi truyền nhận file (chống hack)
+- Sử dụng VPC endpoint để tăng tốc truy cập từ application
+- Khi host static web, nên kết hợp với CloudFront để tối ưu chi phí và tăng trải nghiệm người dùng
+
