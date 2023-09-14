@@ -19,3 +19,19 @@
   + Storage management: Cung cấp nhiều tính năng liên quan quản lý như: Life Cycle, Object Lock, Replication, Batch Operation
   + Access Management: Quản lý truy cập đến bucket và các thư mục thông qua cơ chế resource permission & access list. Block public access via IAM, bucket policy, S3 access point, Access Control List, Ownership, Access Analyzer
   + Data processing: kết hợp vói lambda, SNS, SQS để hỗ trợ xử lý data 1 cách nhanh chóng
+  + Auto logging and Monitoring: Cung cấp công cụ monitor S3 bucket và truy vết sử dụng CloudTrail
+  + Manual Monitoring Tool: Log lại từng record thực hiện trên bucket
+  + Analytic and insight: phân tích storage để optimize
+  + Strong consistency: Provice strong read-after-write consistency for PUT and DELETE object
+
+//Các ví dụ nỗi bật thường sử dụng với S3
+- [VPC, ALB, API GW]         -> Write log -> S3
+- IoT                        -> save File -> S3
+- [ECS, EC2]                 -> File storage -> S3
+- Backup                     -> backup file -> S3
+- [CloudWatch, CloudTrail]   -> Log Archive -> s3
+- S3                         -> static web hosting -> CloudFront
+- S3                         -> Automation process -> Lambda
+- S3                         -> Data source > Glue
+
+
