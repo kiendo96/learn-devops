@@ -139,3 +139,11 @@ Response:
 - Khác với Intelligent Tiering, người dùng sẽ tự quyết định life cycle cho objects (hoặc 1 thư mục)
   VD: sau 90 ngày thì cho xuống Glacier, sau 270 ngày thì xóa hoàn toàn
 - Phù hợp cho các bài toán lưu trữ Log đã biết trước thời gian thường xuyên access và thời gian có thể xóa
+
+
+//Lab - S3 Life Cycle
+1. Tạo 1 life cycle rule move object trong 1 folder
+  VD: /images xuống Glacier sau 90 ngày
+2. Tạo 1 life cycle rule xóa hoàn toàn object trong /image sau 270 ngày
+
+=> Access bucket -> Management -> Create life cycle rule -> "Chọn scope và đặt prefix + chọn lifecycle rule actions" 
