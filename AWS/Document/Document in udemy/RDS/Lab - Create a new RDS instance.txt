@@ -7,3 +7,47 @@ Requirement:
 5. Tạo thêm instance với role Read Replica
 6. Kết nối tới Read instance sử dụng Mysql Workbench
 7. Thực hiện 1 số câu lệnh CRUB cơ bản => Read Only
+
+
+=> Access RDS => Database => Create database
+  => Standard create => Engine option "Mysql" => Version tùy chọn
+    => Templates có 3 option
+          + Production: Use default for high availability and fast, consistent performance
+          + Dev/Test: This instance is intended for development use outside of a production environment
+          + Free tier: Use RDS Free tier to develop new applicatios, test existing applications, or gain hands-on experience with Amazon RDS
+      => Availability and durability: Deployment option - Chi được chọn khi dùng templates (Production, Dev/Test)
+          + Multi-AZ DB Cluster: Create a DB cluster with a primary DB instance and two readable standby DB instances, with each DB instance in a different Availability  Zone(AZ). Provides high availability, data redundancy and increases capacity to serve read workloads
+          + Multi-AZ DB instance: Create a primary DB instance and a standby DB instance in a different AZ. Provides high availability and data redundancy, but the standby DB instance doesn't support connections for read workloads.
+          + Single DB instance: Create a signle DB instance with no standby DB instances
+        => Enter name of Database
+          => Enter master usename and master password
+            => DB instance class
+              + Standard classes(includes m classes)
+              + Memory optimized classes (includes r and x classes)
+              + Burstables classes (includes t classes) : Chuyên dành cho dev/test
+              => Chọn type storage: Recommand gp3 chỉ để lưu trữ cho rẻ
+                => Storage auto scaling: Enable thì nó sẽ tự scale storage
+                  => VPC tùy chỉnh
+                    => Public access chọn "yes" để có thể connect vào RDS (Relational database service)
+                      => VPC security group thì cũng tùy chọn => Availability Zone nếu không chọn thì nó cũng sẽ tự động phân phối DB trêm AZ ngẫu nhiên
+                        => Then create database
+
+
+//Test connect and query
+=> Access "Connectivity & security" => Copy Endpoint => Access DBever connect to DB
+  => Test about query
+
+- Query:
+create database company;
+use company;
+create table employees (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENNT,
+  name VARCHAR(100) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  salary INT(10) NOT NULL
+);
+
+INSERT INTO `company`.`employees` (`name`, `address`, `salary`) VALUES ('kiendt', 'thanh hoa', '30000000')
+
+select * from employees;
+delete from employees where id=1;
