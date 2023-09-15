@@ -7,6 +7,9 @@ Requirement:
 5. Tạo thêm instance với role Read Replica
 6. Kết nối tới Read instance sử dụng Mysql Workbench
 7. Thực hiện 1 số câu lệnh CRUB cơ bản => Read Only
+8. Test terminate Primary Instance xem nó có thực hiện được failover không    => theo bản chất thì sẽ không thể failover được. Vì bản chất nó là 2 con instance khác nhau. Sau khi delete xong thì read replica sẽ trở thành 1 con instance riêng biệt và nó có chưa data same với con primary instance. Tuy nhiên endpoint của 2 con khác nhau nên cần phải edit endpoint trên application đang sử dụng DB này
+
+failover = chuyển đổi dự vòng (HA)
 
 
 => Access RDS => Database => Create database
@@ -51,3 +54,11 @@ INSERT INTO `company`.`employees` (`name`, `address`, `salary`) VALUES ('kiendt'
 
 select * from employees;
 delete from employees where id=1;
+update employees set salary=50000000 where id=1;
+
+
+//5.Tạo thêm read replica instance: Bản chất nó chỉ là 1 con replica từ con instance gốc để tăng performance cho DB instance (read replica instance db nó sẽ share workload với thằng primary db instance)
+=> Vào DB => Action => Create read replica => Khởi tạo giống với khởi tạo instance
+*Note: Endpoint của Instance primary và read replica khác nhau
+  => connect to read replica bằng enpoint của nó => Test 1 vài query vào table đã được tạo ở primary database
+
