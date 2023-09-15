@@ -62,3 +62,6 @@ update employees set salary=50000000 where id=1;
 *Note: Endpoint của Instance primary và read replica khác nhau
   => connect to read replica bằng enpoint của nó => Test 1 vài query vào table đã được tạo ở primary database
 
+
+////Test restore snapshot
+-> Access snapshot -> Action -> Restore snapshot -> Khi restore thì nó sẽ tạo ra mới hoàn toàn => config sẽ giống với khi mới tạo DB mới nhưng nó có sẵn snapshot
