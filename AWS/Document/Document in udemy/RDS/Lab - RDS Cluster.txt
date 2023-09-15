@@ -1,0 +1,13 @@
+//RDS cluster
+1. Login to AWS console, navigate to RDS
+2. Tạo 1 RDS cluster
+3. Connect to Cluster thông qua Cluster write Endpoint
+4. Thực hiện 1 vài query CRUD
+5. Kết nối với cluster thông qua Cluster Read Endpoint
+6. Thực hiện 1 số query CRUD cơ bản
+
+-> Create a database -> Engine: MySQL -> Templates: Dev/Test -> Availability and durability: Multi-AZ DB Cluster
+  -> DB cluster identifier: "kiendt-test-rds-mysql" -> Master ueser: admin -> password admin:
+    -> DB instance class: Không support dùng t. Nên chọn dòng m sẽ rẻ hơn dùng r
+      -> Storage type: Provisioned IOPS SSD(io1) - Default khi sử dụng type cluster    *note: Provisioned IOPS: 1000  => để giảm chi phí
+        -> Public access: set to True
