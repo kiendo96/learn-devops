@@ -84,3 +84,11 @@ Noted:
   + Failover tự động
   + Scale read instance dễ dàng
 
+//RDS Snapshot
+- Cơ chế snapshot của RDS same với EC2. Nói chung nó cũng chỉ là 1 snapshot
+- Một số option snapshot của RDS:
+  + Manual: Tự tạo
+  + System: Snapshot được system tự tạo định kì
+  + Shared with me: Snapshot của người khác share cho mình
+  + Public: Hạn chế đụng vì không biết trong DB đấy có gì và không có user account
+  + Backup service: Sử dụng để tạo các backup chuyên sâu, daily, weekly, monthly...
