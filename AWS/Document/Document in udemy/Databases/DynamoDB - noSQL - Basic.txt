@@ -73,3 +73,9 @@ DynamoDB tính tiền trên các thông số:
 - DAX(caching cluster)
 - Data transfer ra bên ngoài
 ....
+
+**Hiểu rõ về WCU/RCU
+- RCU (Read capacity unit): Với mỗi đơn vị block 4KB, chúng ta có thể:
+  + Thực thi 2 request read/s với mode eventualy consistency
+  + Thực thi 1 request read/s với mode strongly consistency
+Ví dụ: Có 1 data nặng 8KB, khi read với eventualy consistency mode bạn cần tiêu tốn 1RCU
