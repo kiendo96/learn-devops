@@ -78,4 +78,22 @@ DynamoDB tính tiền trên các thông số:
 - RCU (Read capacity unit): Với mỗi đơn vị block 4KB, chúng ta có thể:
   + Thực thi 2 request read/s với mode eventualy consistency
   + Thực thi 1 request read/s với mode strongly consistency
-Ví dụ: Có 1 data nặng 8KB, khi read với eventualy consistency mode bạn cần tiêu tốn 1RCU
+Ví dụ: Có 1 data nặng 8KB, khi read với eventualy consistency mode bạn cần tiêu tốn 1RCU => Khi read với strongly consistency cần tiêu tốn 2RCU
+  *Lưu ý: Data vượt quá 4kb sẽ bị làm tròn sang block tiếp theo
+- WCU(Write capacity unit): Với mỗi đơn vị block 1KB, cần:
+  + 1 WCU để thực hiện write với standard mode
+  + 2WCU để thực hiện write với transactional mode = đảm bảo việc nếu có failed xảy ra nó sẽ rollback lại toàn bị data đã bị tương tác trước đó
+Ví dụ: Có một data nặg 3KB => khi write với standard mode cần tốn 3WCU
+                           => Khi write với transactional mode cần tiêu tốn 6WCU
+
+**On-demand và Provisioned
+- Với mode On-demand, DynamoDB sẽ tự động scale WCU, RCU khi có nhu cầu tăng cao, tuy nhiên sẽ có khả năng bị bottleneck(nghẽn cổ chai) nếu workload tăng đột ngột
+- Giá tiền:
+  + $1.25 per million write request units
+  + $0.25 per million read request units
+- Với mode provisioned, DynamoDB sẽ reserve một WCU, RCU cố định cho từng bảng hoặc index. Sử dụng cho những table muốn duy trì workload cao
+- Giá tiền như sau:
+  + $0.00065 per WCU
+  + $0.00013 per RCU
+
+
