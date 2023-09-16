@@ -1,0 +1,19 @@
+//Target
+- Hiểu được NoSQL là gì? Khác biệt gì với SQL (Relational database)
+- Hiểu được DynamoDB là gì? Đặc trưng, ưu nhược điểm, usecases của DynamoDB
+- DynamoDB Pricing
+- Thao tác cơ bản với DynamoDB
+- Mô hình Global Table của DynamoDB
+- Indexing trong Dynamo DB là gì? Có mấy loại indexing
+- Thực hành thao tác với indexing trên DynamoDb
+- Giới thiệu các usecase thành công với DynamoDB của các công ty lớn
+
+//No-SQl
+- Non-relational Database, còn được gọi là NoSQL (Not Only SQL) là một hệ thống database không sử dụng quan hệ truyền thống dưới dạng các bảng và các quan hệ khóa ngoại. Thay vào đó, nó sử dụng một cấu trúc dữ liệu khác, phù hợp với các ứng dụng có khối lượng công việc lớn, tốc độ truy vấn nhanh và tính mở rộng cao hơn.
+
+//Một số mô hình NoSQL
+- Key-Value: Lưu trữ dữ liệu dưới dạng các cặp key-value (khóa - giá trị). Các khóa được sử dụng để truy cập và lấy dữ liệu, trong khi giá trị có thể là bất kỳ kiểu dữ liệu nào
+- Document: Lưu trữ dữ liệu dưới dạng tài liệu, thường thì là định dạng JSON hoặc XML. Các tài liệu được lưu trữ theo dạng phi cấu trúc, cho phép dữ liệu được lưu trữ một cách linh hoạt và thêm vào dễ dàng
+- Column oriented: Lưu trữ dữ liệu dưới dạng các bảng với hàng và cột, nhưng khác với cơ sở dữ liệu quan hệ, các cột có thể được thêm và loại bỏ một cách độc lập
+- Graph: Lưu trữ dữ liệu dưới dạng các nút và mối quan hệ giữa chúng, cung cấp khả năng xử lý dữ liệu phức tạp
+
