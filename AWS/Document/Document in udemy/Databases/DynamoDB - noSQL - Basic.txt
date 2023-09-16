@@ -17,3 +17,17 @@
 - Column oriented: Lưu trữ dữ liệu dưới dạng các bảng với hàng và cột, nhưng khác với cơ sở dữ liệu quan hệ, các cột có thể được thêm và loại bỏ một cách độc lập
 - Graph: Lưu trữ dữ liệu dưới dạng các nút và mối quan hệ giữa chúng, cung cấp khả năng xử lý dữ liệu phức tạp
 
+//So sánh SQL và NoSQL
+*SQL(Relational Database)
+- Cấu trúc dữ liệu: Bảng, hàng, cột cần định nghĩa rõ ràng trước khi có thể ghi data
+- Tính linh hoạt: Cấu trúc của bảng cần được tuân thủ, kém linh hoạt hơn
+- Hiệu suất: Tối ưu cho các thao tác truy vấn phức tạp, join bảng. VD: Thống kê data, analytic
+- Bảo mật: Bảo mật cao do có cấu trúc dữ liệu rõ ràng
+- Tính mở rộng: Khả năng mở rộng kém, thường phải thay đổi cấu hình database
+
+*Non-SQL (Non Relational Database)
+- Cấu trúc dữ liệu: Không cần định nghĩa trước cấu trúc dữ liệu
+- Tính linh hoạt: Linh hoạt cao. Dễ dàng thêm thuộc tính
+- Hiệu suất: Tối ưu cho xử lý tốc độ cao
+- Bảo mật: Khó khăn trong việc quản lý và bảo mật
+- Tính mở rộng: Khả năng mở rộng dễ dàng. KHả 
