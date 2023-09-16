@@ -1,0 +1,9 @@
+1. Create a Parameter Group from default MySQL 5.x
+2. Setting cac thong so nhu bang sau
+3. Apply Parameter group do cho 1 cluster
+
+Parameter                       value
+max_connections                 100
+max_allowed_packet              100000000(~100MB)
+long_query_time                 0.5
+slow_query_log                  1 

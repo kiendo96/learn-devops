@@ -1,0 +1,10 @@
+//Aurora basic
+1. Create Aurora Cluster with 2 instance (1 Write, 1 Read-replica)
+2. Connect to cluster by Write endpoint
+3. Excute CRUD
+4. Enable back tracking
+5. Wait 5 minute
+6. Delete all data
+7. Use backtracking back to 5 minute after
+8. Confirm restore successfully!!
+
