@@ -1,0 +1,134 @@
+//Target
+- Hiểu được NoSQL là gì? Khác biệt gì với SQL (Relational database)
+- Hiểu được DynamoDB là gì? Đặc trưng, ưu nhược điểm, usecases của DynamoDB
+- DynamoDB Pricing
+- Thao tác cơ bản với DynamoDB
+- Mô hình Global Table của DynamoDB
+- Indexing trong Dynamo DB là gì? Có mấy loại indexing
+- Thực hành thao tác với indexing trên DynamoDb
+- Giới thiệu các usecase thành công với DynamoDB của các công ty lớn
+
+//No-SQl
+- Non-relational Database, còn được gọi là NoSQL (Not Only SQL) là một hệ thống database không sử dụng quan hệ truyền thống dưới dạng các bảng và các quan hệ khóa ngoại. Thay vào đó, nó sử dụng một cấu trúc dữ liệu khác, phù hợp với các ứng dụng có khối lượng công việc lớn, tốc độ truy vấn nhanh và tính mở rộng cao hơn.
+
+//Một số mô hình NoSQL
+- Key-Value: Lưu trữ dữ liệu dưới dạng các cặp key-value (khóa - giá trị). Các khóa được sử dụng để truy cập và lấy dữ liệu, trong khi giá trị có thể là bất kỳ kiểu dữ liệu nào
+- Document: Lưu trữ dữ liệu dưới dạng tài liệu, thường thì là định dạng JSON hoặc XML. Các tài liệu được lưu trữ theo dạng phi cấu trúc, cho phép dữ liệu được lưu trữ một cách linh hoạt và thêm vào dễ dàng
+- Column oriented: Lưu trữ dữ liệu dưới dạng các bảng với hàng và cột, nhưng khác với cơ sở dữ liệu quan hệ, các cột có thể được thêm và loại bỏ một cách độc lập
+- Graph: Lưu trữ dữ liệu dưới dạng các nút và mối quan hệ giữa chúng, cung cấp khả năng xử lý dữ liệu phức tạp
+
+//So sánh SQL và NoSQL
+*SQL(Relational Database)
+- Cấu trúc dữ liệu: Bảng, hàng, cột cần định nghĩa rõ ràng trước khi có thể ghi data
+- Tính linh hoạt: Cấu trúc của bảng cần được tuân thủ, kém linh hoạt hơn
+- Hiệu suất: Tối ưu cho các thao tác truy vấn phức tạp, join bảng. VD: Thống kê data, analytic
+- Bảo mật: Bảo mật cao do có cấu trúc dữ liệu rõ ràng (Có thể phân quyền đến tận column, table)
+- Tính mở rộng: Khả năng mở rộng kém, thường phải thay đổi cấu hình database
+
+*Non-SQL (Non Relational Database)
+- Cấu trúc dữ liệu: Không cần định nghĩa trước cấu trúc dữ liệu
+- Tính linh hoạt: Linh hoạt cao. Dễ dàng thêm thuộc tính
+- Hiệu suất: Tối ưu cho xử lý tốc độ cao
+- Bảo mật: Khó khăn trong việc quản lý và bảo mật
+- Tính mở rộng: Khả năng mở rộng dễ dàng. Scale horizontal.
+
+//What is DynamoDB?
+- Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale. DynamoDB ofers built-in security, continuous backups, automated multi-Region replication, in-memory caching and data import and export tools.
+
+//Đặc trưng của DynamoDB
+- Serverless: hạ tầng được quản lý bởi AWS. User tương tác với DynamoDB thông qua console, CLI, các tool client hoặc Software SDK
+- Data được tổ chức thành các đơn vị table
+- Độ trễ thấp (single digit milisecond)
+- SLA: 99.999% availability
+- Automatic Scale Up/Down tùy theo workload(WCU, RCU)
+- Kết hợp được với nhiều service khác của AWS
+*Ưu điểm:
+- Serverless nên chi phí vận hành thấp, tính khả dụng cao
+- Linh hoạt trong cấu hình (zero idle cost, phù hợp cho startup)
+- Khả năng scale không giới hạn (về lý thuyết), đỗ trễ thấp, hiệu suất cao
+- Strongly consistency (Tính nhất quán cao - Nó tránh việc read after write đọc trúng data cũ)
+- Hỗ trợ mã hóa
+*Nhược điểm
+- Không phù hợp với data query và analytic (OLAP)
+- Thiếu tính năng khi so sánh với SQL(relational DB)
+
+
+//DynamoDB usecase
+- Software application: hầu hết các software có nhu cầu về high concurrent cho hàng triệu user đều có thể cân nhắc sử dụng DynamoDB
+- Media metadata store: lưu trữ metadata cho các media
+- Gaming platform
+- Social media: mạng xã hội, bài đăng, bình luận
+- Logistic system
+- Ứng dụng IoT
+*Một số công ty lớn sử dụng DynamoDB: Amazon, Samsung, netflix, jira, Grab...
+
+//DynamoDB Pricing:
+DynamoDB tính tiền trên các thông số:
+- Write Capacity Unit(WCI) và Read Capacity Unit(RCU). Hai đơn vị này lại có 2 mô hình tính giá là On-demand và Provisioned Capacity
+- Dung lượng lưu trữ (tính theo KB). VD Sigapore: $0.285/GB/Month
+- Data backup & restore: VD Sigapore: $0.228/GB/Month
+- Tần suất query data
+- Indexing
+- Data import/export
+- DAX(caching cluster)
+- Data transfer ra bên ngoài
+....
+
+**Hiểu rõ về WCU/RCU
+- RCU (Read capacity unit): Với mỗi đơn vị block 4KB, chúng ta có thể:
+  + Thực thi 2 request read/s với mode eventualy consistency
+  + Thực thi 1 request read/s với mode strongly consistency
+Ví dụ: Có 1 data nặng 8KB, khi read với eventualy consistency mode bạn cần tiêu tốn 1RCU => Khi read với strongly consistency cần tiêu tốn 2RCU
+  *Lưu ý: Data vượt quá 4kb sẽ bị làm tròn sang block tiếp theo
+- WCU(Write capacity unit): Với mỗi đơn vị block 1KB, cần:
+  + 1 WCU để thực hiện write với standard mode
+  + 2WCU để thực hiện write với transactional mode = đảm bảo việc nếu có failed xảy ra nó sẽ rollback lại toàn bị data đã bị tương tác trước đó
+Ví dụ: Có một data nặg 3KB => khi write với standard mode cần tốn 3WCU
+                           => Khi write với transactional mode cần tiêu tốn 6WCU
+
+**On-demand và Provisioned
+- Với mode On-demand, DynamoDB sẽ tự động scale WCU, RCU khi có nhu cầu tăng cao, tuy nhiên sẽ có khả năng bị bottleneck(nghẽn cổ chai) nếu workload tăng đột ngột
+- Giá tiền:
+  + $1.25 per million write request units
+  + $0.25 per million read request units
+- Với mode provisioned, DynamoDB sẽ reserve một WCU, RCU cố định cho từng bảng hoặc index. Sử dụng cho những table muốn duy trì workload cao
+- Giá tiền (tính theo giờ):
+  + $0.00065 per WCU
+  + $0.00013 per RCU
+
+
+//Free Tier & Alway Free
+**Free Tier
+- 25GB of data storage for tables using the DynamoDB standard table class
+- 2.5 milion stream read request from DynamoDB streams
+- 25 Provisioned WCU
+- 25 Provisioned RCU
+- 100GB of data transfer out to the internet, aggregated across all AWS Services and Regions (Except China and GovCloud)
+**Alway Free
+- 25GB of data storage
+- 25 Provisioned WCU
+- 25 Provisioned RCU
+- Đủ cho khoảng 200 milions request/month
+
+//Concepts of DynamoDB
+- Table : Đơn vị quản lý cao nhất của DynamoDB. Table không thể trùng tên trên 1 Region
+- Primary Key: Thông tin bắt buộc khi tạo table, Primary Key chia làm 2 loại
+  + Simple Primary Key: Chỉ bao gồm Partition key
+  + Composite primary key: bao gồm Partition key và sort key
+- Global Secondary index(optional): bao gồm một cặp partition key và sort key tùy ý
+- Local Secondary index (optional): bao gồm một cặp partition key giống với partition key của table và sort key tùy ý
+- Query: Thực hiện truy vấn data trên 1 index
+- Scan: tìm toan bộ giá trị thỏa mãn điều kiện (Tất nhiên sẽ chậm hơn query)
+- PartiQL: SQL-compatible query language cho phép access data quan hệ, bán cấu trúc hoặc cấu trúc lồng nhau (nested)
+
+//Data type of DynamoDB
+- DynamoDB hỗ trợ các loại data type:
+  + String
+  + Number
+  + Binary
+  + Null
+  + Set
+  + Map
+  + List
+*Lưu ý không có Date Time. Cần convert sang Unix time hoặc sử dụng format String yyyymmdd
+

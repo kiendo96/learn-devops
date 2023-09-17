@@ -1,0 +1,27 @@
+Login to AWS console, navigate to DynamoDB
+1. Create a table name is student with information:
+    id: String - Partition key
+    name: String - Sort key
+
+2. Input một vài rrecord với các thông tin
+
+id = st-01
+name = kien
+birthday = 1996/11/12
+hobbies = ["code", "game"]
+skill = Null
+is_married = true
+
+id = st-02
+name = quyet
+birthday = 1996/08/21
+hobbies = null 
+skill = ["makeMoney", ""]
+is_married = true
+
+id = st-03
+name = hoa
+birthday = 1998/06/22
+hobbies = ["gym", "yoga"]
+skill = [guitar]
+is_married = false
