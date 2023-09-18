@@ -25,3 +25,7 @@ birthday = 1998/06/22
 hobbies = ["gym", "yoga"]
 skill = [guitar]
 is_married = false
+
+3. Thực hiện query student id: st-01, name:"kien"
+4. Thực hiện scan student có name:"phuong"
+5. Thực hiện scan student có is_married: false
