@@ -1,0 +1,12 @@
+Require: tạo 1 lambda có chức năng bật tắt EC2 instance theo lịch. Lambda nhận 2 tham số "instance_id" và "action" (Start, stop). Tiến hành setting schedule cho lambda sử dụng eventBride. Khi trigger lambda, EventBridge sẽ truyền sang 2 tham số cần thiết
+Topology:
+
+    EventBridge ----scheduler-----> Lambda -----> Ec2
+
+Steps:
+1. Tạo 1 EC2 instance
+2. Tạo 1 Lambda function (python) với code mẫu
+3. Cấp quyền EC2StrartInstance/EC2StopInstance cho Lambda
+4. Setting một EventBridge event với lịch gần với thời gian hiện tại, trong event truyền tham số {action:Stop, instance_id: <instance id muốn stop>}
+5. Đợi đến thời gian đã set, xem lambda có được triggerr, EC2 có được stop
+6. Thực hiện tương tự cho hành động start instance: {action:Start, instance_id: <instance id muốn start>}

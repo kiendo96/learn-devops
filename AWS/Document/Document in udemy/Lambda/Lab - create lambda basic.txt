@@ -1,0 +1,2 @@
+//Hello world lambda
+- Create a lambda basic return helloworl by python

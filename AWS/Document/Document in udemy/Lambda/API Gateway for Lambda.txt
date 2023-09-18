@@ -1,0 +1,12 @@
+//API Gateway
+- Lambda không thể tự chạy mà nó cần được cấp phát 1 event nào đó => API gateway là 1 trong những service sẽ cấp phát event cho Lambda thực thi.
+VD: client ----request----> API gateway ----trigger----> Lambda execute
+- API gateway đóng vai trò như 1 entry point cho mô hình serverless
+- Một số tính năng nổi bật của API gateway:
+    + Caching: Được sử dụng để cache lại các kết quả mà lambda trả về => Giảm số lần mà API gateway được gọi tới lambda function => Giảm thời gian và tối ưu cost
+    + Cấu hình CORS
+    + Deployment stages: API gateway hỗ trợ và quản lí các version khác nhau của API => Giúp phân chia nhiều môi trường: Dev, staging, production
+    + Hỗ trợ monitor và debug ở tầng http request
+    + Hỗ trợ tạo ra document một cách dễ dàng. VD export API thành docs mà Swagger có thể đọc Được
+
+//Create a REST API

@@ -35,11 +35,11 @@ def lambda_handler(event, context):
 # }
 # Example 1
 # {
-#     "instance_id": "i-057a708ffa069c5da",
+#     "instance_id": "",
 #     "action": "STOP"
 # }
 # Example 2
 # {
-#     "instance_id": "i-057a708ffa069c5da",
+#     "instance_id": "",
 #     "action": "START"
 # }

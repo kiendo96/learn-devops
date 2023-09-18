@@ -6,3 +6,7 @@ Requirement:
 5. Thử upload một file định dạng .jpg
 6. Kiểm tra log của lambda
 7. Kiểm tra xem các file resized có được tạo ra và lưu vào thư mục tương ứng
+
+//layer
+- 1 thư viện cho ngôn ngữ (khi code cần những thư viện bên ngoài)
+- Layer có thể add trực tiếp bằng file zip hoặc có thể tim kiếm ARN của tác giả để add trực tiếp vào function

@@ -67,8 +67,8 @@ VD: CloudWatch, RDS, S3, DynamoDB, API Gateway, SNS, Kinesis, IoT, SQS, EventBri
 + Machine Learning.
 
 //Các use case thường sử dụng Lambda
-- Dùng làm backend API khi kết hợp với API Gateway
-Topo Example:
+*) Dùng làm backend API khi kết hợp với API Gateway
+- Topo Example:
 
   Client => API Gateway => Backend Lambda ===CRUD===> DynamoDB & RDS
                            Backend Lambda --- log/metrics ---> CloudWatch
@@ -79,8 +79,8 @@ Topo Example:
         2. Sau khi kiểm tra hoàn tất thì thằng API gateway nó sẽ forward request của client đến thằng Backend Lambda => backend lambda sẽ được sử dụng để tương tác với DB như (DynamoDB và RDS) => Sau khi nó tương tác với DB thì log của lambda sẽ được chuyển đến cloudWatch -> Sau đó nó sẽ trả lại thông tin cho client
 
 
-- Thực hiện các tác vụ đơn giản theo lịch kết hợp với EventBridge
-*Topo Example
+*) Thực hiện các tác vụ đơn giản theo lịch kết hợp với EventBridge
+- Topo Example
 
   EventBridge ----- scheduler ------> Lambda     ---- start/top ---> EC2
               ----- event ----------> Lambda     ---- notification ----> SNS
@@ -88,9 +88,9 @@ Topo Example:
 => Trong topo này:
   + Khi cần thực hiện 1 số tác vụ với Ec2 thì có thể sử dụng EventBridge và lambda để bật tắt server theo lịch  -> Khi thành công lambda sẽ gửi 1 sns to SNS service
 
-- Xử lý Async khi nhận trigger từ S3
+*) Xử lý Async khi nhận trigger từ S3
 
-*Topo Exam:
+- Topo Exam:
 
   S3 Source ---Trigger when upload ---> Lambda ---- transform --> S3 destination
                                                ---- save metadata ----> DynamoDB
@@ -107,3 +107,34 @@ Topo Example:
         Client ---request -----> API GateWay ---> DynamoDB ---- Trigger when create/modify ----> Lambda --- save data --> DynamoDB or RDS
 - Trong đó:
     + Khi client tương tác với API Gateway và tác động sẽ được lưu thẳng vào DynamoDB thì sau đo ===> hành động create/modify đó sẽ được trigger qua lambda ===> Sau đó lambda mới xử lý và lưu vào DynamoDB hoặc RDS
+
+
+//Một số thông số quan trọng của S3 configuration
+=> Create lambda function => Access table "configuration"
+*) Edit "General configuration"
+- Memory: Có thể set memory tối đa 10GB và memory càng nhiều thì CPU càng lớn (ko thể set CPU)
+- Ephemeral storage(/tmp): Ổ đĩa tạm thời. Có thể config tối đa lên 10GB
+- Timeout: Set thời gian timeout để cho function có thể xử lí.
+  VD: Nếu để timeout mặc định là 3s thì khi function xử lý ảnh mất 10s thì function sẽ không thể successfully
+
+- Excution role: Setting role phù hợp để cấp quyền cho Lambda có thể thực thi.
+  VD: Cấp quyền cho lambda có thể access vào S3 bucket
+
+
+*)Trigger
+- Sử dụng để add trigger từ resource khác qua lambda
+  VD: S3 -> Lambda, DynamoDB -> Lambda, API gateway -> Lambda
+
+*) Funtion URL: Create 1 url để client có thể access thực thi function bằng function url này
+
+*) Environment variables: Để custom biến môi trường.
+  VD: Cùng 1 resource nhưng có thể dùng được ở nhiều môi trường khác nhau
+
+*) VPC: Nếu Lambda cần tương tác với database thì để đảm bảo security nên sử dụng local VPC để cho lambda tương tác với database
+
+*) Concurrency: Số lượng xử lý đồng thời của lambda
+
+*)Asynchronous invocation: Dùng với nodejs chẳng hạn. Chưa hiểu lắm
+
+- Lambda có thể set alias thay vì dùng ARN
+- Lambda có thể quản lý code theo version
