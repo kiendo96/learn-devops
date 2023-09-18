@@ -141,3 +141,6 @@ Ví dụ: Có một data nặg 3KB => khi write với standard mode cần tốn 
   + Project key only: Secondary index chỉ bao gồm thông tin primary key
   + Project selected attribute: Chỉ những attributes được chỉ định sẽ bao gồm trong index
 
+//DynamoDB Global table
+- DynamoDB Global table là một tính năng của Amazon DynamoDB, cho phép sao chép và đồng bộ dữ liệu giữa các khu vực khác nhau trên toàn cầu. Nó cho phép tạo các bảng DynamoDB trên nhiều khu vực và tự động sao chép dữ liệu giữa chúng để đảm bảo dữ liệu được phân phối đồng đều trên toàn cầu và có sẵn cho các ứng dụng trong nhiều khu vực địa lí khác nhau.
+**Lab (Lưu ý để dùng replica thì cần bật autoScale): => access DynamoDB => Update setting => Choose table => choose "Global tables" => Create replica => Choose region "Sigapore" => Qua region "Sigapore" access vào dynamoDB check xem đã được replica chưa => Scan check xem đủ data bên region "Virginia" không => Thử change  1 vài table bên Virginia => Quay lại "Singapore" check thử xem được đồng bộ chưa
