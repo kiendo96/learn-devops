@@ -1,0 +1,8 @@
+//Lab - indexing
+- Sử dụng lại table của Lab-1, thực hiện Global Secondary Indexing như sau:
+  + Partition key: name
+  + Sortkey: birthday
+- Thực hành query data sử dụng Indexing:
+  + Query tất cả học sinh có name = kien, birthday= 1996/11/12
+  + Scan tất cả học sinh có name = kien, birthday = 1996/11/12
+  + So sánh tốc độ, consume RCU khi scan and query
