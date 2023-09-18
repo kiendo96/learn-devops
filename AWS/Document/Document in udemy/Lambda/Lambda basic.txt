@@ -98,5 +98,12 @@ Topo Example:
 
 => Trong đó:
         + Chúng ta có 1 s3 source. Khi user cần upload 1 file lên bucket này. Ví dụ như ảnh, file pdf... ==> Để giảm tải dung lượng của ảnh chẳng hạn, thì khi user upload ảnh vào bucket này thì nó sẽ được trigger to Lambda
-        + Lambda sẽ thao tác với file trên bucket S3 -> VD: Bóp ảnh, giảm dung lượng, chỉnh sửa độ phân giải  ==> Sau đó Lambda sẽ đẩy S3 sau khi đã xử lý vào 1 bucket S3 destionation
+        + Lambda sẽ thao tác với file trên bucket S3 -> VD: Bóp ảnh, giảm dung lượng, chỉnh sửa độ phân giải  ==> Sau đó Lambda sẽ đẩy S3 sau khi đã xử lý vào 1 bucket S3 destionation => Cuối cùng nó sẽ save metadata đó vào DB
 
+
+*)Xử lý sync khi nhận trigger từ DynamoDb
+- Topo Example:
+
+        Client ---request -----> API GateWay ---> DynamoDB ---- Trigger when create/modify ----> Lambda --- save data --> DynamoDB or RDS
+- Trong đó:
+    + Khi client tương tác với API Gateway và tác động sẽ được lưu thẳng vào DynamoDB thì sau đo ===> hành động create/modify đó sẽ được trigger qua lambda ===> Sau đó lambda mới xử lý và lưu vào DynamoDB hoặc RDS
