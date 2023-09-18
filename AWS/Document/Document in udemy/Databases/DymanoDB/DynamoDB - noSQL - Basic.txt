@@ -144,3 +144,16 @@ Ví dụ: Có một data nặg 3KB => khi write với standard mode cần tốn 
 //DynamoDB Global table
 - DynamoDB Global table là một tính năng của Amazon DynamoDB, cho phép sao chép và đồng bộ dữ liệu giữa các khu vực khác nhau trên toàn cầu. Nó cho phép tạo các bảng DynamoDB trên nhiều khu vực và tự động sao chép dữ liệu giữa chúng để đảm bảo dữ liệu được phân phối đồng đều trên toàn cầu và có sẵn cho các ứng dụng trong nhiều khu vực địa lí khác nhau.
 **Lab (Lưu ý để dùng replica thì cần bật autoScale): => access DynamoDB => Update setting => Choose table => choose "Global tables" => Create replica => Choose region "Sigapore" => Qua region "Sigapore" access vào dynamoDB check xem đã được replica chưa => Scan check xem đủ data bên region "Virginia" không => Thử change  1 vài table bên Virginia => Quay lại "Singapore" check thử xem được đồng bộ chưa
+
+//DynamoDB Acclerator(DAX)
+- Amazon DynamoDB Accelerator(DAX) is a fully managed, highly available, in-memory cache for Amazon DynamoDB that delivers up to a 10 times performance improvement - from miliseconds ot microseconds - even at millions of requests per second
+- DAX hoạt động dưới dạng cluster
+- Để truy cập data thông qua DAX, cần có DAX client
+- Khi chỉ định mode read strongly consistency, request sẽ được forward thẳng tới DynamoDB
+
+//DynamoDB Export and stream
+- DynamoDB hỗ trợ export data sang S3 hoặc stream sang các target như Kinesis (một dịch vụ data streaming) hoặc Lambda phục vụ các tác vụ xử lý data tự động
+Topology:
+  DynamoDB ---export---> S3
+          -----stream---> Kinesis
+          ---Trigger---> Lambda
