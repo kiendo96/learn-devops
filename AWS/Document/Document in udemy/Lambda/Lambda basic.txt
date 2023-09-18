@@ -65,3 +65,38 @@ VD: CloudWatch, RDS, S3, DynamoDB, API Gateway, SNS, Kinesis, IoT, SQS, EventBri
 + Hệ thống Monolithic (do source code quá nặng) hoặc team không có kinh nghiệm phát triển microservice
 + Xử lý dữ liệu lớn, phân tích, tổng hợp data (hoặc chạy nhiều hơn 15p)
 + Machine Learning.
+
+//Các use case thường sử dụng Lambda
+- Dùng làm backend API khi kết hợp với API Gateway
+Topo Example:
+
+  Client => API Gateway => Backend Lambda ===CRUD===> DynamoDB & RDS
+                           Backend Lambda --- log/metrics ---> CloudWatch
+            API Gateway -> Authorizer Lambda
+
+===> Trong topo này: 
+        1. Client nó sẽ gửi 1 request đến API gateway và thằng API gateway nó sẽ sử dụng Lambda để làm authorized xem client có quyền access hay không.
+        2. Sau khi kiểm tra hoàn tất thì thằng API gateway nó sẽ forward request của client đến thằng Backend Lambda => backend lambda sẽ được sử dụng để tương tác với DB như (DynamoDB và RDS) => Sau khi nó tương tác với DB thì log của lambda sẽ được chuyển đến cloudWatch -> Sau đó nó sẽ trả lại thông tin cho client
+
+
+- Thực hiện các tác vụ đơn giản theo lịch kết hợp với EventBridge
+*Topo Example
+
+  EventBridge ----- scheduler ------> Lambda     ---- start/top ---> EC2
+              ----- event ----------> Lambda     ---- notification ----> SNS
+
+=> Trong topo này:
+  + Khi cần thực hiện 1 số tác vụ với Ec2 thì có thể sử dụng EventBridge và lambda để bật tắt server theo lịch  -> Khi thành công lambda sẽ gửi 1 sns to SNS service
+
+- Xử lý Async khi nhận trigger từ S3
+
+*Topo Exam:
+
+  S3 Source ---Trigger when upload ---> Lambda ---- transform --> S3 destination
+                                               ---- save metadata ----> DynamoDB
+                                               ---- save metadata ----> RDS
+
+=> Trong đó:
+        + Chúng ta có 1 s3 source. Khi user cần upload 1 file lên bucket này. Ví dụ như ảnh, file pdf... ==> Để giảm tải dung lượng của ảnh chẳng hạn, thì khi user upload ảnh vào bucket này thì nó sẽ được trigger to Lambda
+        + Lambda sẽ thao tác với file trên bucket S3 -> VD: Bóp ảnh, giảm dung lượng, chỉnh sửa độ phân giải  ==> Sau đó Lambda sẽ đẩy S3 sau khi đã xử lý vào 1 bucket S3 destionation
+
