@@ -132,3 +132,12 @@ Ví dụ: Có một data nặg 3KB => khi write với standard mode cần tốn 
   + List
 *Lưu ý không có Date Time. Cần convert sang Unix time hoặc sử dụng format String yyyymmdd
 
+//DynamoDB Concepts - Indexing
+- DynamoDB hỗ trợ 2 loại index là Global Secondary Index(GLI) và Local Secondary Index(LSI)
+  + Local Secondary Index(LSI): Loại index phụ thuộc vào table và sử dụng partition key của table để xác định vụ trí index. LSI giới hạn số lượng index của table là 5 và chỉ có thể tạo lúc tạo table. Các Attribute của LSI phải nằm trong bảng gốc
+  + Global Secondary Index(GLI): Một loại index độc lập với table và có thể xác định các attribute khác ngoài partition key để tìm kiếm nhanh dữ liệu. Với GSI, bạn có thể tạo ra các index mới mà không cần phải thay đổi cấu trúc của table gốc. DynamoDB hỗ trợ tối đã 20 GSI trên mỗi table
+- Khi tạo index ta có thể setting attribute projection như sau
+  + Project all: Secondary index sẽ bao gồm luôn các attribute của bảng chính
+  + Project key only: Secondary index chỉ bao gồm thông tin primary key
+  + Project selected attribute: Chỉ những attributes được chỉ định sẽ bao gồm trong index
+
