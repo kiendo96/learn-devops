@@ -1,0 +1,4 @@
+Requirement: Tạo 1 lambda có chức năng nhận notification từ S3 khi có một file csv được upload. Lambda đọc file csv và lưu vào DynamoDB table tương ứng
+
+    S3 bucket ---------------trigger---------> Lambda -----convert/save----> DynamoDB
+     |___________read csv file in bucket_________|
