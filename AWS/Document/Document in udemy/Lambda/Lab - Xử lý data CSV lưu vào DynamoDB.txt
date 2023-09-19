@@ -2,3 +2,14 @@ Requirement: Tạo 1 lambda có chức năng nhận notification từ S3 khi có
 
     S3 bucket ---------------trigger---------> Lambda -----convert/save----> DynamoDB
      |___________read csv file in bucket_________|
+
+Steps:
+1. Tạo table employee trong DynamoDB như sample
+2. Tạo 1 file csv theo sample
+3. Tạo Lambda sử dụng code mẫu
+4. Config lại Memory và timeout
+5. Cấu hình Lambda, cấp S3FullAccess & DynamoDBFullAccess
+6. Cấu hình trigger từ S3 sang Lambda
+7. Test upload một file csv sang Lambda
+8. Xem Log của lambda function
+9. Xem kết quả data lưu vào DynamoDB Table
