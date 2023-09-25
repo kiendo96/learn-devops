@@ -1,0 +1,8 @@
+//Lab Cognito basic
+Requirement:
+- Login to AWS -> Cognito
+- Tạo một user pool với các thông tin cơ bản
+- Username, cho phép dùng email đã verify làm username
+- Cho phép tùy chọn username (user có thể change)
+- Tạo tử một user
+- Tạo tử một group, gán user vào group

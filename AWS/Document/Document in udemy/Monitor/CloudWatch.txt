@@ -10,11 +10,19 @@
 - Event(event-based)
 - Logs
 - Metrics Insights
-- Synthetics: Đóng vai trò như enduser access vào hệ thống để monitor health check
-- RUM
+- Synthetics: Đóng vai trò như end-user access vào hệ thống để monitor health check
+- RUM: Phan tich hieu suat o phia front-end
 - Evidently
 - Cross-account observability
-- Data protection (Mã hóa log)
+- Data protection (Mã hóa log): Mã hoa nhung thong tin nhay cam.
+
+//He sinh thai CloudWatch
+- Amazone Cloudwatch: Complete visibility into your cloud resources and applications
+- Collect: Metrics and logs from your resources, applications, and services that run on AWS or on-premises server
+- Monitor: Visualize application and infrastructure with dashboards, troubleshoot, with correlated logs and metric and set alerts
+- Act: Automate response to operational changes with CloudWatch Events and auto scaling
+- Analyze: Up to 1-second metrics, extended data retention (15months) and real-time analysis with CloudWatch metric math
+=> Action of admin: Application monitoring, System-wide visibility, Resource optimization, Unified operational health, Unified cross-account observability
 
 //CloudWatch Metrics
 - Metric là các thông số đo lường được thu thập và lưu trữ bởi CloudWatch. Chúng đại diện cho các giá trị số hoặc các điểm dữ liệu liên quan đến hoạt động của các tài nguyên trong môi trường AWS
@@ -23,16 +31,16 @@
 - Có 2 loại metrics là default metrics (do AWS thu thập) và custom metrics (do người dùng tự định nghĩa)
 - Metrics được dùng để làm input cho Alarm hoặc hiển thị trên graph của dashboard phục vụ mục đích giám sát
 - CloudWatch Metrics có quy định về thời gian lưu trữ cho metrics, cụ thể như sau:
-  + 1 second metrics are available for 3 hours
-  + 60 second metrics are available for 15 days
-  + 5 minute metrics are available for 63 days
-  + 1 hours metrics are available for 455 days( 15 months)
+  + 1 second metrics are available for 3 hours  -> Log trong vong 3h co the view tung giay/log
+  + 60 second metrics are available for 15 days -> Sau 3h thi log se bi gom lai thanh 1 cuc 15 days va xem duoc 60s/log
+  + 5 minute metrics are available for 63 days  -> Sau 15 ngay thi chi co the xem 5 minute / 1diem
+  + 1 hours metrics are available for 455 days( 15 months)  -> tren 15 thang thi chi xem duoc 1hours/diem (data point)
 => Điều này đồng nghĩa với việc những khoảng thời gian càng lâu sẽ càng ít detail hơn (độ dày của data point ít hơn)
 
 //CloudWatch Metrics - Custom metrics
 - Một số thông số trên EC2 instance mặc định không thể được thu thập bởi AWS, cần phải cài đặt agent lên để thu thập và gửi metrics lên CloudWatch.
   VD: về agent:CloudWatch agent, Prometheus, Data Dog agent, Telegraf, StatsD
-- Các metrics có thể được tính toán để tạo ra một metrics khác phụ vụ nhu cầu autoscaling, alarm
+- Các metrics có thể được tính toán để tạo ra một metrics khác phục vụ nhu cầu autoscaling, alarm
 VD: (Số lượng instance) / (số lượng message trên SQS)
 
 //CloudWatch Alarm
@@ -63,7 +71,9 @@ VD: (Số lượng instance) / (số lượng message trên SQS)
 
 //CloudWatch Insight
 - Cung cấp công cụ hỗ trợ đơn giản hóa việc collect metrics và log một cách chi tiết
-- Áp dụng cho ứng dụng chạy trên Container và Lambda
+- Áp dụng cho ứng dụng chạy trên Container và Lambda (Chay tren container thi goi la container insight, chay tren lambda thi goi la lambda insight)
+
+**noted: Cloudwatch insight voi cloudwatch log insight khac nhau
 
 //X-Ray
 - Cung cấp cái nhìn toàn cảnh và chi tiết đường đi của request trong application, giúp điều tra, visualize dựa theo function, api, service

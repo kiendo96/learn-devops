@@ -1,0 +1,5 @@
+//Su dung cognito hosted UI
+- Tao mot app client (neu chua tao) *Chu y bat Explicit grant
+- Cau hinh hosted UI cua Cognito User pool
+- Su dung hosted ui de tien hanh login, lay access token
+- Su dung JWT Tool de decrypt token xem ben trong co gi

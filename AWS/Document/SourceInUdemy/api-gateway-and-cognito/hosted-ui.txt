@@ -1,0 +1,9 @@
+// Hosted UI
+See link below: 
+https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-hosted-ui-user-experience.html
+//Syntax
+https://<your user pool domain>/authorize?client_id=<your app client ID>&response_type=<code/token>&scope=<scopes to request>&redirect_uri=<your callback URL>
+// Example
+https://<host>/authorize?client_id=<client-id>&response_type=token&scope=openid&redirect_uri=https://google.com
+
+//Login result

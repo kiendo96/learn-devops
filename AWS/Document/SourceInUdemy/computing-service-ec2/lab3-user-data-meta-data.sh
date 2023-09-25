@@ -6,7 +6,7 @@ chconfig httpd on
 cd /var/www/html
 echo "<html>" > index.html
 
-echo "<h1>Welcome to Udemy</h1>" >> index.html
+echo "<h1>Welcome to website 01</h1>" >> index.html
 echo "<h4>You are running instance from this IP (For debug only!!!!Do not public this to user):</h4>" >> index.html
 
 export TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`

@@ -1,0 +1,139 @@
+//Dai tu nhan xung: I, you, we, they, he, she, it
+//Tan ngu: Me, you, us, them, him, her, it
+//Dai tu phan than: Myself, yourself, yourselves, ourselves, themselves, himself, herself, itself
+- Dai tu phan than(reflexive pronouns): duoc su dung khi chu the va tan the cua dong tu trung nhau, tuc la hanh dong thuc hien boi chinh nguoi hoac vat do.
+    Cach su dung:
+    + Chu ngu va tan tu la cung mot nguoi hoac vat:
+    VD: I hurt myself (toi tu lam ton thuong ban than)
+        She taught herself how to play the piano (Co ay tu hoc choi piano)
+    + Khi muon nhan manh hanh dong duoc thuc hien boi chinh nguoi hoac vat do:
+    VD: He himself fixed the broken window (anh ay tu sua cua so hong)
+        They themselves cooked dinner (ho tu minh nau bua toi)
+    + Khi su dung say cac gioi tu nhu "by", "with", "for", de chi nguoi hoac vat thuc hien hanh dong doi voi chinh minh
+    VD: She decoreated the room by herself (Co ay trang tri phong mot minh)
+        He rewarded himself with a vacation (anh ay tu thuong cho minh 1 ki nghi)
+    +Khi su dung trong cau dao ngu(inversion) sau cac dog tu nhu "enjoy, introduce, find, imagine" de chi hanh dong hoac tinh trang anh huong den chinh nguoi hoac vat do
+    VD: I enjoyed myself at the party(Toi da thich thu o buoi tiec)
+        They found themselves lost in the forest (ho phat hien ra ho lac trong rung)
+
+//Dai tu so huu(possesive pronouns): Mine, yours, ours, thiers, his, hers, its
+    + Dai tu so huu thay the cho danh tu va thuong dung mot minh trong cau
+    + Dai tu so huu khong di cung voi danh tu
+    Example:
+        This car is mine (Xe nay la cua toi)
+        Is this pen yours? (but nay co phai cua ban khong?)
+        The book is hers (quyen sach nay la cua co ay)
+//Tinh tu so huu: My, your, our, thier, his, her, its
+    + Tinh tu so huu dung truoc danh tu va mo ta nguoi so huu cua danh tu do
+    + Tinh tu so huu thuong di kem voi danh tu
+    Example:
+        This is my house
+        Your cat is cute
+        His car is parked outsite
+
+Exercise 1: Complete the sentences. Use the correct possessive adjective or possessive pronoun
+
+1. I’ve got a watch. This is _______ watch.
+I have got a watch. This is my watch
+2. My friends and I have got sweets. The sweets are _______.
+-> My friends and I have got sweets. The sweets are ours
+3. Mum has got a new bag. That’s _______ bag.
+-> Mum has got a new bag. That's her bag
+4. Peter has got a kite. The kite is _________.
+-> Peter has got kite. The kite is his
+5. My brothers have got kites. The bikes are __________.
+-> My brothers have got kites. The bikes are his
+6. Karen has got a dog. That’s ______ dog.
+-> Karen has got a dog. That's her dog
+7. She has a new cat. It is __________.
+-> She has a new cat. It is hers
+8. You have a new toy. It is __________.
+-> You have a new toy. it is yours
+9. The coat belongs to me. It is __________.
+-> The coat belongs to me. It is mine
+10. The chair belongs to Mary. It is __________
+-> The chair belongs to Mary. It is hers
+11. I have a new book. It is __________.
+-> I have a new book. It is mine
+12. They have new pillows. It is __________.
+-> They have new pillows. It is thiers
+13. We have new shoes. They are __________.
+-> We have new shoes. They are ours
+
+Exercise 2: Choose the correct item
+
+1. This isn’t her skirt. ________ is blue.  -> Hers
+
+A. Hers
+
+B. Her
+
+C. She
+
+D. He
+
+2. ______ daughter is a teacher.    -> Our
+
+A. Our
+
+B. Ours
+
+C. Us
+
+D. We
+
+3. This is my new dress. Look at _____!     -> mine
+
+A. I
+
+B. mine
+
+C. me
+
+D. my
+
+4. Linda is _______ cousin.     -> his
+
+A. him
+
+B. he
+
+C. he’s
+
+D. his
+
+
+5. This craft isn’t mine. It’s _______. -> hers
+
+A. Him
+
+B. She
+
+C. Hers
+
+D. Them
+
+
+
+Exercise 3: Circle the correct item
+
+1. Linda is my/ mine sister
+-> Linda is my sister
+2. Look at the leaves of the tree/ the tree leaves
+-> Look at the leaves of the tree
+3. He is a friends of her/ hers.
+-> He is a friends of hers
+4. That car is their/ theirs
+-> That car is theirs
+5. These toys are your/ yours
+-> These toys are yours
+6. No, that is Anna’s brand new car. It’s hers/ her
+-> No, that is Anna's brand new car. IT's hers
+7. I have a brother. His/ Him name is Nam.
+-> I have a brother. His name is Name
+8. This book is mine/ my. It has my name on it.
+-> This book is mine. It has my name on it
+9. Excuse me. This phone is your/ yours. You forgot to take it with you.
+-> Excuse me. This phone is yours. You forgot to take it with you
+10. This suitcase belongs to us. That suitcase is hers/ her
+-> This suitcase belongs to us. That suitcase is hers
