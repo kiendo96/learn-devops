@@ -7,3 +7,37 @@ Requirement: Tạo 1 EC2 instance, thực hiện cài đặt CWAgent lên trên 
 5. Enable Service CloudWatch Agent khởi động cùng OS và theo dõi log của CW agent xem hoạt động thành công
 6. Xem metrics có được gửi lên CloudWatch metrics thành công không
 7. Thử access website, confirm log được gửi lên CW log không
+
+Step:
+- Create a server EC2
+  -> Create a iam role with permission "CloudWatchAgentServerPolicy"
+    -> Attach it to EC2 instance
+      -> Install CloudWatch Agent to ec2 instance:
+##check access log for httpd
+#Refresh server serveral time
+#cat log file
+cat /var/log/httpd/access_log
+
+###install cloudwatch agent
+sudo yum install amazon-cloudwatch-agent
+#Run the wizard
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+
+#then follow the instrution to setup
+#log file to monitor
+/var/log/httpd/access_log
+/var/log/httpd/error_log
+
+#Check config file created by wizard
+cat /etc/aws/amazon-cloudwatch-agent/bin/config.json
+
+#Fetch config file
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file://opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+
+#check status of cloudwatch agent
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+
+#start if not started
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start
+
+-> check in cloudwatch and confirm log have exists
