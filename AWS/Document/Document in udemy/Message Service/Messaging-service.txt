@@ -28,3 +28,103 @@ vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong 
 
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
 - Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợ không có message nào trên queue
+
+
+//Một số giới hạn của SQS
+- Giới hạn về số lượng message trên một queue: unlimited
+- Queue name: 80 characters
+- Queue tag: 50tag
+- Long polling: 20s
+- Message Visibility Timeout: min: 0s, max: 12 hours
+- Message size max: 256kb
+- Message attributes: 10 metadata attributes
+- Message content: Có thể bao gồm XML, Json, Text
+- Message retention: default 4 days, min: 1 minutes, max 14 days
+
+//Một số thông số liên quan monitor
+- Approximage age of oldest message: Thời gian của message cũ nhất đã được gửi vào queue
+- Approximate number of message not visible: Số lượng message đang được xử lý (in-flight) nên bị tạm ẩn khỏi queue
+- Approximate number of message visible: Số lượng message chưa được xử lý
+- Number of message sent: Số lượng message đã được gửi
+- Number of message received: Số lượng message đã được nhận
+- Number of message deleted: Số lượng message đã bị xóa
+
+//Usecase
+- Đồng bộ dữ liệu giữa các hệ thống hoặc ứng dụng
+- Xử lý hàng đợi giúp de-coupling hệ thống và chống bottle neck tại những component có thể có workload tăng đột ngột. Giúp chuyển từ xử lý đồng bộ sang bất đồng bộ
+- Hệ thống xử lý thời gian thực bằng cách sử dụng FIFO queue
+- Data migration. Ví dụ data từ source cần được chia ra nhiều luồng xử lý bất đồng bộ và có phương pháp retry cũng như phân loại message lỗi
+
+
+//Pricing
+- Tính tiền theo workload thực tế:
+    + Số lượng request gửi nhận
+        VD: $0.4/1 triệu request với standard và $0.5/1milion request với FIFO queue. Tính theo block 64Kb
+    + Dữ liệu truyền từ SQS đi ra: $0.12/GB
+*Zero idle cost
+
+
+
+//Simple Notification Service - SNS
+- AWS Simple Notification Service (SNS) là một dịch vụ notification, cho phép bạn gửi thông báo đến các đối tượng khác nhau như các ứng dụng, user, hệ thống hoặc các dịch vụ khác trên AWS
+- SNS cho phép gửi thông báo bằng nhiều phương thức khác nhau như email, SMS, push notification hoặc API CALL. Có thể tạo và quản lý các topics trong SNS và sau đó gửi thông báo đến các chủ đề đó. Các đối tượng đã đăng ký (subsribed) vào chủ đề sẽ nhận được thông báo
+
+//Đặc trung của SNS
+- Về cơ bản SNS hoạt động theo mô hình Publisher - Subscriber, message khi được bên publisher gửi lên SNS topic sẽ được đồng loại gửi tới các subscriber
+- Đa kênh thông báo: SNS hỗ trợ nhiều kênh thông báo như email, SMS, push notification (như thông báo trên mobile) và API call
+- Khả năng mở rộng và đáng tin cậy: SNS xử lý việc phân phối thông báo trên cơ sở hạ tầng mở rộng của AWS. Nó tự động xử lý khả năng mở rộng và đảm bảo tính đáng tin cậy của việc gửi thông báo
+- Tích hợp với các dịch vụ AWS khác: SNS tích hợp tốt với các dịch vụ AWS khác như SQS, CloudWatch, AWS Lambda, Amazon EC2 và nhiều dịch vụ khác. Điều này cho phép xây dựng các hệ thống phức tạp và tự động hóa quá trình gửi thông báo
+- SNS có hỗ trợ FIFO tương tự như SQS
+- Message attribute cho phép lưu trữ thêm những thông tin tùy chọn cho message
+- Message Filtering: Cho phép đặt các filter để quyết định xem message sẽ notify tới các subscriber nào
+- Message security: Kết hợp với KMS để mã hóa message, tăng tính bảo mật
+
+
+//SNS concepts
+- SNS có thể kết hợp được với nhiều dịch vụ khác nhau trên AWS cũng như notify tới nhiều loại target bên ngoài AWS
+VD: SNS topic có thể notify:
+    + SQS
+    + Email
+    + HTTP
+    + Lambda
+    + SMS
+    + Kinesis
+    + other application
+    SNS topic nhận từ nguồn publish
+    + Publisher
+    + Lambda
+    + Alarm
+
+//SNS limitation
+- Số lượng topic/account: 100000, FIFO: 1000
+- Subscription: 12500000/topic. FIFO: 100/topic
+- Delivery rate for email: 10 message/s (extend able)
+- Message size: 256Kb
+
+//SNS usecase
+- Notify đến email/SMS trong trường hợp dùng làm notification service
+- Kết hợp với các dịch vụ Monitoring, Audit, Security để thông báo tới người phụ trách
+- Notify tới Mobile Application
+- Gửi notification đồng thời tới nhiều target theo thời gian thực
+- Xây dựng hệ thống phân tán
+- Xây dựng hệ thống chat
+
+//SNS pricing
+- Cost cho việc gửi notification
+    + Mobile push: $0.5 per 1M notification
+    + Email: $1 per 1M notification
+    + HTTP: $0.6 per 1M notification
+- Data transfer
+    + Transfer in: Free
+    + Transfer out: $0.12/GB
+- Chi phí cho SMS: tùy thuộc vào quốc gia
+- Message filter: $0.11/GB payload data được scan
+
+//Lab - Thao tác cơ bản với SNS
+1. Tạo SNS topic
+2. Subscribe một email vào
+3. Vào email và confirm subscription
+4. Thử push một message lên SNS
+5. Kiểm tra email
+
+
