@@ -5,6 +5,16 @@
 4. Thử xóa một message
 5. Thử purge queue (xóa toàn bộ message)
 
+-> Create a new SQS queue
+  -> visibility timeout (Tối đa 12hours)
+    -> Message retention period(Thời gian hết hạn của message: tối đa 14 ngày)
+      -> Delivery delay (max: 15 minutes): Được sử dụng để ném message qua target (lambda, ec2, s3...)
+        -> Receive message wait time (long polling - max:20s): Nếu không có message thì sau khoảng thời gian long polling nó mới trả lại empty cho client
+          *Note: SQS có Access policy
+//Test queue
+- Click "Send and receive message"
+  -> Type message body: {"name":"kiendt","age":27}  -> send message -> Thử send tiếp 1 số message  -> croll to end of page click "poll for messages"
+
 //Lab 2 - SQS thao tác cơ bản
 1. Login vào AWS console, navigate tới dịch vụ SQS
 2. Tạo thêm một queue với tên gọi "dead-letter-queue"
