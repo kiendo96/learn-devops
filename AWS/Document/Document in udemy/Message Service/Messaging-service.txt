@@ -17,9 +17,14 @@
 - Với Standard Queue, message khi được gửi vào queue sẽ tồn tại ở đó cho tới khi bị xóa hoặc hết thời gian retention. Do vậy Consumer phải chủ động xóa message đã xử lý xong
 - Với FIFO Queue, message sẽ được delivery chính xác 1 lần tới consumer (tự động xóa sau khi có event receiver message)
 *Mô hình:
-    Producer ----send mesage ---> SQS
+    Producer ----send mesage ---> SQS  ----Receive message----> Consumer  ----Delete message after finished----> SQS
+    **Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
+
 - SQS có một thông số gọi là Visibility Timeout, là thời gian message tạm bị ẩn đi đối với các consumer trong message đó đang được receive bởi một consumer. Quá thời gian này message chưa bị xóa sẽ quay trở lại queue
+vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong trường hợp có nhiều consumer. Các consumer có thể get mesage đang được xử lý bởi một consumer khác (chưa finished)
+
 - Việc apply Visibility Timeout như thế nào cho phù hợp hoàn toàn phụ thuộc vào nghiệp vụ.
   VD: Một tác vụ xử lý decode một video mất 10 mins thì nên để Visibility Timeout > 10 phút để tránh tình trạng xung đột xử lý giữa các consumer. Vì trong thời gian visibility timeout thì message đó đang được 1 consumer xử lý và nó sẽ bị ẩn cho đến khi hết visibility timeout thì consumer khác mới có thể access get vào được (Tránh xung đột giữa các consumer)
+
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
 - Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợ không có message nào trên queue
