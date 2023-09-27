@@ -43,4 +43,10 @@ Trong đó:
     User ----Event----> Test-event-bus ---Rule 1---> SQS queue
                                        ---Rule 2---> SNS topic -----notify----> your email
 
+- Steps:
+1. Login to AWS console -> EventBridge
+2. Tạo một Event Bus. VD: udemy-test-event-bus
+3. Tạo một SQS queue và một SNS topic (topic có subscriber là một email)
+4. Setting rule filter trên EventBridge bus nếu có sendTarget = SQS thì gửi tới queue, sendTarget = SNS thì gửi tới topic
+5. Thực hiện gửi 2 message tới event bus, xem message có được gửi tới SQS và SNS tương ứng không
 
