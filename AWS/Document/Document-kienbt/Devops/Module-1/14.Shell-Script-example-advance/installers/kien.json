@@ -1,0 +1,53 @@
+  1 {
+  2     "variables": {
+  3         "aws_access_key": "AKIAZY2AI2XDCD67FGXL",
+  4         "aws_secret_key": "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",
+  5         "aws_subnet_id": "subnet-0a9e369acd52abf0b"
+  6     },
+  7     "builders": [
+  8         {
+  9             "type": "amazon-ebs",
+ 10             "access_key": "{{user `aws_access_key`}}",
+ 11             "secret_key": "{{user `aws_secret_key`}}",
+ 12             "subnet_id": "{{user `aws_subnet_id`}}",
+ 13             "region": "us-east-1",
+ 14             "instance_type": "t2.micro",
+ 15             "ami_name": "bookapp-{{timestamp}}",
+ 16             "source_ami_filter": {
+ 17                 "filters": {
+ 18                     "virtualization-type": "hvm",
+ 19                     "name": "*ubuntu/images/*ubuntu-focal-20.04-amd64-server-*",
+ 20                     "root-device-type": "ebs"
+ 21                 },
+ 22                 "owners": ["099720109477"],
+ 23                 "most_recent": true
+ 24             },
+ 25             "security_group_filter": {
+ 26                 "filters": {
+ 27                     "tag:Class": "packer"
+ 28                 }
+ 29             },
+ 30             "ssh_username": "ubuntu"
+ 31         }
+ 32     ],
+ 33     "provisioners": [
+ 34         {
+ 35             "type": "shell",
+ 36             "inline": [
+ 37                 "sudo apt-get update -y && sudo apt-get upgrade -y",
+ 38                 "sudo mkdir /opt/provisioning",
+ 39                 "sudo ch ubuntu:ubuntu /opt/provisioning"
+ 40             ]
+ 41         },
+ 42         {
+ 43             "type": "shell",
+ 44             "scripts": [
+ 45                 "scripts/init.sh",
+ 46                 "scripts/webdeploy.sh"
+ 47             ],
+ 48             "environment_vars:": ["HOSTNAME=bookapp"],
+ 49             "remote_folder": "/opt/provisioning",
+ 50             "skip_clean": true
+ 51         }
+ 52     ]
+ 53 }

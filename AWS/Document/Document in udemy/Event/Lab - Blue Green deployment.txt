@@ -1,0 +1,7 @@
+//Requirement
+1. Tạo thêm một environment
+2. Deploy code mới lên environment mới
+3. Test enviroment mới
+4. Switch trafic giữa 2 môi trường
+5. Terminate môi trường cũ
+

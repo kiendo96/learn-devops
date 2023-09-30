@@ -1,0 +1,19 @@
+# This playbook contain HANDLERS that will listening on every task with "notify" - "restart web" 
+# HANDLERS can place any where in playbook but on the top or bottom are recommendation
+# HANDLERS always be consider to run on the last of the playbook
+---
+- hosts: web # This define that playbook will only run with every hosts belong to group web
+  become: yes  # This using for task need root permission
+  handlers:
+    - name: Restart Apache
+      service: name="httpd" state="restarted" # Service module use to manage daemond service of system
+      listen: "restart web"
+  tasks:
+    - name: Changge DocumentRoot of Apache
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot.*$'
+        replace: 'DocumentRoot "/opt/www/html"'
+        backup: yes   # That mean ansbile will create a "httpd.conf~" before any change occur
+      notify: "restart web"
+  

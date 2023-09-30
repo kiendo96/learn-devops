@@ -1,0 +1,6 @@
+//Introdution to Cluod Map
+- AWS Cloud Map là 1 "Cloud service discovery". Với cloud Map, bạn có thể xác định tên tùy chỉnh cho các tài nguyên ứng dụng của mình và dịch vụ này duy trì vị trí cập nhập của những tài nguyên thay đổi linh hoạt đó. Điều này làm tăng tính sẵn sàng của ứng dụng vì dịch vụ web của abnj luôn tìm ra vị trí mới nhất của các nguồn tài nguyên
+- Cloud Map cho phép bạn đăng ký bất kỳ tài nguyên ứng dụng nào, chẳng hạn như DB, queue, micro service và cloud resourrce khác, với tên tùy chỉnh. Sau đó, Cloud Map liên tục kiểm tra tình trạng của tài nguyên để đảm bảo vị trí được cập nhập. Sau đó ứng dụng có thể query đến registry để biết vị trí của các tài nguyên cần thiết dự trên phiên bản ứng dụng và môi trường triển khai
+- Một trong những ứng dụng phổ biến của AWS Cloud Map là trong kiến trúc dựa trên microservice. Bằng cách sử dụng Cloud Map, bạn có thể quản lý và theo dõi các dịch vụ ứng dụng microservice một cách linh hoạt và tự động
+
+=> Nôm na thì thằng cloud Map này nó sẽ tạo ra các namespace cho thằng ECS. Các service thuộc thằng ECS muốn communicate với nhau bọn nó sẽ giao tiếp bằng namespace này

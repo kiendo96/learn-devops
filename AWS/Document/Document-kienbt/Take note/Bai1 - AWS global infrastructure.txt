@@ -1,0 +1,138 @@
+//AWS Regions and Availability Zones
+
+#> AWS Regions:
+- Each regions is in a specific geographic location
+(Mỗi regions sẽ nằm ở một vị trí địa lý xác định)
+- Each geographic location has a cluster of data centers
+(Mỗi vị trí địa lý sẽ có 1 cluster of data centers)
+- AWS currently has 22 launched regions
+(Hiện tại thì aws có 22 regions đang hoạt động trên khắp thế giới)
+
+#> Availability Zones
+- Consists of one or more data centers
+(Bao gồm 1 hoặc nhiều datacenter)
+- Multiple availability zones are included with each AWS Regions
+(Bao gồm nhiều Avaibility Zones ở bên trong mỗi AWS Regions)
+- Located within the geographic area of the AWS Regions
+(Vị trí địa lí nằm bên trong 1 AWS regions)
+- Redundant power, networking and connectivity
+- There are currently 69 availability zones globally
+(Hiện tại đang có 69 avaibility zones trên toàn cầu)
+
+#> Avaibility
+- Extent to which an application is fulfilling its intended business purpose. Applications that are highly-available are built in a manner where a single failure won't lessen th application's ability to be fully operational
+(Là mức độ đảm bảo mà một application hoàn thành mục đích kinh doanh dự định của nó. Các applications sẽ có highly-avaibility được xây dựng theo cách mà 1 lỗi đơn lẻ sẽ không làm giảm khả năng hoạt động đầy đủ của ứng dụng đó)
+=> Nói đơn giản thì avaibility là tính bảo toàn của ứng dụng. Nó sẽ được đảm bảo răng application sẽ được deploy trên nhiều datacenter -> AZ -> Region khác nhau (Có tính HA). Khi có 1 data center có sự cố thì ứng dụng vẫn sẽ được đảm bảo hoạt động bình thường không có down time.
+
+#>Edge location
+- Used as nodes of a global content delivery network(CDN)
+(Được sử dụng như 1 node của 1 mạng lưới ) => Mỗi Edge  location được coi như 1 node 
+- Utilized by Amazone CloudFont and Amazone Route 53
+(được sử dụng bởi Amazone Cloudfront và amazone route 53)
+- Located globally at over 200 different locations
+(Có mặt trên toàn cầu tại hơn 200 điểm khác nhau)
+- Allows AWS to serve content from locations closest to users
+(Cho phép AWS phân phối content từ các địa điểm gần người dùng nhất)
+
+
+----------Understanding Cloud Economics (Hiểu về kinh phí cloud)--------
+
+//Capitalized Expenditure (CapEx)
+- When building a data center, an organization invests in upfront costs for the building,  server and supporting equipment. This type of expense ot attain a fixed asset is referred to as a Capitalized Expenditure or CapEx
+
+//Operating Expenditure(OpEx)
+- The regular day to day expenses  of  a  business are considered Operating Expenditure or OpEx. After initial buid of a data center, ongoing connectivity, utility and maintenance costs would be considered OpEx
+
+
+//Organizing and Optimizing AWS  costs
+*> AWS Cost Explorer
+- User interface for exploring your AWS  costs
+- Provides breakdowns including:
+    + By service
+    + By cost tag
+- Provides predictions for the next three months of costs 
+- Give recommendationsfor cost optimization
+- Can be accessed via API
+
+*>AWS Cost Planning Tools
+- AWS TCO Calculator: Enables an organization to determine whtat could be saved by leveraging cloud infrastructure
+
+- AWS Simple Monthly Calculator: Enables an organization calculate the cost of running specific AWS infrastructure
+(Giúp tính toán các chi phí và dịch vụ cho 1 services trên cloud)
+
+*> Resource Tags
+- Metadata asigned to a specific AWS Resource
+- Includes a name and an optional value 
+- Common use cases include department, environment or project
+- Cost allocation report incloudes costs grouped by active tag
+- Tags can be leveraged within the AWS Costs Explorer
+
+*> AWS Organizations
+- Allows organization to manage multiple accounts under a single master accounts
+- Provides organizations with the ability to leverage Consolidated Billing for all accounts
+- Enables organization to centralize logging and security standards aacross accounts
+
+
+//Using the AWS Pricing Calculator
+*> Estimating Future Workloads
+- AWS simple Monthly Calculator( Deprecated)
+- AWS Pricing Calculator
+//Supporting AWS Infrastructure
+*>Supporting Tools
+- AWS Support
+- AWS Personal Health Dashboard
+- AWS Trusted Advisor
+
+*> AWS Support
+- Enables support from AWS resources for workfloads running in the cloud
+- Provided in different tiers based on need and scope
+- Included tools to provide automated answers and recommendations
+
+*> AWS Personal Health Dashboard
+- Provides alerts and remediation guidance when AWS is experiencing events that may impact you
+
+*> AWS Trusted Advisor
+- Automated tool to check your AWS usage against best practices
+- Accessed from the AWS console
+- Different checks are provided based on the AWS support plan tier
+- All AWS customer get access to seven core checks
+
+*> Trusted Advisor checks
+- Cost Optimization
+- Performance
+- Security
+- Fault Tolerance
+- Service Limit
+
+*> AWS Support Plan tiers
+- AWS Support Plan Different:
+    + Communication Method
+    + Response time
+    + Cost
+    + Type of Guidance Offered
+
+- AWS Basic Support
+    + Provided for all AWS customers
+    + Access to Trusted Advisor(7 core checks)
+    + 24/7 Access to customer Service, documentation, forums & whitepapers
+    + Access to AWS Personal Health Dashboard
+    + No monthly cost (Ko mat tien hang thang)
+
+- AWS Developer Support
+    + Includes all features of Basic Support
+    + Bussiness hours email access to support engineers
+    + Limited to 1 primary contact
+    + Starts at $29 per monthly(tied to AWS usage)
+
+- AWS Bussiness Support
+    + Includes all features of Developer Support
+    + Full set of Trusted Advisor checks
+    + 24/7 phone, email and chat access to support engineers
+    + Unlimited contacts
+    + Provides third-party software support
+    + Start at $100 per month (tied to AWS usage)
+- AWS Enterprise Support
+    + Includes all features of Bussiness Support
+    + Includes designated Technical Account Manager(TAM)
+    + Includes concierge support team
+    + Start at $15000 per month (tied to AWS usage)

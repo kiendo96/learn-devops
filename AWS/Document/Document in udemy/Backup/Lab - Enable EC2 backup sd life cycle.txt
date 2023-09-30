@@ -1,0 +1,9 @@
+Requirement: Use EC2 Life cycle to enable backup for a EC2 instance (Backup all). Required running once a day at 20:00 UTC and saving up to 20 backups
+
+Steps:
+- Create a new EC2 instance
+    -> Access "Lifecycle Manager"
+        -> Create a new lifecycle policy (have two options):
+            + EBS snapshot policy: Sử dụng để backup volume của EC2
+            + EBS-backend AMI policy: Được sử dụng để backup nguyên cái AMI của EC2
+

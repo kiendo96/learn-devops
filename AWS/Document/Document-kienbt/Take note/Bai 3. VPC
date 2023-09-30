@@ -1,0 +1,17 @@
+//Building Virtual Private Cloud(VPC)
+Network
+
+*> Virtual Private Cloud
+- AWS manages underlying VPC infrastructure and is responsible for reliability of VPC network components
+(AWS quản lý cơ sở hạ tầng VPC cơ bản và chịu trách nhiệm về độ tin cậy của các thành phần network VPC)
+- You still must design your VPC properly to take advantage of its reliability
+(Bạn vẫn phải design VPC của mình đúng cách để tận dụng độ tin cậy cuả nó)
+
+*> VPC,Subnets and Instances
+- VPC contains one or more Subnets (VPC chứa 1 hoặc nhiều subnet)
+    + A subnet exists in an availability zone
+    (Mỗi subnet tồn tại bên trong 1 AZ)
+    + An instance in a subnet
+    (Mỗi instance thì ở bên trong 1 subnet)
+- You achieve redundancy by having instances in multiple subnets in different zones
+(Để đạt được redundancy thì các instance phải đặt ở trên multiple subnets ở các zones khác nhau)

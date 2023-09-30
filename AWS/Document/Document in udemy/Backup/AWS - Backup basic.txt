@@ -1,0 +1,62 @@
+//Các yếu tố cần quan tâm khi backup - concept
+- RPO (Recovery Point Objective): Khi xảy ra sự cố thì sẽ có bao nhiêu data sẽ có thể mất và không thể khôi phục
+- RTO (Recovery Time Objective): Khi có sự cố xảy ra thì mất bao lâu để khôi phục lại hệ thống
+- Hai thông số này sẽ ảnh hưởng tới việc lựa chọn chiến lược backup, tần suất backup cũng như disaster Recovery
+
+//Các chiến lược disaster recovery:
+
+- Active/passive:
+    + Backup & restore: Duy trì định kì 1 bản backup hoặc sync qua 1 region khác. Khi có sự cố xảy ra thì sẽ phải recovery toàn bộ hệ thống. Thời gian tính bằng giờ
+        + RPO/RTO: Hours
+            + Lower priority use cases
+            + Provision all AWS resources afterr event
+            + Restore backups after event
+            + Cost $
+    + Pilot Light: Sync data realtime to another region. Khi xảy ra sự cố sẽ phải switch traffic qua region đang có backup
+        + RPO/RTO: 10s of minutes   (vài chục phút)
+            + Data live
+            + Services idle
+            + Provision some AWS resources
+            + Cost: $$
+    + Warm standby: Chạy mode standby thì data sẽ được sync qua region khác và đồng thời cũng được sử dụng. Tuy nhiên kích thước sẽ nhỏ
+        + RPO/RTO: minutes
+            + Allways running, but smaller
+            + Business critical
+            + Scale AWS resources after event
+            + Cost $$$
+
+- Multi-site active/active: Duy trì workload loadbalance giữa 2 region (kiểu chạy 2 hệ thống song song)
+    + Zero downtime
+    + Near zero data loss
+    + Mission Critical Services
+    + Cost $$$$
+
+//Một số hình thức backup
+- Backup EC2:
+    + Snapshot Data volume
+    + Create AMI of whole instance
+    + Enable Life cycle policy
+- Backup RDS(or Database):
+    + Dump data to External Volume, and/or copy to S3 Bucket
+    + Enable default backup (create snapshot daily)
+    + Create custom backup using AWS Backup (custom plan, retention policy)
+    + Enable Backtracking freature (Aurora only)
+- Backup EFS:
+    + Backup ondemand thủ công, auto backup hoặc sử dụng AWS Backup
+    + Sử dụng tính năng data replication sang một EFS khác (Có thể khác region)
+
+- Backup S3 bucket:
+    + Backup liên tục (Continous backup) cho phép recovery lại bất kì thời điểm nào trong 35 days
+    + Backup định kỳ: VD 1hour, 12 hours, 1 day, 1 week, 1 month
+    + Replica data liên tục sang một bucket khác (Có thể khác region)
+
+
+
+//Introdution service AWS backup
+- AWS Backup: Sử dụng để backup/restore các AWS service khác nhau. GUI đơn giản, dễ sử dụng để tạo, quản lý và kiểm soát các hoạt động backup. Giúp user đảm bảo tính toàn vẹn và avaibility của dữ liệu
+- Support: EBS, RDS, DynamoDB, EFS, Storage Gateway.
+- Tính năng:
+    + Tạo và quản lý các BACKUP PLAN tự động
+    + Quản lý và theo dõi backup: User có thể xem và quản lý các hoạt động backup.
+    + Restore: AWS Backup cho phép khôi phục dữ liệu từ các backup đã tạo. Có thể khôi phục toàn bộ hoặc 1 phần cụ thể và có khả năng khôi phục vào các vùng khác nhau trong cùng một hoặc khác tài khoản AWS
+

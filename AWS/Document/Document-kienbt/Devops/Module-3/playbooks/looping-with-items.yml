@@ -1,0 +1,14 @@
+# This playbook will show you how to use loop in ansbile playbook
+# This use for create multiple users at the same time
+---
+- hosts: web
+  become: yes
+  tasks:
+    - name: Create user "{{item}}"
+      user:
+        name: "{{item}}"
+      with_items:
+        - btkien
+        - nguyenvt
+        - tuantran
+        

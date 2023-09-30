@@ -1,0 +1,8 @@
+//ECS-Cluster - Run Service
+Requirement: Create a service https instead of run only one task. ECS will connect to ALB and client can access in outside to ECS cluster. Test modify capacity of service
+1. create task definition(Can use of previous lab)
+2. Create a Target Group with type is IP, don't add everyone.
+3. Create a Application LoadBalancer have listener on port 80 mapping with Target Group
+4. Create a service with task definition created in step 1(choose ALB và Target Group)
+5. Đợi service launch task thành công, test truy cập thông qua ALB
+6. Thử điều chỉnh số lượng task trong service (Scale)

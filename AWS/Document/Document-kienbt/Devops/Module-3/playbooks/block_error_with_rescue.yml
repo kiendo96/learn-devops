@@ -1,0 +1,17 @@
+# In this playbook will show you using block error in ansbile and how to use 
+# rescue to notify error output to screen
+--- 
+- hosts: localhost # This playbook will be execute on local system
+  tasks: 
+    - name: Get File
+      block:
+        - get_url:
+            url: "http://{{item}}/index.html"
+            dest: "/tmp/index_file"
+          with_items: 
+            - node1.com
+            - node2.com
+      rescue: # This line only run when task in block have any error
+        - debug: msg="This file doesn't exist on {{item}}"
+      always: # This line always run 
+        - debug: msg="Play done!!"

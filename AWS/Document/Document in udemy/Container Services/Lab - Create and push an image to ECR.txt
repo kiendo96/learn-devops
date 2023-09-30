@@ -1,0 +1,17 @@
+//Create image
+Requirement: Build một custom image từ httpd, copy file index.html vào image. Tag và push image đó lên ECR.
+1. Create a ECR repository
+2. Create a Dockerfile
+3. Build, tag image, push to ECR
+4. Check image created in ECR repository
+
+//create a cluster and run task
+Requirement: Sử dụng docker image đã build và push lên ECR từ bài lab trước, chạy một task trên ECS cluster, test truy cập
+
+Steps:
+1. Create a new ECS Cluster with mode: Fargate
+2. Create a new Task definition with basic option
+3. Access to Clustter, then, run a "Task" with "Task definition" in step 2. Note: Enable public IP
+4. Configuration Security Group if need
+5. Try access to public IP of Task
+

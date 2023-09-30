@@ -1,0 +1,16 @@
+# This playbook use to install httpd (webserver) on RHEL 
+---
+- hosts: web 
+  become: yes
+  tasks:
+    - name: Install Web Server 
+      yum: 
+        name: httpd
+        state: latest
+    
+    # Bellow task will start and enable service web 
+    - name: Start and Enable httpd
+      service: 
+        name: httpd
+        state: started 
+        enabled: yes

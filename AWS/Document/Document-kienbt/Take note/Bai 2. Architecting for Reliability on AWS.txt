@@ -1,0 +1,100 @@
+----Architecting for availability-----
+- Reliability or resiliency: The ability of an application to avoid and reover from failure
+                            
+*> availability
+- The percentage of time that an application is performing as expected
+(% thời gian mà 1 application đang hoạt động có đúng như mong đợi hay không)
+- Poor performance implies low availability
+(Hiệu suất kém có nghĩa là tính khả dụng thấp)
+- Uptime isn't the same as availability
+(thời gian uptime không giống với availability)
+
+*>Availability and Annual Downtime
+- 99.0%: 3days 15 hours
+- 99.9%: 5hours 45 minutes
+- 99,99%: About 1 hours
+- 99,999%: 5 minutes
+
+// Architecting for 99.9% Availability
+*> Traditional application
+- Run on Windows or Linux
+- You can "lift and shift" it to AWS without changing its code
+    + Example: SQL backend web application
+- How to desgin for availability depends on the architecture of the appliaction 
+
+*> Calulating Availability - EC2
+- The service level agreement (SLA) for each service includes its annual availability
+- Availability of an EC2 instance is 90%
+- Failure rate of each instance is 10%
+
+*> Calulating Availability - Redundant instance
+- Multiply failure rate of four instances
+    10% x 10% x 10% x 10% = 0.01%
+
+- Subtract product from 100%
+    100% - 0.01% = 99.99%
+
+*> Calulating Availability - Elastic Load Balancer
+- ELB availability is 99,99%
+- Multiply this by the availability of instances:
+    99,99% x 99,99% = 99,998%
+
+*> Calulating Availability - Elastic File System
+- EFS availability is 99,99%
+    99,998% x 99.99% = 99,97% -> Tổng EC2 x ELB x EFS
+
+*> Noted EFS or S3 trong trường hợp này
+- To use S3, application must be desgined for it
+- EFS provides a network file system (NFS) volume
+- NFS is an established standard that most LInux distributions support
+
+
+*> Relational Database service
+- EDS offers managed database engines
+    + MySql, MariaDb, PostgreSQL, Microsoft SQL server and Oracle
+- AWS manages database infrastructure and backups
+
+*> Calulating Availability - RDS
+- RDS multi-AZ availability is 99,95%
+    99,97% x 99,95% = 99,92%    -> Tổng EC2 x ELB x EFS x RDS
+
+
+//Loose Coupling
+- Nó ám chỉ việc khi 1 user access vào trong 1 application nhưng trong trường hợp 1 hoặc 2 instance có downtime cũng không ảnh hưởng gì tới application. Vì các thành phần bên trong 1 application independent (độc lập)
+- Nôm na thì nó là HA nhưng ý muốn nói là các component bên trong độc lập với nhau
+
+*> Loose coupling vs Tight Coupling (coupling lỏng lẽo và chặt chẽ)
+- Loose coupling:
+    + One component doesn't depend on a specific component (1 component khÔng phụ thuộc vào 1 thành phần cụ thể)
+    + URL points to ELB (URL trỏ tới ELB)
+    + One-to-many relationship
+- Tight coupling:
+    + One component does depend on a specific component (1 component phụ thuộc vào 1 thành phần cụ thể)
+    + URL points directly to instance (URL trỏ trực tiếp tới instance)
+    + One-to-one relationship
+
+//What is EFS?
+- Elastic services are always composed of redundant components
+- Elastic services are always loosely coupled with other resources
+
+//Redundancy and Loose Coupling
+- Redundancy -> loose coupling -> availability
+
+//Loose Coupling and performance
+- Independently scale resources without impacting availability
+(Tài nguyên độc lập không ảnh hưởng đến tính khả dụng của ứng dụng)
+- Performance and availability are linked (Performance và availability được liên kết với nhau)
+    + Poor performance leads to low availability
+    (Hiệu suất kém dẫn đến tính khả dụng thấp)
+    + Good performance helps maintain availability
+    (Hiệu suất cao giúp duy trì availability)
+
+
+
+
+
+
+
+
+
+//CloudTrail Event History

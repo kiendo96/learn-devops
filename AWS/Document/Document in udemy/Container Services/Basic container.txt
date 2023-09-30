@@ -1,0 +1,77 @@
+//What is container
+- Đóng gửi ứng dụng cùng với những thứ cần thiết để chạy được ứng dụng đó thành một image có thể run ở bất cứ đâu có hỗ trợ container
+- Cung cấp môi trường & cơ chế cấp phát tài nguyên để image đó có thể run được
+- Cung cấp cơ chế & công cụ cho phép các nhà phát triển đóng gói, lưu trữ, phân phối và triển khai ứng dụng một cách thuận tiện
+
+
+//Benefit of container
+- Độc lập với môi trường: Container cung cấp một cách để đóng gói ứng dụng và tất cả dependancies của nó, bao gồm OS, library, tools. Nó cho phép ứng dụng chạy một cách độc lập và nhất quán trên bất kì môi trường nào
+- Đơn giản quy trình triển khai: tính nhất quán, tốc độ, thuận tiện là những gì containerlize mang lại khi so sánh với mô hình traditional
+- Quản lý tài nguyên hiệu quả: triển khai ứng dụng bằng container cho phép chia sẻ và sử dụng tài nguyên của hệ thống một cách hiệu quả. Bằng cách chạy nhiều container trên cùng một máy chủ vật lý hoặc máy ảo, có thể tận dụng tối đa khả năng tính toán và tài nguyên của hệ thống
+- Linh hoạt và mở rộng: Containers cho phép bạn dễ dàng mở rộng ứng dụng theo nhu cầu. Bằng cách scale horizontal, ứng dụng có thể mở rộng để đáp ứng workload. Ngoài ra, việc triển khai nhiều version của một ứng dụng cùng lúc trở nên dễ dàng
+
+
+//Docker
+- Docker là nền tảng phần mềm cho phép dựng, kiểm thử và triển khai ứng dụng một cách nhanh chóng. Docker đóng gói phần mềm vào các đơn vị tiêu chuẩn hóa được gọi là container có mọi thứ mà phần mềm cần để chạy, trong đó có thử viện, công cụ hệ thống, mã và thời gian chạy. Bằng cách sử dụng docker, có thể nhanh chóng triển khai và thay đổi quy mô ứng dụng vào bất kì môi trường nào và biết chắc rằng mã của bạn sẽ được chạy
+
+//Component of docker
+- Docker client: Cung cấp phương thức để tương tác với Docker daemon
+- Docker daemon: là nơi quản lý các thành phần của docker như image, container, volume, network. Docker daemon nhận API từ client để thực hiện các nhiệm vụ
+- Docker registry: Nơi lưu trữ các docker image. Mặc định dockerr sẽ connect tới docker hub
+
+//Các bước xây dựng ứng dụng docker
+1. Chuẩn bị Dockerfile: Dockerfile mô tar các bước cần thiết để tạo ra môi trường container chứa ứng dụng
+2. Xây dựng docker image: Sử dụng lệnh docker build để xây dựng Docker Image từ Dockerfile
+3. Kiểm tra Docker Image sử dụng lệnh docker images để kiểm tra danh sách các ảnh Docker có sẵ trên máy tính của bạn. Đảm bảo rằng docker Image của ứng dụng của bạn đã được xây dựng thành công và xuất hiện trong danh sách
+4. Run docker container: Sử dụng lệnh docker run để chạy một container từ Docker image
+5. Kiểm tra ứng dụng: truy cập ứng dụng của bạn thông qua địa chỉ IP hoặc tên miền cùng với port đã chỉ định
+
+//Lab - Làm quen với Dockerfile
+- Khai báo Base image: Dockerfile thường bắt đầu bằng một chỉ thị FROM để chỉ định base image mà new Docker image sẽ dựa trên
+    VD: FROM ubuntu:latest
+- Sao chép các tệp và thư mục: Sử dụng chỉ thị COPY hoặc ADD, bạn có thể sao chép các tệp và thư mục từ máy chủ nơi Dockerfile được chạy bên trong docker image
+    VD: COPY app.py /app
+
+- Chỉ thị RUN. Có thể thực thi các lệnh bên trong image docker để cài đặt phần mềm, cập nhập gói phần mềm hoặc thực hiện các tác vụ khác
+    VD: RUN apt-get update && apt-get install -y python
+
+- Thiết lập biến môi trường: Bằng cách sử dụng chỉ thị ENV, bạn có thể định nghĩa các biến môi trường cho hình ảnh docker.
+    VD: ENV LOGLEVEL=DEBUG
+- Mở port: bằng cách sử dụng chỉ thị EXPOSE, bạn có thể xác định các cổng mà ứng dụng trong hình ảnh docker sẽ lắng nghe.
+    VD: EXPOSE 8080
+- Chạy ứng dụng: Bằng cách sử dụng chỉ thị CMD bạn có thể chỉ thị lệnh mà docker sẽ chạy khi khởi động một container từ image
+    VD: CMD ["python", "/app/app.py"]
+
+Example dockerfile:
+
+FROM httpd
+COPY index.html /usr/local/apache2/htdocs/
+RUN CHOWN www-data:www-data /usr/local/apache2/htdocs/index.html
+ENV LOGLEVEL=DEBUG
+EXPOSE 80
+CMD ["httpd-foreground]
+
+
+
+//Elastic container Registry
+- ECR là 1 dịch vụ của AWS cung cấp khả năng quanr lý và lưu trữ các Docker Image. ECR là một Registry dựa trên cloud computing, được thiết kế đặc biệt để làm việc với các container hóa và môi trường chạy container của AWS
+    + Registry: Đơn vị quản lý của ECR (giống 1 repository). Thông thường một registry sẽ chỉ lưu image của một ứng dụng
+    + Image: Tương tự dockerr image. Các image trên registry cần đánh tag để quản lý
+
+//Elastic container service (ECS)
+- ECS: Là 1 dịch vụ quản lý container đám mây do AWS cung cấp. Nó cho phép chạy và quản lý các ứng dụng container trên AWS một cách dễ dàng và linh hoạt
+
+//Các tính năng ECS
+1. Quản lý đơn giản
+2. Tích hợp với công cụ container: ECS tích hợp tốt với docker, cho phép chạy các container Docker trực tiếp trên nền tảng AWS mà không cần thay đổi mã nguồn hoặc cấu hình
+3. Mở rộng linh hoạt: Kết hợp với AutoScaling, ECS cho phép scale in-out linh hoạt dựa trên nhu cầu workload
+4. Tích hợp với các dịch vụ AWS khác: ECS tích hợp tốt với các dịch vụ AWS khác như Elastic Load Balancer(ELB), Elastic Container Registry (ECR), IAM, CloudWatch và nhiều dịch vụ khác
+5. Sự linh hoạt về kiến trúc: ECS hỗ trợ khai kiểu triển khai: EC2 Launch type và Fargate Launch type. Giúp dễ dàng lựa chọn theo nhu cầu cũng như khả năng customize của đội dự án
+
+//Các thành phần ECS
+- Cluster: Đơn vị lớn nhất của ECS, có nhiệm vụ cung cấp tài nguyên cần thiết (EC2, Fargate) để chạy ứng dụng
+- Task: Một đơn vị được cấp phát tài nguyên (CPU, RAM) trong mode Fargate. Một task có thể chứa 1 hoặc nhiều container
+- Service: Một nhóm các Task có chung nhiệm vụ được expose ra bên ngoài hoặc nội bộ Cluster
+- Container: Tương tự Docker Container, một runable image
+- ECS Connect Service: Cung cấp cơ chế service-to-service communication
+- Task Definition (không có trong hình): Chỉ dẫn để ECS biết phải tạo một task như thế nào.

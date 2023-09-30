@@ -1,0 +1,6 @@
+Requirement: Sử dụng AWS backup để thiết kế backup cho một RDS instance:
+    + Daily backup: Mỗi 20h00 UTC lưu 20 bản backup
+    + Weekly backup: Mỗi 0h UTC thứ 6 hàng tuần, lưu 5 bản backup
+
+Daily backup plan: Kịch bản backup
+Daily backup vault: backup vào đâu

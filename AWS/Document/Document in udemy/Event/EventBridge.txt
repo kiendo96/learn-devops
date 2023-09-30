@@ -1,0 +1,38 @@
+//What is EventBridge?
+- AWS eventBridge là một dịch vụ dùng để quản lý và định tuyến sự kiện trong hệ thống. Nó cho phép bạn theo dõi, xử lý và phản ứng tự động với các sự kiện từ các nguồn khác nhau trong môi trường AWS cloud
+- EventBridge hoạt động dựa trên kiến trúc publish-subscribe, trong đó event source gửi sự kiện của mình tới EventBridge. EventBridge sau đó định tuyến sự kiện tới các event targets đã được đăng kí, ví dụ các lambda function, SQS, WorkFlow, các dịch vụ AWS khác hoặc các ứng dụng tự xây dựng.
+- EventBridge cung cấp cho người dùng khả năng linh hoạt trong việc quản lý các rule định tuyến sự kiện (event rules), cho phép lọc và xử lý sự kiện theo các tiêu chí như kiểu sự kiện, nguồn sự kiện, hoặc nội dung sự kiện. Bạn có thể sử dụng các quy tắc này để triển khai tự động các tác vụ, như kích hoạt các hàm lambda để xử lý sự kiện, gửi thông báo qua email hoặc SMS, hoặc đưa sự kiện vào các workflow phức tạp hơn.
+- Với EventBridge, bạn có thể xây dựng các hệ thống ứng dụng phản ứng thời gian thực, tự động và linh hoạt hơn trong môi trường cloud AWS, giúp giảm thời gian triển khai và tăng khả năng mở rộng và module hóa của hệ thống.
+
+//Các thành phần cơ bản có thể kết hợp với EventBridge
+- Usecase cơ bản:
+  [CodePipeline,EC2,Lambda] ---> Events -----> EventBridge ----> Rules ----> [Lambda,SNS,SQS,Kinesis,StepFunction]
+
+//Component of EventBridge
+- Event: Một sự kiện nào đó xảy ra trong hệ thống AWS hoặc được chủ động tạo ra
+- Rule: Quy định các event và message sẽ được xử lý như thế nào nêu match rule.
+- Event Bus: Kênh giao tiếp để nhận và gửi event
+- Schema: Định nghĩa cấu trúc của event được gửi tới EventBridge
+- Schema registry: Nơi lưu trữ những schema được detect tự động hoặc tạo bởi user
+- Pipes: Một phương thức nhanh chóng để kết nối source và target. Có thể apply filter hoặc enrichment (transform) cho data
+- Scheduler: Đặt lịch cho các tác vụ
+
+//Event Bridge Usecases - Event Bus
+
+  [Các event source như AWS services, custom apps, SaaS apps, Microservice ]   ----move to EventBridge ----> Event Bus (Nó giống như 1 pipeline logstash, tiếp nhận từ event source và move tới target) -----> Rules (Set up rules to filter and send events to targets) -----> Targets [AWS lambda, Amazone SNS, more AWS service target, API destination....]
+
+//Event Bridge Usecases - Pipes
+
+  [Source: SQS, Kinesis, DynamoDB, MSK, MQ]  --(Event bridge Pipes)---> Filter ----> [Enrich and transform: AWS Lambda, AWS Steps functions, API gateway, API destination]  -----> Target
+
+//Event Bridge Usecases - Scheduler
+
+    Create schedule -----> Schedule pattern -------> Target -----> set a payload ----> retry policy   -------> Manage and monitor
+
+Trong đó:
+  - Create schedule to get started
+  - Schedule patten: Use cron expression, fixed rate, time window, one-time, or specific date and time to set your schedule
+  - Target: Select a target from over 200 AWS services
+  - Set a payload: Defined the data that you want sent to the target sẻvice when the schedule runs
+  - Retry policy: Setup retry, dead letter queue, and encryption
+  - Manage and monitor:  Manage schedules, schedule groups and tags
