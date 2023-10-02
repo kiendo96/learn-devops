@@ -1,0 +1,73 @@
+ //Các dịch vụ liên quan Security
+ - Có một số nhóm dịch vụ Security chính:
+    + Identity and Access Manager
+    + Data encryption and protection
+    + Threat detection
+    + Application and infrastructure protection
+    + Management
+
+//Identity and Access Management
+- AWS Identity Center: Công cụ thay thế single-sign-on (SSO) của AWS, có nhiệm vụ quản lý tập trung quyền access tới nhiều account & application trên AWS
+- AWS Resource Access Manager (RAM):
+    + Đơn giản hóa việc chia sẻ một cách bảo mật các resource giữa AWS account
+    + Quản lý access đến từng resource thông qua sharing detail, cho phép chia sẻ tới IAM Role, user, AWS Account khác trong cùng Organization
+
+//Data encryption and protection
+- AWS Key Management Service (KMS): Dịch vụ quản lý key của AWS, giúp tạo và kiểm soát key được sử dụng để mã hóa hoặc ký số dữ liệu
+- AWS Secrets Manager: Giúp quản lý các thông tin mật như username, password của DB. Cung cấp cơ chế để quản lý access tới các secret và hỗ trợ rotation
+- AWS Certificate Manager (ACM): Giúp tạo và quản lý các SSL certificate một cách dễ dàng. Certificate tạo ra bởi ACM dễ dàng tích hợp với các dịch vụ như CloudFront, Application Load Balancer
+- Amazon Macie: Dịch vụ giúp phát hiện và bảo vệ dữ liệu nhạy cảm nhờ vào việc apply cơ chế Machine Learning (Thường được dùng để scan data)
+
+//Threat detection
+- Sử dụng để phát hiện các mối đe dọa thông minh
+- AWS GuardDuty: Liên tục theo dõi khối lượng công việc và tài khoản AWS của bạn để phát hiện hoạt động có hại, đồng thời cung cấp các nội dung phát hiện bảo mật chi tiết nhằm nhận biết và khắc phục
+- Amazon Inspector:
+    + Quản lý lỗ hổng bảo mật tự động và liên tục trên quy mô lớn
+    + Hỗ trợ các dịch vụ như EC2, Lambda, ECR
+- Amazon Detective:
+    + Phân tích và trực quan hóa dữ liệu về bảo mật để điều tra các sự cố bảo mật tiềm ẩn
+    + Bằng cách phân tích các log như VPC log, CloudTrail Log, EKS audit Log, Detective có thể phân tích và điều tra những nguy cơ tiềm ẩn
+- AWS Config:
+    + Xem xét, kiểm tra và đánh giá cấu hình các tài nguyên
+    + AWS Config liên tục xem xét, kiểm tra và đánh giá các cấu hình và mối quan hệ của các tài nguyên
+    + Bạn có thể đưa ra các rule để apply cho các resource trên AWS. AWS config có nhiệm vụ phát hiện ra resourrce nào vi phạm rule và có action kịp thời (notify, alarm, log..)
+    + Chức năng Proactive Compliance giúp ngăn chặn hoặc thực thi hành động khi có violate rule
+- AWS Security Hub: Tự động hóa hoạt động kiểm tra bảo mật AWS và tập trung cảnh báo bảo mật
+
+//Application and infrastructure protection
+- AWS WAF(Web application firewall): Giúp bảo vệ chống lại các bot và tình huống khai thác web phổ biến có thể ảnh hưởng đến mức độ sẵn sàng, xâm phạm bảo mật hoặc tiêu tốn quá nhiều tài nguyên
+    -> AWS Firewall Manager: Manager Multiple AWS WAF deployments
+        ->  AWS WAF: Protect your web applications from common webb exploits
+            -> [Amazon CloudFront, Application Load Balancer, Amazon API Gateway, AWS APPSync]
+                -> Create a policy: Build your own rules using the visual rule builder orr JSON code, or deploy managed rules maintained by AWS or AWS Marketplace sellers
+                    -> Block and fillter: Protect against vulnerabilities and exploits such as SQLi or XSS attacks, filter out unwanted traffic by IP address or by defining specific patterns
+                        -> Monitor: Use Amazon CloudWatch to rreceive incoming traffic metrics, and use Amazon Kinesis Data Firehose to request details and tune rules based on metrics and log data
+
+
+- AWS Shield:
+    + Tối đa hóa mức độ sẵn sàng và khả năng đáp ứng của ứng dụng với tính năng bảo vệ được quản lý chống lại DDos
+    + Hạ tầng của AWS được bảo vệ bởi shield basic (by default)
+    + Nếu enable Advanced Shield sẽ tốn ($3000/month và charge ngay lập tức) -> Lưu ý không bật shield Advanced
+
+//Management
+- AWS Trusted Advisor: 
+    + Cung cấp các đề xuất giúp bạn tuân theo những biện pháp thực hành tốt nhất về AWS.
+    + Đánh giá tài khoản của bạn bằng cách nội dung kiểm tra. Nhưng nội dung kiểm tra này xác định cách để tối ưu hóa cơ sở hạ tầng AWS của bạn, tăng cường bảo mật và hiệu năng, giảm chi phí cũng như giám sát service limit. Sau đó, có thể làm theo các đề xuất để tối ưu hóa dịch vụ và tài nguyên của mình
+    + Để tận dụng tối đa các tính năng của Trusted Advisor, cần mua gói Business support Plan trở lên
+- AWS Organization:
+    + Cho phép tạo tài khoản AWS mới mà không phải trả thêm phí
+    + Với các tài khoản trong tổ chức, bạn có thể dễ dàng phân bổ tài nguyên, nhóm các tài khoản và áp dụng chính sách quản trị cho tài khoản hoặc nhóm
+    + Lợi ích khi sử dụng AWS Organization
+        * Tập trung việc quản lý chi phí cũng như theo dõi chi phí của từng account
+        * Phân chia đơn vị trong tổ chức dễ dàng
+        * Apply policy đặc thù cho từng đơn vị tổ chức
+        * Tập trung data cho bài toán monitor and audit
+        * Cơ sở để triển khai Landing zone
+
+//Các dịch vụ liên quan Security
+- Giới thiệu một số service liên quan sercurity (trên console)
+    + Certificate Manager
+    + WAF
+    + KMS
+    + Secret Manager
+    + Trusted Advisor
