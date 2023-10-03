@@ -31,5 +31,98 @@ Ex:
   They are going to get married
 
 //Verbs followed by an infinitive
-agree
-aim
+agree         consent     have          offer       shoot
+aim           continue    hesitate      ought       start
+appear        dare        hope          plan        stop
+arrange       decide      hury          prefer      strive
+ask           deserve     intend        prepare     swear
+attempt       detest      leap          proceed     threaten
+be able       dislike     leave         promise     try
+beg           expect      like          propose     use
+begin         fail        long          refuse      wait
+care          forget      love          remember    want
+choose        get         mean          say         wish
+condescend    happen      neglect
+
+//Gerunds
+
+*>Use "V_ing"
+- La chu ngu cua cau: Reading bored him very much
+- Bo ngu cua dong tu: She like painting
+- La bo ngu: Seeing is believing
+- Sau gioi tu:  He was accused of smuggling
+
+*> Su dung "V_ing" sau:
+- V + Gioi tu: apologize to sb for, accuse sb of, ínist on, feel like, suspect sb of, look forward to, dream of, succeed in, object to, approve/disapprove of...
+
+
+*>Gerund cung theo sau nhung cum tu nhu:
+- It's no use / it's no good ...
+- There's no point (in)...
+- It's (not) worth...
+- Have difficult (in)...
+- It's a waste of time/money...
+- Spend/ waste time/ money...
+- Be/get used to...
+- Be/get accustomed to....
+- Do/ Would you mind...?
+- Be busy...
+- What about...? How about...?
+- Go.... (go shopping, go swimming..)
+
+*> stop
+- Stop Ving: Dung lam gi (dung han)
+- Stop to V: dung lai de lam viec gi
+Ex:
+  He has lung cancer. He needs to stop smoking
+  He was tired so he stopped to smoke
+
+*> Remember
+- Remember / forget /regret to V: Nho/quen/tiec se phai lam gi (o hien tai - tuong lai)
+- Remember / forget / regret V_ing: Nho/quen/tiec da lam gi (o qua khu)
+
+*>Try
+- Try to V: Co gang lam gi do
+- Try V_ing: Thu lam gi
+Example:
+  I tried to pass the exam
+  You should try unlocking the door with this key
+
+*> like
+- Like V_ing: Thich lam gi vi no thu vi, hay, cuon hut
+- Like to do: Muon lam gi, can lam gi
+Ex:
+  I like watching TV
+  I want to have this job. I like learn English
+
+*> Need:
+- Need to V: Can lam gi
+- Need V_ing: Can duoc lam gi (=need to be done)
+Ex:
+  I need to go to school today
+  Your hair need cutting
+
+*> Used to / (BE) get used to
+- Used to V: da tung/ thuong lam gi trong qua khu (bay gio khong lam nua)
+- Be/Get used to V_ing: quen voi viec gi(o hien tai)
+ex:
+  I used to get up early when i was young
+  I'm used to getting up early
+
+*> Advise/Allow/Permit/Recommend
+- Advise / allow(permit) / recommend + Object + to V: Khuyen/ cho phep/ de nghi ai do lam gi
+- Advise / allow(permit) / recommend + V_ing: Khuyen/cho phep/ de nghi lam gi
+Ex:
+  He advised me to apply at once
+  He advised applying at once
+  They don't allow us to park Here
+  They don't allow parking Here
+
+*> See/hear/smell/feel/notice/watch
+- See/hear/smell/feel/notice/watch + object + V_ing: Cau truc nay duoc su dung khi nguoi noi chi chung kien 1 phan cua hanh dong
+- See/hear/smell/feel/notice/watch + object + V: cau truc nay duoc su dung khi nguoi noi chung kien toan bo hanh dong
+Ex:
+  I see him passing my house everyday
+  She smelt something burning and saw the smoke rising
+  We saw him leave the house
+
