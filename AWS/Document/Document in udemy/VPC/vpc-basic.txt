@@ -30,7 +30,7 @@
 - Giúp cho các instance trong Private Subnet có thể đi ra internet mà không cần tới public IP
 - Giúp tăng cường bảo mật cho các resource cần private(App, DB)
 
-//Network Access Control List (ACL)
+//Network Access Control List (NACL)
 - Control network in/out đối với subnet được associate
 - Mỗi rule sẽ có các thông số:
     + Priority
@@ -40,16 +40,26 @@
     + Source IP / Destination IP
 - Default ACL sẽ allow all
 - Sử dụng quá nhiều rule của ACL sẽ làm giảm performance
-- Rule của ACL là stateless (Kiểu dạng phải tường minh, có source ip thì phải có destination ip)
+- Rule của ACL là stateless (Inbound, outbound phải tường minh. Không thể tự allow outbout như SG statefull)
 
 
 //Security Group
-- Thường được dùng để gom nhóm các resource có chung network setting(in/out, protocal, port)
+- Elastic network interface(ENI): là một iterface cho phép instance giao tiếp với resource trên internet (kiểu giống thằng firewalld của os)
+- 1 ENI được gắn với 1 hoặc nhiều SG.
+- SG có thể gắn với 1 hoặc nhiều ENI
+- SG thường được dùng để gom nhóm các resource có chung network setting(in/out, protocal, port)
 - Khi thiết kế cần quan tâm tới tính tái sử dụng, dễ dàng quản lí
 - Source của một Security Group có thể là CIDR hoặc id của một Security Group khác
 - Rule của Security Group là statefull và không có Deny
-**Statefull có nghĩa là nếu inbound cho phép traffic đi vào thì khi request tới sẽ nhận được response mà không cần explicit allow Outbount. Khác với Network ACL
+**Statefull có nghĩa là nếu inbound cho phép traffic đi vào thì khi request tới sẽ nhận được response mà không cần explicit allow Outbound. Khác với Network ACL
 
+
+//Điểm khác nhau của SG và NACL
+- SG được gắn vào ENI còn NACL được gắn vào Subnet
+- SG là statefull còn NACL là stateless
+- SG có thể phân quyền cho các instance có thể giao tiếp với nhau hay không
+- NACL phân quyền cho luồng traffic ra vào trong subnet chứ không phân quyền cho các instance được
+- 1 Subnet chỉ có 1 NACL, 1 NACL có thể gắn được vào nhiều subnet
 
 //Route Table
 - Định tuyến traffic trong subnet hoặc gateway sẽ được điều hướng đi đâu

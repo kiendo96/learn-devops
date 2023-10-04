@@ -1,0 +1,9 @@
+//Protecting data at Rest
+- Acccess permissions:
+    + bucket polices
+    + User policies
+    + Access control listts
+- Encryption
+    + Requires access to a key to Encrypt and decrypt data
+    + If the key is gone, so is the data!
+

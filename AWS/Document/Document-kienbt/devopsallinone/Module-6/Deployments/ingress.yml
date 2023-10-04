@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app
+spec:
+  rules:
+  - host: tel4vn.edu.vn
+    http:
+      paths:
+      - backend:
+          serviceName: train-schedule-service
+          servicePort: 8080
+

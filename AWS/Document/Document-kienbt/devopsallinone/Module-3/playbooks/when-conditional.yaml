@@ -1,0 +1,28 @@
+# This playbook should execute after webservers are ready on hosts
+# This playbook will create index file at /var/www/html/index.html 
+# and adding context into index.html 
+# When conditional was use for task will run when conditiona was true
+---
+- hosts: web
+  become: yes
+  tasks: 
+    - name: Create file index.html
+      file: 
+        path: /var/www/html/index.html
+        state: touch 
+
+   # This task only run for node1 
+    - name: Add line to index.html
+      lineinfile:
+        path: /var/www/html/index.html
+        line: "I am DevOps Engineer on node 1"
+      when:
+        - ansible_hostname == "node1" 
+   # This task only run for node2
+    - name: Add line to index.html
+      lineinfile: 
+        path: /var/www/html/index.html
+        line: "I am DevOps Engineer on node 2"
+      when: 
+        - ansible_hostname == "node2"
+        

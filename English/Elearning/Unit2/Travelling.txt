@@ -94,8 +94,23 @@ suggestions.
 //5. Here are some pictures that show different holidays. Do you like these different holidays? Say why and why not?
 //Part 1: Ask and answer these questions about the pictures.
 Do you think holidays in the city are expensive?
--> No, I don't think so. Because, cost of holidays depends on the city 
+-> I don't think that holidays in the city are expensive because if you use normal services. You can save money
 Do you think camping holidays are fun?
+-> I think that camping holidays are fun if you have some friends to join and your friends can have some activities such as: eatting, singing....
+-> I don't think that camping holidays are fun if you're alone. It will be very sad and dangerous
 Do you think visiting old places on holiday is interesting?
+-> I think that visiting old places is interesting because of its historical, we can learn about different culture and tradional in different domain. 
 Do you think walking holidays are a good idea?
+-> I think a walking holiday is a good idea because you can relax and physical health training. Moreover, you will enjoy a clean environment
 Which of these holidays do you like best? Why?
+
+
+//Practice
+- I think that beach holidays are expensive because hotel prices near the sea are very high during the summer months
+- I don't think that beach holidays are expensive because if you want can sleep in a tent near the sea as most of the time the weather is very good
+- Skiing is dangerous because if you have an accident, it's difficult to find a doctor in the mountains
+- I don't think that skiing is dangerous if you have the right equipment with you as well as a teacher to help you
+- Holidays in the countryside are boring if the countryside is far away from a town centre
+- I think that holidays in the countryside aren't boring but you need to have some friends with you to have fun
+- Some people think that camping holidays are fun but i think that those people don't know the dangers about camping
+- I think that city holidays are very interesting because you can do many things such as shopping, sightseeing etc...

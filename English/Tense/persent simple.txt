@@ -1,0 +1,45 @@
+- With tobe:
+[+] S + tobe + O
+[-] S + tobe + not + O
+[?] Tobe + S + O?
+[Wh] Wh + tobe + S + O?
+
+- With Verb:
+[+] S + V + O
+[-] S + do/does + not + V + O
+[?] Do/Does + S + V+ O?
+[Wh] Wh + do/does + S + V + O?
+
+- Diễn tả 1 hành động, thói quen lặp đi lặp lại ở hiện tại  (action, habbit)
+- Diễn tả 1 sự thật hiển nhiên, một chân lý
+- Diễn tả 1 sự việc xảy ra theo lịch trình, thời gian biểu rõ ràng như giờ tàu, máy bay chạy...
+- Diễn tả suy nghĩ, cảm xúc, cảm giác
+- Thường đi kèm với các trạng từ chỉ tần suất: always, usually, often....
+
+//Chia động từ
+- Chủ ngữ dạng số nhiều: I, you , we, they...
+    + Khẳng định: S + V
+    + Phủ định: S + do + not + V
+    + Nghi vấn: Do + S + V
+- Chủ ngữ ở ngôi thứ 3 số ít: He, she, it ...
+    + Khẳng định:
+        * Thêm "s" vào động từ Thường
+        * Thêm "es" vào sau các đông từ tận cùng là: o, ch, sh, s, x, z
+        * Động từ tận cùng là "y" -> đổi thành ies
+    + Phủ  định: S + does + not + V
+    + Nghi vấn: Does + S + V?
+
+//Dấu hiệu nhận biết
+- Khi trong câu có xuất hiện các trạng từ chỉ tần suất: 
+    + Always(luôn luôn), usually(thường xuyên), often(thường xuyên), frequently(thường xuyên), sometimes(thỉnh thoảng), hardly(hiếm khi), nerver(không bao giờ)....
+    + Everyday, everyweek, every  month, every years....
+    + One/ twice/ three times / four times ... a day/ week/ month/ year ....
+
+- Vị trí của các trạng từ từ chỉ tần suất trong câu: 
+    -> Các trạng từ: always, usually, often, sometimes ... Thường đứng trước động từ thường và đứng sau động từ tobe
+
+- Động từ chỉ giác quan: hear, see, smell(bốc mùi), taste(có vị)
+- Động từ chỉ tình cảm, cảm xúc: like, hate, dislike, love, need, want, feel
+- Động từ chỉ hoạt động tinh thần: agree, believe, forget, know, remember, understand, doubt, guess, realise
+- Động từ chỉ sở hữu và một số các động từ các: have, own, belong(thuộc về), appear(có vẻ), seem(dường như), be, consist, concern, include...
+

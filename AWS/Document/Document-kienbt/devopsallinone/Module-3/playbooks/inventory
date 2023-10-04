@@ -1,0 +1,6 @@
+[web]
+node1.com
+node2.com
+
+[db]
+node2.com

@@ -1,0 +1,7 @@
+aws_access_key     = ""
+aws_secret_key     = ""
+private_key_path   = "./btk-terraform.pem"
+key_name           = "btk-terraform"
+billing_code_tag   = "0917380336"
+environment_tag    = "dev"
+bucket_name_prefix = "terraform"

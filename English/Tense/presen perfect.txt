@@ -1,0 +1,34 @@
+//Structure
+[+] S + have/has + Vpp + O
+[-] S + have/has + not + Vpp + O
+[?] Have/has + S + Vpp + O?
+[Wh] Wh + Have/has + S + Vpp + O?
+
+//Cách dùng
+- Diễn tả 1 hành động bắt đầu từ quá khứ và còn tiếp diễn ở hiện tại (các trạng từ thường dùng: nerver, ever, not... yet, since, for, so far, until now, up to now...)
+- Diễn tả 1 hành động vừa mới xảy ra (các trạng từ thường dùng: just, recently, lately)
+- Diễn tả 1 hành động xảy ra trong quá khứ nhưng không xác định rõ thời gian(already, before)
+- Một số cụm thường dùng với hiện tại hoàn thành: 
+    so far = until now = up to now, how long? It is the first / second / third ... time, twice / many / three ... times
+
+//Notes
+- Cách dùng của since và for
+    + Since: Cho mốc thời gian (2000, september, I last saw you...)
+    + For: cho khoảng thời gian (3 months, a long time, ages...)
+- S + has/have + V3/ed .... since + S + V2/ed
+Ex: We have known each other since we worked in this factory
+
+- Các trạng từ: never, ever, just, already thường đứng giữa trợ động từ (has/have) và động từ chính (V3/ed)
+Eg: I have already finished my homework
+
+//Exercise
+1. Andy has become a big star
+2. Have you ever seen a ghost?
+3. We haven't drunk beer recently
+4. My sister has slept since lunchtime
+5. All my friends have moved to London
+6. Has the postman come yet?
+7. Could you clean the car? - I have already done it
+8. I'm sure they have met before
+9. She has lived here for exactly three years
+10. He hasn't called since he moved to New York

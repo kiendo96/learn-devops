@@ -1,0 +1,14 @@
+# This playbook will show you how to use ignore an error happend when you run playbook
+# Module get_url will be use to download file from URL 
+--- 
+- hosts: localhost
+  tasks:
+    - name: Download File From URL
+      get_url:
+        url: "http://{{item}}/index.html"
+        dest: /tmp/{{item}}
+      ignore_errors: yes   # This line mean when ansbile got any error it should ignore it
+      with_items:
+        - node1.com
+        - node2.com
+        

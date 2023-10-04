@@ -1,0 +1,25 @@
+# This playbook will show you how to use tags to run specific task in playbook
+# to run specific tags you should follow command bellow
+# ansbile-playbook -i inventory ansible-tags.yml --tags (tags-name-want-to-run)
+# ansbile-playbook -i inventory ansible-tags.yml --skip-tags (tags-name-want-to-skip)
+# Remmember that you can set many tag for one task
+---
+- hosts: web
+  become: yes
+  tasks: 
+    - name: Deploy app binary 
+      copy: 
+        src: /home/ansible/ansbile/hello 
+        dest: /var/www/html/hello
+      tags:
+        - webdeploy
+    
+- hosts: db
+  become: yes
+  tasks: 
+    - name: Deploy db scripts
+      copy:
+        src: /home/ansible/ansible/script.sql
+        dest: /opt/db/scripts/script.sql
+      tags: 
+        - dbdeploy

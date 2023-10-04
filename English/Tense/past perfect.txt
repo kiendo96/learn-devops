@@ -1,0 +1,62 @@
+[+] S + had + Vpp + O
+[-] S + had + not + Vpp + O
+[?] Had + S + Vpp + O?
+[Wh] Wh + Had + S + Vpp + O?
+
+//Using
+- Diễn tả hành động đã xảy ra và đã hoàn thành trước một hành động khác trong quá khứ: Thường sử dụng các từ nối như before, after, just, when, as soon as, by the time, util....
+Ex:
+    When I came, he had gone to bed (Khi tôi đến thì anh ta đã đi ngủ)
+    The train had left when we arrived at the station (Tàu đã rời đi khi chúng tôi tới nhà ga)
+
+- Diễn tả một hành động đã xảy ra và kéo dài tới một thời điểm nhất định trong quá khứ
+Ex:
+    We had had that car for ten years before it broken down
+    By the time I finished my studies, I had been in SG for over 4 years.
+
+- Diễn tả một hành động xảy ra trước một thời điểm nhất định trong quá khứ
+Ex:
+    I had gone to school before 7 a.m yesterday
+    She had come back her hometown before June last year
+
+- Diễn tả 1 hành động xảy ra như điều kiện tiên quyết cho hành động khác trong quá khứ
+Ex:
+    I had work hard and was ready to pass the exam
+    I had had a girlfriend and would marriage to her
+
+- Dùng trong câu điều kiện loại 3, để diễn tả điều không có thực trong quá khứ
+Ex:
+    If she had told me the truth  yesterday, I would have helped her
+
+- Dùng trong câu ước để diễn tả ước muốn trong quá khứ
+Ex:
+    I wish i had gone with you yesterday
+
+
+//Dấu hiệu nhận biết
+- Trong câu có các từ:
+    + When:
+    Ex: When they arrived at the airport, her flight had taken off
+
+    + Before: Trước before sử dụng quá khứ hoàn thành và sau before using past simple
+    Ex: He had done his homework before his mother asked his to do so.
+
+    + After: Trước "after" sử dụng quá khứ đơn và sau after sử dụng past perfect
+    Ex: They went home after they had eaten a big roasted chicken
+
+    + By the time: Vào thời điểm trong quá khứ
+    Ex: He had cleaned the house by the time her mother came back
+
+//Phân biệt quá khứ đơn và quá khứ hoàn thành
+=> Thì quá khứ đơn mô tả một hành động xảy ra trong quá khứ và đã chấm dứt hẳn còn thì quá khứ hoàn thành thì lại có ý nghĩa nhấn mạnh vào hành động đó xảy ra trước một mốc thời gian cụ thể hoặc một hành động khác đã chấm dứt trong quá khứ.
+
+//Công thức nhớ nguyên tắc
+
+default:   [Before, by the time] + Past simple + Past perfect
+or         Past perfect + [Before, by the time] + Past simple
+=> sau [before, by the time] là quá khứ đơn
+
+default: [after, as soon as] + past perfect + past simple
+or:      Past simple + [after, as soon as] + past perfect
+=> Sau [after, as soon as] là quá khứ hoàn thành
+

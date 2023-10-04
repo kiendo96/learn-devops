@@ -1,0 +1,18 @@
+# This playbook will show you how to use variable to retrieve date from the command
+--- 
+- hosts: localhost
+  task:
+    - name: Create file
+      file:
+        path: /tmp/newfile
+        state: touch 
+      register: output # This will save the output of command above to variable name "output"
+
+    - debug: msg="Register output is {{output}}"
+
+    # This tasks bellow will show you how to use value of variable that you create above
+    - name: Edit file
+      lineinfile:
+        path: /tmm/newfile
+        line: "{{output.uid}}"
+        

@@ -1,0 +1,21 @@
+//Structure
+[+] S + tobe + Ving + O
+[-] S + tobe + not + Ving + O
+[?] Tobe + S + Ving + O?
+[Wh] Wh + Tobe + S + Ving + O?
+
+- Diễn tả 1 hành động xảy ra tại thời điểm nói: now, right now, at the moment, at this time, at present...
+Ex:
+    We are studying Math now
+    She is working to school at the moment
+- Diễn tả sự việc đang diễn ra xung quanh thời điểm nói:
+Ex:
+    I am looking for a job
+    i am working for BIDV company
+- Diễn tả một sự việc xảy ra trong tương lai theo một kế hoạch đã được lên lịch sẵn
+Ex:
+    I bought the ticket yesterday. I am flying to NewYork tomorrow
+
+- Diễn tả 1 sự không hài lòng hay phàn nàn về việc gì trong câu sử dụng "always, continually"
+Ex:
+    He is always comming late.

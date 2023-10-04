@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vietnam
+  labels:
+    name: vietnam
+spec:
+  containers:
+  - name: vietnam
+    image: kienbt/vietnam:v0.4
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080

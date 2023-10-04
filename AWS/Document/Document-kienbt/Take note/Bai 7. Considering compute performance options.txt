@@ -1,0 +1,186 @@
+//Compute:
++ Processing
++ Capacity: 
++ Scaling: Kha nang scale 
++ Response: Kha nang phan hoi
++ Economical: Tiet kiem tai chinh
+
+- Understand your workload
+- understand AWS Compute
+- Gather/analyze data
+- test,test,test
+
+//AWS compute option:
+- EC2: Elastic Cloud Compute
+- ECS: Elastic Container service
+- AWS Lambda
+
+//EC2
+- Original/default option
+- Virtualized servers
+- Choose resources
+- You own the OS
+
+//EC2 General Resource
+- vCPUs
+- Memory
+- Storage
+- Network
+- Burstable performance: privide a baseline level of CPU performance with the ability to burst above the baseline
+- GPU
+- FPGA
+
+//EC2 Instance type:
+- General purpose
+- Compute optimized
+- Memory optimized
+- Accelerated computing
+- Storage optimized
+- Bare metal
+
+
+//EC2 Auto Scaling
+- Metrics based
+- Schedule based
+- Health based
+
+
+//ECS
+- Similar workload as EC2
+- Migrate apps to the cloud
+- Long running apps
+- Batch Processing
+- Microservices
+
+- Better utilize resources
+- ELB
+- Autoscaling
+- AWS Fargate: Remove toan bo management voi phan behind the sence cua ECS. Scale se tu dong
+
+//Lambda(Serverless)
+- Backend Processing
+- Event Processing
+- Stream Processing
+- Data Processing
+
+- AWS resource triggers
+- API endpoints
+- Choose memory, get CPU
+- Beware of limits
+
+- Simply excute code
+- Automatic Scaling
+- Fault tolerant
+- Pay for usage - really
+
+//Apply Our knowledge
+
+//Migrating to AWS Compute
+- Portlolio of web applications
+- Global presence
+- Data Collection from clinical trials
+
+*>Considerations for choice
+- First of many
+- Time to migrate
+- Predictable usage
+
+=>Lua chon ECS
+    - Lift and shift
+        + Easy to containerize
+        + Able to scale
+    - Size instances
+    - Leverage for future applications
+
+=>Build for the cloud
+    - New web application
+    - Match medical devices to needs
+    - Global user base
+
+*>Considerations for choise
+- Manage costs
+- Global reach
+- Minimal maintenance
+=> Use Lambda:
+    - Services behind static site
+    - Pay for runtime
+    - Scales based on demand
+    - Multiple regions
+    - No servers to maintain
+
+////Storage performance
+- Sharing
+- Latency
+- Throughput
+- Persistence
+- File Size
+- Access Method
+- Availability
+- Durability
+- Frequency
+    + Access
+    + Update
+
+//AWS storage options
+- S3 Simple storage service
+- S3 glacier
+- EBS Block storage
+- EFS Elastic File System
+
+
+//S3 - global
+- Shared access
+- Low Latency
+- High Throughput
+- High availability
+- Data Durability
+- Encryption
+- Access management
+- Lifecycle management
+- Query-in-place: Co the truy cap bang query
+- Cac type s3:
+    + Standard
+    + Intelligent tiering
+    + Standard infrequent access
+    + One-Zone infrequent access
+
+
+//S3 - Glacier
+- Archival storage
+- Encrypted
+- Access control
+- Audit logging
+- Immutable
+- Durable
+- Query stored data without retrieval
+- Latency options:
+    + Expedited
+    + Standard
+    + Bulk
+- Economical
+
+//EBS
+- Attached (mount vao EC2 - default chi duoc attach vao 1 EC2 - co the acctach toi da 16 EC2 built on the Nitro System)
+- Relicated
+- Access control
+- IOPS optimized(SSD)
+- Throughput optimized (HDD)
+- snapshot: duoc attach vao EC2 tren cung AZ
+- Elastic volumes
+- Encrypt
+
+
+//EFS
+- Shared access
+- Elastic
+- available
+- Durable
+- performance
+    + General purpose
+    + Max I/o
+- Throughput:
+    + Bursting
+    + Provisioned
+
+- Security
+- Encryption
