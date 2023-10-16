@@ -1,0 +1,16 @@
+//Start Instance
+-> Create a instance ---pending---> Defined instance type,AMI ----> running(charging)
+
+//Stop and start instance (EBS volume)
+-> If instance is don't healthy or application don't expect and root volume is EBS volume -> stop/start instance try troubleshoot
+  -> When "stop instance" -> stopped -> troubleshoot issue
+  -> start instance -> pending -> chuyển instance sang 1 host khác (vẫn có trường hợp giữ lại) -> IPv4 private vẫn được giữ lại -> running
+
+//Hibernate(ngủ đông) instance (EBS volume)S
+- Khi hibernate instance -> AWS sẽ báo hiệu (signal) hệ điều hành thực hiện chế độ hibernate (tạm ngừng/suspend vào đĩa)  -> Lưu bộ nhớ từ instance(RAM) vào EBS root volume -> AWS duy trì(persit) EBS root volume và bất kì EBS data nào đính kèm
+- Khi start instance -> EBS root volme sẽ được restore về trạng thái trước đó và nội dung RAM sẽ được reload -> Các volume đính kèm trước đo sẽ được reattach và instance vẫn giữ được instance ID của nó
+
+
+//Terminate instance
+-> Terminate -> shutting-down or terminated
+- Nếu bật termination protection => Không thể terminate instance bằng console, CLI, API
