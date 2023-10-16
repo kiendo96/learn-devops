@@ -1,0 +1,29 @@
+surfing: luớt sóng
+baseball: bóng chày
+horse racing: đua ngựa
+badminton: cầu lông
+cycling: đua xe đạp
+volleyball: bóng truyền
+swimming: bơi
+squash: bóng quần
+football: bóng đá
+windsurfing: luớt ván buồm
+skiing: trượt tuyết
+jogging: chạy bộ (kiểu chạy thể dục)
+running: chạy (nhưng là thi)
+popular: phổ biến
+excited: hào hứng, kích thích
+boring: chán
+bored: chán
+national team: tuyển quốc gia
+
+1. How popular are these sports in your country?
+I think the popular sport in Vietnam is football
+2. What other sports are popular in your country?
+- Some other popular sports in Vietnam such as volleyball, cycling, badminton,...
+3. What sports do you think are the most exciting/ the most boring?
+- I think that football is the most exciting in Vietnam and maybe, running is the most boring
+4. Are you a sports fan? why or why not?
+- Yes, of course. Because, I think playing this sport is very interesting, reduces stress and I feel comfortable when playing port
+- Yes, I am. I am a big fan of football and i usually play it with my friends at the weekend. I love sports beause it help me to reduce stress and bring me a lot of fun
+- No I am not because it wastes time and it can cause serious sports injuries

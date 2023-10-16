@@ -1,0 +1,91 @@
+//IAM concept
+- Để có thể thiết kế và xây dựng hệ thống trên AWS đảm bảo tiêu chí về security cũng như không gặp trouble, cần nắm vững concept của IAM gồm:
+    + user
+    + Group
+    + Role
+    + Permission (Policy)
+
+//Policy
+- Quy định việc ai/ cái gi có thể hoặc không thể làm gì
+- Một policy thường bao gồm nhiều Statement quy định Allow/Deny hành động trên resource dựa trên condition
+- Mỗi statement cần định nghĩa các thông tin:
+    + Effect: Có 2 loại là Allow & Deny
+    + Action: Tập hợp các action cho phép thực thi
+    + Resource: Tập hợp các resource cho phép tương tác
+    + [Condition]: Điều kiện kèm theo để applyy statement này
+- Policy có thể gắn vào Role/Group/user
+
+- Policy có 2 loại là: Inline Policy và Managed Policy
+    + Inline policy: Được attach trực tiếp lên Role/User/Group và không thể tái sử dụng ở Role/User/Group khác
+    + Managed Policy: Được tạo riêng và có thể gắn vào nhiều User/Group/Role
+- Managed Policy lại được chia thành 2 loại AWS Managed và User Managed
+- Việc lựa chọn giữa Inline và Managed phải được tính toán dựa trên các yếu tố: Tính tái sử dụng, quản lý thay đổi tập trung, versioning & rollback
+
+*Sample of an IAM Policy:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        "Effect": "Allow",
+        "Action": [
+            "ec2:StartInstance",
+            "ec2:StopInstance"
+        ],
+        "Resource":"arn:aws:ec2:*:*:instance/*",
+        "Condition": {
+            "StringEquals": {
+                "aws:ResourceTag/Environment": "Dev"
+            }
+        }
+    ]
+}
+
+=> Policy này được phép thực hiện 2 action "stop va start" toàn bộ EC2 instance với điều kiện là resouce EC2 instance đấy có tag là Dev
+
+
+//User
+- Đại diện cho 1 profile của 1 người dùng trên AWS account
+- User có thể login vao AWS console sử dụng username/pasword
+- User mặc định khi tạo ra sẽ không có quyền gì. Cần cấp quyền cho user thông qua Policy hoặc Group
+- User có thể phát hành access-key/secret-key để sử dụng CLI hoặc test SDK trong quá trình test code. Cặp access/secret key này cũng sẽ đại diện cho user (thay vi dùng username/password)
+
+
+//Role
+- Đại diện cho 1 quyền trên AWS. Không giống như khái niệm Role của 1 user nhưu trong phân quyền hệ thống
+- Sử dụng  Role khi muốn cấp quyền cho 1 thực thể có thể tương tác với các resource khác  trên AWS. Thường được dùng để gắn vào EC2, Lambda, container
+- Có thể sử dụng để cấp quyền cho 1 user nằm ở AWS account khác mà không muốn tạo ra user profile cho họ trên account AWS của mình. Bằng cách cho phép 1 user assume-role tới 1 role trên account, user có thể có các quyền tạm thời để thực hiện thao tác
+*Note: Các resource trên aws không thể tương tác với nhau nếu không được cấp role với quyền phù hợp.
+
+//Group
+- Đại diện cho 1 nhóm user trên hệ thốngg
+- Sử dụng khi muốn phân chia quyền dựa theo vai tro trong dự án, phòng ban...
+- Nên thiết kế các nhóm user va phân quyền hợp lí, sau đó khi có ngươi mới chỉ cần add user đó vào nhóm cần thiết giúp tiết kiệm thời gian và tránh sai sót
+- Lưu ý thiết kế tránh chồng chéo quyền
+- Một Group không thể chứa Group khác
+- Một user có thể không thuộc group nào hoặc thuộc nhiều group
+- Một group có thể không có user nào hoặc nhiều user
+
+
+//Compare IAM policy with Resource policy
+- Một số resource như S3, SQS, KMS hỗ trợ định nghĩa policy ở cấp độ resource
+- Về cơ bản cấu trúc resource policy tương tự IAM policy nhưng được gán cho một resource cụ thể
+- Quyền của một user(group/role) đối với resource sẽ là kết hợp của IAM policy & resource policy sau khi đã loại trừ Deny
+- Một số resource cân security cao sẽ thường được ưu tiên setting resource policy
+Lưu ý: IAM policy nói chung không có tác dụng đối với account root
+=> Nếu lỡ tay setting deny all không thao tác được trên một resource có thể login bằng account rôt để chỉnh lại
+
+//IAM - Assume Role
+- Yêu cầu AWS STS cung cấp 1 set temporary security credential để có thể access resource mà thông thường ta không có quyền access
+- Có thể assume tới 1 role trên cùng account hoặc khác account
+- Sử dụng trong các usecase cấp quyền tạm thời mà không muốn tạo nhiều user, quản lý tập trung user thông qua Single-Sign-On thay vì tạo user trên từng account
+
+
+//IAM - Switch Role
+- Khi muốn cấp quyền access cho user X vào account B nhưng không muốn tạo profile, ta có thể cho phép user X switch role sang role Y của account B từ đó có thể thực hiện các thao tác trên account B
+- Sau khi switch role, user sẽ rời bỏ quyền ban đầu của mình và sẽ tương tác với các resource khác với tư cách là role Y
+- Để switch role được, role Y phải thiết lập trust policy trước đó cho phép user X có thể switch role
+
+
+//IAM - Trust policy
+- Quy định đối tượng nào có thể assume sang role được gắn trust policy này
+- Đối tượng được trust có thể là User/Role/AWS Service
+*Trong rất nhiều trường hợp các dịch vụ của AWS cần được setting trust policy một cách tường minh để có thể assume sang một role cần thiết

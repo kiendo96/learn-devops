@@ -1,0 +1,8 @@
+Dưới đây là các nguồn học em đã sử dụng:
+Lý thuyết: https://www.udemy.com/.../aws-certified-solutions...
+Thi thử: https://www.udemy.com/.../practice-exams-aws-certified...
+Cheat Sheet: https://tutorialsdojo.com/aws-cheat-sheets/
+Dummy question (Cần xem kĩ đáp án trong phần discussion): https://www.examtopics.com/.../aws-certified.../view/1/
+Youtube (Hand-ons rất dễ hiểu):
+https://www.youtube.com/@Viet100
+Em hy vọng chúng ta có thể tiếp tục đồng hành và hỗ trợ lẫn nhau trong tương lai. Xin cảm ơn!
