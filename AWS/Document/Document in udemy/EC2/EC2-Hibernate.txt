@@ -21,3 +21,8 @@
 - Supported instance families: C3, C4, C5, I3, M3, R3, R4,, T2, T3...
 - Instance RAM size: must be less than 150GB
 - Instance size: not supported for bare metal instances
+- AMI: Amazon Linux 2, Linux AMI, Ubuntu, RHEL, CentOS & Windows...
+- Root volume: must be EBS, encrypted, not íntance store and large
+- Available for On-demand, Reserved and Spot instance
+- An instance can NOT be hiberrnated more than 60 days
+
