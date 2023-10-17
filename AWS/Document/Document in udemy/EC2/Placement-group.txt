@@ -1,0 +1,35 @@
+//Placement Groups
+- Sometimes you want control over the EC2 instance placement strategy
+- That strategy can be defined using placement groups
+- When you create a placement group, you specify one of the following strategies for the group:
+    + Cluster: clusters instances into a low-latency group in a single Availability Zone
+    + Spread: spreads instances across underlying hardware (max 7 instances per group per AZ) - Critical application
+    + Partition: spreads instances across many different partitions (which rely on different sets of racks) within an AZ. Scales to 100s of EC2 instances per group(Hadoop, Cassandra, Kafka)
+
+//Placement group clusters
+- Pros: Great network (10Gbps bandwidth between instances)
+- Cons: If the rack fails, all instances fails at the same time
+- Use case:
+    + Big data job that needs to complete fast
+    + Application that needs extremely low latency and high network throughput
+
+//Placement Group Spread
+- Pros:
+    + Can span across Availability Zones (AZ)
+    + Reduced risk is similtaneous failure
+    + EC2 Instances are on diffrent physical hardware
+- Cons:
+    + Limited to 7 instances per AZ per placement group
+- Use casee:
+    + Application that needs to maximize high Availability
+    + Critical Applications where each instance must be isolated from failure from each other
+
+//Placement Group Partition
+- Up to 7 partitions per AZ
+- Can span across multiple AZs in the same region
+- Up to 100s of EC2 Instances
+- The instancs in a partition do not share racks with the instances in the other partitions
+- A partition failure can affect many EC2 but won't affect other partitions
+- EC2 instances get access to the partition informations as metadata
+- Usecases: HDFS, HBase, Cassandra, Kafka
+

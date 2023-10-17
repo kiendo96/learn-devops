@@ -14,3 +14,17 @@
 //Terminate instance
 -> Terminate -> shutting-down or terminated
 - Nếu bật termination protection => Không thể terminate instance bằng console, CLI, API
+
+
+//Launch Template
+- Can use a launch template to create a new instance
+- Co the tao mot hoac nhieu launch teamplte version duoc danh so. Moi version co the co cac tham so khoi chay khac nhau
+
+//Cac han che cua Launch Template
+- Limit: 5000 launch template/region, 10000 version/launch-template
+- Cac tham so cua launch template la custom. Tuy nhien, phai dam bao rang yeu cau (request) khoi chay instance cu aminh phai bao gom tat ca cac tham so bat buoc
+- Cac tham so cua launch template khong duoc xac dinh (validate) day du khi ta tao launch template. 
+
+//Elastic IP
+- Giong kieu thue 1 IP public cua AWS (max = 5 elastic IP per account)
+- Default EC2 duoc gan 1 IP public nhung khi attach Elastic IP to EC2 thi IP-public se bi thay the bang Elastic-IP

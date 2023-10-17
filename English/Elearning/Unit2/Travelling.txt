@@ -95,6 +95,9 @@ suggestions.
 //Part 1: Ask and answer these questions about the pictures.
 Do you think holidays in the city are expensive?
 -> I don't think that holidays in the city are expensive because if you use normal services. You can save money
+
+=> Yes, I think that holidays in the city are expensive. Because, the costs of food and hotel are very expensive. The services in the city are also expensive because the city is crowded, so the demand for these services is high
+
 Do you think camping holidays are fun?
 -> I think that camping holidays are fun if you have some friends to join and your friends can have some activities such as: eatting, singing....
 -> I don't think that camping holidays are fun if you're alone. It will be very sad and dangerous
