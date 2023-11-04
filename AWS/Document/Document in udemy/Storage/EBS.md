@@ -189,7 +189,7 @@
 
 
 ## Compare EBS vs EFS
-+> Elastic Block Storage: Tru thang io1/io2 thi no chi mount duoc 1-1
+- Elastic Block Storage: Tru thang io1/io2 thi no chi mount duoc 1-1
     - EBS Volumes:
         + One instance (except multi-attach io1/io2)
         + are locked at the AZ level
@@ -201,7 +201,7 @@
         + EBS backups use IO and you shoudn't run them while your application is handling a lot of traffic
     - Root EBS Volumes of instances get terminated by default if the EC2 instance gets terminated (you can disable that)
 
-+> Elastic File System: giong NFS
+- Elastic File System: giong NFS
     - Mounting 100s of instances across AZ
     - EFS share website files (Wordpress)
     - Only for Linux Instance (POSIX)
