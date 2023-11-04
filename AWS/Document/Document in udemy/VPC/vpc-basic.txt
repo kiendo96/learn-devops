@@ -118,6 +118,10 @@
 - Transit Gateway:
     + Đóng vai trò như 1 hub trung chuyển giữa On-Premise và AWS Cloud hoặc giữa nhiều VPC trên Cloud
     + Thường sử dụng kết hợp với Site-to-Site VPN hoặc Direct Connect
+- Customer Gateway:
+    + Là thiết bị vật lí của của customer và được sử dụng để làm kết nối site-to-site VPN, tunnel
+    + Nôm na thì nó là router vật lí tại đầu khách hàng. Được sử dụng để làm 1 đường private giữa AWS với on-premise
+
 - Site to Site VPN:
     + Là hình thức kết nối network Onpremise với network trên AWS Cloud
     + Customer gateway: Thiết bị vật lý hoặc virtual appliance ở phía On-Premise có nhiệm vụ điều hướng traffic
@@ -130,3 +134,6 @@
     + Bandwidth dao động từ 50Mbps-100Gbps
     + Khó setup hơn so với VPN, cần làm việc với nhà cung cấp direct connection
 
+- Flow log:
+    + Được sử dụng để lưu lại traffic của instance
+    + Được đẩy lên CloudWatch

@@ -15,7 +15,7 @@
 
 //Features of S3
 - S3 cung cấp các tính năng cơ bản sau:
-  + Storage classes: cung cấp nhiều hình thức lưu trữ phù hợp cho nhiều loại data khác nhau về nhu cầu access, yêu cầu durability, thời gian lưu trữ khác nhau giúp KH tùy chọn được class lưu trữ phù hợp từ đó tối ưu chi phí
+  + Storage classes: cung cấp nhiều hình thức lưu trữ phù hợp cho nhiều loại data khác nhau về nhu cầu access, yêu cầu durability thời gian lưu trữ khác nhau giúp KH tùy chọn được class lưu trữ phù hợp từ đó tối ưu chi phí
   + Storage management: Cung cấp nhiều tính năng liên quan quản lý như: Life Cycle, Object Lock, Replication, Batch Operation
   + Access Management: Quản lý truy cập đến bucket và các thư mục thông qua cơ chế resource permission & access list. Block public access via IAM, bucket policy, S3 access point, Access Control List, Ownership, Access Analyzer
   + Data processing: kết hợp vói lambda, SNS, SQS để hỗ trợ xử lý data 1 cách nhanh chóng

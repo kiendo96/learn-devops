@@ -6,6 +6,31 @@
     + High Security: nếu kết hợp với các dịch vụ khác như WAF, Security Group
 - ELB có thể đễ dàng kết hợp với đa dạng backend sử dụng EC2, Container, Lambda
 
+##Why use a load balancer?
+- Spread load across multiple downstream instaces
+- Expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances
+- Do regular health checks to your instances
+- Provide SSL termination (HTTPS) for your websites
+- Enforce stickiness(gan bo/gan ket/ket dinh) with cookies
+- High Availability across zones
+- Separate public traffic from private traffic  //tach biet traffic public va private
+
+##Why use an Elastic LoadBalancer
+- An Elastic LoadBalancer is a managed load balancer
+    + AWS gurantee that it will be working
+    + AWS takes care of upgrades, maintainance, high availability
+    + AWS provides only a few configurations knobs
+- It costs less to setup your own loadbalancer but it will be a lot more effort
+- It is integrated with many AWS offerings / services
+    + EC2, EC2 Auto Scaling Groups, Amazone ECS
+    + AWS Certificate Manager (ACM), CloudWatch
+    + Route53, AWS WAF, AWS global Accelerator
+
+##Health checks
+- Health checks are crucial for LoadBalancer
+- They enable the load balancer to know if instances it forwards traffic to are available to reply to request
+- The health check is done on a port and a route (/health is common)
 
 ##Các thành phần cơ bản của Load Balancer
 - Load Balancer cho phép setting các listener(trên 1 port nào đó vd HTTP:80, HTTPS:443)
@@ -16,22 +41,64 @@
 
 ##Type of Load Balancer
 - Các ELB được phân chia phụ thuộc vào việc nó hoạt động trên layer nào của mô hình OSI layer
+- AWS co 3 loai managed LoadBalancer:
+    + Application LoadBalancer(V2 - new generation) - 2016 - ALB
+        +> HTTP, HTTPS, WebSocket
+    + Network LoadBalancer (v2 - new generation) - 2017 - NLB
+        +> TCP, TLS(secure TCP), UDP
+    + Gateway LoadBalancer - 2020 - GWLB
+        +> Operates at layer 3 (Network layer) - IP Protocol
+
+- Overall, it is recommended to use the newer generation load balancers as they provide more features
+- Some loadbalancer can be setup as internal (private) or external (public) ELBs
 
 1> Application Load Balancer
 - Là loại LB thường dùng, phù hợp cho đa số các nhu cầu
 - Hoạt động trên layer 7 - Application
-- Do hoạt động trên layer 7 nên có một số ưu thế vượt trội so với các loại LB khác:
-    + Hỗ trợ Path routing condition
-    + Hỗ trợ host condition, cho phép dùng nhiều domain cùng trỏ vào 1 ALB
-    + Hỗ trợ routing dựa trên thuộc tính của request(header, IP...)
-    + Tích hợp được với Lambda, Container services
-    + Hỗ trợ trả về custom HTTP respone
+- Load balancing to multiple HTTP applications across machines (target group)
+- Load balancing to multiple applications on the same machine (ex: containers)
+- Support for HTTP/2 and WebSocket
+- Support redirects (from HTTP to HTTPS for example)
+- Routing tables to different target groups:
+    + Routing based on path in URL (example.com/users & example.com/posts)
+    + Routing based on hostname in URL (one.example.com & other.example.com)
+    + Routing based on Query String, Header (example.com/user?id=123&order=false)
+
+- ALB are a great fit for micro services & container-based application (example: Docker & Amazon ECS)
+- Has a port mapping feature to redirect to a dynamic port in ECS
+- In comparison, we'd need multiple Classic Load Balancer per application
+
+#Target Groups
+- EC2 instances (can be managed by an Auto Scaling Group) - HTTP
+- ECS tasks (managed by ECS itself) - HTTP
+- Lambda funtions - HTTP request is translated into a JSON event
+- IP addresses - must be private IPs
+- ALB can route to multiple target groups
+- Health checks are at the target group level
+
+#Good to know:
+- Fixed hostname (XXX.region.elb.amazonaws.com)
+- The application servers don't see the IP of the client directly
+    + The true IP of the client is inserted in the header X-Forwarded-For
+    + We can also get Port (X-Forwarded-Port) and proto (X-Forwarded-Proto)
+
 
 2> Network Load Balancer
 - Hoạt động trên layer 4 - Transport
-- Hỗ trợ 2 giao thức TCP và UDP
+- Hỗ trợ 2 giao thức TCP và UDP (forward TCP & UDP to your instance)
 - Không hỗ trợ nhiều hình thức rule routing
 - Thường dùng cho những hệ thống có workload rất cao, lên tới hàng triệu request/s
+- Less latency ~ 100ms (vs 400 ms for ALB)
+- NLB has one static IP per AZ and supports asigning Elastic IP (helpful for whitelisting specific IP)
+- NLB are used for extreme performance, TCP or UDP traffic
+- Not included in the AWS free tier
+
+##NLB - Target Group
+- EC2 instance 
+- IP address - must be private IPs
+- Application Load Balancer
+- Healcheck support the TCP,HTTP and HTTPS Protocal
+
 
 3> Classic Load Balancer
 - Sử dụng để điều phối traffic đi tới các Classic EC2 Instance
@@ -39,15 +106,28 @@
 
 4> Gateway Load Balancer
 - Giúp triển khai, scale và quản lý các Virtual Application(3rd party)
+    Example: Firewalls, Intrusion Detection and Prevention Systems, Deep Packet Inspection Systems, payload maniplation,...
 - Mục đích: Firewall, phát hiện ngăn chặn xâm nhập (intrusion detection and prevention systems), kiểm tra gói tin chuyên sâu
 - Hoạt động trên Layer 3 (network) và Layer 4 (Transport)
 - GLB listen trên tất cả các port và forward trafic đến các target group dựa trên các rule
 - GLB sử dụng GLB Endpoint để trao đổi trafic giữa VPC của service provider và VPC của consumer 
+- Combines the following functions:
+    + Transparent(minh bach) Network Gateway: Single entry/exit for all trafic
+    + Load Balancer: distrabutes traffic to your virtual application
+- Uses the GENEVE protocol on port 6081
 
-//Example:
+##Example:
 - Gateway LB được đặt bên trong VPC của Security provider
 - Traffic đi vào và đi ra hệ thống bên VPC của consumer được cấu hình routing để đi qua Gateway LB trước khi đến được target cần đến
 
+User(Source)  ---- route table-----> Gateway LoadBalancer ----> Target Group (3rd Party Security Virtual Applicances)  ----traffic-----> GW LB ---trafic--> Application(destination)
+
+##Target Groups:
+- EC2 instances
+- IP addresses - must be private IPs
+
+
+////
 ##Cách hoạt động của load Balancer
 - Mặc định LB sẽ phân phối request từ client -> target trong 1 Target Group theo tỷ lệ cân bằng (Round Robin) //kể cả khi target nằm trong nhiều hơn 1 target Group
 - LB có thể điều hướng tới nhiều hơn 1 target. Trong trường hợp multi-target, việc điều hướng tới target nèo sẽ được quyết định bởi 1 số rule sau:
@@ -56,6 +136,41 @@
     + Fixed ratio
         VD: Target group 01 nhận 20% traffic
             Target group 02 nhận 80% traffic
+
+
+5>Sticky Session(Session Affinity):
+- La 1 feature cua ELB.
+- Default: thi neu khong co skicky session thi khi client send a request thi se random vao 1 instance nao do
+- Enable sticky session: Khi 1 user send a request to Load Balancer -> chi dinh 1 server xu ly request do -> next time, van se la server do xu ly request
+- Tinh nang nay chu yeu su dung de dam bao mot in-proc session nao do kong bi mat boi cac request session duoc route den cac may chu khac nhau
+- Option nay chi hoat dong voi Classic LB & Application LB
+- De enable option nay thi Clien phai ho tro Cookies
+- The "cookie" used for stickess has an expiration date you control
+- Use case: make sure the user doesn't lose his session data
+
+#Cooki Names
+- Application-based Cookies
+    + Custom cookie
+        +> Generated by the target
+        +> Can include any custom attributes required by the application
+        +> Cookie name must be specified individually for each target group
+        +> Don't use AWSALB, AWSALBAPP or AWSALBTG (rểved for use by ELB)
+    + Application cookie
+        +> Generated by the load balancer
+        +> Cookie name is AWSALBAPP
+- Duration-based Cookies
+    + Cookie generated by the load balancer
+    + Cookie name is AWSALB for ALB, AWSELB for CLB
+
+
+
+##Cross zone Load Balancer (Can bang tai giua cac Zone)
+- ELB là 1 dịch vụ hoạt động cross zone (AWS suggest chọn tất cả các zone có thể khi khởi tạo ELB)
+- Nếu Cross zone load balance được enable, ELB sẽ điều hướng request từ client một cách cân bằng tới các target => Không cần biết bao nhiêu Zone
+- Nếu Cross zone load balance được disable, ELB sẽ điều hướng request từ client một cách cân bằng tới mỗi Zone => Trong mỗi Zone sẽ chia đều cho các Instance
+*Noted:
+    + By default, Application Load Balancer sẽ Enable cross zone, không thể tắt (no charge)
+    + By default, Network Load Balancer sẽ Disable cross zone. Cần enable sau khi khởi tạo (have charge)
 
 
 ##ELB cost
@@ -70,10 +185,13 @@
 - AWS sẽ quy đổi thành LCUs để ước tính chi phí
 
 
-##Cross zone Load Balancer
-- ELB là 1 dịch vụ hoạt động cross zone (AWS suggest chọn tất cả các zone có thể khi khởi tạo ELB)
-- Nếu Cross zone load balance được enable, ELB sẽ điều hướng request từ client một cách cân bằng tới các target => Không cần biết bao nhiêu Zone
-- Nếu Cross zone load balance được disable, ELB sẽ điều hướng request từ client một cách cân bằng tới mỗi Zone => Trong mỗi Zone sẽ chia đều cho các Instance
-*Noted:
-    + By default, Application Load Balancer sẽ Enable cross zone, không thể tắt
-    + By default, Network Load Balancer sẽ Disable cross zone. Cần enable sau khi khởi tạo
+//Connection Draining
+- Feature naming:
+    + Connection Draining - for CLB
+    + Deregistration Delay  - for ALB & NLB
+
+- Time to complete "in-flight request" while the instance is de-registering or unhealthy
+- Stops sending new requests to the EC2 instance which is de-registering
+- Between 1 to 3600 seconds (Default: 300s)
+- Can be disabled (set value to 0)
+- Set to a low value if your requests are short

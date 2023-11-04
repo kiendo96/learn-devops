@@ -188,45 +188,6 @@
 - Now you can attach the encrypted volume to the original instance
 
 
-
-//////Amazon EFS - Elatic File System ///////
-- Managed NFS (network file system) that can be mounted on many EC2
-- EFS works with EC2 instance in multi-AZ
-- Highly available, scalable, expensive (x3 gp2 EBS), pay per use
-
-- Use cases: content management, web serving, data sharing, wordpress
-- Uses NFSv4.1 protocol
-- Uses security group to control access to EFS
-- Compatible with Linux based AMI (not Windows)
-- Encryption at rest using KMS
-- POSIX file system (~Linux) that has a standard file API
-- File system scales automatically, pay-per-use, no capacity planning!
-
-//EFS-Performance & Storage Classes
-- EFS Scale:
-    + 1000s of concurrent NFS client, 10 GB+ /s throughput
-    + Grow to Petabyte-scale network file system, automatically
-
-- Performance Mode (set at EFS creation time)
-    + General Purpose (default): latency-sensitive use case (Web server, CMS ...)
-    + Max I/O - higher latency, throughput, highly parallel (big data, media processing)
-- Throughput Mode:
-    + Bursting - 1 TB = 50MiB/s + burst of up to 100MiB/s
-    + Provisioned - set your throughput regardless of storage size, ex: 1 Gb/s for 1 TB storage
-    + Elastic - automatically scales throughput up or down based on your workloads
-        ++ Up to 3 GB/s for reads and 1 GB/s for write
-        ++ Used for unpredictable workloads
-
-*EFS - StorageClass
-- Storage Tiers (lifecycle management feature - move file after N days)
-    + Standard: for frequently accessed files
-    + Infrequent acess (EFS-IA): cost to retrieve files, lower price to store. Enable EFS-IA with a lifecycle policy
-- Avalability and durability:
-    + Regional(Standard): Multi-AZ, great for prod
-    + One Zone: One AZ, great for dev, backup enabled by default, compatible with IA (EFS One Zone-IA)
-- Over 90% in cost savings
-
-
 //Compare EBS vs EFS
 +> Elastic Block Storage: Tru thang io1/io2 thi no chi mount duoc 1-1
     - EBS Volumes:
@@ -246,3 +207,20 @@
     - Only for Linux Instance (POSIX)
     - EFS has a higher price point than EBS (EFS gia cao hon EBS)
     - Can leverage EFS-IA for cost savings
+
+
+##Take node storage EC2 instances
+- Snapshot:
+    + Được tạo ra từ volume, hay khi khởi tạo 1 AMI
+    + Từ snapshot có thể restore -> volume, AMI
+    + Snapshot đầu tiên sẽ snapshot toàn bộ, các snapshot sau đó chỉ là phần được thay đổi  của snapshot đầu tiên
+        VD: Đầu tiên có 1 EBS 10GB -> lần đầu snapshot full 10GB
+            Lần snapshot thứ 2 có 4GB data thay đổi -> Nó chỉ snapshot 4GB thay đổi và map với 6gb trong snapshot cũ
+            -> Nếu delete snapshot đầu tiên đi thì nó sẽ copy 6gb data từ snapshot đầu tiên qua snapshot mới nhất ===> vẫn charge phí như 2 snapshot (tổng 10 Gb)
+- AMI:
+    + Khi create 1 AMI mới có 1 số option cần chú ý:
+        + No reboot: Enable or disable - Cho phép reboot server khi snapshot hay không (để bảo toàn dữ liệu)
+        + Có thể change size của volume khi create new AMI
+        + Có thể bật tắt volume có delete cùng instance khi terminate ko
+        + Có thể add thêm volume khi create AMI
+        + Khi move AMI từ region A sang region B thì snapshot sẽ được copy theo

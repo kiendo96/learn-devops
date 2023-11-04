@@ -89,3 +89,13 @@ Lưu ý: IAM policy nói chung không có tác dụng đối với account root
 - Quy định đối tượng nào có thể assume sang role được gắn trust policy này
 - Đối tượng được trust có thể là User/Role/AWS Service
 *Trong rất nhiều trường hợp các dịch vụ của AWS cần được setting trust policy một cách tường minh để có thể assume sang một role cần thiết
+
+//IAM - Set Permission Boundaries
+Dùng để giới hạn lại các quyền cấp cho một IAM user để tránh tình trạng phần quyền quá lố rất hay xảy ra
+Có thể dùng trong 2 hoàn cảnh:
+    + Allow nhưng ở mức độ giới hạn
+    + Deny phủ quyết một số hành động
+VD: 
+    Have a new User join to team Dev ---> Add new user to IAM Group Dev
+        New user just have read DB permission but group Dev have full permission with DB
+    ==> Create a new Policy -> Set Permission Boundaries in new User

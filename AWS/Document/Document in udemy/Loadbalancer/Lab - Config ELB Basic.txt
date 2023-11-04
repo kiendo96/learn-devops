@@ -3,7 +3,7 @@ Request:
 2. Tạo 1 target group TG-01, register 2 instance ở step trước
 3. Tạp 1 application LB (ALB), cấu hình listener port 80 trỏ vào tg-01
 4. Cấu hình Security Group
-5. Truy cập ALB thông qua DNS link
+5. Truy cập ALB thông qua DNS linkhai hon
 6. Remove instance B khỏi tg-01. Tạo 1 target group mới tg-02 và add instance B vào đó
 7. Tạo thêm 1 listener port 8080 trỏ tới tg-02
 8. Truy cập ALB thông qua DNS link với 2 port 80 và 8080

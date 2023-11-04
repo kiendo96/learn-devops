@@ -1,0 +1,5 @@
+forecast: dự báo
+trigger: kích hoạt
+amount: số lượng
+statement: tuyên bố
+exceed: quá, vượt quá (1 cái gì đó quá thừa)
