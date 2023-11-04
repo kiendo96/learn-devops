@@ -1,22 +1,22 @@
-//latency
+## Latency
 - Latency is the time between request to storage and the response recived (Độ trễ là thời gian giữa yêu cầu lưu trữ và thời gian phản hồi của nó)
 - Latency is measured in units of time (Độ trễ 'latency' được đo bằng thời gian)
 => Có rất nhiều yếu tố gây ra latency: network, low response
 
-//IOPS( input / output per second)
+## IOPS( input / output per second)
 - IOPS is input output operations per second (Các hoạt động input output mỗi giây)
 - IOPS are storage measurement of number of I/O operations per second (IOPS là phép đo lưu trữ số lượng thao tác I/O mỗi giây)
 => IOPS đo lường số lượng hoạt động đầu vào/ra trong một giây
 
-//Throughput (Thông lượng)
+## Throughput (Thông lượng)
 - Throughput (còn gọi là tốc độ truyền dữ liệu): được sử dụng để đo lượng dữ liệu được truyền đến và đi từ thiết bị lưu trữ(storage) trên mỗi giây
 => Throughput thường được sử dụng để đánh giá khả năng truyền dữ liệu liên tục trên một khoảng thời gian nhất định
 
-//IOPS vs Throughput
+## IOPS vs Throughput
 - IOPS measures number of read and write operations per second whereas throughput measures how fast number of bytes read or write per second
 
 
-//What is EBS volume
+## What is EBS volume
 - An EBS(Elastic Block Store) volume is a network drive you can attack to your instances while they run
 - It allows your instances to persist data, even after their termination
 - They can only be mounted to one instance at a time (at the CCP level)
@@ -25,8 +25,7 @@
 - They are bound to a specific availability Zone
 - Free tier: 30 GB of free EBS storage of type General Purpose(SSD) or Magnetic per month
 
-//Storage
-//Elastic Block Storage(EBS)
+## Elastic Block Storage(EBS)
 - Đặc trưng:
     + Là một cơ chế lưu trữ dạng block
     + Đơn vị quản lý là các EBS volume
@@ -45,10 +44,10 @@
     + Cold HDD: Lưu trữ giá rẻ các file khi ít được access
     + Magnetic: thế hệ trước của HDD (ít được sử dụng)
 
-**throughput: tốc độ truyền tài (gửi/nhận) thông tin tại một thời điểm của một thiết bị
-**IOPS: input/output per second
+- Throughput: tốc độ truyền tài (gửi/nhận) thông tin tại một thời điểm của một thiết bị
+- IOPS: input/output per second
 
-//EBS volume
+## EBS volume
 - It's a network drive:
     + It uses the network to communicate the instance, which means there might be a bit of latency(có thể có một chút độ trễ)
     + It can be detached from an EC2 instance and attached to another one quickly (có thể detach từ 1 EC2 và attach vào 1 EC2 khác)
@@ -58,19 +57,19 @@
 - Have a provisioned capacity (size in GBs and IOPS)
 
 
-//EBS - Delete on Termination attribute
+## EBS - Delete on Termination attribute
 - Controls the EBS behavior when an EC2 instance terminates
     + By default, the root EBS volume is deleted (attribute enabled)        //Mặc định thì root volume sẽ bị xóa khi terminate instance. Nhưng có thể disable option này
     + By default, any other attached EBS volume is not deleted (attribute disable)  //Mặc định thì 1 EBS volume được attach thêm vào sẽ không bị xóa khi terminate EC2 instance
 - This can be controlled by the AWS console / AWS CLI
 - Use case: preserve(giu nguyen/giu lai) root volume when instance is terminated
 
-//EBS Snapshots
+## EBS Snapshots
 - Make a backup(snapshot) of your EBS volume at a point in time
 - Not necessary to detach volume to do snapshot, but recommended
 - Can copy snapshots across AZ or Region        //Có thể copy snapshot qua các AZ và region khác
 
-//EBS snapshots features
+## EBS snapshots features
 - EBS snapshot archive
     + Move a Snapshot to an "archive tier" that is 75% cheaper  //Chuyển 1 snapshot vào "archive tier" sẽ giúp tiết kiệm 70% chi phí
     + Takes within 24 to 72 hours for restoring the archive     //Tuy nhiên sau khi chuyển snapshot vào "archive tier(tầng lưu trữ)" sẽ mất từ 24 tới 2 giờ để giải nén
@@ -80,7 +79,7 @@
 - Fast Snapshot Restore (FSR)
     + Force full initialization of snapshot to have no latency on the first use ($$$)   //Tính năng này cho phép (hay buộc) người dùng phải chi tiền ra để có thể khôi phục snapshot ngày lập tức mà không cần phải chờ đợi
 
-//AMI overview
+## AMI overview
 - AMI = Amazon Machine Image
 - AMI are a customization of an EC2 instance
     + You add your own software, configuration, operating system, monitoring....
@@ -90,13 +89,13 @@
     + Your own AMI: you make and maintain them yourself         //Sử dụng AMI cá nhân: Có thể tự tạo tự maintain
     + An AWS Marketplace AMI: an AMI someone else made (and potentially sells)      //Được các người dùng khác cung cấp (cân nhắc khi sử dụng vì có thể dính mã độc)
 
-//AMI process (from an EC2 íntance)
+## AMI process (from an EC2 íntance)
 - Start an eC2 instance and customize it
 - Stop the instance (for data integrity)
 - Build an AMI - This will also create EBS snapshots
 - Launch instances from other AMIs
 
-//EC2 instance Store(ephemeral storage)
+## EC2 instance Store(ephemeral storage)
 - EBS volume are network drives with good but "limited" performance     //EBS volume có hiệu năng (performance) tốt nhưng có nhiều hạn chế
 - If you need a high-performance hardware disk, use EC2 instance Store      //Nếu cần 1 ổ cứng high-performance hãy sử dụng EC2 instance store
 - Better I/O performance        //Hiệu suất I/O của EC2 instance store tốt hơn EBS volume
@@ -105,7 +104,8 @@
 - Risk of data loss if hardware fails           //Nguy cơ mất dữ liệu nếu phần cứng bị lỗi
 - Backups and Replication are your responsibility           //Backup and replication là trách nhiệm của người dùng
 
-//EBS Volume Types
+
+## EBS Volume Types
 - EBS Volumes come in 6 types:
     + gp2 / gp3 (SSD): General purpose SSD volume that balances price and performance for a wide variety of workload        //General Purpose SSD volume cân bằng giữa giá cả và hiệu năng cho nhiều khối lượng công việc khác nhau
     + io1/io2 (SSD): Highest-performance SSD volume for mission-critical low-latency or high-throughput workload    //Dung lượng SSD hiệu suất cao nhất dành cho khối lượng công việc quan trọng có low latency hoặc high throughput
@@ -157,7 +157,7 @@
 
 
 
-//EBS Multi-Attach - io1/io2 family
+## EBS Multi-Attach - io1/io2 family
 - Attach the same EBS volume to multiple EC2 instances in the same AZ       // (io1/io2 family) có thể attach EBS volume tới nhiều EC2 instance trên cùng 1 volume
 - Each instance has full read & write permissions to the high-performance volume    //Mỗi EC2 instance sẽ có full quyền read write to EBS volume
 - Use case:
@@ -168,7 +168,7 @@
 - Must use a file system that's cluster-awave (not XFS, EXT4, etc...)
 
 
-//EBS Encryption
+## EBS Encryption
 - When you create an encrypted EBS volume, you get the following:
     + Data at is encrypted inside the volume
     + All the data in flight moving between the instance and the volume is encrypted
@@ -181,14 +181,14 @@
 - Snapshots of encrypted volumes are encrypted
 
 
-//Encription: encrypt an unencrypted EBS Volume
+## Encription: encrypt an unencrypted EBS Volume
 - Create an EBS snapshot of the volume
 - Encrypt the EBS snapshot (using copy)
 - Create new EBS volume from the snapshot (the volume will also be encrypted)
 - Now you can attach the encrypted volume to the original instance
 
 
-//Compare EBS vs EFS
+## Compare EBS vs EFS
 +> Elastic Block Storage: Tru thang io1/io2 thi no chi mount duoc 1-1
     - EBS Volumes:
         + One instance (except multi-attach io1/io2)
@@ -209,7 +209,7 @@
     - Can leverage EFS-IA for cost savings
 
 
-##Take node storage EC2 instances
+# Take node storage EC2 instances
 - Snapshot:
     + Được tạo ra từ volume, hay khi khởi tạo 1 AMI
     + Từ snapshot có thể restore -> volume, AMI
