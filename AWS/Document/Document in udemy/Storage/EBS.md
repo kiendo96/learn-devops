@@ -1,16 +1,16 @@
 ## Latency
 - Latency is the time between request to storage and the response recived (Độ trễ là thời gian giữa yêu cầu lưu trữ và thời gian phản hồi của nó)
 - Latency is measured in units of time (Độ trễ 'latency' được đo bằng thời gian)
-=> Có rất nhiều yếu tố gây ra latency: network, low response
+> Có rất nhiều yếu tố gây ra latency: network, low response
 
 ## IOPS( input / output per second)
 - IOPS is input output operations per second (Các hoạt động input output mỗi giây)
 - IOPS are storage measurement of number of I/O operations per second (IOPS là phép đo lưu trữ số lượng thao tác I/O mỗi giây)
-=> IOPS đo lường số lượng hoạt động đầu vào/ra trong một giây
+> IOPS đo lường số lượng hoạt động đầu vào/ra trong một giây
 
 ## Throughput (Thông lượng)
 - Throughput (còn gọi là tốc độ truyền dữ liệu): được sử dụng để đo lượng dữ liệu được truyền đến và đi từ thiết bị lưu trữ(storage) trên mỗi giây
-=> Throughput thường được sử dụng để đánh giá khả năng truyền dữ liệu liên tục trên một khoảng thời gian nhất định
+> Throughput thường được sử dụng để đánh giá khả năng truyền dữ liệu liên tục trên một khoảng thời gian nhất định
 
 ## IOPS vs Throughput
 - IOPS measures number of read and write operations per second whereas throughput measures how fast number of bytes read or write per second

@@ -145,8 +145,13 @@ Response:
 
 #Server-Side Encryption (SSE)
 - SSE with Customer - Provided Keys (SSE - C)
+> User/App provided keys --> S3 (Manages Encryption) --> S3 storage
+
 - SSE with S3 - Managed Keys (SSE - S3)
+> User/app --- push file ----> S3 (Manages Encryption & Keys)   -----Encryption----> S3 Storage
+
 - SSE with Customer Master Keys (CMK) Stored in AWS KMS (SSE - KMS)
+> User/app --- push file ----> S3 (Manages Encryption) ----> KMS   -----Encryption----> S3 Storage
 
 ## S3 Static Website hosting
 - S3 có hỗ trợ người dùng host 1 website tĩnh (chỉ bao gồm html, css, js, image ...)
@@ -154,7 +159,7 @@ Response:
 - Không cần duy trì server, giảm effort Administrator
 - Hỗ trợ setting CORS nhằm tránh tài nguyên bị khai thác bởi website khác
 - Kết hợp với dịch vụ CDN(Cloud Front) có thể giúp tăng tốc độ truy cập khi user nằm ở các region khác nhau
-=> Hầu hết các framework frontend hiện nay như Angular, Vue, Nodejs đều hỗ trợ build ra 1 website tĩnh để có thể deploy lên S3 sau khi code xong
+> Hầu hết các framework frontend hiện nay như Angular, Vue, Nodejs đều hỗ trợ build ra 1 website tĩnh để có thể deploy lên S3 sau khi code xong
 
 
 ## S3 event trigger
@@ -165,7 +170,6 @@ Response:
   + Giải nén 1 file zip khi có người upload
   + Extract csv file, xử lý data rồi lưu vào database
   + Notification tới Operator khi có ai xóa 1 file
-....
 
 ## Best Practices for S3
 - Chọn region của S3 cùng region với application (EC2, ECS) để tối ưu performance
