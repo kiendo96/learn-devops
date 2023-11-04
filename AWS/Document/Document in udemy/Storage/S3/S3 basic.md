@@ -110,6 +110,50 @@ Response:
   + Standard --> Standard-IA, One Zone-IA
   + Standard-IA --> OneZone-IA
 
+# S3 Same & cross region replication
+- Cross-Region Replication (CRR)
+> Source Bucket(Singapore) -> Destination Bucket(Vinigillar)
+
+
+- Same-Region Replication (SRR)
+```
+Source Bucket(Singapore) -> Destination Bucket(Singapore)
+```
+
+# S3 same & cross account replication
+- Replication Same Account
+  + Cùng trong 1 account (Có thể khác region)
+  + Cần có Role để cho phép access vào s3 khác
+```
+Source Bucket --[Role (same account)]--> SSL ----> Destination bucket
+```
+- Replication Different Account
+  + Sử dụng SSL giữa các S3 bucket
+  + Cần có 1 role để cho phép s3 access vào account khác
+```
+Source Bucket --[Role (different account)]--> SSL ----> Destination bucket
+```
+
+# Replication Option
+- Cấu hình cho tất cả hoặc một object (theo prefix)
+- Có thể thay đổi storage class ở dest bucket (default giữ nguyên)
+- Có thể thay đổi ownership khi replicate cross-account (default là source account)
+- Cả source và destination bucket phải bật chế độ versioning
+- Replicate chỉ xảy ra theo 1 chiều từ source -> destination, không có chiều ngược lại
+- Có thể replicate các object: unencrypted, SSE-S3, SSE-KMS
+- Không replicate các object nằm ở class Glacier hoặc Glacier Deep Archive
+- Không replica delete object event
+- Chỉ replicate các object sau khi đã enable replication. Các object tồn tại trước khi enable replication sẽ không được replicate
+
+# Client-side Encryption (CSE)
+- Client (app) thực hiện encrypt data rồi mới gửi lên S3
+- Key dùng để encrypt: KMS/Client's Own key
+
+#Server-Side Encryption (SSE)
+- SSE with Customer - Provided Keys (SSE - C)
+- SSE with S3 - Managed Keys (SSE - S3)
+- SSE with Customer Master Keys (CMK) Stored in AWS KMS (SSE - KMS)
+
 ## S3 Static Website hosting
 - S3 có hỗ trợ người dùng host 1 website tĩnh (chỉ bao gồm html, css, js, image ...)
 - Được thừa hưởng toàn bộ đặc tính của S3 (Durability, HA)
