@@ -71,12 +71,11 @@
   + Cần authen người dùng hoặc yêu cầu họ làm gì đó trước khi được download file (VD xem quảng cáo)
   + Ngăn chặn resource để public vô thời hạn khiến cho tài nguyên bị khai tác bởi bên khác
 *Example flow of S3 Presign URL trong thực tế
-```
-Request:
+
+> Request:
   Request file -> [Backend server] -> 2.Request Presign URL -> [S3] -> 3.Create Presign URL -> xxx-bucket -> Object
 Response:
   S3 -> Return Presign URL -> Backend Server -> 5.Return URL -> Client -> 6.Client download via internet trực tiếp tới S3
-```
 
 
 # S3 Storage Classes
