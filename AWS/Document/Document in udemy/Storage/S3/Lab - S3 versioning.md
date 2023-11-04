@@ -1,4 +1,4 @@
-//Lab - Versioning
+# Lab - Versioning
 1. Yêu cầu chuẩn bị một file text có nội dung bất kì
 2. Bật tính năng versioning của Bucket lên
 3. Upload file lên S3
@@ -8,6 +8,8 @@
 7. Tắt versioning
 8. Chỉnh sửa nội dung, upload file với cùng tên. Confirm xem file có bị ghi đè? Các version trước khi tắt versioning có còn không?
 
+# Guide
+```
 => Tạo 1 file text name: "test.xt"
     => thêm nội dung bất kì
         => Enable tính năng version của S3 "Bật khi khởi tạo bucket hoặc enable trong Properties"
@@ -18,3 +20,4 @@
                             => Try delete marker => File sẽ được khôi phục trở lại
 => Access S3 properties => Edit "Bucket versioning" => Choose "Suspend" để tắt tính năng versioning
     => Các version trước của file vẫn còn tồn tại nhưng current version không còn tồn tại Version ID
+```

@@ -1,4 +1,4 @@
-//Lab - Practice storage class
+# Lab - Practice storage class
 1. Upload 1 file và chọn Storage class là Standard IA (loại data ít khi access nhưng cần có thể truy cập ngay)
 2. Upload 1 file và chọn storage class là OneZone IA (Rẻ hơn 20% so với Standard IA, loại data dễ dàng tạo ra vì nó dễ mất)
 3. Upload 1 file và chọn storage class là Glacier Instant Retrieval (Rẻ hơn 63% so với S3 standard IA, Loại data cần lưu trữ dài nhưng ít khi sử dụng. Loại này có thể dùng được ngay khi cần).

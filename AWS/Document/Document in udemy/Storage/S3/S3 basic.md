@@ -101,6 +101,14 @@ Response:
 - Khác với Intelligent Tiering, người dùng sẽ tự quyết định life cycle cho objects (hoặc 1 thư mục)
   VD: sau 90 ngày thì cho xuống Glacier, sau 270 ngày thì xóa hoàn toàn
 - Phù hợp cho các bài toán lưu trữ Log đã biết trước thời gian thường xuyên access và thời gian có thể xóa
+# Lifecycle transition constraint: object zise
+- S3 không transition object có size < 128 KB khi transition từ:
+  + S3 Standard --> S3 Standard-IA, Intelligent Tiering, One Zone - IA, Glacier Instant Retrieval
+  + S3 Standard-IA --> Intellegent Tiering, Glacier Instant Retrieval
+
+- S3 không transition object trong vòng 30 ngày kể từ ngày tạo object, áp dụng khi:
+  + Standard --> Standard-IA, One Zone-IA
+  + Standard-IA --> OneZone-IA
 
 ## S3 Static Website hosting
 - S3 có hỗ trợ người dùng host 1 website tĩnh (chỉ bao gồm html, css, js, image ...)

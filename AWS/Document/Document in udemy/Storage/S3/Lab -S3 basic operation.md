@@ -1,4 +1,4 @@
-//Lab-S3 basic Operation
+# Lab-S3 basic Operation
 1. Login to AWS Console, navigate to s3
 2. Tạo 1 bucket 
 3. Thực hiện tạo folder
