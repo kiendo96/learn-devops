@@ -25,6 +25,7 @@
   + Strong consistency: Provice strong read-after-write consistency for PUT and DELETE object
 
 ## Các ví dụ nỗi bật thường sử dụng với S3
+```
 - [VPC, ALB, API GW]         -> Write log -> S3
 - IoT                        -> save File -> S3
 - [ECS, EC2]                 -> File storage -> S3
@@ -33,6 +34,8 @@
 - S3                         -> static web hosting -> CloudFront
 - S3                         -> Automation process -> Lambda
 - S3                         -> Data source > Glue
+```
+
 
 ## S3 có thể kết hợp với các dịch vụ nào
 - Dùng làm nơi lưu trữ file cho các ứng dụng chạy trên EC2, Container, Lambda. Các file có thể đa dạng về loại & kích thước (Image, Video, Document)
@@ -68,10 +71,13 @@
   + Cần authen người dùng hoặc yêu cầu họ làm gì đó trước khi được download file (VD xem quảng cáo)
   + Ngăn chặn resource để public vô thời hạn khiến cho tài nguyên bị khai tác bởi bên khác
 *Example flow of S3 Presign URL trong thực tế
+```
 Request:
-1. Request file -> [Backend server] -> 2.Request Presign URL -> [S3] -> 3.Create Presign URL -> xxx-bucket -> Object
+  Request file -> [Backend server] -> 2.Request Presign URL -> [S3] -> 3.Create Presign URL -> xxx-bucket -> Object
 Response:
-4. S3 -> Return Presign URL -> Backend Server -> 5.Return URL -> Client -> 6.Client download via internet trực tiếp tới S3
+  S3 -> Return Presign URL -> Backend Server -> 5.Return URL -> Client -> 6.Client download via internet trực tiếp tới S3
+```
+
 
 # S3 Storage Classes
 - S3 cung cấp nhiều storage class khác nhau nhằm giúp người dùng linh động trong việc lựa chọn class phù hợp với nhu cầu, tiết kiệm chi phí
