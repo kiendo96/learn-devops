@@ -114,25 +114,19 @@ Response:
 - Cross-Region Replication (CRR)
 > Source Bucket(Singapore) -> Destination Bucket(Vinigillar)
 
-
 - Same-Region Replication (SRR)
-```
-Source Bucket(Singapore) -> Destination Bucket(Singapore)
-```
+> Source Bucket(Singapore) -> Destination Bucket(Singapore)
 
 # S3 same & cross account replication
 - Replication Same Account
   + Cùng trong 1 account (Có thể khác region)
   + Cần có Role để cho phép access vào s3 khác
-```
-Source Bucket --[Role (same account)]--> SSL ----> Destination bucket
-```
+> Source Bucket --[Role (same account)]--> SSL ----> Destination bucket
+
 - Replication Different Account
   + Sử dụng SSL giữa các S3 bucket
   + Cần có 1 role để cho phép s3 access vào account khác
-```
-Source Bucket --[Role (different account)]--> SSL ----> Destination bucket
-```
+> Source Bucket --[Role (different account)]--> SSL ----> Destination bucket
 
 # Replication Option
 - Cấu hình cho tất cả hoặc một object (theo prefix)
