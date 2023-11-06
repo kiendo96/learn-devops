@@ -39,6 +39,8 @@ VD: AWS EKS
 - Cold Starts: Mất một khoảng thời gian nếu function được trigger lần đầu tiên hoặc function đó ít khi đưuọc request tới thì nó chạy lại khá tốn thời gian
 - Khó tổ chức source code
 - Khó thiết kế môi trường dev local
+- Chỉ phù hợp cho các ứng dụng với traffic nhỏ
+- Chỉ xử lý cho các workload mà chạy tối đa 15 phút
 
 ## Serverless Cloud providers
 - Amazon web service: AWS Lambda

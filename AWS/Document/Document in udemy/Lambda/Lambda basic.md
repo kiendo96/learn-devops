@@ -142,3 +142,49 @@ Client ---request -----> API GateWay ---> DynamoDB ---- Trigger when create/modi
   + Dùng với nodejs chẳng hạn. Chưa hiểu lắm
 - Lambda có thể set alias thay vì dùng ARN
 - Lambda có thể quản lý code theo version
+
+## Lambda Version
+- Mặc định thì Lambda function sẽ có một $LASTEST version tương ứng với function hiện tại. Để kiểm tra versions của một function -> chuyển qua tab versions của lambda function đó
+- Khi version được tạo ra thì không thể sửa đổi code hay config của version đó được
+>Lưu ý: Nếu cần sửa config thì cần pushlish lại một version mới. Vì chỉ khi có thay đổi trong function thì mới có thể publish version mới
+
+- Mặc định khhi ta thực thi một function thì nó sẽ trigger ở $LATEST version
+>VD: aws lambda invoke --function-name books_list result.json
+
+- Nếu muốn chỉ định version muốn gọi, ta sẽ thêm option qualifier vào
+>VD: aws lambda invoke --function-name books_lít --qualifier 1 result.json
+
+
+## Lambda Alias
+- Được dùng để mapping tới một version cụ thể của Lambda Function.
+- Tab "Aliases" -> Create a new alias name "production" trỏ tới Lambda version
+
+
+# Lambda Auto Scaling
+- Cách Lambda thực hiện Auto Scale
+  + Concurrency
+  + Reserved concurrency
+
+###  Concurrency
+- Khi request tới Lambda lần đầu tiên, AWS Lambda sẽ tạo một instance của function đó để xử lý request, nếu instance đó chưa xử lý request xong mà có một request khác lại tới, Lambda sẽ tạo một instance khác để xử lý request đó => Lúc này Lambda xử lý 2 request cùng lúc
+- Nếu có nhiều request tới nữa => Lambda sẽ tiếp tục tạo ra instance nếu các request trước đó chưa được xử lý xong. Sau đó nếu request giảm đi và instance không được xử dụng nữa thì lambda sẽ xóa dần nó đi.
+- Số lượng instance là Lambda tạo ra được gọi là: concurrency
+  + Số lượng concurrency có thể dao động từ 500 - 3000 tùy thuộc vào region
+  + 3000 - US WEST (Oregon), US-East (N. Vỉginia), Europe (Ireland)
+  + 1000 - Asia Pacific(Tokyo), Europe(Frankfurt), US East (Ohio)
+  + 500 - Other regions
+>Lưu ý: Concurrency áp dụng cho toàn Lambda ở một region chứ không phải chỉ một function
+
+### Lambda throttling
+- Lambda sẽ tiến hành throttling (điều tiết) function của chúng ta khi số lượng concurrent execution vượt quá giới hạn concurrency capacity
+- Nó sẽ không tạo thêm một instance nào nữa để xử lý các request sắp tới cho tới khi số lượng concurrent execution giảm xuống
+- Vì toàn bộ function đều chia sẽ chung một concurrency capacity, nên  việc throttling của Lambda sẽ rất hữu ích khi ta không muốn một function nào đó dùng hết concurrency capacity của toàn bộ Lammbda
+
+### Reserved concurrency
+- Để tránh tình trạng full concurrency và được phân chia không đồng đều. Chúng ta nên cấu hình Reserved Concurrency trên từng lambda function
+```
+VD: Chúng ta có 5 Lambda function 
+  -> Tab: Configuration -> Concurrency 
+    -> Enable "Reserve concurrency" -> Set "Reserve concurrency" cho từng lambda function 
+      -> ví dụ có 5 lambda function chia mỗi function là 100 concurrency  -> Nó sẽ không chiếm concurrency của các function khác
+```

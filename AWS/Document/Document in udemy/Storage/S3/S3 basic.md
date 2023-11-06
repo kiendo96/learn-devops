@@ -143,7 +143,7 @@ Response:
 - Client (app) thực hiện encrypt data rồi mới gửi lên S3
 - Key dùng để encrypt: KMS/Client's Own key
 
-#Server-Side Encryption (SSE)
+# Server-Side Encryption (SSE)
 - SSE with Customer - Provided Keys (SSE - C)
 > User/App provided keys --> S3 (Manages Encryption) --> S3 storage
 
