@@ -60,4 +60,4 @@ Trong bài lab này, chúng ta sẽ replicate S3 object sang 1 bucket nằm ở 
 - Step 3: Ở phần Destination, chọn Choose a bucket in this account. Click vào Browse S3 và chọn dest bucket tương ứng. Trong mục IAM role, chọn Choose from existing IAM roles và chọn role đã tạo ở B7
 - Step 4: Các option còn lại chúng ta không chọn, rồi bấm Save, chúng ta sẽ chỉ replicate các object mới, do đó chọn No, do not replicate existing objects rồi Submit
 - Step 5: Sau khi đã có replication rule, chúng ta upload 1 file mới lên source bucket
-- Step 6: Kiểm tra ở dest bucket:
+- Step 6: Kiểm tra ở dest bucket

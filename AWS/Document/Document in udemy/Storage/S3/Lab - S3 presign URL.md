@@ -9,3 +9,16 @@
 ```
 Connect CLI to S3 -> up thử 1 file -> use command: "aws s3 presign [S3Uri] --expires-in [time=second]" -> Copy URL to browser 
 ```
+
+# Lab
+- Create a presigned URL for an S3 object by console or AWS CLI
+
+### Content
+### 1. Create a pre-signed URL by console
+- In the Objects list, select the object that you want to create a presigned URL for.
+- On the Actions menu, choose Share with a presigned URL.
+- Specify how long you want the presigned URL to be valid.
+- Choose Create presigned URL.
+### 2. Create a pre-signed URL by CLI
+>aws s3 presign s3://DOC-EXAMPLE-BUCKET/test2.txt --expires-in 3600
+- Copy URL vừa được tạo và paste vào trình duyệt ẩn danh để xem kết quả
