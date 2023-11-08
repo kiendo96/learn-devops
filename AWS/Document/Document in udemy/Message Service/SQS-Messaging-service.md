@@ -1,9 +1,9 @@
-//Simple Queue Service - SQS
+# Simple Queue Service - SQS
 - Simple Queue Service(SQS) là một dịch vụ hàng đợi thông điệp mạnh mẽ và dễ sử dụng từ AWS. SQS cho phép bạn truyền tin nhắn giữa các thành phần của hệ thống phân tán một cách đáng tin cậy và có khả năng mở rộng 
 - Với SQS, có thể tạo ra các message queue và gửi/nhận message trên queue đó. Hàng đợi được quản lý bởi SQS, đảm bảo tính đáng tin cậy và khả năng mở rộng cao. Việc các ứng dụng khác nhau có gửi nhận mesage trên queue một cách độc lập giúp tăng tính chịu lỗi và sự phân tán trong hệ thống của bạn (de-coupling)
 - SQS cung cấp 2 loại queue: standard & FIFO (First in first out). Standard queue cung cấp khả năng mở rộng cao và đáng tin cậy, trong khi FIFO queue đảm bảo tin nhắn được xử lý theo tuần tự (nhược điểm là bị giới hạn về tần suất gửi nhận)
 - SQS cũng cung cấp các tính năng như chế độ retry tự động, message filtering và khả năng xác nhận( acknowledge) tin nhắn. Ngoài ra, SQS tích hợp với các dịch vụ AWS khác, cho phép xây dựng các hệ thống phức tạp và đáng tin cậy
-//Đặc trưng của SQS
+# Đặc trưng của SQS
 - SQS là một managed service do đó bạn không quản lý hạ tầng phía sau
 - SQS được tạo và quản lý dưói các đơn vị mesage queue
 - Tương tác gửi nhận message với queue thông qua console, SDK, API
@@ -12,25 +12,27 @@
 - Với FIFO Queue, SQS đảm bảo deliver đúng thứ tự tuy nhiên tần suất gửi nhận message bị giảm xuống 300/s và 3000/s đối với batch process
 - SQS có thể được cấu hình notify message sang Lambda mỗi khi có message mới, sử dụng cho bài toán xử lý tự động ETL
 
-//SQS Concepts
+# SQS Concepts
 - Về cơ bản SQS là nơi có nhiệm vụ trung chuyển giữa một bên là message producer (sender) và một bên là message consumer (Receiver)
 - Với Standard Queue, message khi được gửi vào queue sẽ tồn tại ở đó cho tới khi bị xóa hoặc hết thời gian retention. Do vậy Consumer phải chủ động xóa message đã xử lý xong
 - Với FIFO Queue, message sẽ được delivery chính xác 1 lần tới consumer (tự động xóa sau khi có event receiver message)
-*Mô hình:
-    Producer ----send mesage ---> SQS  ----Receive message----> Consumer  ----Delete message after finished----> SQS
-    **Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
 
+# Mô hình
+```
+Producer ----send mesage ---> SQS  ----Receive message----> Consumer  ----Delete message after finished----> SQS
+**Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
+```
 - SQS có một thông số gọi là Visibility Timeout, là thời gian message tạm bị ẩn đi đối với các consumer trong message đó đang được receive bởi một consumer. Quá thời gian này message chưa bị xóa sẽ quay trở lại queue
-vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong trường hợp có nhiều consumer. Các consumer có thể get mesage đang được xử lý bởi một consumer khác (chưa finished)
+>vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong trường hợp có nhiều consumer. Các consumer có thể get mesage đang được xử lý bởi một consumer khác (chưa finished)
 
 - Việc apply Visibility Timeout như thế nào cho phù hợp hoàn toàn phụ thuộc vào nghiệp vụ.
-  VD: Một tác vụ xử lý decode một video mất 10 mins thì nên để Visibility Timeout > 10 phút để tránh tình trạng xung đột xử lý giữa các consumer. Vì trong thời gian visibility timeout thì message đó đang được 1 consumer xử lý và nó sẽ bị ẩn cho đến khi hết visibility timeout thì consumer khác mới có thể access get vào được (Tránh xung đột giữa các consumer)
+>VD: Một tác vụ xử lý decode một video mất 10 mins thì nên để Visibility Timeout > 10 phút để tránh tình trạng xung đột xử lý giữa các consumer. Vì trong thời gian visibility timeout thì message đó đang được 1 consumer xử lý và nó sẽ bị ẩn cho đến khi hết visibility timeout thì consumer khác mới có thể access get vào được (Tránh xung đột giữa các consumer)
 
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
 - Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợ không có message nào trên queue
 
 
-//Một số giới hạn của SQS
+# Một số giới hạn của SQS
 - Giới hạn về số lượng message trên một queue: unlimited
 - Queue name: 80 characters
 - Queue tag: 50tag
@@ -41,7 +43,7 @@ vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong 
 - Message content: Có thể bao gồm XML, Json, Text
 - Message retention: default 4 days, min: 1 minutes, max 14 days
 
-//Một số thông số liên quan monitor
+# Một số thông số liên quan monitor
 - Approximage age of oldest message: Thời gian của message cũ nhất đã được gửi vào queue
 - Approximate number of message not visible: Số lượng message đang được xử lý (in-flight) nên bị tạm ẩn khỏi queue
 - Approximate number of message visible: Số lượng message chưa được xử lý
@@ -49,16 +51,16 @@ vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong 
 - Number of message received: Số lượng message đã được nhận
 - Number of message deleted: Số lượng message đã bị xóa
 
-//Usecase
+# Usecase
 - Đồng bộ dữ liệu giữa các hệ thống hoặc ứng dụng
 - Xử lý hàng đợi giúp de-coupling hệ thống và chống bottle neck tại những component có thể có workload tăng đột ngột. Giúp chuyển từ xử lý đồng bộ sang bất đồng bộ
 - Hệ thống xử lý thời gian thực bằng cách sử dụng FIFO queue
 - Data migration. Ví dụ data từ source cần được chia ra nhiều luồng xử lý bất đồng bộ và có phương pháp retry cũng như phân loại message lỗi
 
 
-//Pricing
+# Pricing
 - Tính tiền theo workload thực tế:
     + Số lượng request gửi nhận
         VD: $0.4/1 triệu request với standard và $0.5/1milion request với FIFO queue. Tính theo block 64Kb
     + Dữ liệu truyền từ SQS đi ra: $0.12/GB
-*Zero idle cost
+>SQS: Zero idle cost
