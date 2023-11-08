@@ -4,7 +4,7 @@
 - SQS cung cấp 2 loại queue: standard & FIFO (First in first out). Standard queue cung cấp khả năng mở rộng cao và đáng tin cậy, trong khi FIFO queue đảm bảo tin nhắn được xử lý theo tuần tự (nhược điểm là bị giới hạn về tần suất gửi nhận)
 - SQS cũng cung cấp các tính năng như chế độ retry tự động, message filtering và khả năng xác nhận( acknowledge) tin nhắn. Ngoài ra, SQS tích hợp với các dịch vụ AWS khác, cho phép xây dựng các hệ thống phức tạp và đáng tin cậy
 
-### Đặc trưng của SQS
+# Đặc trưng của SQS
 - SQS là một managed service do đó bạn không quản lý hạ tầng phía sau
 - SQS được tạo và quản lý dưói các đơn vị mesage queue
 - Tương tác gửi nhận message với queue thông qua console, SDK, API
@@ -13,36 +13,30 @@
 - Với FIFO Queue, SQS đảm bảo deliver đúng thứ tự tuy nhiên tần suất gửi nhận message bị giảm xuống 300/s và 3000/s đối với batch process
 - SQS có thể được cấu hình notify message sang Lambda mỗi khi có message mới, sử dụng cho bài toán xử lý tự động ETL
 
-### SQS Concepts
+# SQS Concepts
 - Về cơ bản SQS là nơi có nhiệm vụ trung chuyển giữa một bên là message producer (sender) và một bên là message consumer (Receiver)
 - Với Standard Queue, message khi được gửi vào queue sẽ tồn tại ở đó cho tới khi bị xóa hoặc hết thời gian retention. Do vậy Consumer phải chủ động xóa message đã xử lý xong
 - Với FIFO Queue, message sẽ được delivery chính xác 1 lần tới consumer (tự động xóa sau khi có event receiver message)
 
-### SQS Queue Type
+# SQS Queue Type
 - SQS cung cấp 2 loại queue: standard & FIFO (First in first out). Standard queue cung cấp khả năng mở rộng cao và đáng tin cậy, trong khi FIFO queue đảm bảo tin nhắn được xử lý theo tuần tự (nhược điểm là bị giới hạn về tần suất gửi nhận)
 
-1. Standard queue
+### 1. Standard queue
 - At-least-one delivery
 - Best-effort ordering: Xử lý ít nhất 1 lần và có thể xử lý nhiều lần
 - Nearly unlimited throughput
 
-2. FIFO(First In, First Out)
+### 2. FIFO(First In, First Out)
 - First-in-first-out delivery
 - Exactly once processing: Chỉ xử lý 1 lần
 - High throughtput (throughput limit: 3000 messages per second with batching or 300 messages per second without batching)
 
-### Mô hình
-```
-Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  ----Delete message after finished----> SQS
-**Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
-```
-
-### SQS Feature - Dead-letter Queue(DLQ)
+# SQS Feature - Dead-letter Queue(DLQ)
 - Lưu lại các message không thể xử lý thành công (Đẩy từ SQS queue -> Dead-letter queue)
 - Rất hữu dụng trong việc debug
 >DLQ không được tạo tự động, cần phải tạo SQS Queue khác đóng vai trò làm DLQ
 
-### SQS Feature - Visibility Timeout
+# SQS Feature - Visibility Timeout
 - Inflight messages: SQS message ở giữa khoảng thời điểm sau khi được consumer lấy từ queue và trường khi bị xóa khỏi queue -> một cách ngắn gọn: message đang được xử lý
 - Visibility timeout: Khoảng thời gian mà SQS queue không trả về message đang được xử lý(inflight). Sau thời gian này, message có thể được một tiến trình khác xử lý
 - SQS có một thông số gọi là Visibility Timeout, là thời gian message tạm bị ẩn đi đối với các consumer trong message đó đang được receive bởi một consumer. Quá thời gian này message chưa bị xóa sẽ quay trở lại queue
@@ -53,16 +47,32 @@ Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  
 
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
 
-### SQS Feature - Long Polling & Short Polling
+# SQS Feature - Long Polling & Short Polling
 - Long Polling:
     + Query message trên toàn bộ server
     + Trả về truy vấn khi tìm thấy ít nhất một message. Hoặc empty response khi thời gian truy vấn timeout
     + Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợp không có message nào trên queue
+>Long polling waits for the WaitTimeSeconds and eliminates empty responses
+
 - Short Polling:
     + Query message trên một vài server
-    + Trả về truy vấn ngay lập tức, kể cả khi không tìm được message nào
+    + Trả về truy vấn ngay lập tức, kể cả khi không tìm được message nào(sẽ nhận được nhiều empty message)
+>Short polling checks a subnet of servers and may not return all messages
 
-### Một số giới hạn của SQS
+# SQS Message Lifecycle
+### Mô hình
+```
+Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  ----Delete message after finished----> SQS
+**Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
+```
+### 1.Create
+- Message được producer (component 1) đẩy vào SQS queue
+### 2.Process
+- Message được lấy và xử lý bởi consumer (component 2). Visibility timeout bắt đầu được tính cho message này
+### 3.Delete
+- Message được xóa sau khi hoàn thành việc xử lý (hoặc quá hạn retention period)
+
+# Một số giới hạn của SQS
 - Giới hạn về số lượng message trên một queue: unlimited
 - Queue name: 80 characters
 - Queue tag: 50tag
@@ -73,7 +83,7 @@ Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  
 - Message content: Có thể bao gồm XML, Json, Text
 - Message retention: default 4 days, min: 1 minutes, max 14 days
 
-### Một số thông số liên quan monitor
+# Một số thông số liên quan monitor
 - Approximage age of oldest message: Thời gian của message cũ nhất đã được gửi vào queue
 - Approximate number of message not visible: Số lượng message đang được xử lý (in-flight) nên bị tạm ẩn khỏi queue
 - Approximate number of message visible: Số lượng message chưa được xử lý
@@ -81,14 +91,14 @@ Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  
 - Number of message received: Số lượng message đã được nhận
 - Number of message deleted: Số lượng message đã bị xóa
 
-### Usecase
+# Usecase
 - Đồng bộ dữ liệu giữa các hệ thống hoặc ứng dụng
 - Xử lý hàng đợi giúp de-coupling hệ thống và chống bottle neck tại những component có thể có workload tăng đột ngột. Giúp chuyển từ xử lý đồng bộ sang bất đồng bộ
 - Hệ thống xử lý thời gian thực bằng cách sử dụng FIFO queue
 - Data migration. Ví dụ data từ source cần được chia ra nhiều luồng xử lý bất đồng bộ và có phương pháp retry cũng như phân loại message lỗi
 
 
-### Pricing
+# Pricing
 - Tính tiền theo workload thực tế:
     + Số lượng request gửi nhận
         VD: $0.4/1 triệu request với standard và $0.5/1milion request với FIFO queue. Tính theo block 64Kb
