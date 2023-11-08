@@ -71,6 +71,12 @@ Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  
 - Message được lấy và xử lý bởi consumer (component 2). Visibility timeout bắt đầu được tính cho message này
 ### 3.Delete
 - Message được xóa sau khi hoàn thành việc xử lý (hoặc quá hạn retention period)
+>SQS Retention period: Thời gian 1 message được tồn tại trong Queue. Có thể config từ 1 phút tới 14 ngày. Sau khoảng thời gian này nếu message không được xử lý thì nó sẽ bị xóa
+
+# Decoupling Example
+```
+Elatic Load Balancing ---> Web tier ----> Order message ----> Customer order queue (if fail will tranfer to `Dead letter queue`) ----> Application tier  ---> Database tier(DB primary instance) ----> DB standby instance
+```
 
 # Một số giới hạn của SQS
 - Giới hạn về số lượng message trên một queue: unlimited
