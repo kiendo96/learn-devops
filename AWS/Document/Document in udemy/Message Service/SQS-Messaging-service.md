@@ -31,6 +31,12 @@
 - Exactly once processing: Chỉ xử lý 1 lần
 - High throughtput (throughput limit: 3000 messages per second with batching or 300 messages per second without batching)
 
+### Mô hình
+```
+Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  ----Delete message after finished----> SQS
+**Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
+```
+
 ### SQS Feature - Dead-letter Queue(DLQ)
 - Lưu lại các message không thể xử lý thành công (Đẩy từ SQS queue -> Dead-letter queue)
 - Rất hữu dụng trong việc debug
@@ -39,12 +45,6 @@
 ### SQS Feature - Visibility Timeout
 - Inflight messages: SQS message ở giữa khoảng thời điểm sau khi được consumer lấy từ queue và trường khi bị xóa khỏi queue -> một cách ngắn gọn: message đang được xử lý
 - Visibility timeout: Khoảng thời gian mà SQS queue không trả về message đang được xử lý(inflight). Sau thời gian này, message có thể được một tiến trình khác xử lý
-
-### Mô hình
-```
-Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  ----Delete message after finished----> SQS
-**Lưu ý: Ở cái đoạn delete message after finished thì đối với standard thì phải chủ động delete message queue, còn với fifo queue thì nó được tự động xóa sau khi event nhận message
-```
 - SQS có một thông số gọi là Visibility Timeout, là thời gian message tạm bị ẩn đi đối với các consumer trong message đó đang được receive bởi một consumer. Quá thời gian này message chưa bị xóa sẽ quay trở lại queue
 >vd: Việc không apply visibility time out (hoặc time out quá ngắn) trong trường hợp có nhiều consumer. Các consumer có thể get mesage đang được xử lý bởi một consumer khác (chưa finished)
 
@@ -52,8 +52,15 @@ Producer ----send mesage ---> SQS  ----Receive message----> Consumer(xử lý)  
 >VD: Một tác vụ xử lý decode một video mất 10 mins thì nên để Visibility Timeout > 10 phút để tránh tình trạng xung đột xử lý giữa các consumer. Vì trong thời gian visibility timeout thì message đó đang được 1 consumer xử lý và nó sẽ bị ẩn cho đến khi hết visibility timeout thì consumer khác mới có thể access get vào được (Tránh xung đột giữa các consumer)
 
 - Message mỗi khi được receive sẽ có một thông số receive count (được cộng lên +1 mỗi khi message đó được receive bởi 1 consumer), ta có thể dựa vào đó để setting dead letter queue( tự động move message đã bị xử lý quá số lần mà vẫn chưa thành công)
-- Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợ không có message nào trên queue
 
+### SQS Feature - Long Polling & Short Polling
+- Long Polling:
+    + Query message trên toàn bộ server
+    + Trả về truy vấn khi tìm thấy ít nhất một message. Hoặc empty response khi thời gian truy vấn timeout
+    + Long polling wait time: Thời gian để SQS chờ trước khi return empty cho consumer trong trường hợp không có message nào trên queue
+- Short Polling:
+    + Query message trên một vài server
+    + Trả về truy vấn ngay lập tức, kể cả khi không tìm được message nào
 
 ### Một số giới hạn của SQS
 - Giới hạn về số lượng message trên một queue: unlimited
