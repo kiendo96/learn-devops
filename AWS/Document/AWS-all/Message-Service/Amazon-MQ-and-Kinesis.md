@@ -92,6 +92,7 @@ Input --> Ingest ---> Amazon Kinesis Data Firehose -----> Load ---> Output
     + Output: Analyze streaming data using interactive query services(Amazon Athena, Amazon Redshift Spectrum) or analytics tools
 
 ### Compare Kinesis vs SQS
+```
 ________________________________________________________________________________________
 |        Service          | Transforms data |  Maximum retention |        Model         |
 |         SQS             |      No         |       14 days      | Producer - Consumer  |
@@ -99,6 +100,6 @@ ________________________________________________________________________________
 | Kinesis Data Streams    |      No         |       7 days       | Producer - Consumer  |
 | Kinesis Data Firehose   |      Yes        |      14 days       | Source - Destination |
 |_______________________________________________________________________________________|
-
+```
 >SQS danh cho message queue
 >Kinesis danh cho data stream
