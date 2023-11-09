@@ -23,9 +23,8 @@ Publisher ----> SNS topic ----> AWS Lambda functions
 # Decoupling Example
 ```
 Mobile--->S3 bucket for ingestion---(Event notification)--->SNS topic--->SQS queues(generate thumbnail)---> ASG --->s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile
-                                                                    |-->SQS queues(Size for mobile)---> ASG ---> s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile
-                                                                    |-->SQS queues(Size for web)---> ASG ---> s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile
-                                                                        
+                                                                     |-->SQS queues(Size for mobile)---> ASG ---> s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile
+                                                                     |-->SQS queues(Size for web)---> ASG ---> s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile                                                                        
 ```
 
 # Đặc trung của SNS
