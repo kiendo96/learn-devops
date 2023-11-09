@@ -1,3 +1,7 @@
+# Message Queue
+- Producer: Create new message and tranfer it to queue
+- Consumer: `Poll` messages from queue then process it
+
 # Simple Queue Service - SQS
 - Simple Queue Service(SQS) là một dịch vụ hàng đợi thông điệp mạnh mẽ và dễ sử dụng từ AWS. SQS cho phép bạn truyền tin nhắn giữa các thành phần của hệ thống phân tán một cách đáng tin cậy và có khả năng mở rộng 
 - Với SQS, có thể tạo ra các message queue và gửi/nhận message trên queue đó. Hàng đợi được quản lý bởi SQS, đảm bảo tính đáng tin cậy và khả năng mở rộng cao. Việc các ứng dụng khác nhau có gửi nhận mesage trên queue một cách độc lập giúp tăng tính chịu lỗi và sự phân tán trong hệ thống của bạn (de-coupling)

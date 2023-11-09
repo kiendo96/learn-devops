@@ -1,10 +1,32 @@
 # Pub/Sub Messaging
 - Publisher: push message to topic
-- Subscribe: Monitor topic and receive message - use push method (different with `Consumer` use pull)
+- Subscribe: Monitor topic and receive message - use `push method` (different with `Consumer` use `poll`)
 
 # Simple Notification Service - SNS
+- Highly Available, durable, secure, and fully managed pub/sub messaging service
+- Push mechanism
+- Support encrypt topics using `customer master key` (CMK)
 - AWS Simple Notification Service (SNS) là một dịch vụ notification, cho phép bạn gửi thông báo đến các đối tượng khác nhau như các ứng dụng, user, hệ thống hoặc các dịch vụ khác trên AWS
+
+# SNS Suported Transport Protocols
 - SNS cho phép gửi thông báo bằng nhiều phương thức khác nhau như email, SMS, push notification hoặc API CALL. Có thể tạo và quản lý các topics trong SNS và sau đó gửi thông báo đến các chủ đề đó. Các đối tượng đã đăng ký (subsribed) vào chủ đề sẽ nhận được thông báo
+```
+Publisher ----> SNS topic ----> Email or Email-JSON
+Publisher ----> SNS topic ----> HTTP or HTTPS
+Publisher ----> SNS topic ----> Short Message Service(SMS) clients
+Publisher ----> SNS topic ----> Amazon SQS queues
+Publisher ----> SNS topic ----> AWS Lambda functions
+```
+- Example: Publisher ----> SNS topic ----> Amazon SQS queues
+>When `subcribe` process all message, may have a lot message is fail. `SQS queue` will reprocess it or tranfers to `dead-letter-queue` for retry process message
+
+# Decoupling Example
+```
+Mobile--->S3 bucket for ingestion ---Event notification---> SNS topic --->SQS queues(generate thumbnail) ---> ASG --->s3 Bucket to serve content to Cloudfont -> Cloudfront download distribution -> Mobile
+                                                                      |-->SQS queues(Size for mobile)---> ASG ---> same
+                                                                      |-->SQS queues(Size for web)---> ASG ---> same
+                                                                        
+```
 
 # Đặc trung của SNS
 - Về cơ bản SNS hoạt động theo mô hình Publisher - Subscriber, message khi được bên publisher gửi lên SNS topic sẽ được đồng loại gửi tới các subscriber
@@ -39,9 +61,10 @@ VD: SNS topic có thể notify:
 - Message size: 256Kb
 
 # SNS usecase
-- Notify đến email/SMS trong trường hợp dùng làm notification service
+- Application & system alerts: Notify đến email/SMS trong trường hợp dùng làm notification service
+- Push email and text messaging
 - Kết hợp với các dịch vụ Monitoring, Audit, Security để thông báo tới người phụ trách
-- Notify tới Mobile Application
+- Mobile push notifications: Notify tới Mobile Application
 - Gửi notification đồng thời tới nhiều target theo thời gian thực
 - Xây dựng hệ thống phân tán
 - Xây dựng hệ thống chat
