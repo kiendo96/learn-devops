@@ -1,9 +1,9 @@
 # Lab 1- SQS thao tác cơ bản
-- 1. Login vào AWS console, navigate tới dịch vụ SQS
-- 2. Tạo một Queue với các thông số cơ bản
-- 3. Thử gửi và nhận message trên queue
-- 4. Thử xóa một message
-- 5. Thử purge queue (xóa toàn bộ message)
+1. Login vào AWS console, navigate tới dịch vụ SQS
+2. Tạo một Queue với các thông số cơ bản
+3. Thử gửi và nhận message trên queue
+4. Thử xóa một message
+5. Thử purge queue (xóa toàn bộ message)
 ```
 -> Create a new SQS queue
   -> visibility timeout (Tối đa 12hours)
@@ -20,9 +20,9 @@
 ```
 
 # Lab 2 - SQS thao tác cơ bản
-- 1. Login vào AWS console, navigate tới dịch vụ SQS
-- 2. Tạo thêm một queue với tên gọi "dead-letter-queue"
-- 3. Cấu hình queue lab1 sử dụng queue ở bước trước làm dead letter queue, max receive count = 5
-- 4. Thử gửi một message vào queue chính sau đó poll liên tục 5 lần. Chú ý thông số receive count của message sẽ bị +1 sau mỗi lần poll
-- 5. Poll tới lần thứ 6, message không còn nữa
-- 6. Confirm message đã bị đẩy sang "dead-letter-queue". Chú ý thông số receive count sẽ không bị reset mà được giữ nguyên và tiếp tục cộng +1 lên sau mỗi lần poll
+1. Login vào AWS console, navigate tới dịch vụ SQS
+2. Tạo thêm một queue với tên gọi "dead-letter-queue"
+3. Cấu hình queue lab1 sử dụng queue ở bước trước làm dead letter queue, max receive count = 5
+4. Thử gửi một message vào queue chính sau đó poll liên tục 5 lần. Chú ý thông số receive count của message sẽ bị +1 sau mỗi lần poll
+5. Poll tới lần thứ 6, message không còn nữa
+6. Confirm message đã bị đẩy sang "dead-letter-queue". Chú ý thông số receive count sẽ không bị reset mà được giữ nguyên và tiếp tục cộng +1 lên sau mỗi lần poll

@@ -1,3 +1,7 @@
+# Pub/Sub Messaging
+- Publisher: push message to topic
+- Subscribe: Monitor topic and receive message - use push method (different with `Consumer` use pull)
+
 # Simple Notification Service - SNS
 - AWS Simple Notification Service (SNS) là một dịch vụ notification, cho phép bạn gửi thông báo đến các đối tượng khác nhau như các ứng dụng, user, hệ thống hoặc các dịch vụ khác trên AWS
 - SNS cho phép gửi thông báo bằng nhiều phương thức khác nhau như email, SMS, push notification hoặc API CALL. Có thể tạo và quản lý các topics trong SNS và sau đó gửi thông báo đến các chủ đề đó. Các đối tượng đã đăng ký (subsribed) vào chủ đề sẽ nhận được thông báo
