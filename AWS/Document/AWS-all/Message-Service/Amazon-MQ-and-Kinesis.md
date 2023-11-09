@@ -31,8 +31,8 @@ Message producer is on-premises(On-premise message producer ---> On-premise Acti
     + Kinesis Data Stream
     + Kinesis Data Firehose
 
-### 1. Kinesis Video Stream
-### Case study
+### Kinesis Video Stream
+1. Case study
 - Smart home:
     + Monitor children
     + Camera an ninh
@@ -42,7 +42,7 @@ Message producer is on-premises(On-premise message producer ---> On-premise Acti
     + Ngan chan toi pham
 - Industrial automation:
     + Predictive maintenance
-### Topology
+2. Topology
 ```
 Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon SageMaker, MxNet/TensorFlow, HLS-based media playback, Custom media processing]
 ```
@@ -54,12 +54,12 @@ Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon 
 ### 2. Kinesis Data Stream
 >Receive data and ship to different service process the data
 
-### Case Study
-1. Stream log & event data
-2. Run real-time analytics
-3. Event-driven applications
+1. Case Study
+- Stream log & event data
+- Run real-time analytics
+- Event-driven applications
 
-### Topology
+2. Topology
 ```
 Input[AWS services, Microservices, Logs, Mobile apps and sensors] ---> Kinesis Data Streams ---> Output[AWS Lambda, Kinesis Data Analytics, Kinesis Data Firehose, Containers]
 ```
