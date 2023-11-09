@@ -55,9 +55,9 @@ Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon 
 >Receive data and ship to different service process the data
 
 1. Case Study
-- Stream log & event data
-- Run real-time analytics
-- Event-driven applications
+    - Stream log & event data
+    - Run real-time analytics
+    - Event-driven applications
 
 2. Topology
 ```
@@ -72,9 +72,9 @@ Input[AWS services, Microservices, Logs, Mobile apps and sensors] ---> Kinesis D
 >Receive data, then process the data and return ouput to dashboard
 
 1. Case Study
-- Stream into data lakes & data warehouse
-- Boost security
-- Build ML streaming applications
+    - Stream into data lakes & data warehouse
+    - Boost security
+    - Build ML streaming applications
 
 2. Topology
 ```
