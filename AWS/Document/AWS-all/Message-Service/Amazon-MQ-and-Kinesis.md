@@ -51,7 +51,7 @@ Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon 
     + Kinesis Video Streams: Ingest, durably store, encrypt, and index media streams for real-time playback, analytics, and machine learning
     + Output: Real-time and batch-driven machine learning applications, media processing and playback services use Kinesis Video Stream API to access and retrieve indexed media
 
-### 2. Kinesis Data Stream
+### Kinesis Data Stream
 >Receive data and ship to different service process the data
 
 1. Case Study
@@ -68,15 +68,15 @@ Input[AWS services, Microservices, Logs, Mobile apps and sensors] ---> Kinesis D
     + Kinesis Data Streams: Easily stream data at any scale
     + Output: Build streaming data applications using AWS services, open source framework, and custom applications
 
-### 3. Kinesis Data Firehose
+### Kinesis Data Firehose
 >Receive data, then process the data and return ouput to dashboard
 
-### Case Study
-1. Stream into data lakes & data warehouse
-2. Boost security
-3. Build ML streaming applications
+1. Case Study
+- Stream into data lakes & data warehouse
+- Boost security
+- Build ML streaming applications
 
-### Topology
+2. Topology
 ```
 Input --> Ingest ---> Amazon Kinesis Data Firehose -----> Load ---> Output
                                 |
