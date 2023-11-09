@@ -1,13 +1,13 @@
 # Amazon MQ
-- Managed message broker duoc xay dung dua tren Apache ActiveMQ
-- Don gian hoa message migration to cloud
-- Tuong thich voi cac chuan API va giao thuc danh cho message queue: `JMS, NMS, AMQP, STOMP, MQTT, WebSockets`
+- Managed message broker được xây dựng dựa trên Apache ActiveMQ
+- Đơn giản hóa message migration to cloud
+- Tương thích với các chuẩn API và giao thức dành cho message queue: `JMS, NMS, AMQP, STOMP, MQTT, WebSockets`
 
 # Amazon MQ Usecase
 ```
 Message producer is on-premises(On-premise message producer ---> On-premise ActiveMQ Broker) ----> AWS Cloud (Amazon MQ  ---> Cloud-based message consumer)
 ```
-- Trong do:
+- In there:
     + Message produces is on-premises: Corporate data center
     + Message consumer is cloud-based: AWS Cloud
 
@@ -24,8 +24,8 @@ Message producer is on-premises(On-premise message producer ---> On-premise Acti
 - Pay per request
 
 # Amazon Kinesis
-- Mot nhom service phuc vu cho bai toan data streaming
-- Cung cap kha nang realtime intergrate hang Gigabyte data from multiple source
+- Một nhóm service phục vụ cho data streaming
+- Cung cấp khả năng realtime intergrate hàng Gigabyte data from multiple source
 - Kinesis services:
     + Kinesis Video Streaming
     + Kinesis Data Stream
@@ -33,15 +33,15 @@ Message producer is on-premises(On-premise message producer ---> On-premise Acti
 
 ### Kinesis Video Stream
 1. Case study
-- Smart home:
-    + Monitor children
-    + Camera an ninh
-    + Smart lightning
-- Smart city:
-    + Camera giao thong
-    + Ngan chan toi pham
-- Industrial automation:
-    + Predictive maintenance
+    - Smart home:
+        + Monitor children
+        + Camera an ninh
+        + Smart lightning
+    - Smart city:
+        + Camera giao thong
+        + Ngan chan toi pham
+    - Industrial automation:
+        + Predictive maintenance
 2. Topology
 ```
 Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon SageMaker, MxNet/TensorFlow, HLS-based media playback, Custom media processing]
@@ -101,5 +101,6 @@ ________________________________________________________________________________
 | Kinesis Data Firehose   |      Yes        |      14 days       | Source - Destination |
 |_______________________________________________________________________________________|
 ```
->SQS danh cho message queue
->Kinesis danh cho data stream
+>SQS dành cho message queue
+
+>Kinesis dành cho data stream
