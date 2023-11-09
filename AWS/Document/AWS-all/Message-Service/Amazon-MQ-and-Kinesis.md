@@ -31,7 +31,7 @@ Message producer is on-premises(On-premise message producer ---> On-premise Acti
     + Kinesis Data Stream
     + Kinesis Data Firehose
 
-### 1.Kinesis Video Stream
+### 1. Kinesis Video Stream
 ### Case study
 - Smart home:
     + Monitor children
@@ -51,7 +51,7 @@ Input ----> Kinesis Video Streams ----> Output[Amazon Rekognition Video, Amazon 
     + Kinesis Video Streams: Ingest, durably store, encrypt, and index media streams for real-time playback, analytics, and machine learning
     + Output: Real-time and batch-driven machine learning applications, media processing and playback services use Kinesis Video Stream API to access and retrieve indexed media
 
-### 2.Kinesis Data Stream
+### 2. Kinesis Data Stream
 >Receive data and ship to different service process the data
 
 ### Case Study
@@ -68,7 +68,7 @@ Input[AWS services, Microservices, Logs, Mobile apps and sensors] ---> Kinesis D
     + Kinesis Data Streams: Easily stream data at any scale
     + Output: Build streaming data applications using AWS services, open source framework, and custom applications
 
-### 3.Kinesis Data Firehose
+### 3. Kinesis Data Firehose
 >Receive data, then process the data and return ouput to dashboard
 
 ### Case Study
