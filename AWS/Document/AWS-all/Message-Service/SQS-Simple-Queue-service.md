@@ -8,6 +8,47 @@
 - SQS cung cấp 2 loại queue: standard & FIFO (First in first out). Standard queue cung cấp khả năng mở rộng cao và đáng tin cậy, trong khi FIFO queue đảm bảo tin nhắn được xử lý theo tuần tự (nhược điểm là bị giới hạn về tần suất gửi nhận)
 - SQS cũng cung cấp các tính năng như chế độ retry tự động, message filtering và khả năng xác nhận( acknowledge) tin nhắn. Ngoài ra, SQS tích hợp với các dịch vụ AWS khác, cho phép xây dựng các hệ thống phức tạp và đáng tin cậy
 
+# Tóm tắt SQS
+- Fully Managed message queue service
+- Use pull mechanism
+- Các message được lưu cho đến khi được xử lý và xóa khỏi queue
+- Đóng vai trò như 1 buffer đứng giữa producer và consumer
+- Distributed Queue
+
+# Loose Coupling with SQS
+### Topology
+- Tight coupling (Synchronous): A failure on the EC2 instance directly impacts the client
+```
+Client ----> EC2 instance
+```
+
+- Loose coupling(Synchronous): ELB routes traffic to only healthy EC2 instance, mitigating a failure on any one of them
+```
+                                         ---------> EC2 instance
+                                         |
+Client -----> Elastic LoadBalancing(ELB) ---------> EC2 instance
+                                         |
+                                         ---------> EC2 instance
+```
+
+- Loose coupling(Asynchronous):
+    + EC2 instance "workers" pick up request as messages on the queue. If an failures occur, the message remains and another worker can process it (or it can receive special processing in a Dead Letter Queue)
+    + If request rate exceeds the ability to process them, request can still be fulfilled as they are stored in queue until processed
+```
+                                    <====ReceiveMessage======
+Client ----SendMessage--->   Queue  ======Message===========> EC2 instance                              
+```
+
+- Use `asynchronous processing` to get your responses from each step quickly
+- Handle `performance and service requirements` by increasing the number of job instance
+- Easily `recover from failed steps` because messages will remain in the queue
+
+# SQS General Usecases
+- Work queue
+- Buffering batch operations
+- Request offloading
+- Trigger EC2 Auto Scaling
+
 # Đặc trưng của SQS
 - SQS là một managed service do đó bạn không quản lý hạ tầng phía sau
 - SQS được tạo và quản lý dưói các đơn vị mesage queue

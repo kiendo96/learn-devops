@@ -94,7 +94,7 @@ Input --> Ingest ---> Amazon Kinesis Data Firehose -----> Load ---> Output
 ### Compare Kinesis vs SQS
 ```
 ________________________________________________________________________________________
-|        Service          | Transforms data |  Maximum retention |        Model         |
+|_______Service___________|_Transforms data_|__Maximum retention_|________Model_________|
 |         SQS             |      No         |       14 days      | Producer - Consumer  |
 | Kinesis Video Stream    |      No         |       7 days       | Producer - Consumer  |
 | Kinesis Data Streams    |      No         |       7 days       | Producer - Consumer  |
