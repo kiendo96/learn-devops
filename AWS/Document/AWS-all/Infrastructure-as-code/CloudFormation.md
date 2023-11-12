@@ -36,4 +36,4 @@
     + Tạo Cfn template đúng -> Deploy và chờ Resource được tạo ra -> Update template lỗi -> Deploy -> AWS Cloudfomation báo lỗi và rollback trạng thái về ban đầu
     + Tạo Cfn template đúng -> Deploy và chờ Resource được tạo ra -> Xóa template nhưng không được phép (VD: Xóa ec2 nhưng chưa gỡ CNI) -> AWS Cloudfomation báo lỗi và không xóa bất kì resource nào
 # Các tool tương tự
-- Infrastructure as Code là 1 khái niệm, và có nhiều tool giúp làm được điều này. Có thể kể đến Hashicorp Terraform, Pulumi, AWS Cdk, Azure Resource Manger (chỉ dùng cho azure), Kubernetes manifest (chỉ dùng cho Kubernetes)
+- Infrastructure as Code là 1 khái niệm, và có nhiều tool giúp làm được điều này. Có thể kể đến `Hashicorp Terraform, Pulumi, AWS CDK, Azure Resource Manger (chỉ dùng cho azure), Kubernetes manifest (chỉ dùng cho Kubernetes)`
