@@ -92,4 +92,3 @@
 - Tính năng nâng cao
 - Khi có keyword transform trong Template, CFn sẽ gửi toàn bộ template cho 1 hàm lambda, hàm lambda sẽ tự xử lý template này và gửi về 1 output khác để deploy.
 - Hiện tại có AWS Serverless application model (SAM) dùng SAM để thêm role tự động cho hàm lambda. Ngoài ra thực tế ít ai có thể custom được
-
