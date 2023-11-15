@@ -93,3 +93,10 @@ Client -> Browser(/index.html, /image/xxx, /videos/yyy, /api/login) -> CloudFron
 - `Blacklist`: Prevent your users from accessing your content if they're in one of the countries on a blacklist of banned countries
 - The `country` is determined using a 3rd party Geo-IP database
 - Use case: Copyright Laws to control access to content
+
+# Origin Access Identity(OAI)
+- Definition:
+  + Origin Access Identity (AOI) is a special CloudFront user
+- Purpose
+  + Restrict access to content in S3 buckets
+  + Users can only access your file through CloudFront, not directly from the s3 bucket
