@@ -54,7 +54,7 @@ Default output format [None]: json
 ```
 - Test if AWS CLI is working after configuring the above
 ```
-aws ec2 describe-vpcs
+ ec2 describe-vpcsaws
 ```
 
 ## Step-02: Install kubectl CLI
