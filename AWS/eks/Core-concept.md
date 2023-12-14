@@ -231,7 +231,7 @@
   + Target Value - CPU = 50%
   + Min Replicas = 2
   + Max Replicas = 1
-> # kubectl autoscale deployment demo-deployment --cpu-percent=50 --min=1 --max=10
+# kubectl autoscale deployment demo-deployment --cpu-percent=50 --min=1 --max=10
 
 # Vertical Pod Autoscaler - VPA
 - VPA automatically adjusts the `CPU and memory reservations` for our pods to help `right size` our applications.
