@@ -233,16 +233,32 @@
   + Max Replicas = 1
 > # kubectl autoscale deployment demo-deployment --cpu-percent=50 --min=1 --max=10
 
-# Vertical Pod Autoscaler
-• VPA automatically adjusts the CPU and memory reservations for our
-pods to help "right size" our applications.
-• This adjustment can improve cluster resource utilization and free up
-CPU and memory for other pods.
-• Benefits
-• Cluster nodes are used efficiently, because Pods use exactly what they need.
-• Pods are scheduled onto nodes that have the appropriate resources
-available.
-• We don't have to run time-consuming benchmarking tasks to determine the
-correct values for CPU and memory requests.
-• Maintenance time is reduced, because the autoscaler can adjust CPU and
-memory requests over time without any action on your part.
+# Vertical Pod Autoscaler - VPA
+- VPA automatically adjusts the `CPU and memory reservations` for our pods to help `right size` our applications.
+- This adjustment can `improve cluster resource utilization` and `free up` CPU and memory for other pods.
+- Benefits
+  + Cluster nodes are used `efficiently`, because Pods use exactly what they need.
+  + Pods are `scheduled onto nodes` that have the appropriate resources available.
+  + We `don't have` to run `time-consuming benchmarking tasks` to determine the correct values for CPU and memory requests.
+  + `Maintenance time is reduced`, because the autoscaler can adjust CPU and memory requests over time without any action on your part.
+
+### VPA Component
+- VPA Admission Hook: Every pod submitted to the k8s cluster goes through this webhook automatically which checks whether a `VerticalPodAutoscaler` object is referencing this pod or one of its parents (a ReplicaSet, a Deployment, etc.)
+- VPA Recommender: Connects to the `metrics-server` in the cluster, fetches historical and current usage data (CPU and memory) for each VPA-enabled pod and generates recommendations for `scaling up or down` the requests and limits of these pods.
+- VPA Updater: `Runs every 1 minute`. If a pod is not running in the calculated recommendation range, `it evicts the currently running version of this pod`, so it can restart and go through the `VPA admission webhook` which will change the CPU and memory settings for it, before it can start
+
+# Cluster Autoscaler
+- `Cluster Autoscaler` is a tool that `automatically adjusts` the size of a Kubernetes cluster when one of the following conditions is true:
+- There are pods that `failed to run` in the cluster due to `insufficient resources`.
+- There are nodes in the cluster that have been `underutilized` for an extended period of time and their pods can be placed on other existing nodes.
+- The Cluster Autoscaler `modifies` our worker node groups so that they `scale out` when we need more resources and `scale in` when we have underutilized resources.
+
+# Cloudwatch - Container Insights
+- A `fully managed observability service` for monitoring, troubleshooting and alarming on our containerized applications.
+- Container Insights to `collect, aggregate, and summarize metrics and logs` from our containerized applications and microservices.
+- The metrics include `utilization for resources` such as CPU, memory, disk, and network.
+- It also provides `diagnostic information`, such as container restart failures, to help us isolate issues and resolve them quickly.
+- We can also set `CloudWatch alarms` on metrics that Container Insights collects.
+- The metrics that Container Insights collects are available in `CloudWatch automatic dashboards`.
+- We can analyze and troubleshoot container performance and logs data with `CloudWatch Logs Insights`.
+
