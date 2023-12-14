@@ -156,3 +156,93 @@
 - Benefits
   + Creates `isolation boundary` from other k8s objects
   + We can limit the resources like `CPU, Memory` on per namespace basis (`Resource Quota`)
+
+# Microservices
+- Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are
+  + Highly maintainable and testable
+  + Loosely coupled
+  + Independently deployable
+  + Organized around business capabilities
+  + Owned by a small team
+
+### Microservices - Benefits
+- Developer independence: Small teams work in parallel and can iterate `faster` than large teams.
+- Isolation and resilience: If a `component dies`, you spin up another while and the rest of the application continues to function.
+- Scalability: Smaller components take up fewer resources and can be scaled to meet `increasing demand` of that component only.
+- Lifecycle automation: Individual components are easier to fit into `continuous delivery pipelines` and complex deployment scenarios not possible with monoliths.
+- Relationship to the business: Microservice architectures are split along business domain boundaries, increasing independence and understanding across the organization
+
+# Microservices Distributed Tracing
+### AWS X-Ray
+- AWS X-Ray helps `analyse and debug` distributed applications built using microservices architecture.
+>AWS X-Ray giúp phân tích và gỡ lỗi các ứng dụng phân tán được xây dựng bằng kiến ​​trúc vi dịch vụ.
+
+- With X-Ray, we can `understand` how our application and its underlying services are performing to `identify and troubleshoot` the root cause of performance issues and errors.
+>Với X-Ray, chúng tôi có thể hiểu ứng dụng của chúng tôi và các dịch vụ cơ bản của nó đang hoạt động như thế nào để xác định và khắc phục nguyên nhân cốt lõi của các vấn đề và lỗi về hiệu suất.
+
+- X-Ray provides an `end-to-end view` of requests as they travel through our application and `shows a map` of our application’s underlying components.
+>X-Ray cung cấp chế độ xem từ đầu đến cuối về các yêu cầu khi chúng di chuyển qua ứng dụng của chúng tôi và hiển thị bản đồ về các thành phần cơ bản của ứng dụng của chúng tôi
+
+- We can also use X-Ray to analyse applications in `development and in production`, from simple three-tier applications to `complex microservices applications consisting of thousands of services`.
+>Chúng tôi cũng có thể sử dụng X-Ray để phân tích các ứng dụng trong quá trình "phát triển và sản xuất", từ các ứng dụng ba tầng đơn giản đến "các ứng dụng vi dịch vụ phức tạp bao gồm hàng nghìn dịch vụ".
+
+### AWS X-Ray - Benefits
+- Review request behavior
+- Discover application issues
+- Improve application performance
+- Ready to use with AWS
+- Designed for a variety of applications
+
+# DaemonSets
+- A `DaemonSet` ensures that all (or some) Nodes run a copy of a Pod.
+  + As nodes are `added` to the cluster, Pods are added to them.
+  + As nodes are `removed` from the cluster, those Pods are garbage collected.
+  + `Deleting` a DaemonSet will clean up the Pods it created.
+- Some typical uses of a DaemonSet are:
+  + running a `logs collection daemon` on every node (Example: fluentd)
+  + running a `node monitoring daemon` on every node (Example: cloudwatchagent)
+  + running an `application trace collection daemon` on every node (Example: AWS X-Ray)
+- In a `simple case`, one DaemonSet, covering all nodes, would be used for each type of daemon.
+- A `more complex setup` might use `multiple DaemonSets for a single type of daemon`, but with different flags and/or different memory and cpu requests for different hardware types
+
+# Microservices Canary Deployments
+- Canaries means `incremental` rollouts
+- With canaries, the `new version` of the application is slowly deployed to the Kubernetes cluster while getting a very small amount of `live traffic`
+- In short, `a subset of live users` are connecting to the `new version` while the rest are still using the `previous version`
+- Using canaries, we can detect `deployment issues very early` while they effect only a small subset of users
+- If we `encounter any issues with a canary`, the production version is still present, and `all traffic can simply be reverted to it`.
+
+# Horizontal Pod Autoscaler – HPA
+- In a very simple note Horizontal Scaling means `increasing and decreasing` the number of `Replicas (Pods)`
+- HPA `automatically scales` the number of pods in a deployment, replication controller, or replica set, stateful set based on that resource's `CPU utilization`.
+- This can help our applications `scale out to meet increased demand` or `scale in when resources are not needed`, thus freeing up your worker nodes for other applications.
+- When we set a `target CPU utilization percentage`, the HPA scales our application in or out to try to meet that target.
+- HPA needs `Kubernetes metrics server` to verify CPU metrics of a pod.
+- We `do not need `to deploy or `install the HPA` on our cluster to begin scaling our applications, its out of the box available as a default Kubernetes API resource.
+
+### Horizontal Pod Autoscaler – How to work
+- Step 1: Query for Metrics from metrics server - `This control loop is executed every 15 seconds`
+- Step 2: Calculate the Replica’s
+- Step 3: Scale the app to desired replicas
+
+### Horizontal Pod Autoscaler – HPA Configured
+- HPA requires:
+  + Scaling Metric: CPU Utilization
+  + Target Value - CPU = 50%
+  + Min Replicas = 2
+  + Max Replicas = 1
+> # kubectl autoscale deployment demo-deployment --cpu-percent=50 --min=1 --max=10
+
+# Vertical Pod Autoscaler
+• VPA automatically adjusts the CPU and memory reservations for our
+pods to help "right size" our applications.
+• This adjustment can improve cluster resource utilization and free up
+CPU and memory for other pods.
+• Benefits
+• Cluster nodes are used efficiently, because Pods use exactly what they need.
+• Pods are scheduled onto nodes that have the appropriate resources
+available.
+• We don't have to run time-consuming benchmarking tasks to determine the
+correct values for CPU and memory requests.
+• Maintenance time is reduced, because the autoscaler can adjust CPU and
+memory requests over time without any action on your part.
