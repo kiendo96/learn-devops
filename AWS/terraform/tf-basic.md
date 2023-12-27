@@ -101,3 +101,187 @@ Data arguments[most_recent, filter, owners] -> aws_ami(data source) -> Data attr
 ### Resource drift
 - Khi thay đổi config được deploy trước đó bằng tf, sau đó bị thay đổi bên ngoài terraform (cli, web console, sdk...)
 - Khi chạy: `terrform plan` sẽ thấy output: `Note: Objects have changed outside of Terraform`
+
+# Input Variable
+- Structure:
+```
+variable "words" {
+    ...
+}
+```
+- In there:
+    + variable is element
+    + words is name
+- File name default is `variable.tf` hoặc đặt tên gì cũng được
+- Example: in file variable.tf
+```
+variable "instance_type" {
+    type= string
+    description = "Instance type of the EC2"
+}
+```
+- `Attribute type` is required
+    + Basic type: string, number, bool
+    + Complex type: list(), set(), map(), object(), tuple()
+- `Attribute description` is optional
+
+- Example access variable
+```
+provider "aws" {
+    region = "us-east-1"
+}
+data "aws_ami" "ubuntu" {
+    most_recent = true
+    filter {
+        name = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    }
+    owners = ["099720109477"] #Canonical Ubuntu account id
+}
+
+resource "aws_instance" "hello" {
+    ami = data.aws_ami.ubuntu.id
+    instance_type = var.instance_type   #access variable
+    tags = {
+        Name = "HelloWorld"
+    }
+}
+```
+
+### Assign value for variable
+- Create file: `terraform.tfvars` for test
+```
+instance_type = "t2.micro"
+```
+=> Khi apply thì mặc định đọc value này
+
+- Create file: `production.tfvars` for production
+```
+instance_type = "t3.medium"
+```
+=> Khi apply: terraform apply -var-file="production.tfvars"
+
+### Validating variables
+- `validation`: giá trị này để kiểm tra biến instance_type chỉ được phép nằm trong mảng array cho phép
+```
+variable "instance_type" {
+    type= string
+    description = "Instance type of the EC2"
+    validation {
+        condition = contrains(["t2.micro", "t3.medium"], var.instance_type)
+        error_mesage = "Value not allow"
+    }
+}
+```
+- Nếu khi apply value trong file `terraform.tfvars` khác "t2.micro" hoặc "t3.medium" => sẽ nhận về message "Value not allow"
+
+### Output
+- Structure:
+```
+output "ec2" {
+    value = {
+        public_ip = aws_instance.hello.public_ip
+    }
+}
+```
+- When run `terraform apply` in result will see output is ec2 = {"public_ip" = "`192.168.1.12`}
+
+### Count parameter
+- `Count` là một meta argument
+- Là một thuộc tính trong terraform chứ không phải của resource type thuộc provider
+```
+provider "aws" {
+  region = "us-west-2"
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  owners = ["099720109477"]
+}
+
+resource "aws_instance" "hello" {
+  count         = 5 #create this resource 5 
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+}
+
+output "ec2" {
+  value = {
+    public_ip1 = aws_instance.hello[0].public_ip
+    public_ip2 = aws_instance.hello[1].public_ip
+    public_ip3 = aws_instance.hello[2].public_ip
+    public_ip4 = aws_instance.hello[3].public_ip
+    public_ip5 = aws_instance.hello[4].public_ip
+  }
+}
+```
+- Trong phần output chúng ta vẫn phải access vào giá trị này 5 lần. Để giải quyết vấn đề này chúng ta sẽ sử dụng for expressions
+
+### For Expressions
+- Structure:
+```
+for <value> in <list> : <return value>
+```
+
+- Edit main.tf
+```
+provider "aws" {
+  region = "us-west-2"
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  owners = ["099720109477"]
+}
+
+resource "aws_instance" "hello" {
+  count         = 5 #create this resource 5 
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+}
+
+output "ec2" {
+  value = {
+    public_ip = [ for v in aws_instance.hello : v.public_ip ]
+  }
+}
+```
+
+- Format function: Nối chuỗi output
+```
+...
+output "ec2" {
+  value = {
+    public_ip = [ for i, v in aws_instance.hello : format("public_ip%d, i+1" => v.public_ip ]
+  }
+}
+```
+
+### Local values
+- Giúp khai báo một giá trị local trong file terraform và có thể sử dụng lại được nhiều lần
+- Structure
+```
+locals {...}
+```
+- Locals block được gán thẳng values cho nó
+```
+locals {
+  one = 1
+  two = 2
+  name = "max"
+  flag = true
+}
+```
+- Access local value: `local.<KEY>`
