@@ -4,9 +4,9 @@ Terraform is an Infrastructure as Code (IaC) tool used to define and provision i
 
 **Advantages of Terraform State File:**
 
-1. **Resource Tracking**: The state file keeps track of all the resources managed by Terraform, including their attributes and dependencies. This ensures that Terraform can accurately update or destroy resources when necessary.
+1. **Resource Tracking**: The state file keeps track of all the resources managed by Terraform, including their attributes and dependencies. This ensures that Terraform can accurately update or destroy resources when necessary.(File terraform.tfstate lưu trữ toàn bộ trạng thái resource của terraform, bao gồm cả attributes và dependencies. Điều này đảm bảo terraform có thể update hoặc destroy chính xác resource khi cần thiết)
 
-2. **Concurrency Control**: Terraform uses the state file to lock resources, preventing multiple users or processes from modifying the same resource simultaneously. This helps avoid conflicts and ensures data consistency.
+2. **Concurrency Control**: Terraform uses the state file to lock resources, preventing multiple users or processes from modifying the same resource simultaneously. This helps avoid conflicts and ensures data consistency.(Terraform sử dụng state file để khóa toàn bộ resource, ngăn chặn nhiều users hoặc processes chỉnh sửa cùng resource. Điều này giúp giảm conflicts và đảm bảo nhất quán data )
 
 3. **Plan Calculation**: Terraform uses the state file to calculate and display the difference between the desired configuration (defined in your Terraform code) and the current infrastructure state. This helps you understand what changes Terraform will make before applying them.
 
@@ -14,9 +14,9 @@ Terraform is an Infrastructure as Code (IaC) tool used to define and provision i
 
 **Disadvantages of Storing Terraform State in Version Control Systems (VCS):**
 
-1. **Security Risks**: Sensitive information, such as API keys or passwords, may be stored in the state file if it's committed to a VCS. This poses a security risk because VCS repositories are often shared among team members.
+1. **Security Risks**: Sensitive information, such as API keys or passwords, may be stored in the state file if it's committed to a VCS. This poses a security risk because VCS repositories are often shared among team members. (Dữ liệu nhạy cảm như API keys or paswords, có thể bị lưu lại trong state file khi commit lên VCS)
 
-2. **Versioning Complexity**: Managing state files in VCS can lead to complex versioning issues, especially when multiple team members are working on the same infrastructure.
+2. **Versioning Complexity**: Managing state files in VCS can lead to complex versioning issues, especially when multiple team members are working on the same infrastructure. (Việc quản lý tệp trạng thái trong VCS có thể dẫn đến các vấn đề phức tạp về phiên bản, đặc biệt khi nhiều thành viên trong nhóm đang làm việc trên cùng một cơ sở hạ tầng.)
 
 **Overcoming Disadvantages with Remote Backends (e.g., S3):**
 
