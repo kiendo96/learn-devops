@@ -83,3 +83,67 @@ Terraform sử dụng resource block để manage infrastructure, như là: virt
 When working with a specific provider, like AWS, Azure, or GCP, the resources are defined in the provider documentation. Each resource is fully documented in regards to the valid and required arguments required for each individual resource. For example, the `aws_key_pair` resource has a "Required" argument of `public_key` but optional arguments like `key_name` and `tags`. You'll need to look at the provider documentation to understand what the supported resources are and how to define them in your Terraform configuration.
 
 **Important** - Without `resource` blocks, Terraform is not going to create resources. All of the other block types, such as `variable`, `provider`, `terraform`, `output`, etc. are essentially supporting block types for the `resource` block.
+
+# Variables block
+
+As you being to write Terraform templates with a focus on reusability and DRY development (don't repeat yourself), you'll quickly being to realize that variables are going to simplify and increase usability for your Terraform configuration. Input variables allow aspects of a module or configuration to be customized without altering the module's own source code. This allows modules to be shared between different configurations.
+
+Input variables (commonly referenced as just 'variables') are often declared in a separate file called `variables.tf`, although this is not required. Most people will consolidate variable declaration in this file for organization and simplification of management. Each variable used in a Terraform configuration must be declared before it can be used. Variables are declared in a variable block - one block for each variable. The variable block contains the variable name, most importantly, and then often includes additional information such as the type, a description, a default value, and other options.
+
+The variable block follows the following pattern:
+
+### Template
+
+```hcl
+variable “<VARIABLE_NAME>” {
+  # Block body
+  type = <VARIABLE_TYPE>
+  description = <DESCRIPTION>
+  default = <EXPRESSION>
+  sensitive = <BOOLEAN>
+  validation = <RULES>
+}
+```
+### Example
+
+```hcl
+variable "aws_region" {
+  type        = string
+  description = "region used to deploy workloads"
+  default     = "us-east-1"
+  validation {
+    condition     = can(regex("^us-", var.aws_region))
+    error_message = "The aws_region value must be a valid region in the
+    USA, starting with \"us-\"."
+  }
+}
+```
+
+The value of a Terraform variable can be set multiple ways, including setting a default value, interactively passing a value when executing a terraform plan and apply, using an environment variable, or setting the value in a `.tfvars` file. Each of these different options follows a strict order of precedence that Terraform uses to set the value of a variable.
+
+# Local block
+Locals blocks (often referred to as locals) là các value được defined trong Terraform được sử dụng để giảm các tham chiếu lặp đi lặp lại đối với expression or value. Locals rất giống với traditional input variables và có thể được tham chiếu trong suốt cấu hình Terraform. Locals are often used to give a name to the result of an expression to simplify your code and make it easier to read.
+
+Locals are not set directly by the user/machine executing the Terraform configuration, and the values don't change between or during the Terraform workflow (`init`, `plan`, `apply`).
+
+Locals are defined in a `locals` block (plural) and include named local variables with their defined values. Each locals block can contain one or more local variables. Locals are then referenced in your configuration using interpolation using `local.<name>` (note `local` and not `locals`). The syntax of a locals block is as follows:
+
+### Template
+
+```hcl
+locals {
+  # Block body
+  local_variable_name = <EXPRESSION OR VALUE>
+  local_variable_name = <EXPRESSION OR VALUE>
+}
+```
+
+### Example
+
+```hcl
+locals {
+  time = timestamp()
+  application = "api_server"
+  server_name = "${var.account}-${local.application}"
+}
+```
