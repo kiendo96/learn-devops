@@ -147,3 +147,62 @@ locals {
   server_name = "${var.account}-${local.application}"
 }
 ```
+
+# Data Block
+Terraform sử dụng `data block` để load hoặc query data from APIs hay một số tác vụ khác. Có thể sử dụng dữ liệu này để làm cho cấu hình dự án của bạn linh hoạt hơn và để kết nối các không gian làm việc quản lý các phần khác nhau trong cơ sở hạ tầng của bạn. Cũng có thể sử dụng `data source` để connect và share data giữa các workspaces in Terraform Cloud and Terraform Enterprise
+
+Data Block bao gồm các components:
+- Data Block: `resource` là top-level keywork like `for` and `while` trong các ngôn ngữ khác
+- Data Type: The next value is the type of the resource. Resource type luôn có prefixed theo nhà cung cấp của chúng. Có thể có nhiều loại resource giống nhau trong cấu hình terraform
+- Data Local Name: The resource type and name together form the resource identifier, or ID. In this lab, one of the resource IDs is aws_instance.web. The resource ID must be unique for a given configuration, even if multiple files are used.
+- Data Arguments - Most of the arguments within the body of a resource block are specific to the selected resource type. The resource type's documentation lists which arguments are available and how their values should be formatted.
+
+Example:
+A data block requests that Terraform read from a given data source ("aws_ami") and export the result under the given local name ("example"). The name is used to refer to this resource from elsewhere in the same Terraform module.
+
+### Template
+
+```hcl
+data “<DATA TYPE>” “<DATA LOCAL NAME>”   {
+  # Block body
+  <IDENTIFIER> = <EXPRESSION> # Argument
+}
+```
+
+# Terraform Block
+Terraform dựa trên plugins gọi là "providers" để tương tác với remote systems và expand functionality. Terraform cấu hình phải được khai báo providers nào có thể  cài đặt và sử dụng chúng. This is performed within a Terraform configuration block
+
+Template:
+```hcl
+terraform {
+  # Block body
+  <ARGUMENT> = <VALUE>
+}
+```
+
+Example:
+```hcl
+ terraform {
+   required_version = ">= 1.0.0"
+ }
+
+# Module Block
+A module được sử dụng để combine resources thường xuyên sử dụng vào trong một container(thùng chứa). Các module riêng lẻ có thể được sử dụng để xây dựng một giải pháp tổng thể cần thiết để triển khai các ứng dụng. Mục tiêu là phát triển các module có thể được tái sử dụng theo nhiều cách khác nhau, do đó giảm số lượng mã cần phát triển.
+Modules are called by a `parent` or `root` module, and any modules called by the `parent` module are known as `child` modules.
+Modules can be sourced from a number of different locations, including remote, such as the Terraform module registry, or locally within a folder. While not required, local modules are commonly saved in a folder named `modules`, and each module is named for its respective function inside that folder. An example of this can be found in the diagram below:
+
+```
+aws-architecture-root
+  |
+  |----> modules
+  |         |----> vpc_module
+  |         |         |----> main.tf
+  |         |         |----> variables.tf
+  |         |         |----> outputs.tf
+  |         |----> subnet_module
+  |
+  v
+main.tf
+variables.tf
+outputs.tf
+```
