@@ -12,8 +12,8 @@ FUTURE-TOPICS
 .terraform
 *.tfstate
 *.tfstate.backup
-#.terraform.lock.hcl
-#*.tfvars
+.terraform.lock.hcl
+*.tfvars
 
 # Ignore .pem files
-#*.pem
+*.pem
