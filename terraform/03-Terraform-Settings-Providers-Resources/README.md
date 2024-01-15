@@ -33,7 +33,7 @@ terraform {
 - Source
   + It is the `primary location` where we can download the Terraform Provider
   + Source addresses consist of `three parts` delimited by `slashes` (/)
-  + [<HOSTNAME>/]<NAMESPACE>/<TYPE>
+  + `[<HOSTNAME>/]<NAMESPACE>/<TYPE>`
   + registry.terraform.io/hashicorp/aws
   + Registry Name is `optional` as default is going to be Terraform Public Registry
 
@@ -74,13 +74,26 @@ resource "aws_instance" "myec2vm" {
 }
 ```
 
-Resource Syntax
-  - Resource Type(`aws_instance`): It determines the kind of infrastructure object it manages and what arguments and other attributes the resource supports.
-  - Resource Local Name(`myec2vm`): 
-    + It is used to refer to this resource from elsewhere in the same Terraform module, but has no significance outside that module's scope.
-    + The resource type and name together serve as an identifier for a given resource and so must be unique within a module
-  - Meta-Arguments: Can be used with any resource to change the behavior of resources
-  - Resource Arguments: Will be specific to resource type. Argument Values can make use of `Expressions` or other Terraform `Dynamic` Language Features
+### Resource Syntax
+```t
+# Resource: EC2 Instance
+resource "aws_instance" "myec2vm" {
+  provider = aws.us-east-1  #Meta-Arguments
+  #Resource Arguments
+  ami = "ami-0533f2ba8a1995cf9"
+  instance_type = "t3.micro"
+  user_data = file("${path.module}/app1-install.sh")
+  tags = {
+    "Name" = "EC2 Demo"
+  }
+}
+```
+- Resource Type(`aws_instance`): It determines the kind of infrastructure object it manages and what arguments and other attributes the resource supports.
+- Resource Local Name(`myec2vm`): 
+  + It is used to refer to this resource from elsewhere in the same Terraform module, but has no significance outside that module's scope.
+  + The resource type and name together serve as an identifier for a given resource and so must be unique within a module
+- Meta-Arguments: Can be used with any resource to change the behavior of resources
+- Resource Arguments: Will be specific to resource type. Argument Values can make use of `Expressions` or other Terraform `Dynamic` Language Features
 
 ## Step-05: Review file app1-install.sh
 ```sh
