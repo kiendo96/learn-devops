@@ -2,13 +2,19 @@
 ## Step-01: Introduction
 - [Terraform Settings](https://www.terraform.io/docs/language/settings/index.html)
 - [Terraform Providers](https://www.terraform.io/docs/providers/index.html)
+  + Providers are `HEART` of Terraform
+  + Every `Resource Type` (example: EC2 Instance), is implemented by a Provider
+  + Without Providers Terraform `cannot` manage any infrastructure
+  + Providers are distributed separately from Terraform and each provider has its own `release cycles` and `Version Numbers`
+  + Terraform `Registry` is publicly available which contains many Terraform Providers for most `major` Infra Platforms
 - [Terraform Resources](https://www.terraform.io/docs/language/resources/index.html)
 - [Terraform File Function](https://www.terraform.io/docs/language/functions/file.html)
 - Create EC2 Instance using Terraform and provision a webserver with userdata. 
 
 ## Step-02: In c1-versions.tf - Create Terraform Settings Block
 - Understand about [Terraform Settings Block](https://www.terraform.io/docs/language/settings/index.html) and create it
-```t
+```hcl
+#Terraform Provider or Terraform Block
 terraform {
   required_version = "~> 0.14" # which means any version equal & above 0.14 like 0.15, 0.16 etc and < 1.xx
   required_providers {
@@ -19,6 +25,17 @@ terraform {
   }
 }
 ```
+- Local Names: `aws`
+  + Local Names are `Module specific` and should be `unique` per-module
+  + Terraform configurations always refer to `local name` of provider `outside` required_provider block
+  + Users of a provider can choose `any local name` for it (myaws, aws1, aws2).
+  + Recommended way of choosing local name is to use preferred local name of that provider (For AWS Provider: hashicorp/aws, `preferred local name` is aws)
+- Source
+  + It is the `primary location` where we can download the Terraform Provider
+  + Source addresses consist of `three parts` delimited by `slashes` (/)
+  + [<HOSTNAME>/]<NAMESPACE>/<TYPE>
+  + registry.terraform.io/hashicorp/aws
+  + Registry Name is `optional` as default is going to be Terraform Public Registry
 
 ## Step-03: In c1-versions.tf - Create Terraform Providers Block 
 - Understand about [Terraform Providers](https://www.terraform.io/docs/providers/index.html)
@@ -28,13 +45,14 @@ terraform {
 cat $HOME/.aws/credentials
 ```
 - Create [AWS Providers Block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication)
-```t
-# Provider Block
+```hcl
+# Provider Block or Provider configuration
 provider "aws" {
   region  = us-east-1
   profile = "default"
 }
 ```
+
 
 ## Step-04: In c2-ec2instance.tf -  Create Resource Block
 - Understand about [Resources](https://www.terraform.io/docs/language/resources/index.html)
@@ -45,6 +63,8 @@ provider "aws" {
 ```t
 # Resource: EC2 Instance
 resource "aws_instance" "myec2vm" {
+  provider = aws.us-east-1  #Meta-Arguments
+  #Resource Arguments
   ami = "ami-0533f2ba8a1995cf9"
   instance_type = "t3.micro"
   user_data = file("${path.module}/app1-install.sh")
@@ -54,6 +74,13 @@ resource "aws_instance" "myec2vm" {
 }
 ```
 
+Resource Syntax
+  - Resource Type(`aws_instance`): It determines the kind of infrastructure object it manages and what arguments and other attributes the resource supports.
+  - Resource Local Name(`myec2vm`): 
+    + It is used to refer to this resource from elsewhere in the same Terraform module, but has no significance outside that module's scope.
+    + The resource type and name together serve as an identifier for a given resource and so must be unique within a module
+  - Meta-Arguments: Can be used with any resource to change the behavior of resources
+  - Resource Arguments: Will be specific to resource type. Argument Values can make use of `Expressions` or other Terraform `Dynamic` Language Features
 
 ## Step-05: Review file app1-install.sh
 ```sh
