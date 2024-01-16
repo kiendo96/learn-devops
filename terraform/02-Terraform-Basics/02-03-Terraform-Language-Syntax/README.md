@@ -75,9 +75,28 @@ Terraform Provider Registry
     + Community: Community providers are published to the Terraform Registry by individual maintainers, groups of maintainers, or other members of the Terraform community.
     + Archived: Archived Providers are Official or Verified Providers that are no longer maintained by HashiCorp or the community.
 
+## Terraform Basic Arguments
+- An `argument` assigns a values to a particular name:
+```
+image_id = "abc123" #Cả cái này gọi là argument và nó nằm trong block
+```
+- The `identifier` trước dấu bằng gọi là `argument` name và `expression` sau dấu bằng gọi là argument value
+
+## Terraform Identifiers
+- Argument names, block type names, and the names of the most Teraform-specific constructs like resources, input variable, etc.. are all identifier
+- Identifiers có thể là chữ cái(letters), chữ số (digits), underscores(_) and hyphens (-). Chữ cái đầu tiên của identifier không được là 1 chữ số để tránh nhầm lẫn với literal numbers
+
+
 ## Step-02: Terraform Configuration Language Syntax
 - Understand Blocks
-- Understand Arguments
+- [Understand Arguments Variables](https://developer.hashicorp.com/terraform/language/values/variables): Terraform CLI defines the following optional arguments for variable declarations:
+  + `default` - A default value which then makes the variable optional.
+  + `type` - This argument specifies what value types are accepted for the variable.
+  + `description` - This specifies the input variable's documentation.
+  + `validation` - A block to define validation rules, usually in addition to type constraints.
+  + `sensitive` - Limits Terraform UI output when the variable is used in configuration.
+  + `nullable` - Specify if the variable can be null within the module.
+
 - Understand Identifiers
 - Understand Comments
 - [Terraform Configuration](https://www.terraform.io/docs/configuration/index.html)
@@ -86,7 +105,7 @@ Terraform Provider Registry
 # Template
 <BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>"   {
   # Block body
-  <IDENTIFIER> = <EXPRESSION> # Argument
+  <IDENTIFIER> = <EXPRESSION> # Argument block
 }
 
 # AWS Example

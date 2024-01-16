@@ -5,9 +5,28 @@
 
 ## Step-01: Introduction
 ### Terraform Concepts
-- Terraform Input Variables
+- Terraform Input Variables: Input variables serve as parameters for a Terraform module, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations.
+  + Input Variables - `Basics`
+  + Provide Input Variables when prompted during `terraform plan or apply`
+  + `Override` default variable values using CLI argument `-var`
+  + Override default variable values using `Environment Variables (TF_var_aa)`
+  + Provide Input Variables using `terraform.tfvars` files
+  + Provide Input Variables using `<any-name>.tfvars` file with CLI argument `-var-file`
+  + Provide Input Variables using `auto.tfvars` files
+  + Implement complex type constructors like `List & Map` in Input Variables
+  + Implement `Custom Validation Rules` in Variables
+  + Protect `Sensitive` Input Variables
 - Terraform Datasources
+  + Data sources allow data to be `fetched or computed` for use elsewhere in Terraform configuration.
+  + Use of data sources allows a Terraform configuration to make use of information defined `outside of Terraform`, or defined by `another separate Terraform configuration`.
+  + A data source is accessed via a special kind of resource known as a `data resource`, declared using a `data block`
+  + Each data resource is associated with a `single data source`, which determines the `kind of object (or objects)` it reads and what `query constraint arguments` are available
+  + Data resources have the `same dependency resolution behavior` as defined for managed resources. Setting the `depends_on meta-argument` within data blocks `defers` reading of the data source until after all changes to the dependencies have been `applied`.
 - Terraform Output Values
+  + Data resources support the `provider` meta-argument as defined for managed resources, with the `same syntax and behavior`.
+  + Data resources `do not currently have` any customization settings available for their `lifecycle`, but the lifecycle nested block is `reserved` in case any are added in future versions.
+  + Data resources support `count` and `for_each` meta-arguments as defined for managed resources, with the same syntax and behavior.
+  + Each instance will `separately read` from its data source with its own variant of the constraint arguments, producing an `indexed result`.
 
 ### What are we going to learn ?
 1. Learn about Terraform `Input Variable` basics
@@ -169,6 +188,10 @@ resource "aws_instance" "myec2vm" {
 
 ## Step-06: c6-outputs.tf - Define Output Values 
 - [Output Values](https://www.terraform.io/docs/language/values/outputs.html)
+  +  A root module can use outputs to `print` certain values in the `CLI output` after running `terraform apply`.
+  + Terraform Variables `Outputs`
+  + A child module can use outputs to `expose a subset` of its resource attributes to a `parent module`.
+  + When using `remote state`, root module outputs can be accessed by other configurations via a `terraform_remote_state data source`.
 ```t
 # Terraform Output Values
 output "instance_publicip" {
