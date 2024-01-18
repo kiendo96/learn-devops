@@ -19,5 +19,3 @@ variable "instance_keypair" {
   type = string
   default = "ssh-to-ec2"
 }
-
-

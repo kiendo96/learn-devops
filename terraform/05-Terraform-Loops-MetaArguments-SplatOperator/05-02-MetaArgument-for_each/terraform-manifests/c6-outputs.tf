@@ -25,12 +25,12 @@ output "instance_publicdns2" {
 
 /*
 # Additional Important Note about OUTPUTS when for_each used
-1. The [*] and .* operators are intended for use with lists only. 
-2. Because this resource uses for_each rather than count, 
-its value in other expressions is a toset or a map, not a list.
-3. With that said, we can use Function "toset" and loop with "for" 
-to get the output for a list
-4. For maps, we can directly use for loop to get the output and if we 
-want to handle type conversion we can use "tomap" function too 
+1. The [*] and .* operators are intended for use with lists only. (Toán tử [*] và .* chỉ được sử dụng với list)
+2. Because this resource uses for_each rather than count, its value in other expressions is a toset or a map, not a list.
+(Bởi vì resource này sủ dụng for-each thay vì count, nên giá trị của expressions này là toset hoặc map chứ không phải list)
+3. With that said, we can use Function "toset" and loop with "for"  to get the output for a list
+(Chúng ta có thể sử dụng function "toset" và loop với "for" để get output cho 1 list)
+4. For maps, we can directly use for loop to get the output and if we want to handle type conversion we can use "tomap" function too 
+(Với maps, chúng ta có thể sử dụng trực tiếp for loop để get output và nếu chúng ta muốn xử lý chuyển đổi kiểu dữ liệu chúng ta có thể dùng "tomap" function)
 */
 

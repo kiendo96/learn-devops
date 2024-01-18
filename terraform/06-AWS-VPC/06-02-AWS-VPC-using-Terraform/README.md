@@ -2,6 +2,13 @@
 
 ## Step-01: Introduction
 - Understand about Terraform Modules
+  + Modules are containers for multiple resources that are used together. A module consists of a collection of .tf files kept together in a directory. `Module là nơi được lưu trữ nhiều resources được sử dụng cùng nhau. 1 module lưu bao gồm 1 tập hợp các .tf file được giữ trong 1 thư mục`
+  + Modules are the main way to package and reuse resource configurations with Terraform. `//Module là cách chính để đóng gói và tái sử dụng resource cấu hình terraform`
+  + Every Terraform configuration has at least one module, known as its root module, which consists of the resources defined in the .tf files in the main working directory. `//Mỗi Terraform configurations có ít nhất 1 module, được gọi là root module, bao gồm các resource được xác định trong .tf file bên trong main working directory`
+  + A Terraform module (usually the root module of a configuration) can call other modules to include their resources into the configuration. `//A Terraform module (thường là root module của 1 cấu hình) có thể gọi tới các modules khác để đưa resources của chúng vào cấu hình `
+  + Child modules can be called multiple times within the same configuration, and multiple configurations can use the same child module.  `//Child modules có thể được gọi nhiều lần trong 1 cấu hình và nhiều configurations có thể  sử dụng cùng 1 child module`
+  + In addition to modules from the local filesystem, Terraform can load modules from a public or private registry. `//Ngoài các module từ local filesystem, Terraform có thể load modules từ public hoặc private registry`
+  + This makes it possible to publish modules for others to use, and to use modules that others have published. `//Suy nha có thể publish modules cho người khác sử dụng và có thể sử dụng modules của người khác đã published`
 - Create VPC using `Terraform Modules`
 - Define `Input Variables` for VPC module and reference them in VPC Terraform Module
 - Define `local values` and reference them in VPC Terraform Module
@@ -114,6 +121,21 @@ rm -rf terraform.tfstate*
 
 ## Step-04: Version Constraints in Terraform with Modules
 - [Terraform Version Constraints](https://www.terraform.io/docs/language/expressions/version-constraints.html)
+```
+- Version numbers should be a series of numbers separated by periods (like 1.2.0 (Major, minor, patch)), optionally with a suffix to indicate a beta release.
+
+- The following operators are valid:
+
+  `=` : (or no operator): Allows only one exact version number. Cannot be combined with other conditions.
+
+  `!=` : Excludes an exact version number.
+
+  `>, >=, <, <=` : Comparisons against a specified version, allowing versions for which the comparison is true. "Greater-than" requests newer versions, and "less-than" requests older versions.
+
+  `~>` : Allows only the rightmost version component to increment(chỉ update đúng số ngoài cùng bên phải => ý là chỉ tăng PATCH). This format is referred to as the pessimistic constraint operator. For example, to allow new patch releases within a specific minor release, use the full version number:
+    `~>` 1.0.4: Allows Terraform to install 1.0.5 and 1.0.10 but not 1.1.0.
+    `~>` 1.1: Allows Terraform to install 1.2 and 1.10 but not 2.0. 
+```
 - For modules locking to the exact version is recommended to ensure there will not be any major breakages in production
 - When depending on third-party modules, require specific versions to ensure that updates only happen when convenient to you
 - For modules maintained within your organization, specifying version ranges may be appropriate if semantic versioning is used consistently or if there is a well-defined release process that avoids unwanted updates.
