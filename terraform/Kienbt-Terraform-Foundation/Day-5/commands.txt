@@ -1,0 +1,23 @@
+terraform init
+
+terraform workspace new Development
+terraform plan -out dev.tfplan
+terraform apply "dev.tfplan"
+
+terraform workspace new UAT
+terraform plan -out uat.tfplan
+terraform apply "uat.tfplan"
+
+terraform workspace new Production 
+terraform plan -out production.tfplan
+terraform apply "production.tfplan"
+
+export AWS_ACCESS_KEY_ID=AKIA52XI5AWRVO5DAMMF
+export AWS_SECRET_ACCESS_KEY=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
+
+terraform destroy 
+
+terraform workspace list 
+
+terraform workspace select workspace-name
+terraform destroy 

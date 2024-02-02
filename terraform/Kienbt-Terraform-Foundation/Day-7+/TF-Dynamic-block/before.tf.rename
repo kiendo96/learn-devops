@@ -1,0 +1,25 @@
+resource "aws_security_group" "demo_sg" {
+    name = "sample-sg"
+    description = "Ingress for Vault"
+
+    ingress  {
+      from_port = 8200
+      protocol = "tcp"
+      to_port = 8200
+      cidr_blocks = ["0.0.0.0/0"]
+    } 
+
+    ingress  {
+      from_port = 8201
+      protocol = "tcp"
+      to_port = 8201
+      cidr_blocks = ["0.0.0.0/0"]
+    } 
+
+    ingress  {
+      from_port = 8300
+      protocol = "tcp"
+      to_port = 8300
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+}

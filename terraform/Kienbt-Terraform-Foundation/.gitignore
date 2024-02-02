@@ -1,0 +1,10 @@
+.terraform
+*.tfvars
+terraform.tfstate
+*.pem
+provider.tf
+export
+**/.terraform
+**/**/.terraform
+
+Day-10/consul/data/*

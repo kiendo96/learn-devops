@@ -344,3 +344,4 @@ output "public_ip_server_subnet_1" {
 output "public_dns_server_subnet_1" {
   value = module.server_subnet_1.public_dns
 }
+
