@@ -8,6 +8,12 @@ variable "subnet_count" {
 }
 variable "billing_code_tags" {}
 
+variable "sg_port" {
+  type = list(number)
+  description = "This is variable for list of sg_port"
+  default = [ 443, 80, 22 ]
+}
+
 locals {
   env_name = lower(terraform.workspace)
 
