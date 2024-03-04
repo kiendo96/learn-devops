@@ -6,6 +6,13 @@ Locals are not set directly by the user/machine executing the Terraform configur
 
 Locals are defined in a `locals` block (plural) and include named local variables with their defined values. Each locals block can contain one or more local variables. Locals are then referenced in your configuration using interpolation using `local.<name>` (note `local` and not `locals`). The syntax of a locals block is as follows:
 
+>Locals blocks (thường được gọi là locals) là các giá trị được xác định trong Terraform được sử dụng để giảm các tham chiếu lặp đi lặp lại đối với các expressions hoặc values. Locals rất giống với các input variables truyền thống. Locals thường được sử dụng để đặt tên cho kết quả của 1 expression nhằm đơn giản hóa code và giúp nó dễ đọc hơn
+
+>Locals không được set trực tiếp bởi user/machine thực thi terraform configuration, và values không thay đổi giữa hoặc trong quá trình terraform workflow(init, plan, apply)
+
+>Locals được khai báo bên trong locals block và bao gồm các variables local được đặt tên với các giá trị được xác định của chúng. Mỗi locals block có thể lưu trữ 1 hoặc nhiều local variables. Locals sau đó được tham chiếu trong cấu hình của bạn bằng cách sử dụng interpolation sử dụng local.<name>
+
+
 # Template
 
 ```hcl
