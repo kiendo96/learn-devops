@@ -1,12 +1,12 @@
 # Lab: Introduction to the Module Block
 
-A module is used to combine resources that are frequently used together into a reusable container. Individual modules can be used to construct a holistic solution required to deploy applications. The goal is to develop modules that can be reused in a variety of different ways, therefore reducing the amount of code that needs to be developed. Modules are called by a `parent` or `root` module, and any modules called by the parent module are known as `child` modules.
+A module is used to combine(kết hợp) resources that are frequently(thường xuyên) used together into a reusable container(thành 1 thùng chứa để có thể tái sử dụng). Individual(riêng lẻ) modules(Các module riêng lẻ) can be used to construct(xây dựng) a holistic(toàn diện) solution required to deploy applications. The goal is to develop modules that can be reused in a variety of different ways(Mục tiêu là phát triển các mô-đun có thể được tái sử dụng theo nhiều cách khác nhau), therefore reducing the amount of code that needs to be developed. Modules are called by a `parent` or `root` module, and any modules called by the parent module are known as `child` modules.
 
-Modules can be sourced from a number of different locations, including remote, such as the Terraform module registry, or locally within a folder. While not required, local modules are commonly saved in a folder named `modules`, and each module is named for its respective function inside that folder. An example of this can be found in the diagram below:
+Modules can be sourced from a number of different locations(module có thể được lấy từ nhiều nguồn khác nhau), including remote, such as the Terraform module registry, or locally within a folder. While not required, local modules are commonly saved in a folder named `modules`, and each module is named for its respective function inside that folder. An example of this can be found in the diagram below:
 
 ![Module Structure](./img/module-structure.png){ width=65% }
 
-Modules are defined in a `module` block with a unique name for each module. Within the module block, the `source` indicates the local path of the module or the remote source where Terraform should download the module. You can also specify the `version` of the module to use, along with inputs that are passed to the child module.
+Modules are defined in a `module` block with a unique name for each module. Within the module block, the `source` indicates(chỉ ra) the local path of the module or the remote source where Terraform should download the module. You can also specify the `version` of the module to use, along with inputs that are passed to the child module(Bạn cũng có thể chỉ định `version` của module sẽ sử dụng, cùng với thông tin đầu vào được chuyển đến module con).
 
 # Template
 
