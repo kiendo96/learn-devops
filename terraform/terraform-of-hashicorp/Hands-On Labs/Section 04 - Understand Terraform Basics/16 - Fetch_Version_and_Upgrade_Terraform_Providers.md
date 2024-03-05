@@ -2,6 +2,8 @@
 
 Terraform relies on plugins called "providers" to interact with remote systems and expand functionality. Terraform providers can be versioned inside a Terraform configuration block. To prevent external changes from causing unintentional changes, it’s highly recommended that providers specify versions which they are tied to. Depending on the level of acceptable risk and management effort to be tracking version updates, that can either be hard locked to a particular version, or use looser mechanisms such as less than next major rev, or using tilde to track through bug fix versions.
 
+>Terraform dựa vào các plugins gọi là "providers" để tương tác với remote systems và mở rộng chức năng. Terraform providers có thể versioned bên trong 1 Terraform configuration block. Để ngăn chặn những thay đổi bên ngoài gây ra những thay đổi ngoài ý muốn, terraform recommended that providers chỉ định versions mà chúng được liên kết. Tùy thuộc vào mức độ rủi ro có thể chấp nhận được và nỗ lực quản lý để theo dõi các bản cập nhật phiên bản, phiên bản đó có thể bị khóa cứng đối với một phiên bản cụ thể hoặc sử dụng các cơ chế lỏng lẻo hơn such as less than next major rev, hoặc sử dụng tilde(dấu ngã) để theo dõi các phiên bản sửa lỗi.
+
 - Task 1: Check Terraform and Provider version
 - Task 2: Require specific versions of Terraform providers
 - Task 3: Upgrade provider versions
