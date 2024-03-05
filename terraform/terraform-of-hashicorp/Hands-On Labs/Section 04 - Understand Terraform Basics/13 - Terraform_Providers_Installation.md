@@ -7,7 +7,7 @@ Terraform relies on plugins called "providers" to interact with remote systems a
 
 ## Task 1: Install Terraform AWS Provider
 
-Terraform Providers are plugins that implement resource types for particular clouds, platforms and generally speaking any remote system with an API. Terraform configurations must declare which providers they require, so that Terraform can install and use them. Popular Terraform Providers include: AWS, Azure, Google Cloud, VMware, Kubernetes and Oracle.
+Terraform Providers are plugins that implement(thực hiện) resource types for particular(cụ thể) clouds, platforms and generally speaking any remote system with an API. Terraform configurations must declare which providers they require, so that Terraform can install and use them. Popular Terraform Providers include: AWS, Azure, Google Cloud, VMware, Kubernetes and Oracle.
 
 In the next step we will install the [Terraform AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest), and set the provider version in a way that is very similar to how you did for Terraform. To begin you need to let Terraform know to use the provider through a `required_providers` block in the `terraform.tf` file as seen below.
 
@@ -54,8 +54,9 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-By default Terraform will always pull the latest provider if no version is set. However setting a version provides a way to ensure your Terraform code remains working in the event a newer version introduces a change that
-would not work with your existing code. To have more strict controls over the version you may want to require a specific version ( e.g. `required_version = "= 1.0.0"` ) or use the `~>`operator to only allow the right-most version number to increment.
+By default Terraform will always pull the latest provider if no version is set(Mặc định, terraform sẽ luôn pull version mới nhất để cài đặt). However setting a version provides a way to ensure your Terraform code remains working in the event a newer version introduces a change that
+would not work with your existing code(Tuy nhiên, việc đặt phiên bản sẽ cung cấp một cách để đảm bảo mã Terraform của bạn vẫn hoạt động trong trường hợp phiên bản mới hơn đưa ra thay đổi
+sẽ không hoạt động với mã hiện tại của bạn). To have more strict controls over the version you may want to require a specific version ( e.g. `required_version = "= 1.0.0"` ) or use the `~>`operator to only allow the right-most version number to increment(Để kiểm soát phiên bản chặt chẽ hơn, bạn có thể cần một phiên bản cụ thể ( ví dụ: `required_version = "= 1.0.0"` ) hoặc sử dụng toán tử `~>` để chỉ cho phép số phiên bản ngoài cùng bên phải tăng lên).
 
 ## Task 2: Verify Terraform and AWS Provider version
 
