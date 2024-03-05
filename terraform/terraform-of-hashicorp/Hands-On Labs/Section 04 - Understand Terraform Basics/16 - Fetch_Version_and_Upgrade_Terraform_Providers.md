@@ -94,6 +94,8 @@ In these situations you have to intentionally install a version that matches the
 
 Terraform configurations must declare which providers they require so that Terraform can install and use them. Once installed, Terraform will record the provider versions in a dependency lock file to ensure that others using this configuration will utilize the same Terraform and provider versions. This file by default is saved as a `.terraform.lock.hcl` file, and its contents look as follows:
 
+>Terraform configurations phải được khai báo providers mà họ yêu cầu để Terraform có thể install và sử dụng chúng. Sau khi cài đặt, Terraform sẽ record các provider version trong tệp khóa phụ thuộc để đảm bảo rằng những người khác sử dụng cấu hình này sẽ sử dụng cùng phiên bản Terraform và nhà cung cấp. Mặc định thì file này sẽ save là `.terraform.lock.hcl` file
+
 ```hcl
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
