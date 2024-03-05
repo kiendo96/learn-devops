@@ -54,7 +54,7 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-By default Terraform will always pull the latest provider if no version is set(Mặc định, terraform sẽ luôn pull version mới nhất để cài đặt). However setting a version provides a way to ensure your Terraform code remains working in the event a newer version introduces a change that
+By default Terraform will always pull the latest provider if no version is set(Mặc định, terraform sẽ luôn pull version mới nhất nếu không chỉ định 1 version cụ thể). However setting a version provides a way to ensure your Terraform code remains working in the event a newer version introduces a change that
 would not work with your existing code(Tuy nhiên, việc đặt phiên bản sẽ cung cấp một cách để đảm bảo mã Terraform của bạn vẫn hoạt động trong trường hợp phiên bản mới hơn đưa ra thay đổi
 sẽ không hoạt động với mã hiện tại của bạn). To have more strict controls over the version you may want to require a specific version ( e.g. `required_version = "= 1.0.0"` ) or use the `~>`operator to only allow the right-most version number to increment(Để kiểm soát phiên bản chặt chẽ hơn, bạn có thể cần một phiên bản cụ thể ( ví dụ: `required_version = "= 1.0.0"` ) hoặc sử dụng toán tử `~>` để chỉ cho phép số phiên bản ngoài cùng bên phải tăng lên).
 
