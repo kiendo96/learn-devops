@@ -140,6 +140,8 @@ provider "registry.terraform.io/hashicorp/random" {
 
 By default, if a `.terraform.lock.hcl` file exists within a Terraform working directory, the provider versions specified in this file will be used. This lock file helps to ensure that runs accross teams will be consistent. As new versions of Terraform providers are released it is often beneficial to upgrade provider versions to take advantage of these updates. This can be accomplisehd by updating our configuration definiton to the desired provider version and running an upgrade.
 
+>Mặc định, nếu 1 file `.terraform.lock.hcl` file tồn tại bên trong 1 thư mục làm việc của terraform, thì provider version chỉ định trong file này sẽ được sử dụng. Lock file này giúp đảm bảo việc hoạt động giữa các teams sẽ nhất quán. Khi các version mới của Terraform providers được phát hành, việc upgrade provider versions của nhà cung cấp để tận dụng các bản cập nhật này thường có lợi. Diều này có thể được thực hiện bằng cách cập nhật định nghĩa cấu hình của bạn lên phiên bản nhà cung cấp mong muốn và chạy bản nâng cấp.
+
 In this case we are going to update the Terraform random provider from `3.0.0` to `3.1.0`.
 
 > Note: If the provider is already at version `3.1.0` then youo can downgrade it to `3.0.0` following similar steps.
