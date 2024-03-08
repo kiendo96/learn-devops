@@ -8,6 +8,8 @@ Workspaces is a Terraform feature that allows us to organize infrastructure by e
 
 Terraform is based on a stateful architecture and therefore stores state about your managed infrastructure and configuration. This state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
 
+> Terraform dựa trên 1 statefull architecture and do đó stores state về infrastructure và configuration được quản lý của bạn. This state được sử dụng bởi Terraform to map real world resources to your configuration, keep track of metadata, và để cải thiện performance cho cơ sở hạ tầng lớn
+
 The persistent data stored in the state belongs to a Terraform workspace. Initially the backend has only one workspace, called "default", and thus there is only one Terraform state associated with that configuration.
 
 - Task 1: Using Terraform Workspaces (Open Source)
