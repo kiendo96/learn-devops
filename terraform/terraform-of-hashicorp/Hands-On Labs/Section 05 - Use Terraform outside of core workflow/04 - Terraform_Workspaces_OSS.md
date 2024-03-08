@@ -12,6 +12,8 @@ Terraform is based on a stateful architecture and therefore stores state about y
 
 The persistent data stored in the state belongs to a Terraform workspace. Initially the backend has only one workspace, called "default", and thus there is only one Terraform state associated with that configuration.
 
+>The persistent data stored in the state belongs to a Terraform workspace. Ban đầu, the backend chỉ có một không gian làm việc, được gọi là "default" và do đó chỉ có một Terraform state được liên kết với cấu hình đó.
+
 - Task 1: Using Terraform Workspaces (Open Source)
 - Task 2: Create a new Terraform Workspace for Development State
 - Task 3: Deploy Infrastructure within the Terraform development workspace
