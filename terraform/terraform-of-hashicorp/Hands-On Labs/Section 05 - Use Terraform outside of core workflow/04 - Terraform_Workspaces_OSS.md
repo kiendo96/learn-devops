@@ -2,7 +2,9 @@
 
 Those who adopt Terraform typically want to leverage the principles of DRY (Don't Repeat Yourself) development practices. One way to adopt this principle with respect to IaC is to utilize the same code base for different environments (development, quality, production, etc.)
 
-Workspaces is a Terraform feature that allows us to organize infrastructure by environments and variables in a single directory.
+>Những người áp dụng Terraform thường muốn tận dụng các nguyên tắc phát triển DRY (Đừng lặp lại chính mình). Một cách để áp dụng nguyên tắc này đối với IaC là sử dụng cùng một cơ sở mã cho các môi trường khác nhau (phát triển, chất lượng, sản xuất, v.v.)
+
+Workspaces is a Terraform feature that allows us to organize infrastructure by environments and variables in a single directory (Workspaces là 1 tính năng của terraform cho phép chúng ta có thể tổ chức cơ sở hạ tầng bằng environments và variables trong 1 thư mục duy nhất.
 
 Terraform is based on a stateful architecture and therefore stores state about your managed infrastructure and configuration. This state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
 
