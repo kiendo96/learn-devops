@@ -83,6 +83,8 @@ Modules are simply terraform configuration files that have optional/required inp
 
 When creating a module, consider which resource arguments to expose to module end users as input variables. In our example, the autoscaling module provides up to 86 different inputs that can be used for configuring the ASG. Variables declared in child module map to arguments within root module block, where outputs declared in child module map to attributes that can used by the root module. You should also consider which values to add as outputs, since outputs are the only supported way for users to get information about resources configured by the module. In our example, the autoscaling module provides 20 available outputs that the module will return.
 
+>Khi tạo 1 module, hãy xem xét resource arguments nào sẽ expose(hiển thị) to module end users dưới dạng input variables. Trong ví dụ của chúng tôi, the autoscaling module provides tự động điều chỉnh tỷ lệ cung cấp tới 86 đầu vào khác nhau có thể được sử dụng để định cấu hình ASG. Các biến được khai báo trong mô-đun con ánh xạ tới các đối số trong khối mô-đun gốc, trong đó các kết quả đầu ra được khai báo trong mô-đun con ánh xạ tới các thuộc tính mà mô-đun gốc có thể sử dụng. Bạn cũng nên cân nhắc nên thêm giá trị nào làm đầu ra vì đầu ra là cách duy nhất được hỗ trợ để người dùng nhận thông tin về các tài nguyên được cấu hình bởi mô-đun. Trong ví dụ của chúng tôi, mô-đun tự động tính toán quy mô cung cấp 20 đầu ra có sẵn mà mô-đun sẽ trả về.
+
 To view the outputs returned by our autosclaing module and their values you can issue the following:
 
 ```bash
@@ -146,6 +148,8 @@ asg_group_size = 1
 ## Task 4: Invalid Module References
 
 Module outputs are the only supported way for users to get information about resources configured within the child module. Individual resource arguments are not accessible outside the child module.
+
+>Module outputs là cách duy nhất được hỗ trợ để users nhận được thông tin về resources được configured bên trong child module. Các resource arguments riêng lẻ không thể truy cập được outside the child module.
 
 If we look at the `outputs.tf` of autoscaling group child module we can see the one of the items returned by this module is the `autoscaling_group_max_size`. Looking at the code this is returned based on the value of the `aws_autoscaling_group.this[0].max_size` resource. We don't need to be too occupied with how this value is set since the module is abstracting away these complexities for us.
 
