@@ -13,6 +13,8 @@ Modules should be opinionated and designed to do one thing well. If a module's f
 
 In principle any combination of resources and other constructs can be factored out into a module, but over-using modules can make your overall Terraform configuration harder to understand and maintain, so we recommend moderation. A good module should raise the level of abstraction by describing a new concept in your architecture that is constructed from resource types offered by providers.
 
+>Về nguyên tắc, bất kỳ sự kết hợp nào của resource và other constructs đều có thể được đưa vào một module, nhưng nêu sử dụng quá nhiều module có thể khiến tổng thể Terraform cấu hình khó hiểu và khó maintain, so we recommend moderation. A good module sẽ nâng cao mức độ trừu tượng bằng cách mô tả một khái niệm mới trong kiến ​​trúc của bạn được xây dựng từ các loại tài nguyên do nhà cung cấp cung cấp.
+
 Let's take a closer look at the auto scaling group module that we are calling to further understand which resources are used to construct the module. Inside our `main.tf` we can see that the autoscaling module we are calling is being sourced from the [Terraform Public Module registry](https://registry.terraform.io/modules/terraform-aws-modules/autoscaling/aws/latest), and we are passing 10 inputs into the module.
 
 `main.tf`
