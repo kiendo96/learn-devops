@@ -9,11 +9,11 @@ The `terraform plan` command performs a dry-run of executing your terraform conf
 
 # Task 1: Generate and Review a plan
 
-Prior to Terraform, users had to guess change ordering, parallelization, and rollout effect of their code. Terraform alleviates the guessing by creating a plan by performing the following steps:
+Prior to Terraform, users had to guess change ordering, parallelization, and rollout effect of their code. Terraform alleviates the guessing by creating a plan by performing the following steps <Trước Terraform, người dùng phải đoán thứ tự thay đổi, sự song song hóa và hiệu ứng triển khai mã của họ. Terraform giúp giảm bớt việc phỏng đoán bằng cách tạo một kế hoạch bằng cách thực hiện các bước sau:>:
 
-- Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
-- Comparing the current configuration to the prior state and noting any differences.
-- Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
+- Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date <Reading the current state của mọi đối tượng từ xa đã tồn tại để đảm bảo rằng Terraform state được cập nhật.>.
+- Comparing the current configuration to the prior state and noting any differences <So sánh cấu hình hiện tại với trạng thái trước đó và ghi nhận bất kỳ sự khác biệt nào>.
+- Proposing a set of change actions that should, if applied, make the remote objects match the configuration <Đề xuất một tập hợp các change actions, nếu được áp dụng, sẽ làm cho các remote object match the configuration>.
 
 ```shell
 terraform plan
