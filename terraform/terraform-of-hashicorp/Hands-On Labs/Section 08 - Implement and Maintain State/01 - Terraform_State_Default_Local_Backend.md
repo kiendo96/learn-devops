@@ -2,6 +2,8 @@
 
 In order to correctly manage your infrastructure resources, Terraform stores and operates on the state of your managed infrastructure. Terraform uses this state on each execution to plan and make changes. This state must be stored and maintained on each execution so future operations can be performed correctly. The location and method of operation of Terraform's state is determined by the Terraform `backend`. By default Terraform uses a `local` backend, where state information is stored and acted upon locally within the working directory in a local file named `terraform.tfstate`.
 
+`Để quản lý chính xác tài nguyên cơ sở hạ tầng của bạn, Terraform stored and operates trên trạng thái cơ sở hạ tầng được quản lý của bạn. Terraform sử dụng this state trong mỗi lần thực thi để lập plan và thực hiện các thay đổi. This state must be stored and maintained trong mỗi lần thực thi để các hoạt động trong tương lai có thể được thực hiện chính xác. Vị trí và phương thức hoạt động của Terraform state được xác định bởi `backend` của Terraform. Theo mặc định, Terraform sử dụng phần phụ trợ `local`, trong đó thông tin trạng thái được lưu trữ và xử lý cục bộ trong thư mục làm việc trong một tệp cục bộ có tên `terraform.tfstate`.`
+
 - Task 1: Show current state (CLI Operation)
 - Task 2: Show state file location
 - Task 3: View/Update Terraform local backend configuration
