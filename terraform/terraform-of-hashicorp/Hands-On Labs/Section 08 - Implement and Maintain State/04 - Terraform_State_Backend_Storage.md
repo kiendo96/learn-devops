@@ -1,8 +1,8 @@
 # Lab: Terraform State Backend Storage
 
-In order to properly and correctly manage your infrastructure resources, Terraform stores the state of your managed infrastructure. Each Terraform configuration can specify a backend which defines exactly where and how operations are performed. Most backends support security and collaboration features so using a backend is a must-have both from a security and teamwork perspective.
+In order to properly and correctly manage your infrastructure resources, Terraform stores the state of your managed infrastructure. Each Terraform configuration can specify a backend which defines exactly where and how operations are performed. Most backends support security and collaboration features so using a backend is a must-have both from a security and teamwork perspective `Để quản lý đúng cách và chính xác infrastructure resources của bạn, Terraform stores the state of your managed infrastructure. Each Terraform configuration có thể chỉ định a backend xác định chính xác vị trí và cách thức thực hiện các hoạt động. Hầu hết các backend đều hỗ trợ các tính năng cộng tác và bảo mật, vì vậy việc sử dụng a backend là điều bắt buộc phải có cả từ góc độ bảo mật và teamwork perspective.`.
 
-Terraform has a built-in selection of backends, and the configured backend must be available in the version of Terraform you are using. In this lab we will explore the use of some common Terraform standard and enhanced backends.
+Terraform has a built-in selection of backends, and the configured backend must be available in the version of Terraform you are using. In this lab we will explore the use of some common Terraform standard and enhanced backends. `Terraform có một lựa chọn backend tích hợp và backend được định cấu hình phải có sẵn trong phiên bản Terraform bạn đang sử dụng`
 
 - Task 1: Standard Backend: S3
 - Task 2: Standard Backend: HTTP Backend (Optional)
@@ -17,7 +17,7 @@ The built in Terraform standard backends store state remotely and perform terraf
 
 Consult Terraform documentaion for a [full list of Terraform standard backends](https://www.terraform.io/docs/language/settings/backends/index.html)
 
-Most backends also support collaboration features so using a backend is a must-have both from a security and teamwork perspective. Not all of these features need to be configured and enabled, but we will walk you some of the most beneficial items including versioning, encryption and state locking.
+Most backends also support collaboration features so using a backend is a must-have both from a security and teamwork perspective. Not all of these features need to be configured and enabled, but we will walk you some of the most beneficial items including versioning, encryption and state locking. `Hầu hết các backend hỗ trợ các tính năng cộng tác nên việc sử dụng backend là điều bắt buộc phải có cả từ góc độ bảo mật và làm việc nhóm. Không phải tất cả các tính năng này đều cần phải được cấu hình và bật nhưng chúng tôi sẽ hướng dẫn bạn một số mục có lợi nhất bao gồm version, encryption and state locking`
 
 ## Task 1: Standard Backend: S3
 
@@ -47,11 +47,11 @@ terraform state list
 
 ### Step 1.3 - Enable Versioning on S3 Bucket
 
-Enabling versioning on our terraform backend is important as it allows us to restore the previous version of state should we need to. The `s3` backend supports versioning, so every revision of your state file is stored.
+Enabling versioning on our terraform backend is important as it allows us to restore the previous version of state should we need to. The `s3` backend supports versioning, so every revision of your state file is stored.`Enable versioning on terraform backend là rất quan trọng vì nó cho phép chúng tôi khôi phục phiên bản trạng thái trước đó nếu chúng tôi cần. S3 backend support versioning, vì vậy mỗi phiên bản sửa đổi state file sẽ được lưu trữ`
 
 ![S3 Versioning](img/s3_versioning.png)
 
-Once versioning is enabled on your bucket let's make a configuration change that will result in a state change and execute that change with a `terraform apply`.
+Once versioning is enabled on your bucket let's make a configuration change that will result in a state change and execute that change with a `terraform apply`. `Sau khi bật versioning của bucket, hãy thực hiện thay đổi cấu hình để test thử`
 
 Update the size of your web server from `t2.micro` to a `t2.small` and apply the change.
 
@@ -76,15 +76,15 @@ Now you can see that your state file has been updated and if you check `Show Ver
 
 ### Step 1.4 - Enable Encryption on S3 Bucket
 
-It is also incredibly important to protect terraform state data as it can contain extremely sensitive information. Store Terraform state in a backend that supports encryption. Instead of storing your state in a local terraform.tfstate file. Many backends support encryption, so that instead of your state files being in plain text, they will always be encrypted, both in transit (e.g., via TLS) and on disk (e.g., via AES-256). The `s3` backend supports encryption, which reduces worries about storing sensitive data in state files.
+It is also incredibly important to protect terraform state data as it can contain extremely sensitive information. Store Terraform state in a backend that supports encryption. Instead of storing your state in a local terraform.tfstate file. Many backends support encryption, so that instead of your state files being in plain text, they will always be encrypted, both in transit (e.g., via TLS) and on disk (e.g., via AES-256). The `s3` backend supports encryption, which reduces worries about storing sensitive data in state files. `Việc bảo vệ dữ liệu terraform state cũng cực kỳ quan trọng vì nó có thể chứa thông tin cực kỳ nhạy cảm. Lưu trữ Terraform state trong backend hỗ trợ mã hóa encryption. Thay vì lưu trữ Terraform state của bạn trong tệp terraform.tfstate local. Many backends support encryptions, do đó, thay vì your state file ở dạng văn bản thuần túy, chúng sẽ luôn được mã hóa, both in transit (ví dụ: qua TLS) và on disk (ví dụ: qua AES-256). Backend S3 hỗ trợ mã hóa, giúp giảm bớt lo lắng về việc lưu trữ dữ liệu nhạy cảm trong các state files.`
 
 ![Enable S3 Encryption](img/enable_s3_encryption.png)
 
-Anyone on your team who has access to that S3 bucket will be able to see the state files in an unencrypted form, so this is still a partial solution, but at least the data will be encrypted at rest (S3 supports server-side encryption using AES-256) and in transit (Terraform uses SSL to read and write data in S3).
+Anyone on your team who has access to that S3 bucket will be able to see the state files in an unencrypted form, so this is still a partial solution, but at least the data will be encrypted at rest (S3 supports server-side encryption using AES-256) and in transit (Terraform uses SSL to read and write data in S3). `Bất kì ai trong teams của bạn có thể access vào S3 bucket backend của bạn đều có thể đọc state files dưới dạng unencrypted, vì vậy đây vẫn là 1 phần solution, nhưng ít nhất data trong file này sẽ encrypted at rest and in transit`
 
 ### Step 1.4 - Enable Locking for S3 Backend
 
-The `s3` backend stores Terraform state as a given key in a given bucket on Amazon S3 to allow everyone working with a given collection of infrastructure the ability to access the same state data. In order to prevent concurrent modifications which could cause corruption, we need to implement locking on the backend. The `s3` backend supports state locking and consistency checking via Dynamo DB.
+The `s3` backend stores Terraform state as a given key in a given bucket on Amazon S3 to allow everyone working with a given collection of infrastructure the ability to access the same state data. In order to prevent concurrent modifications which could cause corruption, we need to implement locking on the backend. The `s3` backend supports state locking and consistency checking via Dynamo DB. `S3 backend lưu trữ Terraform state dưới dạng một khóa nhất định trong a bucket trên Amazon S3 để cho phép mọi người làm việc với một tập hợp infrastructure nhất định có khả năng truy cập vào cùng một file state data. Để ngăn chặn các sửa đổi đồng thời có thể gây ra lỗi, chúng tôi cần triển khai khóa ở s3 backend. Backend `s3` hỗ trợ khóa trạng thái và kiểm tra tính nhất quán thông qua Dynamo DB `
 
 State locking for the `s3` backend can be enabled by setting the dynamodb_table field to an existing DynamoDB table name. A single DynamoDB table can be used to lock multiple remote state files.
 
