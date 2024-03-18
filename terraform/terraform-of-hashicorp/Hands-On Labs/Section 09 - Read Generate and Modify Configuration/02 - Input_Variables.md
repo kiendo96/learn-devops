@@ -1,6 +1,7 @@
 # Lab: Variables
 
 We don't want to hardcode all of our values in the main.tf file. We can create a variable file for easier use. In the `variables block` lab, we created a few new variables, learned how to manually set their values, and even how to set the defaults. In this lab, we'll learn the other ways that we can set the values for our variables that are used across our Terraform configuration.
+>Chúng ta không muốn hardcode(mã hóa cứng) tất cả các values bên trong main.tf file. Chúng ta có thể tạo 1 file variable file để sử dụng dễ dàng hơn. Trong `variable block`, chúng ta đã tạo 1 vài biến variables mới, và chúng ta đã học cách đặt set value thủ công cho variable, và thậm chí là cách set the defaults. Trong bài lab này, chúng ta sẽ học thêm những cách khác để chúng ta có thể set values cho terraforn config của chúng ta
 
 ![Terraform Input Variables - Order of Precedence](img/terraform-variable-presedence.png)
 
