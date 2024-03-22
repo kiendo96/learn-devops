@@ -2,6 +2,8 @@
 
 Terraform's interpolation syntax is very human-friendly, but under the hood it builds a very powerful resource graph. When resources are created they expose a number of relevant properties and Terraform's resource graph allows it to determine dependency management and order of execution for resource buildouts. Terraform has the ability to support the parallel management of resources because of it's resource graph allowing it to optimize the speed of deployments.
 
+>Terraform's interpolation syntax rất thân thiện với con người, nhưng ẩn sâu bên trong nó xây dựng một resource graph rất mạnh mẽ. Khi resource được tạo chúng sẽ hiển thị một số thuộc tính có liên quan và biểu đồ tài nguyên của Terraform cho phép nó xác định việc quản lý phụ thuộc và thứ tự thực hiện để xây dựng tài nguyên. Terraform có khả năng hỗ trợ quản lý song song các tài nguyên vì biểu đồ tài nguyên cho phép nó tối ưu hóa tốc độ triển khai.
+
 The resource graph is an internal representation of all resources and their dependencies. A human-readable graph can be generated using the `terraform graph` command.
 
 - Task 1: Terraform's Resource Graph and Dependencies
