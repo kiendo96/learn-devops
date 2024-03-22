@@ -2,7 +2,9 @@
 
 Terraform has the ability to support the parallel management of resources because of it's resource graph allowing it to optimize the speed of deployments. The resource graph dictates the order in which Terraform creates and destroys resources, and this order is typically appropriate. There are however situations where the we wish to change the default lifecycle behavior that Terraform uses.
 
-To provide you with control over dependency errors, Terraform has a `lifecycle` block. This lab demonstrates how to use lifecycle directives to control the order in which Terraform creates and destroys resources.
+>Terraform có khả năng hỗ trợ quản lý song song các resources vì resources graph của nó cho phép nó tối ưu hóa tốc độ triển khai. Resources graph chỉ ra thứ tự Terraform creates và destroy resources, và thứ tự này thường phù hợp. Tuy nhiên, có những trường hợp chúng ta sẽ muốn thay đổi lifecycle behavior mặc định mà terraform sử dụng.
+
+To provide you with control over dependency errors, Terraform has a `lifecycle` block `Để khắc phục các lỗi phụ thuộc lẫn nhau thì Terraform có lifecycle block`. This lab demonstrates how to use lifecycle directives to control the order in which Terraform creates and destroys resources.
 
 - Task 1: Use `create_before_destroy` with a simple AWS security group and instance
 - Task 2: Use `prevent_destroy` with an instance
@@ -10,6 +12,8 @@ To provide you with control over dependency errors, Terraform has a `lifecycle` 
 ## Task 1: Use `create_before_destroy` with a simple AWS security group and instance
 
 Terraform's default behavior when marking a resource to be replaced is to first destroy the resource and then create it. If the destruction succeeds cleanly, then and only then are replacement resources created. To alter this order of operation we can utilize the lifecycle directive `create_before_destroy` which does what it says on the tin. Instead of destroying an instance and then provisioning a new one with the specified attributes, it will provision first. So two instances will exist simultaneously, then the other will be destroyed.
+
+>Hành vi mặc định của Terraform khi cần thay thế 1 resource thì đầu tiên là destroy và sau đo create it. Nếu hoàn thành cleanly, khi đó và chỉ khi đó resources mới mới được tạo. Để thay đổi thứ tự hoặc động này chúng ta có thể sử dụng `create_before_destroy` để thay đổi lifecycle của terraform. Thay vì destroy 1 instance và sau đó provisioning 1 instance mới với các thuộc tính được chỉ định, nó sẽ provision trước. Vì vậy, 2 instance sẽ tồn tại đồng thời và sau đó instance cũ hơn sẽ được destroy
 
 Let's create a simple AWS configuration with a security group and an associated EC2 instance. Provision them with `terraform`, then make a change to the security group. Observe that `apply` fails because the security group can not be destroyed and recreated while the instance lives.
 
