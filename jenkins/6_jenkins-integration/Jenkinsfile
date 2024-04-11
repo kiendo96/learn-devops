@@ -1,0 +1,34 @@
+pipeline {
+    agent {
+        docker {
+            image 'gradle:jdk8-alpine'
+            label 'linux-slave'
+        }
+    }
+    stages {
+        stage('SCM') {
+            steps {
+                cleanWs()
+                dir('app') {
+                    git url: 'https://github.com/SonarSource/sonar-scanning-examples.git'
+                }
+            }
+        }
+        stage('build and scanner') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh 'cd app/sonarqube-scanner-gradle/gradle-basic && ./gradlew -Dsonar.host.url=${SONAR_HOST_URL} sonarqube'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+}

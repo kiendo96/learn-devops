@@ -1,0 +1,62 @@
+pipeline {
+  agent { label 'linux-slave' }
+
+  options {
+    skipDefaultCheckout()
+  }
+
+  stages {
+
+    stage('Checkout source code') {
+      steps {
+        git branch: 'master',
+        url: 'https://github.com/HoangPhu98/react-for-demo.git'
+        sh 'ls -la'
+      }
+    }
+
+    // checkout based on configure in current Jenkins Job Build
+    // stage('Checkout current code') {
+    //     steps {
+    //         checkout
+    //     }
+    // }
+
+    stage ('Install dependencies') {
+      tools {
+        nodejs 'nodejs 8.9.4'
+      }
+      steps {
+        sh '''
+          echo "Installing..."
+          npm install
+          echo "Install dependencies successfully."
+          ls -al
+        '''
+      }
+    }
+
+    stage ('Build') {
+      steps {
+        nodejs(nodeJSInstallationName: 'nodejs 8.9.4') {
+          sh 'echo "Build application..."'
+          sh 'npm run build'
+          sh 'echo "Build application successfully."'
+          sh 'ls -al'
+        }
+      }
+    }
+    
+    stage ('Test') {
+      tools {
+        nodejs 'nodejs 8.9.4'
+      }
+      steps {
+        sh 'echo "Run unit test..."'
+        sh 'npm test'
+        sh 'echo "Run unit test successfully."'
+        sh 'ls -al'
+      }
+    }
+  }
+}
