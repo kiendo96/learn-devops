@@ -1,0 +1,114 @@
+version: "2.0"
+services:
+  team1-frontend:
+    environment: 
+      - VIRTUAL_HOST=$FRONTEND_HOST
+      - VIRTUAL_NETWORK=$VIRTUAL_NETWORK
+      - VIRTUAL_PORT=$VIRTUAL_PORT
+      - LETSENCRYPT_HOST=$LETSENCRYPT_FRONTEND_HOST
+      - LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
+
+  team1-admin-api:
+    volumes:
+      - team1-admin-api-public-storage:/var/www/public/storage
+      - team1-admin-api-uploads:/var/www/public/uploads
+      - team1-admin-api-storage:/var/www/storage
+      - team1-admin-api-logs:/var/www/storage/logs
+      - team1-admin-api-code:/var/www
+    environment: 
+      - APP_NAME=$APP_NAME
+      - APP_ENV=$APP_ENV
+      - APP_KEY=$APP_KEY
+      - APP_DEBUG=$APP_DEBUG
+      - APP_URL=$APP_URL
+      - REDIRECT_HTTPS=$REDIRECT_HTTPS
+      
+      - LOG_CHANNEL=$LOG_CHANNEL
+      - DB_CONNECTION=$DB_CONNECTION
+
+      - DB_HOST=$DB_HOST
+      - DB_PORT=$DB_PORT
+      - DB_DATABASE=$DB_DATABASE
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+
+      - BROADCAST_DRIVER=$BROADCAST_DRIVER
+      - CACHE_DRIVER=$CACHE_DRIVER
+      - QUEUE_CONNECTION=$QUEUE_CONNECTION
+
+      - SESSION_DRIVER=$SESSION_DRIVER
+      - SESSION_LIFETIME=$SESSION_LIFETIME
+
+      - MAIL_DRIVER=$MAIL_DRIVER
+      - MAIL_HOST=$MAIL_HOST
+      - MAIL_PORT=$MAIL_PORT
+      - MAIL_USERNAME=$MAIL_USERNAME
+      - MAIL_PASSWORD=$MAIL_PASSWORD
+      - MAIL_ENCRYPTION=$MAIL_ENCRYPTION
+      - MAIL_FROM=$MAIL_FROM
+      - MAIL_TO=$MAIL_TO
+      - MAIL_FROM_ADDRESS=$MAIL_FROM_ADDRESS
+      - MAIL_FROM_NAME=$MAIL_FROM_NAME
+
+      - FE_URL=$FE_URL
+      - GOOGLE_RECAPTCHA_SECRET=$GOOGLE_RECAPTCHA_SECRET
+
+  team1-mysql:
+    volumes:
+      - mysql-db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: $DB_DATABASE
+      MYSQL_USER: $DB_USERNAME
+      MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+
+
+  team1-web-server:
+    environment:
+      - VIRTUAL_HOST=$ADMIN_API_HOST
+      - VIRTUAL_NETWORK=$VIRTUAL_NETWORK
+      - VIRTUAL_PORT=$VIRTUAL_PORT
+      - LETSENCRYPT_HOST=$LETSENCRYPT_ADMIN_API_HOST
+      - LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
+    expose: 
+      - 80
+
+
+networks:
+  default:
+    external:
+      name: $DOCKER_NETWORK
+
+volumes:
+  team1-admin-api-storage:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_STORAGE_MOUNT_PATH
+      o: bind,uid=1000,gid=1000,groups=1000
+  team1-admin-api-code:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_CODE_MOUNT_PATH
+      o: bind,uid=1000,gid=1000,groups=1000
+  team1-admin-api-logs:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_LOGS_MOUNT_PATH
+      o: bind,uid=1000,gid=1000,groups=1000
+  team1-admin-api-uploads:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_UPLOADS_PATH
+      o: bind,uid=1000,gid=1000,groups=1000
+  team1-admin-api-public-storage:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_PUBLIC_STORAGE_PATH
+      o: bind,uid=1000,gid=1000,groups=1000
+
+      
+  mysql-db:
+    driver_opts:
+      type: none
+      device: $APP_VOLUME_DATABASE_MOUNT_PATH
+      o: bind,uid=1000,gid=1000,groups=1000

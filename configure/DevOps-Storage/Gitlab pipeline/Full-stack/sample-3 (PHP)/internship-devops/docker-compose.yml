@@ -1,0 +1,26 @@
+version: "2.0"
+services:
+  team1-frontend:
+    image: $REGISTRY_FRONTEND
+    expose:
+      - 80
+
+  team1-admin-api:
+    image: $REGISTRY_ADMIN_API
+    working_dir: /var/www
+    expose:
+      - 9000
+      
+  team1-mysql:
+    image: registry.gitlab.com/gkc_team/docker-mysql-gkc:latest
+
+  team1-web-server:
+    build:
+      context: ./
+      dockerfile: web-server.team1.dockerfile
+    working_dir: /var/www
+    volumes_from: 
+      - team1-admin-api
+    depends_on: 
+      - team1-admin-api
+      
