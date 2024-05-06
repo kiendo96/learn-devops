@@ -538,13 +538,13 @@ Having Count(Medal) > 100
     + Các hàm xử lý trên chuỗi
     + Các hàm xử lý thời gian
 
-- Các hàm tính toán tổng hợp:
-    + COUNT: Đếm tổng số lượng các dòng (mẩu tin)
-    + SUM: Tính tổng các giá trị
-    + MIN: Tìm giá trị nhỏ nhất
-    + MAX: Tìm giá trị lớn nhất
-    + AVG: Tìm giá trị trung bình
-    + STDDEV: Tính standard deviation của biểu thức
+### Các hàm tính toán tổng hợp:
+- COUNT: Đếm tổng số lượng các dòng (mẩu tin)
+- SUM: Tính tổng các giá trị
+- MIN: Tìm giá trị nhỏ nhất
+- MAX: Tìm giá trị lớn nhất
+- AVG: Tìm giá trị trung bình
+- STDDEV: Tính standard deviation của biểu thức
 
 - Xem xét bảng PETSALE có cấu trúc và dữ liệu
 như sau:
@@ -576,12 +576,12 @@ select MIN(QUANTITY), MAX(QUANTITY)
 from PETSALE
 ```
 
-- Các hàm xử lý chuỗi và làm tròn số:
-    + ROUND: Làm tròn số đến vị trí được chỉ định, mặc định làm tròn đến dấu chấm thập phân
-    + LENGTH: Số ký tự có trong chuỗi
-    + UCASE: Đổi thành chuỗi chữ hoa
-    + LCASE: Đổi thành chuỗi chữ thường
-    + SUBSTR: Trả về chuỗi con có trong chuỗi ban đầu
+### Các hàm xử lý chuỗi và làm tròn số:
+- ROUND: Làm tròn số đến vị trí được chỉ định, mặc định làm tròn đến dấu chấm thập phân
+- LENGTH: Số ký tự có trong chuỗi
+- UCASE: Đổi thành chuỗi chữ hoa
+- LCASE: Đổi thành chuỗi chữ thường
+- SUBSTR: Trả về chuỗi con có trong chuỗi ban đầu
 
 - Ex1:
     +  ROUND(<chuỗi>, <vị trí làm tròn>)
@@ -630,11 +630,11 @@ select Animal, SUBSTR(Animal, 2) as SUBSTR_2, SUBSTR(Animal, 2, 2) as SUBSTR_2_2
 from PETSALE
 ```
 
-- Các hàm xử lý thời gian:
-    +  Các hàm xử lý ngày: DAY, MONTH, YEAR, DAYOFMONTH, DAYOFWEEK, DAYOFYEAR, WEEK
-    +  Các hàm xử lý giờ: HOUR, MINUTE, SECOND,
-    +  Ngày giờ hiện tại: CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
-    +  Ngày giờ hiện tại (DB2): CURRENT DATE, CURRENTTIME, CURRENT TIMESTAMP
+### Các hàm xử lý thời gian:
+-  Các hàm xử lý ngày: DAY, MONTH, YEAR, DAYOFMONTH, DAYOFWEEK, DAYOFYEAR, WEEK
+-  Các hàm xử lý giờ: HOUR, MINUTE, SECOND,
+-  Ngày giờ hiện tại: CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+-  Ngày giờ hiện tại (DB2): CURRENT DATE, CURRENTTIME, CURRENT TIMESTAMP
 
 - Ex:
 ```
