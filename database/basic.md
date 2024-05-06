@@ -489,7 +489,6 @@ Select CountryCode, Count(Medal)
 From MEDALS
 Where Year = 2012
 Group By CountryCode
-GROUP BY, HAVING
 ```
 
 - Ex2: Liệt kê danh sách và tổng số lượng huy chương theo từng loại của mỗi quốc gia đạt được trong năm 2012
@@ -498,7 +497,6 @@ Select CountryCode, Medal, Count(Medal)
 From MEDALS
 Where Year = 2012
 Group By CountryCode, Medal
-GROUP BY, HAVING
 ```
 ### Having:
 - Dùng để lọc dữ liệu của nhóm
@@ -510,7 +508,6 @@ where CONDITION
 Group by COLUMN1, COLUMN2,…
 Having CONDITION
 Order by COLUMN1 [Asc|Desc], COLUMN2,… ;
-GROUP BY, HAVING
 ```
 
 - Lưu ý: Mệnh đề Having phải nằm sau mệnh đề Group By
@@ -522,7 +519,6 @@ From MEDALS
 Where Year = 2012
 Group By CountryCode
 Having Count(Medal) > 100
-GROUP BY, HAVING
 ```
 
 - Ex2: Liệt kê danh sách và tổng số lượng huy chương theo từng loại của mỗi quốc gia đạt được trong năm 2012. Chỉ liệt kê các quốc gia có tổng số huy chương theo từng loại > 100
