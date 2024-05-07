@@ -1,0 +1,25 @@
+- tao CSDL
+- tao cac bang
+- them du lieu vao bang
+- truy van
+
+- authentication
+- authorization
+
+- Windows Apache MySQL PHP
+- MySQL + Workbench
+- 3 platform: Windows, MacOS, Linux ; WAMP, MAMP, LAMP
+
+- thieu VS C++
+- apache dung port 80 (cua IIS)
+- phai run as administrator
+- chon MySQL 8.
+
+- tao tai khoan tren IBMDB2 cloud
+- dang nhap
+- tao db service
+
+- CHAR(5) --> 'AN___'
+- VARCHAR(10) --> 'AN'
+
+

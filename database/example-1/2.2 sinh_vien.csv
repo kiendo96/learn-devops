@@ -1,0 +1,1001 @@
+Ma_sinh_vien,Ho,Ten,Gioi_tinh,Ngay_sinh,Mail,Di_dong,CMND,Hoc_bong,Ma_khoa
+C0001,Khương Thảo,Loan,False,1999-01-04 00:00:00,ktloan@gmail.com,0987314518          ,586900775484,2000000,CN
+C0002,Đặng Bạch,Ngọc,True,1999-11-11 00:00:00,dbngoc@gmail.com,0987587327          ,274387352269,0,CN
+C0003,Phạm Văn Minh,Thiện,True,1999-11-23 00:00:00,pvmthien@gmail.com,0987858734          ,835772714136,0,CN
+C0004,Đinh Thị Thanh,Dung,False,1999-01-19 00:00:00,dttdung@gmail.com,0987508413          ,373064334392,1000000,CN
+C0005,Trần Mạnh,Thiện,True,1999-08-19 00:00:00,tmthien@gmail.com,0987579776          ,233384596844,1000000,CN
+C0006,Trần Văn Minh,Hiệu,True,1999-12-12 00:00:00,tvmhieu@gmail.com,0168595875          ,065746412487,1000000,CN
+C0007,Lê Thị,Mai,False,1999-09-13 00:00:00,ltmai@gmail.com,0168116548          ,123537817134,2000000,CN
+C0008,Bạch Vĩnh,Tuấn,True,1999-06-08 00:00:00,bvtuan@gmail.com,0987682839          ,643872714468,1000000,CN
+C0009,Thái Thị Thanh,Nhung,False,1999-07-18 00:00:00,tttnhung@gmail.com,0913555665          ,943138244683,0,CN
+C0010,Khương Văn Minh,Trọng,True,1999-10-01 00:00:00,kvmtrong@gmail.com,0913557276          ,548347163939,2000000,CN
+C0011,Hoàng Thảo,Thúy,False,1999-12-07 00:00:00,htthuy@gmail.com,0987337162          ,948793354375,1000000,CN
+C0012,Mã Vĩnh,Thiệu,True,1999-10-09 00:00:00,mvthieu@gmail.com,0168135829          ,522178884206,3000000,CN
+C0013,Nguyễn Minh,Thu,False,1999-07-18 00:00:00,nmthu@gmail.com,0168591321          ,455733571868,1000000,CN
+C0014,Khương Thị,Ly,False,1999-02-11 00:00:00,ktly@gmail.com,0987712052          ,454614611224,0,CN
+C0015,Vương Thị Thanh,Loan,False,1999-03-12 00:00:00,vttloan@gmail.com,0913722185          ,360627878957,1000000,CN
+C0016,Nguyễn Thảo,Trang,False,1999-09-11 00:00:00,nttrang@gmail.com,0987514786          ,219366710413,1000000,CN
+C0017,Lê Thị Thảo,Đào,False,1999-12-27 00:00:00,lttdao@gmail.com,0987489713          ,434775158867,2000000,CN
+C0018,Mã Thảo,Lan,False,1999-02-07 00:00:00,mtlan@gmail.com,0168975412          ,529235332621,1000000,CN
+C0019,Thái Ngọc,Mỹ,True,1999-02-24 00:00:00,tnmy@gmail.com,0913595747          ,547026826518,1000000,CN
+C0020,Phạm Bạch,Minh,True,1999-10-03 00:00:00,pbminh@gmail.com,0168151138          ,367172436369,1000000,CN
+C0021,Vương Vĩnh,Hòa,True,1999-01-03 00:00:00,vvhoa@gmail.com,0987334366          ,661854084622,3000000,CN
+C0022,Lý Phú,Ngọc,True,1999-05-14 00:00:00,lpngoc@gmail.com,0987465869          ,528385466287,2000000,CN
+C0023,Nguyễn Thị Thanh,Lan,False,1999-09-08 00:00:00,nttlan@gmail.com,0913617889          ,825227227464,2000000,CN
+C0024,Thái Nam,Sinh,True,1999-11-17 00:00:00,tnsinh@gmail.com,0913102284          ,371352323158,1000000,CN
+C0025,Phạm Phương,Phương,False,1999-06-15 00:00:00,ppphuong@gmail.com,0168374535          ,774375787574,3000000,CN
+C0026,Lâm Vĩnh,Hiệu,True,1999-07-26 00:00:00,lvhieu@gmail.com,0987880747          ,304474621035,0,CN
+C0027,Đinh Thanh,Mỹ,True,1999-11-26 00:00:00,dtmy@gmail.com,0913774531          ,461863655265,0,CN
+C0028,Lâm Nam,Sinh,True,1999-07-24 00:00:00,lnsinh@gmail.com,0168613393          ,747111658838,0,CN
+C0029,Khương Ngọc,Minh,True,1999-10-28 00:00:00,knminh@gmail.com,0168792295          ,545397337618,1000000,CN
+C0030,Phạm Vĩnh,Phong,True,1999-09-05 00:00:00,pvphong@gmail.com,0913803291          ,153237946751,2000000,CN
+C0031,Lý Thảo,Thúy,False,1999-07-05 00:00:00,ltthuy@gmail.com,0987566402          ,013098347676,3000000,CN
+C0032,Mã Thị,Ly,False,1999-05-30 00:00:00,mtly@gmail.com,0168675486          ,822643610887,0,CN
+C0033,Mã Văn Minh,Trọng,True,1999-09-03 00:00:00,mvmtrong@gmail.com,0987078641          ,532328788440,3000000,CN
+C0034,Thái Minh,Phương,True,1999-07-09 00:00:00,tmphuong@gmail.com,0987687468          ,925518195176,3000000,CN
+C0035,Văn Phú,Tâm,True,1999-02-07 00:00:00,vptam@gmail.com,0913852739          ,445786618758,0,CN
+C0036,Lý Minh,Minh,False,1999-09-13 00:00:00,lmminh@gmail.com,0987364828          ,112484556945,2000000,CN
+C0037,Cao Văn Minh,Phong,True,1999-08-12 00:00:00,cvmphong@gmail.com,0913652620          ,526508349404,1000000,CN
+C0038,Mã Bạch,Mỹ,True,1999-07-18 00:00:00,mbmy@gmail.com,0913563968          ,553672304485,0,CN
+C0039,Cao Mạnh,Thiện,True,1999-03-20 00:00:00,cmthien@gmail.com,0987842511          ,793370470912,0,CN
+C0040,Thái Thảo,Hoa,False,1999-02-03 00:00:00,tthoa@gmail.com,0913128448          ,470038563157,0,CN
+C0041,Bạch Văn,Hiệu,True,1999-10-06 00:00:00,bvhieu@gmail.com,0987465746          ,212395601335,2000000,CN
+C0042,Đàm Vĩnh,Dũng,True,1999-08-04 00:00:00,dvdung@gmail.com,0913702776          ,237164154244,3000000,CN
+C0043,Bạch Thị Thanh,Nhung,False,1999-10-30 00:00:00,bttnhung@gmail.com,0168114496          ,040440424749,3000000,CN
+C0044,Bạch Thị,Thúy,False,1999-11-09 00:00:00,btthuy@gmail.com,0987681542          ,483340458851,0,CN
+C0045,Thái Nam,Tân,True,1999-01-03 00:00:00,tntan@gmail.com,0168841324          ,676458978939,3000000,CN
+C0046,Bạch Nam,Huy,True,1999-05-14 00:00:00,bnhuy@gmail.com,0913533371          ,252192066524,0,CN
+C0047,Lê Văn Minh,Thiệu,True,1999-05-12 00:00:00,lvmthieu@gmail.com,0913101488          ,597631265016,2000000,CN
+C0048,Đàm Thảo,Hoa,False,1999-09-12 00:00:00,dthoa@gmail.com,0913416223          ,941151719519,1000000,CN
+C0049,Lý Văn,Dũng,True,1999-09-12 00:00:00,lvdung@gmail.com,0913541297          ,618232837549,3000000,CN
+C0050,Trần Minh,Ngân,True,1999-11-13 00:00:00,tmngan@gmail.com,0987775844          ,721151517252,2000000,CN
+C0051,Lâm Thị Thảo,Loan,False,1999-01-09 00:00:00,lttloan@gmail.com,0168418373          ,311628625536,0,CN
+C0052,Lê Thị Thảo,Ly,False,1999-02-14 00:00:00,lttly@gmail.com,0168434476          ,874368763621,1000000,CN
+C0053,Hoàng Văn,Phong,True,1999-06-29 00:00:00,hvphong@gmail.com,0168238108          ,517573018661,2000000,CN
+C0054,Lý Vĩnh,Sinh,True,1999-05-25 00:00:00,lvsinh@gmail.com,0913134764          ,145528667746,0,CN
+C0055,Lê Thảo,Hương,False,1999-11-06 00:00:00,lthuong@gmail.com,0168706154          ,676648731450,2000000,CN
+C0056,Thái Thảo,Đào,False,1999-09-19 00:00:00,ttdao@gmail.com,0987815189          ,516795333424,0,CN
+C0057,Vương Thị Thảo,Hạnh,False,1999-03-18 00:00:00,vtthanh@gmail.com,0168116314          ,617118944211,3000000,CN
+C0058,Trần Văn Minh,Tuấn,True,1999-05-30 00:00:00,tvmtuan@gmail.com,0913176166          ,516553888135,1000000,CN
+C0059,Thái Thảo,Trúc,False,1999-07-08 00:00:00,tttruc@gmail.com,0987863212          ,443853693305,2000000,CN
+C0060,Văn Thị,Lan,False,1999-05-20 00:00:00,vtlan@gmail.com,0913926778          ,772255381968,3000000,CN
+C0061,Đặng Vĩnh,Sinh,True,1999-10-07 00:00:00,dvsinh@gmail.com,0168640925          ,526139812378,2000000,CN
+C0062,Hoàng Thị Thanh,Đào,False,1999-10-02 00:00:00,httdao@gmail.com,0913323153          ,516686165844,3000000,CN
+C0063,Đặng Nam,Lộc,True,1999-09-26 00:00:00,dnloc@gmail.com,0987122436          ,318832473437,0,CN
+C0064,Lâm Vĩnh,Thiệu,True,1999-07-08 00:00:00,lvthieu@gmail.com,0987456418          ,510234875224,2000000,CN
+C0065,Lâm Thảo,Trúc,False,1999-09-19 00:00:00,lttruc@gmail.com,0987113162          ,613542186162,3000000,CN
+C0066,Mã Phú,Tâm,False,1999-12-28 00:00:00,mptam@gmail.com,0987340442          ,067145136407,2000000,CN
+C0067,Lâm Thảo,Hạnh,False,1999-11-20 00:00:00,lthanh@gmail.com,0913675266          ,294514656243,0,CN
+C0068,Khương Vĩnh,Sinh,True,1999-01-02 00:00:00,kvsinh@gmail.com,0987841607          ,914741875843,0,CN
+C0069,Cao Nam,Tuấn,True,1999-10-22 00:00:00,cntuan@gmail.com,0987760225          ,271368304726,2000000,CN
+C0070,Đặng Thị,Nhung,False,1999-09-29 00:00:00,dtnhung@gmail.com,0987233358          ,458167981145,0,CN
+C0071,Khương Thanh,Thanh,False,1999-03-13 00:00:00,ktthanh@gmail.com,0168852812          ,942543336435,0,CN
+C0072,Thái Mạnh,Lộc,True,1999-12-05 00:00:00,tmloc@gmail.com,0987155833          ,055768329142,3000000,CN
+C0073,Trần Thảo,Hạnh,False,1999-03-23 00:00:00,tthanh@gmail.com,0987718558          ,451357224741,1000000,CN
+C0074,Thái Thảo,Nga,False,1999-02-23 00:00:00,ttnga@gmail.com,0168122579          ,443293205719,3000000,CN
+C0075,Lê Thảo,Hoa,False,1999-05-15 00:00:00,lthoa@gmail.com,0913243932          ,662273790256,3000000,CN
+C0076,Nguyễn Thanh,Phương,True,1999-02-20 00:00:00,ntphuong@gmail.com,0913347446          ,287315632735,3000000,CN
+C0077,Lâm Minh,Ngọc,True,1999-06-12 00:00:00,lmngoc@gmail.com,0913451494          ,288671403446,2000000,CN
+C0078,Đinh Phú,Thanh,False,1999-02-04 00:00:00,dpthanh@gmail.com,0987088328          ,613575775966,2000000,CN
+C0079,Cao Thị Thanh,Trúc,False,1999-03-06 00:00:00,ctttruc@gmail.com,0168428594          ,525845671504,1000000,CN
+C0080,Bạch Thanh,Thanh,False,1999-01-04 00:00:00,btthanh@gmail.com,0913843497          ,169614465950,3000000,CN
+C0081,Bạch Thị,Thúy,False,1999-10-26 00:00:00,btthuy@gmail.com,0913278353          ,284278757522,3000000,CN
+C0082,Đàm Phương,Ngân,True,1999-02-23 00:00:00,dpngan@gmail.com,0168192289          ,671904984705,0,CN
+C0083,Văn Thị,Ly,False,1999-12-28 00:00:00,vtly@gmail.com,0913826240          ,522583923577,2000000,CN
+C0084,Bạch Phương,Ngọc,True,1999-02-19 00:00:00,bpngoc@gmail.com,0913184553          ,883019433248,0,CN
+C0085,Nguyễn Thảo,Trúc,False,1999-01-27 00:00:00,nttruc@gmail.com,0913741348          ,406305473473,2000000,CN
+C0086,Văn Văn Minh,Thăng,True,1999-10-21 00:00:00,vvmthang@gmail.com,0913252673          ,131114664148,2000000,CN
+C0087,Đinh Thảo,Trúc,False,1999-05-06 00:00:00,dttruc@gmail.com,0987772773          ,866951746664,1000000,CN
+C0088,Đinh Văn Minh,Thiệu,True,1999-06-04 00:00:00,dvmthieu@gmail.com,0913837727          ,526414384848,1000000,CN
+C0089,Lâm Mạnh,Phong,True,1999-02-25 00:00:00,lmphong@gmail.com,0168544311          ,331825385257,2000000,CN
+C0090,Thái Văn Minh,Sinh,True,1999-05-04 00:00:00,tvmsinh@gmail.com,0987637112          ,851917606722,2000000,CN
+C0091,Nguyễn Thảo,Ly,False,1999-11-07 00:00:00,ntly@gmail.com,0913147858          ,603340642051,2000000,CN
+C0092,Trần Thảo,Nhung,False,1999-09-25 00:00:00,ttnhung@gmail.com,0913676681          ,875143466950,1000000,CN
+C0093,Bạch Vĩnh,Lộc,True,1999-04-04 00:00:00,bvloc@gmail.com,0987332563          ,815761759293,0,CN
+C0094,Lê Nam,Thiệu,True,1999-02-25 00:00:00,lnthieu@gmail.com,0987884525          ,687543421219,3000000,CN
+C0095,Cao Nam,Dũng,True,1999-09-15 00:00:00,cndung@gmail.com,0913309378          ,328121584033,3000000,CN
+C0096,Văn Ngọc,Ngọc,False,1999-11-22 00:00:00,vnngoc@gmail.com,0913166025          ,337766688433,3000000,CN
+C0097,Phạm Thị Thanh,Lan,False,1999-08-07 00:00:00,pttlan@gmail.com,0987159337          ,518644964204,2000000,CN
+C0098,Văn Thị Thanh,Nga,False,1999-06-20 00:00:00,vttnga@gmail.com,0168929323          ,670312616514,1000000,CN
+C0099,Đàm Minh,Thu,True,1999-08-07 00:00:00,dmthu@gmail.com,0913297897          ,075954405147,0,CN
+C0100,Cao Văn,Huy,True,1999-09-19 00:00:00,cvhuy@gmail.com,0987571969          ,236368088716,1000000,CN
+C0101,Khương Thảo,Dung,False,1999-04-05 00:00:00,ktdung@gmail.com,0168490255          ,818383527641,0,CN
+C0102,Mã Thảo,Ly,False,1999-05-11 00:00:00,mtly@gmail.com,0913155875          ,222824361015,3000000,CN
+C0103,Vương Văn,Hiệu,True,1999-07-07 00:00:00,vvhieu@gmail.com,0913040177          ,423261991223,0,CN
+C0104,Lê Nam,Huy,True,1999-04-14 00:00:00,lnhuy@gmail.com,0987378557          ,882696553923,2000000,CN
+C0105,Hoàng Vĩnh,Tân,True,1999-10-11 00:00:00,hvtan@gmail.com,0168442133          ,755741396622,3000000,CN
+C0106,Thái Thảo,Lan,False,1999-07-09 00:00:00,ttlan@gmail.com,0987682393          ,788776541131,0,CN
+C0107,Lâm Thị,Hương,False,1999-02-07 00:00:00,lthuong@gmail.com,0987542436          ,515657376151,0,CN
+C0108,Bạch Văn Minh,Sinh,True,1999-02-08 00:00:00,bvmsinh@gmail.com,0168873574          ,657411375806,2000000,CN
+C0109,Bạch Thị,Hoa,False,1999-10-14 00:00:00,bthoa@gmail.com,0913174720          ,347889227616,1000000,CN
+C0110,Hoàng Nam,Huy,True,1999-06-06 00:00:00,hnhuy@gmail.com,0913275310          ,837111246336,3000000,CN
+C0111,Thái Thảo,Ly,False,1999-02-08 00:00:00,ttly@gmail.com,0987578191          ,218467044376,0,CN
+C0112,Phạm Thị Thanh,Nhung,False,1999-01-21 00:00:00,pttnhung@gmail.com,0168247951          ,746366546578,0,CN
+C0113,Khương Văn Minh,Thiệu,True,1999-05-10 00:00:00,kvmthieu@gmail.com,0987682465          ,608831417298,0,CN
+C0114,Vương Bạch,Ngọc,True,1999-02-19 00:00:00,vbngoc@gmail.com,0913017162          ,514836267938,0,CN
+C0115,Hoàng Phương,Mỹ,False,1999-10-21 00:00:00,hpmy@gmail.com,0913812572          ,735328417911,0,CN
+C0116,Văn Thị Thanh,Đào,False,1999-03-11 00:00:00,vttdao@gmail.com,0987536841          ,537879732291,2000000,CN
+C0117,Lâm Thị Thanh,Đào,False,1999-04-10 00:00:00,lttdao@gmail.com,0168227373          ,686942154163,2000000,CN
+C0118,Khương Văn,Bảo,True,1999-05-10 00:00:00,kvbao@gmail.com,0913445288          ,457626333763,1000000,CN
+C0119,Cao Thảo,Thúy,False,1999-03-17 00:00:00,ctthuy@gmail.com,0168451848          ,718876653390,2000000,CN
+C0120,Hoàng Văn Minh,Hòa,True,1999-08-15 00:00:00,hvmhoa@gmail.com,0168507265          ,596374804815,0,CN
+C0121,Đặng Thanh,Minh,False,1999-04-11 00:00:00,dtminh@gmail.com,0987093434          ,763312562743,0,CN
+C0122,Đặng Ngọc,Thanh,True,1999-08-04 00:00:00,dnthanh@gmail.com,0168488289          ,863396390717,1000000,CN
+C0123,Nguyễn Văn Minh,Bảo,True,1999-07-15 00:00:00,nvmbao@gmail.com,0987742972          ,755261131243,0,CN
+C0124,Đinh Thị Thanh,Loan,False,1999-04-26 00:00:00,dttloan@gmail.com,0913421473          ,333202646447,3000000,CN
+C0125,Thái Phú,Ngọc,True,1999-11-26 00:00:00,tpngoc@gmail.com,0168112483          ,381872345627,2000000,CN
+C0126,Đặng Nam,Trọng,True,1999-07-11 00:00:00,dntrong@gmail.com,0168595738          ,376085441897,2000000,CN
+C0127,Cao Văn Minh,Hiệu,True,1999-03-29 00:00:00,cvmhieu@gmail.com,0168982483          ,825378816396,0,CN
+C0128,Đinh Thị Thanh,Đào,False,1999-08-04 00:00:00,dttdao@gmail.com,0168643551          ,567223381124,0,CN
+C0129,Phạm Văn,Sinh,True,1999-03-31 00:00:00,pvsinh@gmail.com,0987463816          ,149778805950,0,CN
+C0130,Đặng Mạnh,Huy,True,1999-05-27 00:00:00,dmhuy@gmail.com,0913467919          ,139279537371,0,CN
+C0131,Khương Văn Minh,Huy,True,1999-10-16 00:00:00,kvmhuy@gmail.com,0168541651          ,434456744897,1000000,CN
+C0132,Phạm Thị Thanh,Dung,False,1999-09-07 00:00:00,pttdung@gmail.com,0913172326          ,042648721276,2000000,CN
+C0133,Phạm Thanh,Tâm,False,1999-04-16 00:00:00,pttam@gmail.com,0168587261          ,710230037048,2000000,CN
+C0134,Trần Thảo,Trang,False,1999-07-13 00:00:00,tttrang@gmail.com,0913523286          ,886868678152,0,CN
+C0135,Đàm Vĩnh,Mẫn,True,1999-06-11 00:00:00,dvman@gmail.com,0913547957          ,532153343807,3000000,CN
+C0136,Văn Bạch,Mỹ,True,1999-04-29 00:00:00,vbmy@gmail.com,0987419127          ,203372986103,1000000,CN
+C0137,Văn Nam,Bảo,True,1999-05-05 00:00:00,vnbao@gmail.com,0168831446          ,247276566588,3000000,CN
+C0138,Văn Thảo,Mai,False,1999-06-13 00:00:00,vtmai@gmail.com,0987802591          ,056434403148,0,CN
+C0139,Mã Nam,Sinh,True,1999-05-13 00:00:00,mnsinh@gmail.com,0168226058          ,738245204655,1000000,CN
+C0140,Đàm Vĩnh,Thăng,True,1999-12-02 00:00:00,dvthang@gmail.com,0913063278          ,681253422515,0,CN
+C0141,Thái Thị Thanh,Mai,False,1999-10-29 00:00:00,tttmai@gmail.com,0987926366          ,111649423105,0,CN
+C0142,Văn Thị Thảo,Thúy,False,1999-10-17 00:00:00,vttthuy@gmail.com,0168616505          ,674018988497,2000000,CN
+C0143,Lý Minh,Thanh,True,1999-03-13 00:00:00,lmthanh@gmail.com,0913158873          ,708163564385,3000000,CN
+C0144,Nguyễn Nam,Hiệu,True,1999-04-18 00:00:00,nnhieu@gmail.com,0987446168          ,765666386282,0,CN
+C0145,Đặng Thanh,Mỹ,False,1999-10-05 00:00:00,dtmy@gmail.com,0913896263          ,389841192358,2000000,CN
+C0146,Vương Thị Thanh,Hạnh,False,1999-10-16 00:00:00,vtthanh@gmail.com,0987773165          ,488884215176,1000000,CN
+C0147,Nguyễn Thị Thanh,Đào,False,1999-02-21 00:00:00,nttdao@gmail.com,0987742684          ,999921411778,1000000,CN
+C0148,Đặng Văn,Thăng,True,1999-03-16 00:00:00,dvthang@gmail.com,0913937413          ,440982447566,1000000,CN
+C0149,Cao Thị Thảo,Hương,False,1999-12-14 00:00:00,ctthuong@gmail.com,0168821044          ,700652622226,0,CN
+C0150,Lâm Văn Minh,Thăng,True,1999-10-02 00:00:00,lvmthang@gmail.com,0913576733          ,546483764245,3000000,CN
+C0151,Lý Thị Thảo,Hạnh,False,1999-07-06 00:00:00,ltthanh@gmail.com,0913883771          ,636424656341,0,CN
+C0152,Đặng Thị Thanh,Lan,False,1999-09-24 00:00:00,dttlan@gmail.com,0913216005          ,326354418416,1000000,CN
+C0153,Phạm Thanh,Phương,True,1999-07-11 00:00:00,ptphuong@gmail.com,0913516753          ,114781757667,2000000,CN
+C0154,Cao Văn Minh,Bảo,True,1999-05-11 00:00:00,cvmbao@gmail.com,0913598140          ,530460808272,3000000,CN
+C0155,Trần Văn,Kiệt,True,1999-10-04 00:00:00,tvkiet@gmail.com,0913718235          ,513865093570,0,CN
+C0156,Hoàng Thị Thanh,Hạnh,False,1999-01-07 00:00:00,htthanh@gmail.com,0168455842          ,137200937088,0,CN
+C0157,Trần Minh,Mỹ,False,1999-02-28 00:00:00,tmmy@gmail.com,0913058821          ,592562456252,2000000,CN
+C0158,Trần Nam,Tuấn,True,1999-02-07 00:00:00,tntuan@gmail.com,0913416377          ,508723746611,1000000,CN
+C0159,Cao Thị Thanh,Hạnh,False,1999-04-07 00:00:00,ctthanh@gmail.com,0913321232          ,247255066175,1000000,CN
+C0160,Phạm Thảo,Mai,False,1999-12-19 00:00:00,ptmai@gmail.com,0987316732          ,791319761675,0,CN
+C0161,Mã Phú,Tâm,False,1999-11-26 00:00:00,mptam@gmail.com,0168142883          ,015174421341,3000000,CN
+C0162,Đinh Văn Minh,Thăng,True,1999-08-19 00:00:00,dvmthang@gmail.com,0987976853          ,542952314914,1000000,CN
+C0163,Đàm Ngọc,Thanh,True,1999-03-12 00:00:00,dnthanh@gmail.com,0913315935          ,638327421817,0,CN
+C0164,Thái Minh,Mỹ,False,1999-01-09 00:00:00,tmmy@gmail.com,0913313205          ,242333228303,1000000,CN
+C0165,Văn Minh,Ngọc,False,1999-08-25 00:00:00,vmngoc@gmail.com,0168620574          ,489655252872,0,CN
+C0166,Lâm Bạch,Thanh,False,1999-07-20 00:00:00,lbthanh@gmail.com,0168048752          ,337365086252,1000000,CN
+C0167,Mã Thảo,Ly,False,1999-03-20 00:00:00,mtly@gmail.com,0168465823          ,543884377340,2000000,CN
+C0168,Hoàng Phương,Tâm,False,1999-06-26 00:00:00,hptam@gmail.com,0987581151          ,887284523307,2000000,CN
+C0169,Đinh Văn Minh,Vỹ,True,1999-08-13 00:00:00,dvmvy@gmail.com,0987248889          ,218434311216,1000000,CN
+C0170,Phạm Thị Thanh,Loan,False,1999-08-29 00:00:00,pttloan@gmail.com,0168765983          ,426515279387,0,CN
+C0171,Vương Phú,Minh,False,1999-02-14 00:00:00,vpminh@gmail.com,0168556656          ,236761288312,0,CN
+C0172,Văn Thị Thanh,Mai,False,1999-11-21 00:00:00,vttmai@gmail.com,0913713628          ,766853715456,2000000,CN
+C0173,Trần Nam,Hiệu,True,1999-08-01 00:00:00,tnhieu@gmail.com,0987768345          ,206674606558,1000000,CN
+C0174,Hoàng Nam,Thiệu,True,1999-04-18 00:00:00,hnthieu@gmail.com,0987741872          ,152112623703,1000000,CN
+C0175,Đặng Thảo,Lan,False,1999-05-29 00:00:00,dtlan@gmail.com,0987644618          ,343353430123,3000000,CN
+C0176,Cao Minh,Ngọc,True,1999-12-13 00:00:00,cmngoc@gmail.com,0913560171          ,971184119618,2000000,CN
+C0177,Đặng Thị,Lan,False,1999-03-28 00:00:00,dtlan@gmail.com,0987185204          ,013187548126,3000000,CN
+C0178,Đàm Văn,Lộc,True,1999-05-21 00:00:00,dvloc@gmail.com,0913448520          ,988837909681,2000000,CN
+C0179,Văn Thị,Hạnh,False,1999-07-26 00:00:00,vthanh@gmail.com,0913732566          ,340879046922,2000000,CN
+C0180,Nguyễn Văn Minh,Huy,True,1999-04-19 00:00:00,nvmhuy@gmail.com,0168343911          ,925804559478,2000000,CN
+C0181,Đàm Mạnh,Kiệt,True,1999-11-04 00:00:00,dmkiet@gmail.com,0913312686          ,523274941356,2000000,CN
+C0182,Khương Phương,Ngân,True,1999-04-08 00:00:00,kpngan@gmail.com,0913285653          ,210614313643,3000000,CN
+C0183,Lê Văn Minh,Vỹ,True,1999-02-06 00:00:00,lvmvy@gmail.com,0987153235          ,396291512932,0,CN
+C0184,Mã Thảo,Dung,False,1999-11-11 00:00:00,mtdung@gmail.com,0168745287          ,815006872808,0,CN
+C0185,Lý Văn Minh,Phong,True,1999-08-20 00:00:00,lvmphong@gmail.com,0168889657          ,223939606261,3000000,CN
+C0186,Lý Thảo,Hạnh,False,1999-07-26 00:00:00,lthanh@gmail.com,0987083017          ,388574724271,2000000,CN
+C0187,Đinh Thảo,Hương,False,1999-02-25 00:00:00,dthuong@gmail.com,0987387763          ,982019652919,2000000,CN
+C0188,Đặng Thanh,Ngọc,False,1999-04-05 00:00:00,dtngoc@gmail.com,0987834114          ,819233571527,1000000,CN
+C0189,Lý Thị Thảo,Hương,False,1999-06-10 00:00:00,ltthuong@gmail.com,0168897157          ,113561413663,0,CN
+C0190,Văn Thị Thảo,Loan,False,1999-07-21 00:00:00,vttloan@gmail.com,0913178556          ,344276294087,2000000,CN
+C0191,Đặng Thảo,Ly,False,1999-09-09 00:00:00,dtly@gmail.com,0913438784          ,145548963406,3000000,CN
+C0192,Lâm Vĩnh,Tân,True,1999-04-23 00:00:00,lvtan@gmail.com,0913953273          ,556760801316,3000000,CN
+C0193,Lý Vĩnh,Tuấn,True,1999-12-25 00:00:00,lvtuan@gmail.com,0987482842          ,890156462574,2000000,CN
+C0194,Trần Văn Minh,Tuấn,True,1999-03-08 00:00:00,tvmtuan@gmail.com,0987088479          ,314348477273,1000000,CN
+C0195,Lê Văn,Kiệt,True,1999-09-02 00:00:00,lvkiet@gmail.com,0987526642          ,340619040482,3000000,CN
+C0196,Đinh Ngọc,Thu,False,1999-06-16 00:00:00,dnthu@gmail.com,0168502711          ,157472777324,0,CN
+C0197,Đinh Thảo,Mai,False,1999-01-27 00:00:00,dtmai@gmail.com,0168205239          ,683282117879,3000000,CN
+C0198,Lê Văn Minh,Thiện,True,1999-06-27 00:00:00,lvmthien@gmail.com,0913495078          ,163946544228,2000000,CN
+C0199,Bạch Phương,Mỹ,True,1999-03-03 00:00:00,bpmy@gmail.com,0168855668          ,704895779953,0,CN
+C0200,Đinh Văn,Phong,True,1999-07-21 00:00:00,dvphong@gmail.com,0168985248          ,113824473918,3000000,CN
+C0201,Lý Vĩnh,Sang,True,1999-01-29 00:00:00,lvsang@gmail.com,0168458283          ,116681821024,0,CN
+C0202,Lê Thảo,Nga,False,1999-02-25 00:00:00,ltnga@gmail.com,0913399918          ,622956823559,2000000,CN
+C0203,Khương Thanh,Phương,False,1999-06-01 00:00:00,ktphuong@gmail.com,0913257653          ,813464485434,2000000,CN
+C0204,Khương Văn Minh,Tân,True,1999-08-10 00:00:00,kvmtan@gmail.com,0987186154          ,680791265074,3000000,CN
+C0205,Cao Văn,Phong,True,1999-04-10 00:00:00,cvphong@gmail.com,0913513318          ,467601440437,2000000,CN
+C0206,Hoàng Nam,Tuấn,True,1999-08-13 00:00:00,hntuan@gmail.com,0168277247          ,563185517187,0,CN
+C0207,Cao Thanh,Thanh,True,1999-07-06 00:00:00,ctthanh@gmail.com,0168138144          ,330253701009,3000000,CN
+C0208,Khương Vĩnh,Tuấn,True,1999-04-28 00:00:00,kvtuan@gmail.com,0168966584          ,158106948490,2000000,CN
+C0209,Lâm Vĩnh,Mẫn,True,1999-05-07 00:00:00,lvman@gmail.com,0987843380          ,507951727533,0,CN
+C0210,Hoàng Văn Minh,Hòa,True,1999-08-25 00:00:00,hvmhoa@gmail.com,0987613368          ,838826475369,1000000,CN
+C0211,Vương Văn Minh,Tuấn,True,1999-11-27 00:00:00,vvmtuan@gmail.com,0168781200          ,578244881843,2000000,CN
+C0212,Trần Thị Thanh,Mai,False,1999-10-30 00:00:00,tttmai@gmail.com,0913300524          ,974288773773,1000000,CN
+C0213,Văn Thị Thanh,Ly,False,1999-06-06 00:00:00,vttly@gmail.com,0168476335          ,283286560567,2000000,CN
+C0214,Mã Thảo,Thúy,False,1999-01-25 00:00:00,mtthuy@gmail.com,0987424537          ,113315323846,0,CN
+C0215,Đàm Thị Thanh,Hạnh,False,1999-06-05 00:00:00,dtthanh@gmail.com,0987358836          ,985154249933,3000000,CN
+C0216,Đinh Thanh,Thanh,False,1999-04-09 00:00:00,dtthanh@gmail.com,0987705817          ,531437738832,1000000,CN
+C0217,Trần Bạch,Thu,True,1999-08-18 00:00:00,tbthu@gmail.com,0987731662          ,753178473118,2000000,CN
+C0218,Khương Thị Thanh,Mai,False,1999-10-02 00:00:00,kttmai@gmail.com,0987938472          ,093559659361,3000000,CN
+C0219,Đinh Thảo,Đào,False,1999-05-27 00:00:00,dtdao@gmail.com,0168997275          ,720365242316,1000000,CN
+C0220,Thái Mạnh,Huy,True,1999-12-03 00:00:00,tmhuy@gmail.com,0987494526          ,401081351210,3000000,CN
+C0221,Lý Ngọc,Ngân,False,1999-05-19 00:00:00,lnngan@gmail.com,0168808232          ,315602028410,0,CN
+C0222,Lê Thảo,Trúc,False,1999-11-11 00:00:00,lttruc@gmail.com,0913527668          ,409074012627,0,CN
+C0223,Khương Minh,Tâm,True,1999-04-12 00:00:00,kmtam@gmail.com,0913065257          ,158993544183,0,CN
+C0224,Lê Nam,Bảo,True,1999-08-21 00:00:00,lnbao@gmail.com,0913472857          ,420187384946,1000000,CN
+C0225,Lý Văn Minh,Phong,True,1999-02-14 00:00:00,lvmphong@gmail.com,0913457646          ,872247317474,3000000,CN
+C0226,Lý Nam,Huy,True,1999-11-30 00:00:00,lnhuy@gmail.com,0168082065          ,811978367716,2000000,CN
+C0227,Lê Thanh,Minh,False,1999-10-02 00:00:00,ltminh@gmail.com,0913801829          ,788593931103,1000000,CN
+C0228,Trần Thị,Hoa,False,1999-07-30 00:00:00,tthoa@gmail.com,0987409934          ,630098889607,2000000,CN
+C0229,Đặng Vĩnh,Thiệu,True,1999-08-04 00:00:00,dvthieu@gmail.com,0913072249          ,297842881441,3000000,CN
+C0230,Hoàng Thảo,Ly,False,1999-07-12 00:00:00,htly@gmail.com,0168122865          ,465398714288,2000000,CN
+C0231,Bạch Thị,Lan,False,1999-12-17 00:00:00,btlan@gmail.com,0168886346          ,371107521416,3000000,CN
+C0232,Phạm Nam,Trọng,True,1999-12-15 00:00:00,pntrong@gmail.com,0168666184          ,273278687887,3000000,CN
+C0233,Lâm Thảo,Nga,False,1999-10-10 00:00:00,ltnga@gmail.com,0913785334          ,475458534132,1000000,CN
+C0234,Hoàng Văn Minh,Tuấn,True,1999-11-30 00:00:00,hvmtuan@gmail.com,0987542323          ,719916879915,2000000,CN
+C0235,Nguyễn Văn Minh,Sinh,True,1999-04-25 00:00:00,nvmsinh@gmail.com,0987145366          ,215138762296,3000000,CN
+C0236,Vương Thảo,Thúy,False,1999-03-12 00:00:00,vtthuy@gmail.com,0913439485          ,664247371785,3000000,CN
+C0237,Đàm Bạch,Thu,True,1999-04-27 00:00:00,dbthu@gmail.com,0913245348          ,644731719742,2000000,CN
+C0238,Đàm Phú,Ngân,True,1999-02-20 00:00:00,dpngan@gmail.com,0913155199          ,517555182893,3000000,CN
+C0239,Vương Thị Thảo,Hương,False,1999-04-05 00:00:00,vtthuong@gmail.com,0168365514          ,954454846584,3000000,CN
+C0240,Phạm Thị,Hương,False,1999-06-19 00:00:00,pthuong@gmail.com,0168755546          ,122176168587,0,CN
+C0241,Hoàng Vĩnh,Phong,True,1999-11-02 00:00:00,hvphong@gmail.com,0987589308          ,784520351463,1000000,CN
+C0242,Lê Mạnh,Kiệt,True,1999-06-19 00:00:00,lmkiet@gmail.com,0987167158          ,567008265666,1000000,CN
+C0243,Đàm Thanh,Mỹ,False,1999-01-30 00:00:00,dtmy@gmail.com,0168645382          ,455674846206,0,CN
+C0244,Đàm Văn Minh,Huy,True,1999-10-24 00:00:00,dvmhuy@gmail.com,0168643111          ,740353841518,3000000,CN
+C0245,Cao Minh,Thu,False,1999-11-20 00:00:00,cmthu@gmail.com,0913165000          ,776823107760,3000000,CN
+C0246,Lý Văn Minh,Huy,True,1999-06-16 00:00:00,lvmhuy@gmail.com,0168415361          ,578635737915,1000000,CN
+C0247,Văn Thị,Hạnh,False,1999-05-03 00:00:00,vthanh@gmail.com,0913612725          ,960863852316,3000000,CN
+C0248,Trần Thảo,Loan,False,1999-11-28 00:00:00,ttloan@gmail.com,0168682529          ,059334162158,1000000,CN
+C0249,Khương Thị Thanh,Trúc,False,1999-12-07 00:00:00,ktttruc@gmail.com,0987596866          ,435669451418,0,CN
+C0250,Bạch Thanh,Ngân,True,1999-07-26 00:00:00,btngan@gmail.com,0987428634          ,978391626213,2000000,CN
+C0251,Thái Nam,Thăng,True,1999-07-03 00:00:00,tnthang@gmail.com,0987143032          ,493601403416,1000000,CN
+C0252,Mã Thị,Dung,False,1999-09-24 00:00:00,mtdung@gmail.com,0913177843          ,528505955319,2000000,CN
+C0253,Lâm Thị Thanh,Dung,False,1999-09-21 00:00:00,lttdung@gmail.com,0913154086          ,442454372516,1000000,CN
+C0254,Mã Văn Minh,Huy,True,1999-04-06 00:00:00,mvmhuy@gmail.com,0168338447          ,786333949615,2000000,CN
+C0255,Thái Thảo,Dung,False,1999-08-21 00:00:00,ttdung@gmail.com,0913010383          ,413876632445,0,CN
+C0256,Văn Thị Thảo,Trúc,False,1999-04-05 00:00:00,vtttruc@gmail.com,0168037798          ,561556400187,2000000,CN
+C0257,Phạm Văn,Vỹ,True,1999-10-16 00:00:00,pvvy@gmail.com,0168005838          ,533440698171,2000000,CN
+C0258,Lâm Văn Minh,Thiện,True,1999-06-14 00:00:00,lvmthien@gmail.com,0913623786          ,245238461763,0,CN
+C0259,Đinh Thảo,Ly,False,1999-11-03 00:00:00,dtly@gmail.com,0987502362          ,710813317041,1000000,CN
+C0260,Vương Phương,Phương,True,1999-08-20 00:00:00,vpphuong@gmail.com,0987494605          ,657287375936,1000000,CN
+C0261,Mã Nam,Thiệu,True,1999-02-04 00:00:00,mnthieu@gmail.com,0168256599          ,192854188738,3000000,CN
+C0262,Lý Thanh,Thanh,True,1999-03-18 00:00:00,ltthanh@gmail.com,0168552725          ,727352692342,2000000,CN
+C0263,Văn Mạnh,Tuấn,True,1999-10-04 00:00:00,vmtuan@gmail.com,0168146172          ,476452288745,0,CN
+C0264,Vương Thị,Nhung,False,1999-09-03 00:00:00,vtnhung@gmail.com,0913534986          ,636662819094,3000000,CN
+C0265,Trần Thị Thanh,Nga,False,1999-07-12 00:00:00,tttnga@gmail.com,0913246228          ,743834971334,3000000,CN
+C0266,Khương Thanh,Thanh,True,1999-10-05 00:00:00,ktthanh@gmail.com,0913405469          ,728064086261,1000000,CN
+C0267,Văn Thảo,Đào,False,1999-06-17 00:00:00,vtdao@gmail.com,0913841754          ,135538101757,0,CN
+C0268,Cao Thanh,Phương,False,1999-01-10 00:00:00,ctphuong@gmail.com,0168347224          ,568390144371,1000000,CN
+C0269,Văn Thị Thanh,Hoa,False,1999-10-26 00:00:00,vtthoa@gmail.com,0913387001          ,930186018512,2000000,CN
+C0270,Phạm Văn Minh,Thiện,True,1999-12-28 00:00:00,pvmthien@gmail.com,0913789035          ,327285592447,0,CN
+C0271,Cao Thị Thanh,Ly,False,1999-11-05 00:00:00,cttly@gmail.com,0913477333          ,107648372513,1000000,CN
+C0272,Thái Nam,Dũng,True,1999-08-12 00:00:00,tndung@gmail.com,0913486853          ,701413814886,0,CN
+C0273,Phạm Nam,Huy,True,1999-09-11 00:00:00,pnhuy@gmail.com,0987835875          ,554276843252,1000000,CN
+C0274,Lâm Nam,Trọng,True,1999-10-13 00:00:00,lntrong@gmail.com,0987756143          ,467448403122,2000000,CN
+C0275,Mã Minh,Thu,True,1999-02-12 00:00:00,mmthu@gmail.com,0987622479          ,675044723881,3000000,CN
+C0276,Cao Thị Thảo,Hoa,False,1999-03-18 00:00:00,ctthoa@gmail.com,0913451087          ,234623161757,0,CN
+C0277,Cao Thảo,Dung,False,1999-10-26 00:00:00,ctdung@gmail.com,0987544075          ,267720652577,1000000,CN
+C0278,Mã Thị,Đào,False,1999-11-03 00:00:00,mtdao@gmail.com,0168284321          ,644560584027,1000000,CN
+C0279,Khương Thị,Nga,False,1999-01-18 00:00:00,ktnga@gmail.com,0913426271          ,174045735111,1000000,CN
+C0280,Lê Văn Minh,Mẫn,True,1999-12-20 00:00:00,lvmman@gmail.com,0913628639          ,686590649728,0,CN
+C0281,Lê Thảo,Thúy,False,1999-06-21 00:00:00,ltthuy@gmail.com,0987663246          ,278275763558,1000000,CN
+C0282,Khương Thị,Hương,False,1999-09-28 00:00:00,kthuong@gmail.com,0168329787          ,577130294627,1000000,CN
+C0283,Lý Thị Thảo,Thúy,False,1999-01-03 00:00:00,lttthuy@gmail.com,0987834882          ,668740458309,3000000,CN
+C0284,Mã Thị,Mai,False,1999-08-19 00:00:00,mtmai@gmail.com,0168645813          ,924236927123,3000000,CN
+C0285,Cao Văn Minh,Kiệt,True,1999-04-06 00:00:00,cvmkiet@gmail.com,0987425958          ,565525652546,2000000,CN
+C0286,Lâm Thanh,Ngọc,False,1999-08-20 00:00:00,ltngoc@gmail.com,0913745772          ,848276576011,3000000,CN
+C0287,Lý Văn Minh,Bảo,True,1999-09-03 00:00:00,lvmbao@gmail.com,0987173323          ,865414829628,3000000,CN
+C0288,Mã Phú,Tâm,False,1999-05-04 00:00:00,mptam@gmail.com,0987112375          ,748711051357,2000000,CN
+C0289,Đặng Vĩnh,Sinh,True,1999-12-06 00:00:00,dvsinh@gmail.com,0913144178          ,474432156349,3000000,CN
+C0290,Phạm Phú,Mỹ,True,1999-03-15 00:00:00,ppmy@gmail.com,0913723178          ,517937343803,0,CN
+C0291,Lê Vĩnh,Thiệu,True,1999-12-21 00:00:00,lvthieu@gmail.com,0913631111          ,285762358672,3000000,CN
+C0292,Phạm Thị Thảo,Thúy,False,1999-11-21 00:00:00,pttthuy@gmail.com,0913421218          ,658938261777,2000000,CN
+C0293,Đàm Ngọc,Mỹ,False,1999-01-05 00:00:00,dnmy@gmail.com,0987240790          ,631403439411,0,CN
+C0294,Phạm Nam,Bảo,True,1999-12-30 00:00:00,pnbao@gmail.com,0987586638          ,968772828515,1000000,CN
+C0295,Lê Thị Thanh,Hạnh,False,1999-12-19 00:00:00,ltthanh@gmail.com,0987167840          ,766344276483,1000000,CN
+C0296,Phạm Thảo,Nga,False,1999-07-16 00:00:00,ptnga@gmail.com,0987347124          ,608131117293,1000000,CN
+C0297,Lý Vĩnh,Phong,True,1999-03-17 00:00:00,lvphong@gmail.com,0987478501          ,443223214141,1000000,CN
+C0298,Hoàng Phú,Thanh,False,1999-12-17 00:00:00,hpthanh@gmail.com,0913241042          ,141276933478,3000000,CN
+C0299,Đặng Văn,Thiện,True,1999-05-10 00:00:00,dvthien@gmail.com,0987417864          ,466344267402,3000000,CN
+C0300,Vương Thanh,Mỹ,False,1999-04-01 00:00:00,vtmy@gmail.com,0913752447          ,176775567182,1000000,CN
+C0301,Bạch Văn Minh,Bảo,True,1999-02-16 00:00:00,bvmbao@gmail.com,0168340188          ,567057612357,0,CN
+C0302,Đặng Thị,Nhung,False,1999-02-03 00:00:00,dtnhung@gmail.com,0168434753          ,865782549233,0,CN
+C0303,Đặng Văn Minh,Phong,True,1999-01-11 00:00:00,dvmphong@gmail.com,0168221742          ,321731414280,1000000,CN
+C0304,Văn Phú,Thu,False,1999-03-19 00:00:00,vpthu@gmail.com,0987617367          ,431068204211,3000000,CN
+C0305,Lê Ngọc,Ngân,False,1999-09-09 00:00:00,lnngan@gmail.com,0913120844          ,825417777847,0,CN
+C0306,Lý Văn,Thiệu,True,1999-08-14 00:00:00,lvthieu@gmail.com,0987938967          ,167338898052,1000000,CN
+C0307,Trần Phú,Ngân,True,1999-07-13 00:00:00,tpngan@gmail.com,0987660853          ,550458718916,2000000,CN
+C0308,Phạm Văn,Vỹ,True,1999-07-10 00:00:00,pvvy@gmail.com,0913574585          ,821466721543,2000000,CN
+C0309,Vương Thị Thanh,Thúy,False,1999-02-17 00:00:00,vttthuy@gmail.com,0987328783          ,684097855865,1000000,CN
+C0310,Lý Mạnh,Hòa,True,1999-09-28 00:00:00,lmhoa@gmail.com,0168268448          ,703752622535,1000000,CN
+C0311,Lý Vĩnh,Bảo,True,1999-06-09 00:00:00,lvbao@gmail.com,0913383664          ,792622751460,0,CN
+C0312,Phạm Thị Thanh,Nga,False,1999-05-09 00:00:00,pttnga@gmail.com,0987723351          ,230986272888,0,CN
+C0313,Phạm Văn Minh,Tân,True,1999-05-15 00:00:00,pvmtan@gmail.com,0987074511          ,225947227786,3000000,CN
+C0314,Lý Văn Minh,Thiện,True,1999-03-18 00:00:00,lvmthien@gmail.com,0987512695          ,393593434388,1000000,CN
+C0315,Phạm Mạnh,Trọng,True,1999-06-05 00:00:00,pmtrong@gmail.com,0913823544          ,737358165273,0,CN
+C0316,Lê Nam,Phong,True,1999-12-06 00:00:00,lnphong@gmail.com,0913225878          ,142334524318,2000000,CN
+C0317,Hoàng Văn,Thăng,True,1999-04-08 00:00:00,hvthang@gmail.com,0987202080          ,484690170577,2000000,CN
+C0318,Lê Nam,Tuấn,True,1999-07-19 00:00:00,lntuan@gmail.com,0987833368          ,225891886981,2000000,CN
+C0319,Đàm Vĩnh,Sang,True,1999-06-28 00:00:00,dvsang@gmail.com,0168574152          ,829562146291,3000000,CN
+C0320,Bạch Vĩnh,Tân,True,1999-06-27 00:00:00,bvtan@gmail.com,0168757418          ,391475170745,1000000,CN
+C0321,Trần Văn,Bảo,True,1999-04-28 00:00:00,tvbao@gmail.com,0168814266          ,215531145419,2000000,CN
+C0322,Đàm Minh,Ngọc,True,1999-06-04 00:00:00,dmngoc@gmail.com,0987502479          ,724714161305,3000000,CN
+C0323,Lý Thảo,Thúy,False,1999-03-14 00:00:00,ltthuy@gmail.com,0913254961          ,262183313635,2000000,CN
+C0324,Vương Thảo,Nhung,False,1999-09-06 00:00:00,vtnhung@gmail.com,0913463385          ,263477283328,2000000,CN
+C0325,Đàm Văn Minh,Bảo,True,1999-03-05 00:00:00,dvmbao@gmail.com,0913163855          ,305297935133,3000000,CN
+C0326,Mã Thị Thảo,Lan,False,1999-11-29 00:00:00,mttlan@gmail.com,0987165336          ,515355143421,2000000,CN
+C0327,Cao Thị Thảo,Nga,False,1999-10-10 00:00:00,cttnga@gmail.com,0913106245          ,304077884474,2000000,CN
+C0328,Mã Thảo,Lan,False,1999-09-17 00:00:00,mtlan@gmail.com,0987660266          ,386236792877,0,CN
+C0329,Cao Mạnh,Sang,True,1999-10-29 00:00:00,cmsang@gmail.com,0987453151          ,457662022369,0,CN
+C0330,Đặng Văn,Mẫn,True,1999-05-15 00:00:00,dvman@gmail.com,0168767430          ,324977841848,3000000,CN
+C0331,Đinh Nam,Vỹ,True,1999-03-28 00:00:00,dnvy@gmail.com,0913647328          ,827442877249,0,CN
+C0332,Cao Ngọc,Tâm,True,1999-04-17 00:00:00,cntam@gmail.com,0913476743          ,236022722732,3000000,CN
+C0333,Mã Thị Thanh,Hoa,False,1999-10-23 00:00:00,mtthoa@gmail.com,0913516276          ,893541229376,1000000,CN
+C0334,Trần Thị Thanh,Hạnh,False,1999-07-30 00:00:00,ttthanh@gmail.com,0913740286          ,484687622369,2000000,CN
+C0335,Trần Văn,Bảo,True,1999-05-30 00:00:00,tvbao@gmail.com,0987666472          ,257335971215,2000000,CN
+C0336,Lý Ngọc,Ngọc,False,1999-03-28 00:00:00,lnngoc@gmail.com,0987287122          ,608714303340,1000000,CN
+C0337,Mã Ngọc,Ngọc,True,1999-03-28 00:00:00,mnngoc@gmail.com,0913966654          ,812761468098,1000000,CN
+C0338,Lê Mạnh,Tuấn,True,1999-07-24 00:00:00,lmtuan@gmail.com,0913242580          ,665054484814,2000000,CN
+C0339,Đặng Mạnh,Trọng,True,1999-01-06 00:00:00,dmtrong@gmail.com,0168751034          ,337042722967,3000000,CN
+C0340,Mã Minh,Ngọc,True,1999-01-02 00:00:00,mmngoc@gmail.com,0168217253          ,174252674983,2000000,CN
+C0341,Hoàng Văn Minh,Thiệu,True,1999-01-30 00:00:00,hvmthieu@gmail.com,0168337178          ,806426936453,3000000,CN
+C0342,Lâm Bạch,Thu,False,1999-03-22 00:00:00,lbthu@gmail.com,0913615992          ,970785432613,3000000,CN
+C0343,Lê Minh,Mỹ,True,1999-05-30 00:00:00,lmmy@gmail.com,0987757975          ,323118819457,2000000,CN
+C0344,Khương Nam,Trọng,True,1999-08-28 00:00:00,kntrong@gmail.com,0913311163          ,153886389825,2000000,CN
+C0345,Lê Thanh,Phương,False,1999-10-24 00:00:00,ltphuong@gmail.com,0913068695          ,433244574543,2000000,CN
+C0346,Lê Mạnh,Trọng,True,1999-10-11 00:00:00,lmtrong@gmail.com,0168916456          ,892558960163,3000000,CN
+C0347,Cao Vĩnh,Thăng,True,1999-04-03 00:00:00,cvthang@gmail.com,0987585795          ,846222863129,1000000,CN
+C0348,Hoàng Văn,Thăng,True,1999-07-11 00:00:00,hvthang@gmail.com,0913382336          ,382488420871,0,CN
+C0349,Bạch Văn Minh,Trọng,True,1999-11-20 00:00:00,bvmtrong@gmail.com,0168553907          ,416412832724,1000000,CN
+C0350,Lý Nam,Thiệu,True,1999-06-30 00:00:00,lnthieu@gmail.com,0168768752          ,169376078307,0,CN
+C0351,Lý Minh,Ngọc,False,1999-08-22 00:00:00,lmngoc@gmail.com,0987245552          ,443156294245,0,CN
+C0352,Khương Vĩnh,Sang,True,1999-09-09 00:00:00,kvsang@gmail.com,0987133222          ,562111734517,0,CN
+C0353,Nguyễn Thị Thanh,Mai,False,1999-02-02 00:00:00,nttmai@gmail.com,0913146727          ,530132447471,3000000,CN
+C0354,Bạch Văn Minh,Vỹ,True,1999-08-17 00:00:00,bvmvy@gmail.com,0913307826          ,329446477508,3000000,CN
+C0355,Văn Thị,Mai,False,1999-11-10 00:00:00,vtmai@gmail.com,0987327541          ,855354458643,0,CN
+C0356,Phạm Vĩnh,Thăng,True,1999-05-10 00:00:00,pvthang@gmail.com,0913519421          ,552719389531,0,CN
+C0357,Lê Thị,Hoa,False,1999-08-24 00:00:00,lthoa@gmail.com,0168168028          ,407376423068,3000000,CN
+C0358,Cao Thị Thanh,Hạnh,False,1999-07-10 00:00:00,ctthanh@gmail.com,0913746759          ,654616392721,2000000,CN
+C0359,Phạm Thị,Dung,False,1999-02-08 00:00:00,ptdung@gmail.com,0987589558          ,451397858115,1000000,CN
+C0360,Lý Thảo,Trúc,False,1999-10-26 00:00:00,lttruc@gmail.com,0913675221          ,622764403001,2000000,CN
+C0361,Cao Văn Minh,Bảo,True,1999-09-25 00:00:00,cvmbao@gmail.com,0913979117          ,252518433976,0,CN
+C0362,Bạch Thảo,Đào,False,1999-12-03 00:00:00,btdao@gmail.com,0913650229          ,987464141763,0,CN
+C0363,Thái Thị Thanh,Nhung,False,1999-03-04 00:00:00,tttnhung@gmail.com,0987134595          ,767910625784,3000000,CN
+C0364,Hoàng Bạch,Thanh,False,1999-09-19 00:00:00,hbthanh@gmail.com,0168382637          ,601434691532,1000000,CN
+C0365,Đàm Thảo,Hoa,False,1999-01-26 00:00:00,dthoa@gmail.com,0987787693          ,440378306175,2000000,CN
+C0366,Hoàng Mạnh,Dũng,True,1999-01-03 00:00:00,hmdung@gmail.com,0913740520          ,660578880739,2000000,CN
+C0367,Mã Thảo,Đào,False,1999-08-13 00:00:00,mtdao@gmail.com,0987752185          ,326263235327,2000000,CN
+C0368,Hoàng Minh,Phương,True,1999-04-19 00:00:00,hmphuong@gmail.com,0913851747          ,011899180155,1000000,CN
+C0369,Đinh Minh,Ngọc,True,1999-03-12 00:00:00,dmngoc@gmail.com,0913372711          ,322839772389,1000000,CN
+C0370,Đinh Vĩnh,Hiệu,True,1999-02-16 00:00:00,dvhieu@gmail.com,0913458858          ,467391937338,0,CN
+C0371,Đặng Vĩnh,Phong,True,1999-11-15 00:00:00,dvphong@gmail.com,0913025122          ,677115378572,1000000,CN
+C0372,Phạm Văn,Phong,True,1999-10-08 00:00:00,pvphong@gmail.com,0168302791          ,766963468652,3000000,CN
+C0373,Lê Nam,Thăng,True,1999-03-03 00:00:00,lnthang@gmail.com,0987431127          ,383667868641,3000000,CN
+C0374,Cao Ngọc,Tâm,False,1999-05-25 00:00:00,cntam@gmail.com,0913022063          ,954521697456,2000000,CN
+C0375,Vương Thanh,Mỹ,False,1999-07-27 00:00:00,vtmy@gmail.com,0913883144          ,405724023346,2000000,CN
+C0376,Đặng Thị,Đào,False,1999-09-03 00:00:00,dtdao@gmail.com,0913320945          ,407522736824,2000000,CN
+C0377,Đặng Nam,Phong,True,1999-06-04 00:00:00,dnphong@gmail.com,0168124384          ,855644595843,0,CN
+C0378,Lê Mạnh,Lộc,True,1999-12-14 00:00:00,lmloc@gmail.com,0987258175          ,612874258236,2000000,CN
+C0379,Lê Thanh,Thanh,True,1999-03-06 00:00:00,ltthanh@gmail.com,0168860848          ,090353155495,1000000,CN
+C0380,Phạm Thảo,Đào,False,1999-10-21 00:00:00,ptdao@gmail.com,0168946061          ,165023447739,1000000,CN
+C0381,Phạm Thanh,Thu,True,1999-04-03 00:00:00,ptthu@gmail.com,0987638743          ,287491168551,3000000,CN
+C0382,Cao Văn,Sang,True,1999-07-01 00:00:00,cvsang@gmail.com,0987723185          ,133752746562,1000000,CN
+C0383,Phạm Vĩnh,Mẫn,True,1999-08-19 00:00:00,pvman@gmail.com,0168358355          ,898335195651,1000000,CN
+C0384,Bạch Văn Minh,Thiện,True,1999-09-16 00:00:00,bvmthien@gmail.com,0987573143          ,781449277489,2000000,CN
+C0385,Văn Minh,Phương,True,1999-06-04 00:00:00,vmphuong@gmail.com,0987447780          ,634872681822,3000000,CN
+C0386,Lý Văn,Sinh,True,1999-05-16 00:00:00,lvsinh@gmail.com,0168784496          ,213174971504,1000000,CN
+C0387,Lê Bạch,Ngân,False,1999-04-29 00:00:00,lbngan@gmail.com,0913158437          ,647119351103,0,CN
+C0388,Đàm Phương,Phương,True,1999-05-16 00:00:00,dpphuong@gmail.com,0913576289          ,330183766453,1000000,CN
+C0389,Đặng Văn Minh,Sinh,True,1999-10-14 00:00:00,dvmsinh@gmail.com,0913972195          ,715200085085,3000000,CN
+C0390,Đàm Văn Minh,Tuấn,True,1999-01-11 00:00:00,dvmtuan@gmail.com,0913646716          ,164553117545,1000000,CN
+C0391,Phạm Minh,Minh,False,1999-08-05 00:00:00,pmminh@gmail.com,0987864567          ,792446474853,0,CN
+C0392,Bạch Thị Thảo,Hương,False,1999-05-13 00:00:00,btthuong@gmail.com,0987661544          ,881455473079,2000000,CN
+C0393,Thái Thanh,Ngân,True,1999-04-21 00:00:00,ttngan@gmail.com,0168964124          ,772024117633,2000000,CN
+C0394,Phạm Mạnh,Hòa,True,1999-07-16 00:00:00,pmhoa@gmail.com,0913776626          ,518881139587,2000000,CN
+C0395,Lý Nam,Sang,True,1999-01-20 00:00:00,lnsang@gmail.com,0987787611          ,203587828878,0,CN
+C0396,Thái Văn Minh,Vỹ,True,1999-02-09 00:00:00,tvmvy@gmail.com,0987422401          ,869685821416,2000000,CN
+C0397,Lý Ngọc,Mỹ,False,1999-10-04 00:00:00,lnmy@gmail.com,0168217858          ,153105244149,1000000,CN
+C0398,Lê Thị Thảo,Hương,False,1999-03-26 00:00:00,ltthuong@gmail.com,0987130461          ,265431322613,0,CN
+C0399,Thái Nam,Dũng,True,1999-06-07 00:00:00,tndung@gmail.com,0168469465          ,468130418174,0,CN
+C0400,Văn Vĩnh,Hòa,True,1999-11-04 00:00:00,vvhoa@gmail.com,0168314165          ,745895563489,1000000,CN
+C0401,Bạch Bạch,Mỹ,True,1999-12-14 00:00:00,bbmy@gmail.com,0913696887          ,966406308632,2000000,CN
+C0402,Đàm Văn Minh,Thiệu,True,1999-06-25 00:00:00,dvmthieu@gmail.com,0168547454          ,269426565563,0,CN
+C0403,Phạm Văn,Thiện,True,1999-06-17 00:00:00,pvthien@gmail.com,0168528593          ,495604827305,3000000,CN
+C0404,Mã Phú,Ngân,True,1999-07-15 00:00:00,mpngan@gmail.com,0913437123          ,664955067082,1000000,CN
+C0405,Trần Văn,Thiện,True,1999-06-04 00:00:00,tvthien@gmail.com,0168147443          ,419623773784,0,CN
+C0406,Lý Văn Minh,Hòa,True,1999-08-13 00:00:00,lvmhoa@gmail.com,0913927862          ,344581462123,1000000,CN
+C0407,Văn Thảo,Nga,False,1999-11-12 00:00:00,vtnga@gmail.com,0913605725          ,727613041154,0,CN
+C0408,Bạch Văn Minh,Huy,True,1999-10-31 00:00:00,bvmhuy@gmail.com,0913155223          ,748361353094,0,CN
+C0409,Lê Thảo,Đào,False,1999-12-24 00:00:00,ltdao@gmail.com,0987823857          ,959896767246,3000000,CN
+C0410,Bạch Vĩnh,Hòa,True,1999-07-12 00:00:00,bvhoa@gmail.com,0168042708          ,424682249749,0,CN
+C0411,Nguyễn Thảo,Loan,False,1999-04-15 00:00:00,ntloan@gmail.com,0987313288          ,904298249266,0,CN
+C0412,Nguyễn Nam,Thiệu,True,1999-04-17 00:00:00,nnthieu@gmail.com,0913855537          ,814739989223,2000000,CN
+C0413,Đặng Thị,Hương,False,1999-05-06 00:00:00,dthuong@gmail.com,0168239351          ,723218867800,3000000,CN
+C0414,Hoàng Văn Minh,Huy,True,1999-05-30 00:00:00,hvmhuy@gmail.com,0913801080          ,623285012352,0,CN
+C0415,Lâm Thảo,Đào,False,1999-07-29 00:00:00,ltdao@gmail.com,0987853510          ,525966824756,3000000,CN
+C0416,Nguyễn Vĩnh,Mẫn,True,1999-11-27 00:00:00,nvman@gmail.com,0168473575          ,378316442265,3000000,CN
+C0417,Phạm Bạch,Thanh,False,1999-11-04 00:00:00,pbthanh@gmail.com,0913287358          ,124861541472,2000000,CN
+C0418,Văn Thảo,Đào,False,1999-03-28 00:00:00,vtdao@gmail.com,0913426348          ,878807822259,0,CN
+C0419,Đàm Phú,Thu,False,1999-07-05 00:00:00,dpthu@gmail.com,0987548311          ,261617747295,2000000,CN
+C0420,Lê Thanh,Ngọc,True,1999-05-17 00:00:00,ltngoc@gmail.com,0987762034          ,466762388281,0,CN
+C0421,Lý Ngọc,Minh,True,1999-12-17 00:00:00,lnminh@gmail.com,0913190884          ,623561787618,0,CN
+C0422,Đàm Thị Thanh,Đào,False,1999-09-22 00:00:00,dttdao@gmail.com,0987257288          ,373848017676,2000000,CN
+C0423,Bạch Văn Minh,Huy,True,1999-06-16 00:00:00,bvmhuy@gmail.com,0913661354          ,405166524955,1000000,CN
+C0424,Lê Minh,Ngân,False,1999-11-18 00:00:00,lmngan@gmail.com,0168866174          ,751233823415,2000000,CN
+C0425,Phạm Nam,Mẫn,True,1999-02-25 00:00:00,pnman@gmail.com,0987754427          ,113160062314,1000000,CN
+C0426,Hoàng Thị Thanh,Trúc,False,1999-08-13 00:00:00,htttruc@gmail.com,0913947364          ,474765324352,0,CN
+C0427,Phạm Thị Thảo,Trúc,False,1999-03-30 00:00:00,ptttruc@gmail.com,0913376279          ,064797856644,1000000,CN
+C0428,Đàm Thị,Đào,False,1999-04-06 00:00:00,dtdao@gmail.com,0987979211          ,138455662716,0,CN
+C0429,Bạch Văn Minh,Sang,True,1999-02-19 00:00:00,bvmsang@gmail.com,0913085423          ,745958641977,3000000,CN
+C0430,Trần Thị Thanh,Trúc,False,1999-01-29 00:00:00,ttttruc@gmail.com,0913652765          ,509327444582,3000000,CN
+C0431,Đàm Vĩnh,Thiệu,True,1999-03-18 00:00:00,dvthieu@gmail.com,0913103188          ,762646256483,3000000,CN
+C0432,Lâm Thị,Trúc,False,1999-10-20 00:00:00,lttruc@gmail.com,0913202668          ,920028470687,0,CN
+C0433,Đàm Thị Thanh,Mai,False,1999-03-03 00:00:00,dttmai@gmail.com,0168815466          ,347248682172,3000000,CN
+C0434,Đinh Vĩnh,Lộc,True,1999-03-05 00:00:00,dvloc@gmail.com,0168900815          ,431419796621,0,CN
+C0435,Văn Vĩnh,Kiệt,True,1999-03-03 00:00:00,vvkiet@gmail.com,0987468614          ,852712763847,0,CN
+C0436,Lâm Thị Thanh,Dung,False,1999-11-24 00:00:00,lttdung@gmail.com,0168753165          ,971746450069,2000000,CN
+C0437,Cao Mạnh,Tuấn,True,1999-09-06 00:00:00,cmtuan@gmail.com,0168199643          ,267875746614,3000000,CN
+C0438,Trần Thảo,Hương,False,1999-09-29 00:00:00,tthuong@gmail.com,0168586159          ,844584778613,3000000,CN
+C0439,Đàm Thị,Lan,False,1999-08-22 00:00:00,dtlan@gmail.com,0987462616          ,457545338698,0,CN
+C0440,Vương Mạnh,Sang,True,1999-03-21 00:00:00,vmsang@gmail.com,0987382669          ,472767734242,1000000,CN
+C0441,Văn Thị Thanh,Hạnh,False,1999-06-07 00:00:00,vtthanh@gmail.com,0987633418          ,014224497717,3000000,CN
+C0442,Văn Thị Thanh,Nga,False,1999-08-09 00:00:00,vttnga@gmail.com,0913516766          ,512953723282,2000000,CN
+C0443,Lâm Văn Minh,Tuấn,True,1999-02-11 00:00:00,lvmtuan@gmail.com,0913653761          ,490775431528,1000000,CN
+C0444,Đàm Nam,Tân,True,1999-03-12 00:00:00,dntan@gmail.com,0913229717          ,962113679279,0,CN
+C0445,Đàm Ngọc,Thu,False,1999-09-18 00:00:00,dnthu@gmail.com,0987617437          ,105802047565,2000000,CN
+C0446,Đàm Văn Minh,Sinh,True,1999-08-15 00:00:00,dvmsinh@gmail.com,0913068853          ,830302252818,2000000,CN
+C0447,Đặng Thị,Nhung,False,1999-06-19 00:00:00,dtnhung@gmail.com,0987418689          ,722648164882,3000000,CN
+C0448,Khương Thanh,Thu,False,1999-08-30 00:00:00,ktthu@gmail.com,0987783654          ,862071688474,0,CN
+C0449,Bạch Mạnh,Bảo,True,1999-05-17 00:00:00,bmbao@gmail.com,0168987536          ,776221786150,2000000,CN
+C0450,Trần Nam,Tuấn,True,1999-09-11 00:00:00,tntuan@gmail.com,0987677575          ,944517325865,2000000,CN
+C0451,Văn Minh,Phương,True,1999-02-26 00:00:00,vmphuong@gmail.com,0987415478          ,616248776458,2000000,CN
+C0452,Đàm Vĩnh,Vỹ,True,1999-08-09 00:00:00,dvvy@gmail.com,0987781530          ,101427412453,2000000,CN
+C0453,Văn Thị Thanh,Mai,False,1999-07-21 00:00:00,vttmai@gmail.com,0168242635          ,489292238845,0,CN
+C0454,Nguyễn Văn Minh,Kiệt,True,1999-09-13 00:00:00,nvmkiet@gmail.com,0987728382          ,279750274437,0,CN
+C0455,Văn Thảo,Lan,False,1999-12-03 00:00:00,vtlan@gmail.com,0987725628          ,765140415362,0,CN
+C0456,Nguyễn Thảo,Đào,False,1999-09-14 00:00:00,ntdao@gmail.com,0168614925          ,786844871882,3000000,CN
+C0457,Bạch Thị Thanh,Hạnh,False,1999-05-10 00:00:00,btthanh@gmail.com,0168268210          ,645933502115,1000000,CN
+C0458,Lâm Mạnh,Thăng,True,1999-11-13 00:00:00,lmthang@gmail.com,0987375785          ,874593389518,1000000,CN
+C0459,Đinh Thị Thảo,Hương,False,1999-08-19 00:00:00,dtthuong@gmail.com,0913948612          ,051336097483,0,CN
+C0460,Cao Vĩnh,Tuấn,True,1999-03-31 00:00:00,cvtuan@gmail.com,0913456061          ,078778843672,2000000,CN
+C0461,Hoàng Thảo,Hạnh,False,1999-02-21 00:00:00,hthanh@gmail.com,0913989283          ,432221417662,3000000,CN
+C0462,Lê Vĩnh,Tuấn,True,1999-12-12 00:00:00,lvtuan@gmail.com,0168420148          ,214661128832,2000000,CN
+C0463,Đinh Thị,Ly,False,1999-05-14 00:00:00,dtly@gmail.com,0913505963          ,453525154664,1000000,CN
+C0464,Lâm Văn Minh,Sang,True,1999-08-02 00:00:00,lvmsang@gmail.com,0987685851          ,130028757474,2000000,CN
+C0465,Khương Nam,Bảo,True,1999-02-19 00:00:00,knbao@gmail.com,0168606265          ,555446147527,0,CN
+C0466,Lâm Thảo,Hoa,False,1999-04-18 00:00:00,lthoa@gmail.com,0913611845          ,128675540066,3000000,CN
+C0467,Nguyễn Thị Thanh,Trúc,False,1999-03-21 00:00:00,ntttruc@gmail.com,0987829163          ,287855585018,1000000,CN
+C0468,Vương Thanh,Ngân,True,1999-05-23 00:00:00,vtngan@gmail.com,0168486655          ,930742647183,2000000,CN
+C0469,Phạm Vĩnh,Hòa,True,1999-11-08 00:00:00,pvhoa@gmail.com,0168444562          ,982168595883,2000000,CN
+C0470,Đàm Văn Minh,Thiệu,True,1999-07-19 00:00:00,dvmthieu@gmail.com,0987629645          ,144388705869,0,CN
+C0471,Mã Thảo,Mai,False,1999-07-03 00:00:00,mtmai@gmail.com,0168192483          ,211413632627,1000000,CN
+C0472,Khương Nam,Bảo,True,1999-08-13 00:00:00,knbao@gmail.com,0913566872          ,655233938084,3000000,CN
+C0473,Đặng Thảo,Nhung,False,1999-03-18 00:00:00,dtnhung@gmail.com,0168516133          ,812432511898,2000000,CN
+C0474,Đinh Thị,Nga,False,1999-02-14 00:00:00,dtnga@gmail.com,0913398132          ,136163923242,1000000,CN
+C0475,Mã Văn,Hòa,True,1999-12-10 00:00:00,mvhoa@gmail.com,0913162645          ,508596478355,2000000,CN
+C0476,Cao Thị Thảo,Trang,False,1999-01-04 00:00:00,ctttrang@gmail.com,0168459256          ,879282724835,3000000,CN
+C0477,Trần Thanh,Thu,False,1999-11-15 00:00:00,ttthu@gmail.com,0913092974          ,775395146886,0,CN
+C0478,Đinh Thị Thảo,Thúy,False,1999-01-04 00:00:00,dttthuy@gmail.com,0987720318          ,893535467534,2000000,CN
+C0479,Cao Thảo,Nga,False,1999-01-10 00:00:00,ctnga@gmail.com,0913184297          ,903616133565,1000000,CN
+C0480,Văn Văn,Lộc,True,1999-05-27 00:00:00,vvloc@gmail.com,0987869452          ,649235321195,3000000,CN
+C0481,Bạch Minh,Thu,False,1999-02-24 00:00:00,bmthu@gmail.com,0987736019          ,725978360675,3000000,CN
+C0482,Khương Văn Minh,Tuấn,True,1999-09-19 00:00:00,kvmtuan@gmail.com,0987636799          ,356558591786,0,CN
+C0483,Lý Vĩnh,Thiệu,True,1999-06-21 00:00:00,lvthieu@gmail.com,0913453657          ,432742077115,0,CN
+C0484,Trần Vĩnh,Trọng,True,1999-02-17 00:00:00,tvtrong@gmail.com,0987976142          ,703499812390,0,CN
+C0485,Đặng Nam,Hòa,True,1999-11-05 00:00:00,dnhoa@gmail.com,0987487462          ,223817673650,2000000,CN
+C0486,Mã Thị Thanh,Hương,False,1999-08-29 00:00:00,mtthuong@gmail.com,0987572666          ,876502838928,1000000,CN
+C0487,Vương Văn Minh,Trọng,True,1999-02-28 00:00:00,vvmtrong@gmail.com,0168761868          ,357093547375,0,CN
+C0488,Nguyễn Bạch,Thanh,False,1999-06-13 00:00:00,nbthanh@gmail.com,0913921331          ,769521524281,0,CN
+C0489,Phạm Văn Minh,Thiện,True,1999-05-21 00:00:00,pvmthien@gmail.com,0168648235          ,757653856681,0,CN
+C0490,Phạm Minh,Thu,False,1999-10-07 00:00:00,pmthu@gmail.com,0987774343          ,885266473168,1000000,CN
+C0491,Đàm Phương,Ngọc,False,1999-12-11 00:00:00,dpngoc@gmail.com,0168945461          ,823576923388,0,CN
+C0492,Bạch Văn,Trọng,True,1999-06-18 00:00:00,bvtrong@gmail.com,0913251389          ,625173073725,0,CN
+C0493,Đinh Phú,Mỹ,False,1999-02-06 00:00:00,dpmy@gmail.com,0987696469          ,574067785564,3000000,CN
+C0494,Cao Nam,Hòa,True,1999-07-11 00:00:00,cnhoa@gmail.com,0913210583          ,747241670565,1000000,CN
+C0495,Khương Văn,Thăng,True,1999-04-26 00:00:00,kvthang@gmail.com,0168372401          ,838207305432,0,CN
+C0496,Đàm Thanh,Mỹ,False,1999-11-07 00:00:00,dtmy@gmail.com,0987158102          ,045330756410,0,CN
+C0497,Đàm Bạch,Thanh,False,1999-09-26 00:00:00,dbthanh@gmail.com,0913476530          ,920017220788,1000000,CN
+C0498,Lê Thảo,Thúy,False,1999-09-09 00:00:00,ltthuy@gmail.com,0987282354          ,722901735535,1000000,CN
+C0499,Trần Thảo,Thúy,False,1999-01-16 00:00:00,ttthuy@gmail.com,0168146516          ,180691503172,0,CN
+C0500,Cao Văn,Bảo,True,1999-11-14 00:00:00,cvbao@gmail.com,0987580257          ,101478507741,1000000,CN
+T0501,Đàm Thị Thanh,Loan,False,1999-08-31 00:00:00,dttloan@gmail.com,0168817583          ,143697515719,2000000,TO
+T0502,Bạch Thảo,Mai,False,1999-01-23 00:00:00,btmai@gmail.com,0168257067          ,955743181258,2000000,TO
+T0503,Đinh Nam,Mẫn,True,1999-03-05 00:00:00,dnman@gmail.com,0987997679          ,967675754520,1000000,TO
+T0504,Đặng Thị Thanh,Lan,False,1999-02-22 00:00:00,dttlan@gmail.com,0168555118          ,802626736308,3000000,TO
+T0505,Lý Thảo,Ly,False,1999-02-08 00:00:00,ltly@gmail.com,0913084722          ,451631615880,1000000,TO
+T0506,Cao Minh,Thanh,True,1999-07-07 00:00:00,cmthanh@gmail.com,0168770732          ,025320185228,2000000,TO
+T0507,Cao Minh,Thu,False,1999-05-04 00:00:00,cmthu@gmail.com,0913423285          ,557428195122,0,TO
+T0508,Trần Thị Thảo,Nhung,False,1999-11-10 00:00:00,tttnhung@gmail.com,0987228466          ,988514148472,1000000,TO
+T0509,Văn Phú,Minh,True,1999-02-26 00:00:00,vpminh@gmail.com,0987582078          ,498321478166,0,TO
+T0510,Khương Vĩnh,Dũng,True,1999-04-17 00:00:00,kvdung@gmail.com,0913681898          ,773526102315,0,TO
+T0511,Đàm Nam,Mẫn,True,1999-03-13 00:00:00,dnman@gmail.com,0913914034          ,521614099934,2000000,TO
+T0512,Đàm Vĩnh,Huy,True,1999-03-18 00:00:00,dvhuy@gmail.com,0987023222          ,140514432657,0,TO
+T0513,Thái Văn Minh,Kiệt,True,1999-04-19 00:00:00,tvmkiet@gmail.com,0913922643          ,753805518894,3000000,TO
+T0514,Lâm Vĩnh,Hiệu,True,1999-04-07 00:00:00,lvhieu@gmail.com,0987225364          ,851011183269,1000000,TO
+T0515,Cao Ngọc,Thu,True,1999-09-20 00:00:00,cnthu@gmail.com,0987545814          ,302885885188,1000000,TO
+T0516,Hoàng Nam,Thiện,True,1999-10-12 00:00:00,hnthien@gmail.com,0168302457          ,382762643822,3000000,TO
+T0517,Thái Bạch,Phương,True,1999-10-13 00:00:00,tbphuong@gmail.com,0913417512          ,163518642432,1000000,TO
+T0518,Trần Thị,Trúc,False,1999-06-15 00:00:00,tttruc@gmail.com,0168547593          ,231749644258,2000000,TO
+T0519,Cao Thị Thanh,Nhung,False,1999-05-17 00:00:00,cttnhung@gmail.com,0987576384          ,754181291531,1000000,TO
+T0520,Bạch Văn Minh,Lộc,True,1999-09-19 00:00:00,bvmloc@gmail.com,0913772353          ,546843385180,0,TO
+T0521,Nguyễn Vĩnh,Vỹ,True,1999-01-25 00:00:00,nvvy@gmail.com,0987266237          ,825476235244,2000000,TO
+T0522,Văn Thảo,Dung,False,1999-03-14 00:00:00,vtdung@gmail.com,0987078231          ,157863724305,3000000,TO
+T0523,Đặng Văn,Vỹ,True,1999-10-05 00:00:00,dvvy@gmail.com,0987288243          ,630968406154,1000000,TO
+T0524,Lý Vĩnh,Mẫn,True,1999-11-28 00:00:00,lvman@gmail.com,0913586133          ,652177657746,3000000,TO
+T0525,Nguyễn Thảo,Trang,False,1999-08-29 00:00:00,nttrang@gmail.com,0168618962          ,114125674779,3000000,TO
+T0526,Thái Văn Minh,Sang,True,1999-08-05 00:00:00,tvmsang@gmail.com,0168962756          ,396982445065,0,TO
+T0527,Hoàng Thị Thanh,Thúy,False,1999-12-22 00:00:00,httthuy@gmail.com,0168549942          ,632787564693,0,TO
+T0528,Hoàng Thị Thanh,Lan,False,1999-08-30 00:00:00,httlan@gmail.com,0987414344          ,536327619578,2000000,TO
+T0529,Khương Thị,Loan,False,1999-09-09 00:00:00,ktloan@gmail.com,0168146587          ,387723193634,3000000,TO
+T0530,Đinh Văn Minh,Hòa,True,1999-02-15 00:00:00,dvmhoa@gmail.com,0168487701          ,148746477534,2000000,TO
+T0531,Mã Vĩnh,Huy,True,1999-03-07 00:00:00,mvhuy@gmail.com,0987607736          ,051587944415,0,TO
+T0532,Nguyễn Thị,Mai,False,1999-06-18 00:00:00,ntmai@gmail.com,0913681488          ,453205955565,3000000,TO
+T0533,Lê Thanh,Ngọc,True,1999-09-06 00:00:00,ltngoc@gmail.com,0168285432          ,827331075008,0,TO
+T0534,Đàm Phương,Phương,True,1999-07-26 00:00:00,dpphuong@gmail.com,0987479533          ,766536533635,2000000,TO
+T0535,Lâm Mạnh,Phong,True,1999-05-12 00:00:00,lmphong@gmail.com,0987884664          ,232578499323,3000000,TO
+T0536,Đinh Văn Minh,Vỹ,True,1999-03-19 00:00:00,dvmvy@gmail.com,0168267174          ,503146043319,0,TO
+T0537,Văn Văn,Vỹ,True,1999-09-22 00:00:00,vvvy@gmail.com,0913735282          ,876167216537,2000000,TO
+T0538,Hoàng Thị Thanh,Đào,False,1999-04-10 00:00:00,httdao@gmail.com,0913617178          ,551875363705,1000000,TO
+T0539,Lâm Thị,Thúy,False,1999-07-22 00:00:00,ltthuy@gmail.com,0913357383          ,753934328121,2000000,TO
+T0540,Bạch Thảo,Nga,False,1999-04-24 00:00:00,btnga@gmail.com,0913232679          ,818483988072,0,TO
+T0541,Mã Thảo,Mai,False,1999-05-14 00:00:00,mtmai@gmail.com,0987573946          ,264471122563,1000000,TO
+T0542,Mã Phú,Ngân,False,1999-07-29 00:00:00,mpngan@gmail.com,0913798897          ,888338434638,1000000,TO
+T0543,Đàm Văn,Tân,True,1999-03-29 00:00:00,dvtan@gmail.com,0168267358          ,487251846878,3000000,TO
+T0544,Đinh Văn,Sinh,True,1999-11-17 00:00:00,dvsinh@gmail.com,0987265108          ,166373486896,3000000,TO
+T0545,Lâm Văn Minh,Huy,True,1999-03-30 00:00:00,lvmhuy@gmail.com,0987495674          ,738702886272,1000000,TO
+T0546,Đinh Nam,Thiệu,True,1999-09-11 00:00:00,dnthieu@gmail.com,0913713166          ,447647454582,3000000,TO
+T0547,Lâm Thanh,Mỹ,True,1999-11-18 00:00:00,ltmy@gmail.com,0987675667          ,154238707185,2000000,TO
+T0548,Lý Thảo,Đào,False,1999-02-24 00:00:00,ltdao@gmail.com,0168087978          ,110724369697,0,TO
+T0549,Thái Thị Thảo,Mai,False,1999-06-11 00:00:00,tttmai@gmail.com,0987377274          ,071827753561,2000000,TO
+T0550,Văn Văn Minh,Thiệu,True,1999-06-12 00:00:00,vvmthieu@gmail.com,0987046545          ,345271543883,3000000,TO
+T0551,Đinh Phương,Ngân,True,1999-06-02 00:00:00,dpngan@gmail.com,0913664848          ,612158470618,0,TO
+T0552,Hoàng Nam,Phong,True,1999-07-18 00:00:00,hnphong@gmail.com,0168788880          ,841376811215,0,TO
+T0553,Văn Thảo,Dung,False,1999-07-05 00:00:00,vtdung@gmail.com,0913726036          ,488824784348,1000000,TO
+T0554,Khương Văn Minh,Lộc,True,1999-05-23 00:00:00,kvmloc@gmail.com,0913173424          ,537745381857,3000000,TO
+T0555,Đinh Nam,Sinh,True,1999-12-08 00:00:00,dnsinh@gmail.com,0168726647          ,214448873288,0,TO
+T0556,Lê Thị,Hoa,False,1999-06-08 00:00:00,lthoa@gmail.com,0168487668          ,602378357896,3000000,TO
+T0557,Phạm Thị Thanh,Hoa,False,1999-07-18 00:00:00,ptthoa@gmail.com,0913171650          ,396663865661,1000000,TO
+T0558,Đặng Bạch,Ngân,False,1999-02-16 00:00:00,dbngan@gmail.com,0168477235          ,899209597743,3000000,TO
+T0559,Khương Nam,Vỹ,True,1999-04-04 00:00:00,knvy@gmail.com,0913436533          ,425379480519,1000000,TO
+T0560,Lâm Minh,Thanh,False,1999-06-26 00:00:00,lmthanh@gmail.com,0987375257          ,352101436024,3000000,TO
+T0561,Vương Vĩnh,Hòa,True,1999-11-30 00:00:00,vvhoa@gmail.com,0168222714          ,772753394786,3000000,TO
+T0562,Văn Vĩnh,Vỹ,True,1999-09-28 00:00:00,vvvy@gmail.com,0168166450          ,756952993913,0,TO
+T0563,Lê Thị,Nga,False,1999-08-26 00:00:00,ltnga@gmail.com,0168272278          ,421648722704,1000000,TO
+T0564,Đặng Nam,Kiệt,True,1999-05-27 00:00:00,dnkiet@gmail.com,0168120061          ,516749872587,2000000,TO
+T0565,Đinh Thị Thanh,Hoa,False,1999-08-16 00:00:00,dtthoa@gmail.com,0168249065          ,187701841483,1000000,TO
+T0566,Trần Thị Thanh,Lan,False,1999-03-09 00:00:00,tttlan@gmail.com,0987594646          ,863291382727,3000000,TO
+T0567,Bạch Minh,Phương,True,1999-01-02 00:00:00,bmphuong@gmail.com,0913557666          ,838144557426,0,TO
+T0568,Vương Thị Thanh,Nga,False,1999-08-21 00:00:00,vttnga@gmail.com,0987406124          ,291886375788,3000000,TO
+T0569,Mã Thanh,Phương,False,1999-10-17 00:00:00,mtphuong@gmail.com,0913008756          ,616518256051,0,TO
+T0570,Cao Vĩnh,Thăng,True,1999-06-20 00:00:00,cvthang@gmail.com,0987225226          ,749556515520,0,TO
+T0571,Bạch Thảo,Hoa,False,1999-05-27 00:00:00,bthoa@gmail.com,0168430535          ,888365452355,3000000,TO
+T0572,Trần Thảo,Thúy,False,1999-11-03 00:00:00,ttthuy@gmail.com,0913252388          ,856791477155,0,TO
+T0573,Lê Mạnh,Sang,True,1999-01-01 00:00:00,lmsang@gmail.com,0168676432          ,751715917526,1000000,TO
+T0574,Cao Nam,Phong,True,1999-06-03 00:00:00,cnphong@gmail.com,0987701258          ,885848832878,3000000,TO
+T0575,Lê Bạch,Ngân,False,1999-03-06 00:00:00,lbngan@gmail.com,0913459090          ,386893091214,0,TO
+T0576,Mã Văn,Sinh,True,1999-10-30 00:00:00,mvsinh@gmail.com,0168192676          ,052018668818,1000000,TO
+T0577,Thái Mạnh,Thiệu,True,1999-02-19 00:00:00,tmthieu@gmail.com,0168272208          ,131438158422,0,TO
+T0578,Hoàng Mạnh,Hiệu,True,1999-09-16 00:00:00,hmhieu@gmail.com,0913198358          ,553176052978,3000000,TO
+T0579,Đàm Thảo,Hoa,False,1999-03-18 00:00:00,dthoa@gmail.com,0168677981          ,272582647352,2000000,TO
+T0580,Bạch Nam,Phong,True,1999-11-24 00:00:00,bnphong@gmail.com,0913654072          ,043893703782,0,TO
+T0581,Khương Mạnh,Huy,True,1999-07-08 00:00:00,kmhuy@gmail.com,0168888487          ,194088541045,2000000,TO
+T0582,Nguyễn Nam,Tuấn,True,1999-06-10 00:00:00,nntuan@gmail.com,0987962122          ,265803678475,0,TO
+T0583,Văn Vĩnh,Sang,True,1999-11-07 00:00:00,vvsang@gmail.com,0987115782          ,425888757135,2000000,TO
+T0584,Đàm Bạch,Ngân,True,1999-04-28 00:00:00,dbngan@gmail.com,0168535534          ,165541702107,0,TO
+T0585,Nguyễn Thị Thanh,Nhung,False,1999-03-24 00:00:00,nttnhung@gmail.com,0168193305          ,771364411564,0,TO
+T0586,Lê Thị Thảo,Thúy,False,1999-02-05 00:00:00,lttthuy@gmail.com,0168265845          ,035689678415,0,TO
+T0587,Lê Minh,Ngân,False,1999-02-03 00:00:00,lmngan@gmail.com,0168474368          ,513678136419,3000000,TO
+T0588,Đặng Thảo,Ly,False,1999-07-24 00:00:00,dtly@gmail.com,0168874529          ,742394868483,3000000,TO
+T0589,Bạch Thị Thanh,Đào,False,1999-07-19 00:00:00,bttdao@gmail.com,0987564571          ,592076498502,2000000,TO
+T0590,Cao Thị,Hoa,False,1999-06-08 00:00:00,cthoa@gmail.com,0913136413          ,462194551422,0,TO
+T0591,Đàm Văn Minh,Dũng,True,1999-05-27 00:00:00,dvmdung@gmail.com,0168752819          ,993551931781,3000000,TO
+T0592,Đặng Thảo,Nhung,False,1999-10-14 00:00:00,dtnhung@gmail.com,0913156960          ,083731476896,2000000,TO
+T0593,Mã Phú,Thanh,True,1999-11-22 00:00:00,mpthanh@gmail.com,0168353686          ,455422427211,0,TO
+T0594,Nguyễn Minh,Ngọc,False,1999-07-15 00:00:00,nmngoc@gmail.com,0168363851          ,027434159665,1000000,TO
+T0595,Đinh Thảo,Hương,False,1999-09-27 00:00:00,dthuong@gmail.com,0987053486          ,129661081807,2000000,TO
+T0596,Đinh Nam,Bảo,True,1999-05-15 00:00:00,dnbao@gmail.com,0913360168          ,818065752655,0,TO
+T0597,Đàm Minh,Ngân,False,1999-02-03 00:00:00,dmngan@gmail.com,0168247311          ,049128886461,0,TO
+T0598,Lý Thị Thảo,Loan,False,1999-05-29 00:00:00,lttloan@gmail.com,0913171613          ,421160733442,0,TO
+T0599,Hoàng Vĩnh,Phong,True,1999-07-09 00:00:00,hvphong@gmail.com,0987234326          ,733327566627,0,TO
+T0600,Đinh Vĩnh,Lộc,True,1999-11-22 00:00:00,dvloc@gmail.com,0168002778          ,413328779603,2000000,TO
+V0601,Văn Phú,Thu,True,1999-07-03 00:00:00,vpthu@gmail.com,0168777791          ,058182344785,1000000,VL
+V0602,Khương Thị Thanh,Thúy,False,1999-06-03 00:00:00,kttthuy@gmail.com,0168682471          ,690435500843,3000000,VL
+V0603,Đinh Thảo,Nhung,False,1999-03-19 00:00:00,dtnhung@gmail.com,0987842567          ,538878751363,3000000,VL
+V0604,Văn Thị,Loan,False,1999-08-18 00:00:00,vtloan@gmail.com,0168551652          ,378883241715,2000000,VL
+V0605,Lê Minh,Tâm,True,1999-07-14 00:00:00,lmtam@gmail.com,0987838753          ,482850787650,3000000,VL
+V0606,Mã Nam,Thiệu,True,1999-06-15 00:00:00,mnthieu@gmail.com,0913378668          ,354721534223,0,VL
+V0607,Cao Phú,Phương,False,1999-11-26 00:00:00,cpphuong@gmail.com,0987519816          ,458884510375,2000000,VL
+V0608,Khương Thị,Hương,False,1999-12-05 00:00:00,kthuong@gmail.com,0987225836          ,202286585010,3000000,VL
+V0609,Bạch Phú,Thu,False,1999-06-07 00:00:00,bpthu@gmail.com,0168937401          ,741836643417,3000000,VL
+V0610,Lê Vĩnh,Thăng,True,1999-07-21 00:00:00,lvthang@gmail.com,0168377187          ,637751175568,1000000,VL
+V0611,Khương Văn Minh,Tuấn,True,1999-07-26 00:00:00,kvmtuan@gmail.com,0987477368          ,154307286045,2000000,VL
+V0612,Thái Phương,Minh,True,1999-06-22 00:00:00,tpminh@gmail.com,0913574615          ,418879347250,3000000,VL
+V0613,Mã Thị Thanh,Nhung,False,1999-07-29 00:00:00,mttnhung@gmail.com,0913178360          ,787870782636,0,VL
+V0614,Hoàng Nam,Mẫn,True,1999-05-14 00:00:00,hnman@gmail.com,0987181087          ,103864860347,3000000,VL
+V0615,Mã Thanh,Minh,True,1999-07-03 00:00:00,mtminh@gmail.com,0913778835          ,953519172866,1000000,VL
+V0616,Đàm Thị Thảo,Đào,False,1999-08-09 00:00:00,dttdao@gmail.com,0168371006          ,928040346137,0,VL
+V0617,Lý Vĩnh,Trọng,True,1999-10-29 00:00:00,lvtrong@gmail.com,0987558845          ,338817568834,2000000,VL
+V0618,Vương Mạnh,Huy,True,1999-11-13 00:00:00,vmhuy@gmail.com,0987366723          ,139770678869,0,VL
+V0619,Phạm Minh,Minh,True,1999-05-20 00:00:00,pmminh@gmail.com,0168664518          ,741542871503,1000000,VL
+V0620,Lê Mạnh,Bảo,True,1999-02-24 00:00:00,lmbao@gmail.com,0987962869          ,075196777933,1000000,VL
+V0621,Vương Thị Thanh,Thúy,False,1999-08-12 00:00:00,vttthuy@gmail.com,0987668123          ,752985556125,1000000,VL
+V0622,Vương Vĩnh,Thiện,True,1999-09-04 00:00:00,vvthien@gmail.com,0987015083          ,948666895382,2000000,VL
+V0623,Đàm Minh,Ngọc,False,1999-07-28 00:00:00,dmngoc@gmail.com,0168635234          ,327920840705,0,VL
+V0624,Bạch Phú,Phương,True,1999-07-14 00:00:00,bpphuong@gmail.com,0987594847          ,019943867210,2000000,VL
+V0625,Phạm Văn Minh,Bảo,True,1999-04-28 00:00:00,pvmbao@gmail.com,0168901116          ,537147614657,2000000,VL
+V0626,Lý Nam,Lộc,True,1999-06-08 00:00:00,lnloc@gmail.com,0913906165          ,302014755952,3000000,VL
+V0627,Thái Thảo,Mai,False,1999-08-15 00:00:00,ttmai@gmail.com,0987602755          ,483195833555,3000000,VL
+V0628,Khương Vĩnh,Dũng,True,1999-06-27 00:00:00,kvdung@gmail.com,0913567525          ,011242895119,0,VL
+V0629,Lý Nam,Thăng,True,1999-05-30 00:00:00,lnthang@gmail.com,0168856288          ,180263208447,2000000,VL
+V0630,Khương Minh,Mỹ,True,1999-01-17 00:00:00,kmmy@gmail.com,0987286777          ,387739954289,2000000,VL
+V0631,Lâm Bạch,Thanh,True,1999-09-04 00:00:00,lbthanh@gmail.com,0913188116          ,152576669409,1000000,VL
+V0632,Đinh Mạnh,Hòa,True,1999-10-12 00:00:00,dmhoa@gmail.com,0168636666          ,118743121674,3000000,VL
+V0633,Lý Văn Minh,Tân,True,1999-02-23 00:00:00,lvmtan@gmail.com,0987393548          ,181573308348,3000000,VL
+V0634,Đặng Ngọc,Ngân,True,1999-08-07 00:00:00,dnngan@gmail.com,0168326271          ,824588280726,3000000,VL
+V0635,Văn Văn,Huy,True,1999-12-04 00:00:00,vvhuy@gmail.com,0168634644          ,492469053717,0,VL
+V0636,Đặng Thảo,Nhung,False,1999-05-05 00:00:00,dtnhung@gmail.com,0913314204          ,759351972192,3000000,VL
+V0637,Lê Văn Minh,Phong,True,1999-10-06 00:00:00,lvmphong@gmail.com,0913829688          ,107525728527,1000000,VL
+V0638,Phạm Vĩnh,Dũng,True,1999-04-17 00:00:00,pvdung@gmail.com,0913123254          ,075377756679,1000000,VL
+V0639,Văn Thị Thảo,Dung,False,1999-02-11 00:00:00,vttdung@gmail.com,0913178816          ,885453477796,3000000,VL
+V0640,Hoàng Thảo,Hương,False,1999-07-09 00:00:00,hthuong@gmail.com,0913821381          ,164599833383,3000000,VL
+V0641,Lê Thị Thanh,Hoa,False,1999-06-02 00:00:00,ltthoa@gmail.com,0913607583          ,768475825158,3000000,VL
+V0642,Phạm Thị Thanh,Hương,False,1999-11-04 00:00:00,ptthuong@gmail.com,0168542318          ,514382369016,0,VL
+V0643,Đinh Thị,Ly,False,1999-08-17 00:00:00,dtly@gmail.com,0168552949          ,443272852301,2000000,VL
+V0644,Đinh Nam,Dũng,True,1999-07-06 00:00:00,dndung@gmail.com,0913501763          ,234175083722,1000000,VL
+V0645,Mã Bạch,Thu,True,1999-05-21 00:00:00,mbthu@gmail.com,0913736511          ,629917218830,1000000,VL
+V0646,Thái Nam,Sinh,True,1999-01-05 00:00:00,tnsinh@gmail.com,0913020768          ,988421775689,0,VL
+V0647,Lâm Phú,Mỹ,True,1999-07-08 00:00:00,lpmy@gmail.com,0987163627          ,712428785839,2000000,VL
+V0648,Văn Thảo,Loan,False,1999-06-25 00:00:00,vtloan@gmail.com,0987448851          ,762434564267,0,VL
+V0649,Hoàng Thanh,Phương,False,1999-06-02 00:00:00,htphuong@gmail.com,0168513562          ,331898445441,2000000,VL
+V0650,Phạm Mạnh,Lộc,True,1999-11-05 00:00:00,pmloc@gmail.com,0913031944          ,483384516785,0,VL
+V0651,Thái Thảo,Dung,False,1999-02-13 00:00:00,ttdung@gmail.com,0168142036          ,659597488181,0,VL
+V0652,Phạm Bạch,Mỹ,False,1999-01-13 00:00:00,pbmy@gmail.com,0168033051          ,653322679287,0,VL
+V0653,Hoàng Mạnh,Vỹ,True,1999-09-14 00:00:00,hmvy@gmail.com,0168431326          ,292135616516,0,VL
+V0654,Vương Minh,Thu,False,1999-03-14 00:00:00,vmthu@gmail.com,0913625835          ,878612392182,1000000,VL
+V0655,Vương Thị Thanh,Dung,False,1999-08-04 00:00:00,vttdung@gmail.com,0913117751          ,145718058453,3000000,VL
+V0656,Đàm Mạnh,Hòa,True,1999-04-22 00:00:00,dmhoa@gmail.com,0987585756          ,530955800864,2000000,VL
+V0657,Thái Thị,Hương,False,1999-02-20 00:00:00,tthuong@gmail.com,0168414235          ,899218518281,3000000,VL
+V0658,Cao Mạnh,Thiện,True,1999-07-03 00:00:00,cmthien@gmail.com,0913025477          ,688643695157,3000000,VL
+V0659,Đặng Thị,Đào,False,1999-11-21 00:00:00,dtdao@gmail.com,0987947345          ,279812838600,1000000,VL
+V0660,Đàm Thảo,Loan,False,1999-11-02 00:00:00,dtloan@gmail.com,0987452013          ,635851182689,1000000,VL
+V0661,Mã Bạch,Phương,False,1999-08-11 00:00:00,mbphuong@gmail.com,0168329615          ,625524536682,3000000,VL
+V0662,Khương Bạch,Thanh,True,1999-01-19 00:00:00,kbthanh@gmail.com,0168816590          ,321283127466,1000000,VL
+V0663,Đàm Văn Minh,Trọng,True,1999-02-15 00:00:00,dvmtrong@gmail.com,0913442323          ,145562733047,3000000,VL
+V0664,Vương Văn Minh,Mẫn,True,1999-07-16 00:00:00,vvmman@gmail.com,0913425237          ,140809727277,3000000,VL
+V0665,Đặng Thị Thanh,Nga,False,1999-03-25 00:00:00,dttnga@gmail.com,0987946343          ,626254750445,0,VL
+V0666,Mã Văn Minh,Thiện,True,1999-08-30 00:00:00,mvmthien@gmail.com,0168425757          ,565484777388,0,VL
+V0667,Lâm Thảo,Lan,False,1999-06-20 00:00:00,ltlan@gmail.com,0913519630          ,356721333615,3000000,VL
+V0668,Lâm Minh,Thu,True,1999-08-23 00:00:00,lmthu@gmail.com,0987564601          ,712452591005,2000000,VL
+V0669,Thái Thanh,Tâm,True,1999-07-10 00:00:00,tttam@gmail.com,0168350610          ,366567833589,1000000,VL
+V0670,Bạch Thị Thanh,Nga,False,1999-05-22 00:00:00,bttnga@gmail.com,0913282054          ,101439863168,0,VL
+V0671,Lâm Vĩnh,Lộc,True,1999-07-19 00:00:00,lvloc@gmail.com,0987854137          ,306534970277,1000000,VL
+V0672,Phạm Văn Minh,Thăng,True,1999-11-23 00:00:00,pvmthang@gmail.com,0913864735          ,111586391442,1000000,VL
+V0673,Lâm Vĩnh,Trọng,True,1999-04-10 00:00:00,lvtrong@gmail.com,0168534378          ,698227050462,2000000,VL
+V0674,Bạch Nam,Thiệu,True,1999-08-14 00:00:00,bnthieu@gmail.com,0168463843          ,387667121219,0,VL
+V0675,Phạm Phú,Minh,False,1999-02-09 00:00:00,ppminh@gmail.com,0987665151          ,310384852528,1000000,VL
+V0676,Đàm Thảo,Ly,False,1999-05-08 00:00:00,dtly@gmail.com,0913188686          ,625956757207,2000000,VL
+V0677,Nguyễn Thị Thanh,Nhung,False,1999-09-10 00:00:00,nttnhung@gmail.com,0168468255          ,361170185369,0,VL
+V0678,Phạm Mạnh,Phong,True,1999-04-24 00:00:00,pmphong@gmail.com,0168951332          ,034679708146,3000000,VL
+V0679,Phạm Bạch,Minh,True,1999-04-26 00:00:00,pbminh@gmail.com,0168447385          ,160067722343,0,VL
+V0680,Thái Bạch,Phương,False,1999-02-21 00:00:00,tbphuong@gmail.com,0987422280          ,146609464494,1000000,VL
+V0681,Thái Văn Minh,Hiệu,True,1999-05-23 00:00:00,tvmhieu@gmail.com,0987178085          ,656467247951,2000000,VL
+V0682,Trần Văn Minh,Bảo,True,1999-02-04 00:00:00,tvmbao@gmail.com,0987937696          ,669177771179,3000000,VL
+V0683,Cao Nam,Mẫn,True,1999-06-23 00:00:00,cnman@gmail.com,0987607898          ,761654322197,1000000,VL
+V0684,Mã Văn Minh,Bảo,True,1999-07-16 00:00:00,mvmbao@gmail.com,0913792686          ,166505053521,1000000,VL
+V0685,Mã Nam,Sinh,True,1999-08-22 00:00:00,mnsinh@gmail.com,0913136855          ,665228189823,3000000,VL
+V0686,Phạm Vĩnh,Phong,True,1999-08-05 00:00:00,pvphong@gmail.com,0913277855          ,941354633623,0,VL
+V0687,Khương Ngọc,Mỹ,False,1999-10-20 00:00:00,knmy@gmail.com,0987205473          ,041225753027,1000000,VL
+V0688,Lâm Văn Minh,Thiệu,True,1999-11-10 00:00:00,lvmthieu@gmail.com,0913758051          ,956285566479,0,VL
+V0689,Vương Nam,Tuấn,True,1999-01-07 00:00:00,vntuan@gmail.com,0987863713          ,529476657405,1000000,VL
+V0690,Văn Phú,Ngân,True,1999-08-13 00:00:00,vpngan@gmail.com,0913962186          ,396333676553,1000000,VL
+V0691,Trần Nam,Dũng,True,1999-04-12 00:00:00,tndung@gmail.com,0987166798          ,793615041259,1000000,VL
+V0692,Bạch Thảo,Trang,False,1999-04-12 00:00:00,bttrang@gmail.com,0168143824          ,661548945634,1000000,VL
+V0693,Lê Bạch,Thanh,True,1999-06-27 00:00:00,lbthanh@gmail.com,0987632516          ,955446617646,0,VL
+V0694,Văn Văn Minh,Thiện,True,1999-07-23 00:00:00,vvmthien@gmail.com,0168256269          ,529181611386,0,VL
+V0695,Bạch Văn Minh,Tuấn,True,1999-11-13 00:00:00,bvmtuan@gmail.com,0913172422          ,281451497126,0,VL
+V0696,Đàm Bạch,Ngọc,True,1999-12-19 00:00:00,dbngoc@gmail.com,0913775145          ,421930157875,1000000,VL
+V0697,Lâm Văn Minh,Hòa,True,1999-01-13 00:00:00,lvmhoa@gmail.com,0913244418          ,551711288281,0,VL
+V0698,Lý Thị,Loan,False,1999-05-16 00:00:00,ltloan@gmail.com,0987649380          ,461833626232,2000000,VL
+V0699,Lê Vĩnh,Hòa,True,1999-06-12 00:00:00,lvhoa@gmail.com,0168737918          ,139811131045,0,VL
+V0700,Cao Thảo,Ly,False,1999-11-06 00:00:00,ctly@gmail.com,0168435083          ,830725613394,3000000,VL
+V0701,Thái Thị Thanh,Nga,False,1999-06-29 00:00:00,tttnga@gmail.com,0913964907          ,369642708429,0,VL
+V0702,Đặng Ngọc,Phương,False,1999-11-09 00:00:00,dnphuong@gmail.com,0168391113          ,451055456386,1000000,VL
+V0703,Mã Văn Minh,Thiện,True,1999-02-03 00:00:00,mvmthien@gmail.com,0913486618          ,847328272354,3000000,VL
+V0704,Văn Văn Minh,Huy,True,1999-11-05 00:00:00,vvmhuy@gmail.com,0168986806          ,113852686429,1000000,VL
+V0705,Lê Thanh,Tâm,True,1999-11-04 00:00:00,lttam@gmail.com,0913931935          ,154334638472,0,VL
+V0706,Khương Mạnh,Hiệu,True,1999-02-04 00:00:00,kmhieu@gmail.com,0913754170          ,305879418614,3000000,VL
+V0707,Đinh Thị,Đào,False,1999-07-15 00:00:00,dtdao@gmail.com,0913846092          ,349281471443,3000000,VL
+V0708,Khương Thị Thảo,Nhung,False,1999-07-29 00:00:00,kttnhung@gmail.com,0168988291          ,791413832564,2000000,VL
+V0709,Vương Văn Minh,Hiệu,True,1999-09-06 00:00:00,vvmhieu@gmail.com,0168783623          ,041381724218,0,VL
+V0710,Hoàng Vĩnh,Hiệu,True,1999-08-26 00:00:00,hvhieu@gmail.com,0913319691          ,184526216515,0,VL
+V0711,Khương Thảo,Trang,False,1999-01-19 00:00:00,kttrang@gmail.com,0913527131          ,627393248386,3000000,VL
+V0712,Thái Thị Thanh,Nhung,False,1999-02-13 00:00:00,tttnhung@gmail.com,0168544122          ,420331635184,1000000,VL
+V0713,Văn Thị,Hạnh,False,1999-06-17 00:00:00,vthanh@gmail.com,0913325482          ,196087419097,0,VL
+V0714,Cao Phú,Ngân,False,1999-10-01 00:00:00,cpngan@gmail.com,0168684574          ,184258839727,0,VL
+V0715,Khương Vĩnh,Phong,True,1999-03-22 00:00:00,kvphong@gmail.com,0168568182          ,527664959315,3000000,VL
+V0716,Lâm Vĩnh,Hòa,True,1999-02-20 00:00:00,lvhoa@gmail.com,0987251645          ,081295438506,0,VL
+V0717,Khương Thị,Đào,False,1999-09-03 00:00:00,ktdao@gmail.com,0987168559          ,326542803823,1000000,VL
+V0718,Hoàng Thị Thanh,Hương,False,1999-09-24 00:00:00,htthuong@gmail.com,0168152144          ,672725622181,0,VL
+V0719,Phạm Nam,Sinh,True,1999-02-04 00:00:00,pnsinh@gmail.com,0987781745          ,579153764439,2000000,VL
+V0720,Phạm Phú,Phương,True,1999-08-14 00:00:00,ppphuong@gmail.com,0168027172          ,344655347644,1000000,VL
+V0721,Văn Thị Thanh,Nhung,False,1999-06-10 00:00:00,vttnhung@gmail.com,0987311317          ,754732273203,3000000,VL
+V0722,Đặng Vĩnh,Thiệu,True,1999-05-30 00:00:00,dvthieu@gmail.com,0913221479          ,342026496685,3000000,VL
+V0723,Mã Mạnh,Mẫn,True,1999-08-26 00:00:00,mmman@gmail.com,0987621792          ,264879756186,0,VL
+V0724,Thái Vĩnh,Phong,True,1999-09-28 00:00:00,tvphong@gmail.com,0913502736          ,421235644416,0,VL
+V0725,Thái Thị Thanh,Nga,False,1999-07-04 00:00:00,tttnga@gmail.com,0168385697          ,674325281814,2000000,VL
+V0726,Lê Thảo,Ly,False,1999-11-27 00:00:00,ltly@gmail.com,0913819366          ,287488136997,3000000,VL
+V0727,Hoàng Vĩnh,Sinh,True,1999-06-15 00:00:00,hvsinh@gmail.com,0168227281          ,953466828225,0,VL
+V0728,Nguyễn Văn Minh,Sinh,True,1999-11-21 00:00:00,nvmsinh@gmail.com,0987778291          ,515327122783,3000000,VL
+V0729,Phạm Thị,Loan,False,1999-01-29 00:00:00,ptloan@gmail.com,0168868103          ,828684152449,2000000,VL
+V0730,Cao Vĩnh,Bảo,True,1999-10-27 00:00:00,cvbao@gmail.com,0987894651          ,976672661141,3000000,VL
+V0731,Vương Vĩnh,Mẫn,True,1999-07-06 00:00:00,vvman@gmail.com,0168877015          ,213346235263,0,VL
+V0732,Hoàng Minh,Ngọc,False,1999-07-08 00:00:00,hmngoc@gmail.com,0913011395          ,847008244798,1000000,VL
+V0733,Bạch Văn,Thăng,True,1999-05-29 00:00:00,bvthang@gmail.com,0168118262          ,632412502243,0,VL
+V0734,Cao Văn Minh,Thiệu,True,1999-11-21 00:00:00,cvmthieu@gmail.com,0987667368          ,975587348889,2000000,VL
+V0735,Lâm Minh,Mỹ,True,1999-05-02 00:00:00,lmmy@gmail.com,0913987771          ,951422873134,0,VL
+V0736,Lê Thị,Lan,False,1999-03-23 00:00:00,ltlan@gmail.com,0987384382          ,175095446850,3000000,VL
+V0737,Đinh Thị,Trúc,False,1999-03-16 00:00:00,dttruc@gmail.com,0168028643          ,746195421351,2000000,VL
+V0738,Cao Nam,Bảo,True,1999-09-07 00:00:00,cnbao@gmail.com,0913482327          ,893535830976,3000000,VL
+V0739,Lý Thị Thảo,Hoa,False,1999-06-18 00:00:00,ltthoa@gmail.com,0987685421          ,107151552122,1000000,VL
+V0740,Bạch Phương,Phương,False,1999-06-10 00:00:00,bpphuong@gmail.com,0987283422          ,260797157499,2000000,VL
+V0741,Đàm Ngọc,Tâm,False,1999-09-27 00:00:00,dntam@gmail.com,0987353219          ,348167680663,0,VL
+V0742,Hoàng Bạch,Mỹ,True,1999-02-21 00:00:00,hbmy@gmail.com,0913118480          ,729735634683,2000000,VL
+V0743,Trần Phú,Tâm,True,1999-05-02 00:00:00,tptam@gmail.com,0168423186          ,436683952804,0,VL
+V0744,Phạm Thị Thanh,Nga,False,1999-03-25 00:00:00,pttnga@gmail.com,0913915218          ,198246501322,1000000,VL
+V0745,Văn Vĩnh,Kiệt,True,1999-01-02 00:00:00,vvkiet@gmail.com,0913791546          ,814365656601,2000000,VL
+V0746,Bạch Thị Thảo,Đào,False,1999-04-21 00:00:00,bttdao@gmail.com,0913394827          ,675514530992,3000000,VL
+V0747,Mã Phú,Tâm,True,1999-08-25 00:00:00,mptam@gmail.com,0168643676          ,335571036603,3000000,VL
+V0748,Lê Nam,Trọng,True,1999-02-13 00:00:00,lntrong@gmail.com,0168183367          ,811596279068,1000000,VL
+V0749,Hoàng Thảo,Lan,False,1999-03-03 00:00:00,htlan@gmail.com,0987652634          ,110411066231,1000000,VL
+V0750,Phạm Mạnh,Sang,True,1999-05-03 00:00:00,pmsang@gmail.com,0913686609          ,252031104262,2000000,VL
+V0751,Lê Thị Thanh,Ly,False,1999-08-13 00:00:00,lttly@gmail.com,0913833191          ,637397111755,3000000,VL
+V0752,Đặng Văn Minh,Thiện,True,1999-11-11 00:00:00,dvmthien@gmail.com,0913617761          ,732782642488,2000000,VL
+V0753,Văn Thị Thanh,Hương,False,1999-11-07 00:00:00,vtthuong@gmail.com,0913523792          ,412451613653,1000000,VL
+V0754,Hoàng Văn,Thăng,True,1999-05-28 00:00:00,hvthang@gmail.com,0987676733          ,536764542110,1000000,VL
+V0755,Phạm Văn Minh,Sang,True,1999-08-11 00:00:00,pvmsang@gmail.com,0168545669          ,232525762017,0,VL
+V0756,Lê Thị Thanh,Hoa,False,1999-12-29 00:00:00,ltthoa@gmail.com,0987867389          ,155680516757,0,VL
+V0757,Văn Nam,Kiệt,True,1999-10-21 00:00:00,vnkiet@gmail.com,0913726739          ,726274007443,1000000,VL
+V0758,Vương Văn Minh,Thiệu,True,1999-07-26 00:00:00,vvmthieu@gmail.com,0168465017          ,287394136786,1000000,VL
+V0759,Trần Minh,Thu,False,1999-06-11 00:00:00,tmthu@gmail.com,0913673563          ,688147282898,3000000,VL
+V0760,Trần Văn Minh,Sang,True,1999-10-10 00:00:00,tvmsang@gmail.com,0987116278          ,810171168701,1000000,VL
+V0761,Đặng Nam,Kiệt,True,1999-08-04 00:00:00,dnkiet@gmail.com,0913721215          ,829572440704,2000000,VL
+V0762,Đàm Phú,Tâm,False,1999-03-30 00:00:00,dptam@gmail.com,0913669110          ,211123110821,2000000,VL
+V0763,Đinh Văn Minh,Mẫn,True,1999-10-26 00:00:00,dvmman@gmail.com,0987372352          ,342164306753,2000000,VL
+V0764,Lê Bạch,Ngân,False,1999-09-10 00:00:00,lbngan@gmail.com,0987414686          ,470845511550,2000000,VL
+V0765,Đinh Nam,Lộc,True,1999-11-09 00:00:00,dnloc@gmail.com,0987818155          ,614252652498,3000000,VL
+V0766,Khương Vĩnh,Thiện,True,1999-07-05 00:00:00,kvthien@gmail.com,0913357407          ,921514745111,0,VL
+V0767,Lê Mạnh,Bảo,True,1999-01-19 00:00:00,lmbao@gmail.com,0913476722          ,703062988595,2000000,VL
+V0768,Lâm Vĩnh,Hiệu,True,1999-02-23 00:00:00,lvhieu@gmail.com,0168685348          ,303786017479,0,VL
+V0769,Lý Thị,Mai,False,1999-04-13 00:00:00,ltmai@gmail.com,0168128868          ,243417744405,0,VL
+V0770,Lý Văn,Sinh,True,1999-01-26 00:00:00,lvsinh@gmail.com,0168927114          ,323878940570,3000000,VL
+V0771,Đinh Thị,Mai,False,1999-02-21 00:00:00,dtmai@gmail.com,0987717784          ,371286890588,0,VL
+V0772,Phạm Thị Thanh,Đào,False,1999-02-14 00:00:00,pttdao@gmail.com,0168479750          ,355494185480,1000000,VL
+V0773,Đàm Văn Minh,Lộc,True,1999-10-09 00:00:00,dvmloc@gmail.com,0913652093          ,345459168576,1000000,VL
+V0774,Vương Bạch,Thu,True,1999-04-23 00:00:00,vbthu@gmail.com,0168211868          ,616484308273,3000000,VL
+V0775,Phạm Thảo,Nga,False,1999-08-24 00:00:00,ptnga@gmail.com,0168258408          ,391255058337,0,VL
+V0776,Cao Vĩnh,Mẫn,True,1999-02-18 00:00:00,cvman@gmail.com,0168667451          ,545297324557,2000000,VL
+V0777,Hoàng Văn Minh,Mẫn,True,1999-01-10 00:00:00,hvmman@gmail.com,0913120776          ,716434275627,0,VL
+V0778,Cao Mạnh,Huy,True,1999-07-27 00:00:00,cmhuy@gmail.com,0987543769          ,864856421755,2000000,VL
+V0779,Lý Thị,Đào,False,1999-02-16 00:00:00,ltdao@gmail.com,0168682711          ,217552366578,2000000,VL
+V0780,Đặng Thảo,Trúc,False,1999-07-21 00:00:00,dttruc@gmail.com,0987323155          ,356022698552,2000000,VL
+V0781,Nguyễn Minh,Phương,True,1999-10-23 00:00:00,nmphuong@gmail.com,0168837564          ,542277864893,3000000,VL
+V0782,Lý Thị Thanh,Dung,False,1999-08-06 00:00:00,lttdung@gmail.com,0913646860          ,732404708426,3000000,VL
+V0783,Đặng Văn Minh,Kiệt,True,1999-02-04 00:00:00,dvmkiet@gmail.com,0987562087          ,203282266391,3000000,VL
+V0784,Đinh Văn,Hiệu,True,1999-01-04 00:00:00,dvhieu@gmail.com,0987422659          ,536343667086,1000000,VL
+V0785,Đặng Phú,Thanh,False,1999-06-17 00:00:00,dpthanh@gmail.com,0913150105          ,962382975254,0,VL
+V0786,Lâm Nam,Lộc,True,1999-07-12 00:00:00,lnloc@gmail.com,0987876816          ,250421883285,0,VL
+V0787,Lê Nam,Sang,True,1999-02-17 00:00:00,lnsang@gmail.com,0168354815          ,839247155648,0,VL
+V0788,Vương Thanh,Phương,True,1999-10-04 00:00:00,vtphuong@gmail.com,0168754547          ,817696186377,3000000,VL
+V0789,Cao Ngọc,Tâm,False,1999-02-16 00:00:00,cntam@gmail.com,0168390938          ,012778683128,0,VL
+V0790,Vương Vĩnh,Dũng,True,1999-08-02 00:00:00,vvdung@gmail.com,0168869641          ,177628725854,2000000,VL
+V0791,Lý Thị Thanh,Lan,False,1999-01-09 00:00:00,lttlan@gmail.com,0913736062          ,706085770437,2000000,VL
+V0792,Văn Thị,Nga,False,1999-10-24 00:00:00,vtnga@gmail.com,0987580677          ,916910454480,0,VL
+V0793,Đàm Nam,Huy,True,1999-11-24 00:00:00,dnhuy@gmail.com,0168583426          ,037747225125,3000000,VL
+V0794,Đinh Thị Thanh,Dung,False,1999-03-02 00:00:00,dttdung@gmail.com,0987535817          ,862321557580,2000000,VL
+V0795,Lê Thảo,Đào,False,1999-09-07 00:00:00,ltdao@gmail.com,0913523150          ,224633269837,3000000,VL
+V0796,Phạm Thanh,Mỹ,True,1999-03-05 00:00:00,ptmy@gmail.com,0987269881          ,927703582648,0,VL
+V0797,Phạm Mạnh,Phong,True,1999-09-06 00:00:00,pmphong@gmail.com,0168720187          ,028606147723,2000000,VL
+V0798,Lê Thị Thanh,Ly,False,1999-05-20 00:00:00,lttly@gmail.com,0168315361          ,715351688611,2000000,VL
+V0799,Thái Nam,Tuấn,True,1999-03-07 00:00:00,tntuan@gmail.com,0913950748          ,166625619025,1000000,VL
+V0800,Đinh Văn Minh,Thiệu,True,1999-04-10 00:00:00,dvmthieu@gmail.com,0987881211          ,473759329970,3000000,VL
+V0801,Lý Nam,Hiệu,True,1999-09-11 00:00:00,lnhieu@gmail.com,0987511308          ,646778140266,1000000,VL
+V0802,Bạch Văn Minh,Tuấn,True,1999-11-29 00:00:00,bvmtuan@gmail.com,0987287373          ,177162965123,1000000,VL
+V0803,Lâm Nam,Dũng,True,1999-07-09 00:00:00,lndung@gmail.com,0987894644          ,431635846437,0,VL
+V0804,Mã Thanh,Thu,False,1999-03-23 00:00:00,mtthu@gmail.com,0168077764          ,441438272178,1000000,VL
+V0805,Lê Minh,Mỹ,False,1999-08-10 00:00:00,lmmy@gmail.com,0987702846          ,966965235251,0,VL
+V0806,Đàm Thanh,Phương,True,1999-06-01 00:00:00,dtphuong@gmail.com,0913423513          ,405277607571,2000000,VL
+V0807,Cao Vĩnh,Phong,True,1999-10-28 00:00:00,cvphong@gmail.com,0913542214          ,760662673646,0,VL
+V0808,Khương Vĩnh,Huy,True,1999-04-30 00:00:00,kvhuy@gmail.com,0913122480          ,210928825992,0,VL
+V0809,Phạm Phú,Tâm,True,1999-06-19 00:00:00,pptam@gmail.com,0913612732          ,914206818699,2000000,VL
+V0810,Đinh Vĩnh,Huy,True,1999-06-09 00:00:00,dvhuy@gmail.com,0987683822          ,224456144033,3000000,VL
+V0811,Đinh Minh,Thu,True,1999-07-28 00:00:00,dmthu@gmail.com,0168457855          ,332477312194,2000000,VL
+V0812,Thái Văn,Phong,True,1999-09-14 00:00:00,tvphong@gmail.com,0168423843          ,686660225415,2000000,VL
+V0813,Khương Nam,Tuấn,True,1999-08-12 00:00:00,kntuan@gmail.com,0987052443          ,963506872419,0,VL
+V0814,Lâm Nam,Thiệu,True,1999-07-15 00:00:00,lnthieu@gmail.com,0987241210          ,823381760528,0,VL
+V0815,Thái Nam,Mẫn,True,1999-10-15 00:00:00,tnman@gmail.com,0987884502          ,382713582343,0,VL
+V0816,Lâm Văn Minh,Thiện,True,1999-01-13 00:00:00,lvmthien@gmail.com,0913436761          ,777238567323,1000000,VL
+V0817,Cao Vĩnh,Mẫn,True,1999-09-23 00:00:00,cvman@gmail.com,0168802825          ,759581100882,1000000,VL
+V0818,Đàm Thảo,Hạnh,False,1999-09-19 00:00:00,dthanh@gmail.com,0168534506          ,161423967841,0,VL
+V0819,Văn Nam,Vỹ,True,1999-03-03 00:00:00,vnvy@gmail.com,0987438372          ,637240687016,1000000,VL
+V0820,Vương Phú,Ngân,False,1999-01-21 00:00:00,vpngan@gmail.com,0913532156          ,627642833744,3000000,VL
+V0821,Bạch Thảo,Thúy,False,1999-08-23 00:00:00,btthuy@gmail.com,0913265222          ,676618855134,3000000,VL
+V0822,Vương Bạch,Mỹ,True,1999-10-15 00:00:00,vbmy@gmail.com,0913921265          ,467117246312,2000000,VL
+V0823,Lâm Vĩnh,Hòa,True,1999-02-19 00:00:00,lvhoa@gmail.com,0168512238          ,424878402729,3000000,VL
+V0824,Lâm Phú,Thu,True,1999-11-28 00:00:00,lpthu@gmail.com,0987888280          ,292127587522,3000000,VL
+V0825,Hoàng Thị Thanh,Thúy,False,1999-10-09 00:00:00,httthuy@gmail.com,0168313846          ,844179382973,0,VL
+V0826,Đàm Văn Minh,Lộc,True,1999-10-09 00:00:00,dvmloc@gmail.com,0168262680          ,248670604546,0,VL
+V0827,Đặng Thị Thanh,Mai,False,1999-12-17 00:00:00,dttmai@gmail.com,0168886895          ,728216565566,1000000,VL
+V0828,Đặng Thanh,Tâm,True,1999-07-07 00:00:00,dttam@gmail.com,0913851541          ,078519599539,1000000,VL
+V0829,Phạm Thảo,Hạnh,False,1999-01-02 00:00:00,pthanh@gmail.com,0987226855          ,446592421371,0,VL
+V0830,Văn Thảo,Nhung,False,1999-05-26 00:00:00,vtnhung@gmail.com,0168762818          ,221548618615,1000000,VL
+V0831,Lê Vĩnh,Dũng,True,1999-07-05 00:00:00,lvdung@gmail.com,0913841405          ,512690978828,2000000,VL
+V0832,Mã Thị Thanh,Loan,False,1999-04-09 00:00:00,mttloan@gmail.com,0913867284          ,885033740365,2000000,VL
+V0833,Trần Phú,Minh,False,1999-05-24 00:00:00,tpminh@gmail.com,0168861731          ,190672558617,2000000,VL
+V0834,Đinh Văn Minh,Vỹ,True,1999-07-30 00:00:00,dvmvy@gmail.com,0913678968          ,385631461238,1000000,VL
+V0835,Đàm Thảo,Nhung,False,1999-11-08 00:00:00,dtnhung@gmail.com,0987391639          ,589086172700,3000000,VL
+V0836,Đặng Thị Thanh,Nhung,False,1999-12-08 00:00:00,dttnhung@gmail.com,0168947856          ,150415534898,3000000,VL
+V0837,Bạch Nam,Thiện,True,1999-08-12 00:00:00,bnthien@gmail.com,0168327772          ,987491553833,1000000,VL
+V0838,Khương Phú,Ngân,False,1999-02-15 00:00:00,kpngan@gmail.com,0168884364          ,325467976656,3000000,VL
+V0839,Thái Văn Minh,Thiệu,True,1999-11-27 00:00:00,tvmthieu@gmail.com,0913213386          ,618111565109,1000000,VL
+V0840,Đàm Mạnh,Tuấn,True,1999-05-18 00:00:00,dmtuan@gmail.com,0168977242          ,372127658174,3000000,VL
+V0841,Bạch Nam,Thiện,True,1999-08-27 00:00:00,bnthien@gmail.com,0168452836          ,593105406808,3000000,VL
+V0842,Văn Nam,Thiện,True,1999-11-03 00:00:00,vnthien@gmail.com,0913253304          ,351893387139,1000000,VL
+V0843,Văn Vĩnh,Phong,True,1999-03-20 00:00:00,vvphong@gmail.com,0913653461          ,279838567777,3000000,VL
+V0844,Vương Văn,Thiện,True,1999-08-08 00:00:00,vvthien@gmail.com,0913876543          ,845340577853,0,VL
+V0845,Đặng Thị Thanh,Nhung,False,1999-07-04 00:00:00,dttnhung@gmail.com,0168378850          ,681663259911,3000000,VL
+V0846,Lê Văn,Lộc,True,1999-10-31 00:00:00,lvloc@gmail.com,0913128685          ,658180634180,3000000,VL
+V0847,Cao Thanh,Tâm,False,1999-10-28 00:00:00,cttam@gmail.com,0168875206          ,136787402987,0,VL
+V0848,Khương Văn Minh,Dũng,True,1999-02-23 00:00:00,kvmdung@gmail.com,0913107397          ,767923476328,0,VL
+V0849,Văn Thị Thanh,Lan,False,1999-03-29 00:00:00,vttlan@gmail.com,0168174444          ,516423864531,2000000,VL
+V0850,Lý Phú,Thanh,False,1999-02-26 00:00:00,lpthanh@gmail.com,0913513475          ,918510689330,0,VL
+V0851,Lâm Thị Thanh,Ly,False,1999-04-11 00:00:00,lttly@gmail.com,0987114674          ,235722779276,1000000,VL
+V0852,Lê Văn Minh,Dũng,True,1999-11-29 00:00:00,lvmdung@gmail.com,0168125412          ,371660561490,0,VL
+V0853,Đinh Nam,Vỹ,True,1999-04-22 00:00:00,dnvy@gmail.com,0987743084          ,167655819351,3000000,VL
+V0854,Cao Văn,Kiệt,True,1999-08-25 00:00:00,cvkiet@gmail.com,0987466256          ,453237773347,2000000,VL
+V0855,Mã Nam,Thăng,True,1999-08-02 00:00:00,mnthang@gmail.com,0168486825          ,724666371378,2000000,VL
+V0856,Văn Mạnh,Dũng,True,1999-09-02 00:00:00,vmdung@gmail.com,0987225096          ,154877987083,2000000,VL
+V0857,Thái Bạch,Phương,True,1999-10-12 00:00:00,tbphuong@gmail.com,0987898638          ,194287311544,3000000,VL
+V0858,Thái Thị Thảo,Thúy,False,1999-03-11 00:00:00,tttthuy@gmail.com,0913668071          ,053808277081,1000000,VL
+V0859,Đàm Văn Minh,Hiệu,True,1999-05-18 00:00:00,dvmhieu@gmail.com,0987194887          ,089276874831,1000000,VL
+V0860,Nguyễn Thảo,Đào,False,1999-01-02 00:00:00,ntdao@gmail.com,0987962655          ,501251219292,3000000,VL
+V0861,Trần Thảo,Dung,False,1999-02-26 00:00:00,ttdung@gmail.com,0913823838          ,644418230322,3000000,VL
+V0862,Phạm Văn Minh,Trọng,True,1999-04-18 00:00:00,pvmtrong@gmail.com,0987222541          ,673839671924,0,VL
+V0863,Khương Văn Minh,Huy,True,1999-10-07 00:00:00,kvmhuy@gmail.com,0168831637          ,303748734614,1000000,VL
+V0864,Đinh Vĩnh,Kiệt,True,1999-04-10 00:00:00,dvkiet@gmail.com,0987755583          ,204275836863,3000000,VL
+V0865,Lâm Minh,Thanh,True,1999-12-28 00:00:00,lmthanh@gmail.com,0168388516          ,453681186695,2000000,VL
+V0866,Đặng Thảo,Đào,False,1999-11-02 00:00:00,dtdao@gmail.com,0168523669          ,371361215553,0,VL
+V0867,Bạch Vĩnh,Sang,True,1999-07-23 00:00:00,bvsang@gmail.com,0168119383          ,467317926162,3000000,VL
+V0868,Lê Thị Thảo,Trúc,False,1999-02-05 00:00:00,ltttruc@gmail.com,0987991350          ,268863750675,2000000,VL
+V0869,Đàm Thị Thanh,Hoa,False,1999-10-09 00:00:00,dtthoa@gmail.com,0987633898          ,062229847867,3000000,VL
+V0870,Khương Thảo,Ly,False,1999-08-14 00:00:00,ktly@gmail.com,0987427333          ,540882845818,2000000,VL
+V0871,Nguyễn Văn Minh,Huy,True,1999-08-13 00:00:00,nvmhuy@gmail.com,0913521524          ,057149733526,2000000,VL
+V0872,Bạch Minh,Phương,False,1999-07-19 00:00:00,bmphuong@gmail.com,0913546274          ,885840377493,2000000,VL
+V0873,Khương Thị Thảo,Dung,False,1999-04-04 00:00:00,kttdung@gmail.com,0913290195          ,472321568123,3000000,VL
+V0874,Lâm Thị Thanh,Nga,False,1999-09-25 00:00:00,lttnga@gmail.com,0168640337          ,872808686253,3000000,VL
+V0875,Lâm Thị Thảo,Trang,False,1999-07-14 00:00:00,ltttrang@gmail.com,0987311360          ,182772098756,2000000,VL
+V0876,Đinh Thị Thanh,Nga,False,1999-11-28 00:00:00,dttnga@gmail.com,0913144165          ,652365982157,1000000,VL
+V0877,Cao Thị Thanh,Thúy,False,1999-11-07 00:00:00,cttthuy@gmail.com,0168326645          ,697581671616,3000000,VL
+V0878,Nguyễn Nam,Sinh,True,1999-09-28 00:00:00,nnsinh@gmail.com,0913782731          ,793857223128,3000000,VL
+V0879,Khương Thảo,Đào,False,1999-08-07 00:00:00,ktdao@gmail.com,0168611694          ,454122224763,1000000,VL
+V0880,Phạm Mạnh,Trọng,True,1999-05-13 00:00:00,pmtrong@gmail.com,0168061514          ,858065126273,3000000,VL
+V0881,Hoàng Thị Thanh,Hương,False,1999-01-17 00:00:00,htthuong@gmail.com,0987454575          ,519645355545,3000000,VL
+V0882,Lê Thảo,Ly,False,1999-06-27 00:00:00,ltly@gmail.com,0913673413          ,318424635533,3000000,VL
+V0883,Vương Minh,Phương,True,1999-06-21 00:00:00,vmphuong@gmail.com,0168233422          ,018272517484,1000000,VL
+V0884,Trần Ngọc,Mỹ,True,1999-07-06 00:00:00,tnmy@gmail.com,0168213713          ,204631742196,3000000,VL
+V0885,Lâm Thị Thảo,Hương,False,1999-04-02 00:00:00,ltthuong@gmail.com,0987216232          ,857364985451,2000000,VL
+V0886,Hoàng Ngọc,Phương,True,1999-02-15 00:00:00,hnphuong@gmail.com,0987678763          ,646788259479,1000000,VL
+V0887,Nguyễn Thị Thảo,Trang,False,1999-10-03 00:00:00,ntttrang@gmail.com,0987784134          ,145373361878,3000000,VL
+V0888,Khương Thảo,Loan,False,1999-06-06 00:00:00,ktloan@gmail.com,0168105263          ,898264124878,0,VL
+V0889,Thái Văn,Huy,True,1999-11-22 00:00:00,tvhuy@gmail.com,0168850294          ,228338140551,0,VL
+V0890,Lý Bạch,Thu,True,1999-08-02 00:00:00,lbthu@gmail.com,0987265217          ,613454108842,1000000,VL
+V0891,Trần Văn Minh,Hòa,True,1999-12-18 00:00:00,tvmhoa@gmail.com,0987662343          ,610858352705,2000000,VL
+V0892,Đặng Minh,Minh,False,1999-06-29 00:00:00,dmminh@gmail.com,0987731184          ,734759756305,0,VL
+V0893,Vương Thảo,Dung,False,1999-04-14 00:00:00,vtdung@gmail.com,0913472119          ,371836218595,2000000,VL
+V0894,Đặng Thảo,Nga,False,1999-06-03 00:00:00,dtnga@gmail.com,0168492564          ,883385905522,1000000,VL
+V0895,Thái Thị Thanh,Trúc,False,1999-08-19 00:00:00,ttttruc@gmail.com,0168744481          ,163062485658,1000000,VL
+V0896,Mã Nam,Dũng,True,1999-11-01 00:00:00,mndung@gmail.com,0913446485          ,252392484989,2000000,VL
+V0897,Văn Nam,Kiệt,True,1999-07-09 00:00:00,vnkiet@gmail.com,0913617384          ,498416018202,3000000,VL
+V0898,Bạch Nam,Hiệu,True,1999-08-22 00:00:00,bnhieu@gmail.com,0987845354          ,882335228444,3000000,VL
+V0899,Đinh Văn Minh,Tuấn,True,1999-07-09 00:00:00,dvmtuan@gmail.com,0168603989          ,600705108218,2000000,VL
+V0900,Vương Phú,Thu,False,1999-08-01 00:00:00,vpthu@gmail.com,0168344878          ,874583779574,2000000,VL
+V0901,Lý Thảo,Nhung,False,1999-02-22 00:00:00,ltnhung@gmail.com,0987647625          ,263760968063,3000000,VL
+V0902,Lâm Thị Thảo,Hoa,False,1999-02-09 00:00:00,ltthoa@gmail.com,0168227921          ,611248676848,3000000,VL
+V0903,Phạm Thị Thanh,Trang,False,1999-12-21 00:00:00,ptttrang@gmail.com,0913627365          ,143145738474,0,VL
+V0904,Khương Ngọc,Minh,False,1999-06-30 00:00:00,knminh@gmail.com,0168467058          ,245183285942,0,VL
+V0905,Lý Nam,Vỹ,True,1999-10-21 00:00:00,lnvy@gmail.com,0913344825          ,803625771987,2000000,VL
+V0906,Văn Văn Minh,Mẫn,True,1999-10-05 00:00:00,vvmman@gmail.com,0168794143          ,228427448832,1000000,VL
+V0907,Bạch Thị Thảo,Trang,False,1999-05-09 00:00:00,btttrang@gmail.com,0168517314          ,134078416148,2000000,VL
+V0908,Lý Thảo,Hoa,False,1999-06-13 00:00:00,lthoa@gmail.com,0987856775          ,443151881425,3000000,VL
+V0909,Lâm Văn,Vỹ,True,1999-09-27 00:00:00,lvvy@gmail.com,0987731346          ,024123753542,0,VL
+V0910,Văn Phương,Thu,False,1999-02-28 00:00:00,vpthu@gmail.com,0913113067          ,960605769935,0,VL
+V0911,Hoàng Vĩnh,Mẫn,True,1999-05-11 00:00:00,hvman@gmail.com,0168726913          ,663340489757,3000000,VL
+V0912,Nguyễn Thảo,Nhung,False,1999-05-05 00:00:00,ntnhung@gmail.com,0913424871          ,499927487688,3000000,VL
+V0913,Cao Vĩnh,Bảo,True,1999-06-10 00:00:00,cvbao@gmail.com,0987826885          ,121282430115,3000000,VL
+V0914,Vương Vĩnh,Bảo,True,1999-07-30 00:00:00,vvbao@gmail.com,0913662153          ,643275668728,3000000,VL
+V0915,Trần Vĩnh,Dũng,True,1999-07-17 00:00:00,tvdung@gmail.com,0168416073          ,627030825826,0,VL
+V0916,Thái Mạnh,Lộc,True,1999-08-23 00:00:00,tmloc@gmail.com,0987841141          ,785051748670,0,VL
+V0917,Hoàng Thị Thanh,Mai,False,1999-04-18 00:00:00,httmai@gmail.com,0987567066          ,603167030770,2000000,VL
+V0918,Trần Thảo,Loan,False,1999-09-25 00:00:00,ttloan@gmail.com,0168306874          ,441648667278,3000000,VL
+V0919,Trần Văn Minh,Thăng,True,1999-09-06 00:00:00,tvmthang@gmail.com,0168522882          ,094339572848,3000000,VL
+V0920,Cao Văn Minh,Sinh,True,1999-04-20 00:00:00,cvmsinh@gmail.com,0168348328          ,755695694678,0,VL
+V0921,Lê Thanh,Phương,False,1999-11-25 00:00:00,ltphuong@gmail.com,0168235335          ,235732666211,3000000,VL
+V0922,Lê Minh,Tâm,True,1999-02-11 00:00:00,lmtam@gmail.com,0168438585          ,673823507423,1000000,VL
+V0923,Nguyễn Ngọc,Thanh,True,1999-07-03 00:00:00,nnthanh@gmail.com,0913683645          ,256669848875,2000000,VL
+V0924,Trần Thanh,Minh,False,1999-11-21 00:00:00,ttminh@gmail.com,0168262243          ,895177490647,3000000,VL
+V0925,Đinh Thị,Nga,False,1999-03-06 00:00:00,dtnga@gmail.com,0987139661          ,562734181742,1000000,VL
+V0926,Vương Thảo,Nga,False,1999-09-27 00:00:00,vtnga@gmail.com,0168920734          ,922351042637,3000000,VL
+V0927,Lâm Thảo,Đào,False,1999-07-17 00:00:00,ltdao@gmail.com,0987556345          ,190961885985,1000000,VL
+V0928,Phạm Văn,Dũng,True,1999-04-01 00:00:00,pvdung@gmail.com,0168252837          ,186481185979,2000000,VL
+V0929,Khương Vĩnh,Mẫn,True,1999-09-16 00:00:00,kvman@gmail.com,0913747463          ,508596662291,2000000,VL
+V0930,Lâm Vĩnh,Thiện,True,1999-10-23 00:00:00,lvthien@gmail.com,0987731194          ,705333825440,1000000,VL
+V0931,Lâm Ngọc,Thanh,False,1999-09-16 00:00:00,lnthanh@gmail.com,0987414497          ,718155229516,2000000,VL
+V0932,Lâm Thảo,Đào,False,1999-10-18 00:00:00,ltdao@gmail.com,0168846711          ,589334623754,3000000,VL
+V0933,Lý Vĩnh,Tuấn,True,1999-08-16 00:00:00,lvtuan@gmail.com,0913513493          ,982623491108,0,VL
+V0934,Bạch Minh,Minh,False,1999-02-17 00:00:00,bmminh@gmail.com,0987301841          ,758579434646,2000000,VL
+V0935,Bạch Nam,Lộc,True,1999-12-10 00:00:00,bnloc@gmail.com,0913317773          ,824374681093,2000000,VL
+V0936,Hoàng Thị Thảo,Hoa,False,1999-03-10 00:00:00,htthoa@gmail.com,0987137145          ,711208204914,1000000,VL
+V0937,Văn Thị Thanh,Đào,False,1999-07-04 00:00:00,vttdao@gmail.com,0168168270          ,767003625184,3000000,VL
+V0938,Trần Thanh,Mỹ,True,1999-08-13 00:00:00,ttmy@gmail.com,0987918983          ,160010287761,0,VL
+V0939,Cao Nam,Phong,True,1999-11-23 00:00:00,cnphong@gmail.com,0168121214          ,419940564175,1000000,VL
+V0940,Trần Nam,Thiệu,True,1999-03-15 00:00:00,tnthieu@gmail.com,0987538257          ,562325054327,0,VL
+V0941,Bạch Thanh,Phương,True,1999-10-28 00:00:00,btphuong@gmail.com,0987044766          ,892719895967,3000000,VL
+V0942,Phạm Văn Minh,Vỹ,True,1999-04-21 00:00:00,pvmvy@gmail.com,0913516827          ,292282566466,1000000,VL
+V0943,Đàm Văn,Hòa,True,1999-12-15 00:00:00,dvhoa@gmail.com,0168514082          ,261421282638,0,VL
+V0944,Lý Thảo,Nhung,False,1999-10-30 00:00:00,ltnhung@gmail.com,0913133143          ,653123532430,0,VL
+V0945,Đặng Thị,Trúc,False,1999-02-16 00:00:00,dttruc@gmail.com,0168759533          ,560335577847,1000000,VL
+V0946,Lý Thanh,Phương,True,1999-11-28 00:00:00,ltphuong@gmail.com,0913784408          ,753454925005,2000000,VL
+V0947,Phạm Thanh,Ngân,False,1999-09-01 00:00:00,ptngan@gmail.com,0168368388          ,760277315137,2000000,VL
+V0948,Hoàng Phương,Tâm,False,1999-07-10 00:00:00,hptam@gmail.com,0168324992          ,186511746758,0,VL
+V0949,Nguyễn Văn Minh,Sang,True,1999-09-13 00:00:00,nvmsang@gmail.com,0913413607          ,512565534876,3000000,VL
+V0950,Lê Thảo,Loan,False,1999-08-11 00:00:00,ltloan@gmail.com,0168345788          ,345618543841,1000000,VL
+V0951,Lê Văn,Thiện,True,1999-01-09 00:00:00,lvthien@gmail.com,0913835830          ,123687416367,0,VL
+V0952,Thái Mạnh,Trọng,True,1999-10-07 00:00:00,tmtrong@gmail.com,0168498748          ,287985740432,3000000,VL
+V0953,Khương Văn Minh,Sinh,True,1999-08-02 00:00:00,kvmsinh@gmail.com,0168954373          ,880376125714,2000000,VL
+V0954,Vương Thảo,Trang,False,1999-05-18 00:00:00,vttrang@gmail.com,0987462497          ,756557391541,1000000,VL
+V0955,Thái Vĩnh,Sinh,True,1999-07-31 00:00:00,tvsinh@gmail.com,0168351852          ,382654356435,0,VL
+V0956,Lê Phú,Ngọc,False,1999-09-29 00:00:00,lpngoc@gmail.com,0913191869          ,160241658986,0,VL
+V0957,Thái Thảo,Trang,False,1999-04-07 00:00:00,tttrang@gmail.com,0987760551          ,239758181575,2000000,VL
+V0958,Hoàng Thảo,Hoa,False,1999-11-16 00:00:00,hthoa@gmail.com,0168968220          ,466138268252,1000000,VL
+V0959,Lý Thảo,Trang,False,1999-06-13 00:00:00,lttrang@gmail.com,0987227032          ,661791076315,2000000,VL
+V0960,Khương Văn Minh,Sang,True,1999-04-26 00:00:00,kvmsang@gmail.com,0913676643          ,841213388641,2000000,VL
+V0961,Phạm Phương,Tâm,True,1999-08-16 00:00:00,pptam@gmail.com,0168485173          ,348855883134,0,VL
+V0962,Lý Thị Thảo,Hương,False,1999-11-05 00:00:00,ltthuong@gmail.com,0987229675          ,622476272727,0,VL
+V0963,Hoàng Văn,Tân,True,1999-11-21 00:00:00,hvtan@gmail.com,0168724620          ,587809343511,3000000,VL
+V0964,Đặng Minh,Thanh,False,1999-02-12 00:00:00,dmthanh@gmail.com,0168758311          ,163547814512,1000000,VL
+V0965,Đặng Thảo,Nga,False,1999-08-09 00:00:00,dtnga@gmail.com,0168740091          ,455196226704,2000000,VL
+V0966,Văn Phú,Ngân,False,1999-10-16 00:00:00,vpngan@gmail.com,0987781306          ,984538134175,2000000,VL
+V0967,Khương Nam,Mẫn,True,1999-08-15 00:00:00,knman@gmail.com,0168583764          ,109405550224,2000000,VL
+V0968,Đinh Thị Thảo,Đào,False,1999-05-08 00:00:00,dttdao@gmail.com,0987894556          ,875044502327,3000000,VL
+V0969,Lê Vĩnh,Hòa,True,1999-06-11 00:00:00,lvhoa@gmail.com,0987983651          ,417272153606,1000000,VL
+V0970,Văn Thị Thảo,Thúy,False,1999-04-20 00:00:00,vttthuy@gmail.com,0168666897          ,880333667487,3000000,VL
+V0971,Hoàng Vĩnh,Thiệu,True,1999-09-11 00:00:00,hvthieu@gmail.com,0168238238          ,783239225839,0,VL
+V0972,Phạm Mạnh,Thiệu,True,1999-02-26 00:00:00,pmthieu@gmail.com,0168891145          ,275856148722,2000000,VL
+V0973,Vương Nam,Lộc,True,1999-02-09 00:00:00,vnloc@gmail.com,0168205578          ,727465122547,2000000,VL
+V0974,Thái Thị Thanh,Nga,False,1999-02-13 00:00:00,tttnga@gmail.com,0987324843          ,631116336413,0,VL
+V0975,Đặng Thị Thảo,Lan,False,1999-05-12 00:00:00,dttlan@gmail.com,0913484189          ,179301013287,3000000,VL
+V0976,Đinh Ngọc,Tâm,False,1999-05-03 00:00:00,dntam@gmail.com,0913163600          ,878347628405,3000000,VL
+V0977,Lý Vĩnh,Thiệu,True,1999-09-18 00:00:00,lvthieu@gmail.com,0168115543          ,152123843247,2000000,VL
+V0978,Mã Thảo,Hoa,False,1999-07-07 00:00:00,mthoa@gmail.com,0168227727          ,638541962769,3000000,VL
+V0979,Đinh Văn Minh,Thiện,True,1999-04-27 00:00:00,dvmthien@gmail.com,0987560651          ,802140763782,1000000,VL
+V0980,Bạch Thị Thanh,Nhung,False,1999-10-12 00:00:00,bttnhung@gmail.com,0987545685          ,312682212194,0,VL
+V0981,Khương Văn,Thiệu,True,1999-02-27 00:00:00,kvthieu@gmail.com,0913200905          ,675452174598,3000000,VL
+V0982,Văn Bạch,Tâm,True,1999-05-05 00:00:00,vbtam@gmail.com,0913330731          ,015324169436,3000000,VL
+V0983,Lý Minh,Phương,True,1999-09-25 00:00:00,lmphuong@gmail.com,0987656297          ,266333898538,2000000,VL
+V0984,Đặng Thị Thanh,Ly,False,1999-08-23 00:00:00,dttly@gmail.com,0168515362          ,302648146254,3000000,VL
+V0985,Lâm Mạnh,Vỹ,True,1999-11-02 00:00:00,lmvy@gmail.com,0913159178          ,166745935356,3000000,VL
+V0986,Văn Thảo,Dung,False,1999-02-07 00:00:00,vtdung@gmail.com,0913917476          ,147673676545,0,VL
+V0987,Trần Mạnh,Thiệu,True,1999-08-26 00:00:00,tmthieu@gmail.com,0913149120          ,558722018236,2000000,VL
+V0988,Mã Thị,Hạnh,False,1999-07-09 00:00:00,mthanh@gmail.com,0987616486          ,019423255735,1000000,VL
+V0989,Nguyễn Thảo,Đào,False,1999-02-14 00:00:00,ntdao@gmail.com,0987558728          ,816670573891,3000000,VL
+V0990,Hoàng Nam,Hiệu,True,1999-10-05 00:00:00,hnhieu@gmail.com,0168211953          ,227251687411,0,VL
+V0991,Thái Thị Thảo,Ly,False,1999-09-21 00:00:00,tttly@gmail.com,0168331812          ,637202855659,1000000,VL
+V0992,Mã Mạnh,Huy,True,1999-03-25 00:00:00,mmhuy@gmail.com,0987322016          ,136389984697,0,VL
+V0993,Hoàng Nam,Thăng,True,1999-08-25 00:00:00,hnthang@gmail.com,0987219967          ,591721173374,3000000,VL
+V0994,Đặng Mạnh,Bảo,True,1999-08-30 00:00:00,dmbao@gmail.com,0913054239          ,018934731306,0,VL
+V0995,Đàm Văn,Vỹ,True,1999-03-30 00:00:00,dvvy@gmail.com,0168924061          ,492158542835,1000000,VL
+V0996,Trần Mạnh,Thăng,True,1999-06-21 00:00:00,tmthang@gmail.com,0987250062          ,768656897616,2000000,VL
+V0997,Trần Vĩnh,Thiện,True,1999-07-23 00:00:00,tvthien@gmail.com,0987716502          ,468267857113,3000000,VL
+V0998,Khương Thảo,Hạnh,False,1999-08-16 00:00:00,kthanh@gmail.com,0913696608          ,702859343545,0,VL
+V0999,Đinh Ngọc,Ngọc,True,1999-05-25 00:00:00,dnngoc@gmail.com,0913689521          ,187831202224,3000000,VL
+V1000,Lý Mạnh,Bảo,True,1999-06-03 00:00:00,lmbao@gmail.com,0987656186          ,865173188581,0,VL

@@ -1,0 +1,19 @@
+A. Truy vấn đơn giản
+1. Liệt kê các nhân viên gồm: mã nhân viên, tên (first_name, last_name), ngày vào làm, lương
+(có thể định dạng ngày vào làm và lương)
+2. Liệt kê các nhân viên có thêm cột biểu thức tham_nien (thâm niên = năm hiện tại - năm vào làm)
+(có thể sắp giảm theo thâm niên)
+3. Cho biết nhân viên có lương lớn nhất
+4. Cho biết nhân viên có lương lớn nhất của phòng 80
+5. Cho biết nhân viên có lương lớn nhất của mỗi phòng
+
+B. Truy vấn có nhóm
+1. Thống kê theo mã phòng và đếm số nhân viên, tổng lương theo phòng
+2. Thống kê theo mã phòng, tên phòng và đếm số nhân viên, tổng lương theo phòng
+3. Cho biết phòng nào có tổng lương lớn nhất
+
+C. Truy vấn con
+1. Tìm các nhân viên có lương > trung bình lương
+2. Tìm các nhân viên làm việc tại vị trí phòng là 1700
+3. Hiển thị tên trưởng phòng của phòng 80
+4. Hiển thị tên trưởng phòng của các phòng 80,90
