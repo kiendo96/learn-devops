@@ -1,8 +1,80 @@
-# 4 nhóm lệnh chính
+# SQL là gì?
+
+- SQL là **S**tructured **Q**uery **L**anguage – Ngôn ngữ Truy vấn có Cấu trúc  
+- SQL cho phép bạn truy xuất một cơ sở dữ liệu  
+- SQL là một ngữ theo chuẩn ANSI  
+- SQL có thể thực hiện các truy vấn đến một cơ sở dữ liệu  
+- SQL có thể truy tìm dữ liệu từ một cơ sở dữ liệu  
+- SQL có thể chèn các mẩu tin mới vào trong một cơ sở dữ liệu 
+- SQL có thể xóa các mẩu tin trong một cơ sở dữ liệu  
+- SQL có thể cập nhật các mẩu tin trong một cơ sở dữ liệu  
+- SQL rất dễ học 
+
+**SQL là một chuẩn** 
+
+- SQL là một chuẩn ANSI (American National Standards Institute - Viện Tiêu chuẩn Quốc gia Mỹ) cho các hệ thống truy xuất cơ sở dữ liệu. Các SQL dùng để truy tìm và cập nhật  dữ liệu trong một cơ sở dữ liệu. 
+
+- SQL làm việc với các trình quản lý cơ sở dữ liệu như Access, DB2, Informix, Microsoft SQL Server, Oracle, Sybase, và nhiều trình khác (đáng tiếc là đa số trong chúng có các phần mở rộng ngôn ngữ SQL riêng).
+
+**Các bảng cơ sở dữ liệu** 
+
+- Cơ sở dữ liệu chứa các đối tượng gọi là các **Bảng** (Tables). 
+
+- Các **Mẩu tin** (Records) lưu trong các bảng này. Các bảng được gọi theo tên bảng (như "Persons", "Orders", "Suppliers"). 
+
+- Các bảng chứa các **Cột** (Columns) và các **Dòng** (Rows) dữ liệu. Dòng chứa các mẩu tin (như mẩu tin về một người). Cột chứa dữ liệu (như First Name, Last Name, Address, và City). 
+
+Một ví dụ là bảng "Persons" sau: 
+
+|**LastName** |**FirstName** |**Address** |**City** |
+| - | - | - | - |
+|Hansen |Ola |Timoteivn 10 |Sandnes |
+|Svendson |Tove |Borgvn 23 |Sandnes |
+|Pettersen |Kari |Storgt 20 |Stavanger |
+
+LastName, FirstName, Address, và City là các cột của bảng. Các dòng chứa ba mẩu tin của 3 người.
+
+**Các truy vấn SQL**  
+
+Với SQL, chúng ta có thể **truy vấn** một cơ sở dữ liệu và nhận được một **kết quả** trả về với dạng bảng.  Một truy vấn giống như sau:  
+
+`SELECT LastName FROM Persons` Sẽ trả về một kết quả giống như sau:  
+
+|**LastName** |
+| - |
+|Hansen |
+|Svendson |
+|Pettersen |
+
+**Chú ý:** Vài hệ cơ sở dữ liệu cần một dấu “;” ở cuối SQL. Chúng ta không dùng dấu “;” trong bài viết này. 
+
+### 4 nhóm lệnh chính
 - SQL(Structured Query Language) : `select`, `count/distinct(loại bỏ trùng lặp)/limit`
 - DML(Data Manipulation Language): `insert`, `update`, `delete` thay đổi về mặt dữ liệu
 - DDL(Data Definition Language): `create/drop table`
 - DCL(Data Control Language)
+
+**Thao tác dữ liệu SQL(DML)** 
+
+- SQL là một cú pháp để thực hiện các truy vấn. Nhưng ngôn ngữ SQL cũng chứa các cú pháp cập nhật các mẩu tin (record), chèn các mẩu tin mới và xóa các mẩu tin đang tồn tại. 
+
+- Các lệnh truy vấn và cập nhật này thuộc dạng Ngôn ngữ Thao tác Dữ liệu (Data Manipulation Language - DML) một phần của SQL:  
+  + SELECT – trích dữ liệu từ một cơ sở dữ liệu  
+  + UPDATE – cập  nhật dữ liệu trong một cơ sở dữ liệu 
+  + DELETE – xóa dữ liệu từ một cơ sở dữ liệu  
+  + INSERT – chèn dữ liệu mới vào trong một cơ sở dữ liệu  
+
+**Định nghĩa dữ liệu SQL(DDL)** 
+- Ngôn ngữ Định nghĩa Dữ liệu (Data Definition Language - DDL) một phần của SQL, cho phép tạo hay xóa các bảng cơ sở dữ liệu. Chúng ta cũng có thể định nghĩa các chỉ mục (các khóa - key), chỉ định liên kết giữa các bảng, và ràng buột giữa các bảng cơ sở dữ liệu.
+- Các DDL quan trọng nhất trong SQL là::  
+  + CREATE TABLE – tạo một bảng cơ sở dữ liệu mới  
+  + ALTER TABLE – thay đổi (alters) một bảng cơ sở dữ liệu  
+  + DROP TABLE – xóa một bảng cơ sở dữ liệu  
+  + CREATE INDEX – tạo một chỉ mục (khóa tìm kiếm)  
+  + DROP INDEX – xoá một chỉ mục 
+
+**SQL và ASP** 
+SQL là một phần quan trọng của ASP (Active Server Pages), vì ADO (Active Data Object) được dùng trong ASP để truy xuất cơ sở dữ liệu, ADO dựa trên SQL để truy xuất dữ liệu. 
 
 # Create/Drop Table
 
@@ -56,6 +128,41 @@ create table COUNTRY(
     CountryName varchar(60)
 );
 ```
+**Ví dụ 2: Chọn các cột từ một bảng** 
+
+Để chọn các cột có tên "LastName" và "FirstName", dùng một SELECT như sau: `SELECT LastName,FirstName FROM Persons`
+
+**Bảng "Persons":** 
+
+|**LastName** |**FirstName** |**Address** |**City** |
+| - | - | - | - |
+|Hansen |Ola |Timoteivn 10 |Sandnes |
+|Svendson |Tove |Borgvn 23 |Sandnes |
+|Pettersen |Kari |Storgt 20 |Stavanger |
+
+**Kết quả:** 
+
+|**LastName** |**FirstName** |
+| - | - |
+|Hansen |Ola |
+|Svendson |Tove |
+|Pettersen |Kari |
+
+**Ví dụ: Chọn tất cả các cột** 
+
+Để chọn tất cả các cột từ bảng "Person", dùng một ký hiệu * thay thế cho tên các cột như sau:  `SELECT * FROM Persons `
+
+**Kết quả:** 
+
+|**LastName** |**FirstName** |**Address** |**City** |
+| - | - | - | - |
+|Hansen |Ola |Timoteivn 10 |Sandnes |
+|Svendson |Tove |Borgvn 23 |Sandnes |
+|Pettersen |Kari |Storgt 20 |Stavanger |
+
+**Bảng kết quả** 
+
+Kết quả từ một truy vấn SQL được lưu trữ trong một tập kết quả. Tập kết quả có thể xem như một bảng kết quả. Đa số các trình quản lý cơ sở dữ liệu cho phép duyệt tập kết quả với các hàm lập trình như: Move-To-First-Record, Get-Record-Content, Move-To-Next-Record......
 
 ### DROP TABLE
 - Syntax: `drop table tablename;`
@@ -641,6 +748,41 @@ from PETSALE
 select Saledate, Dayofmonth(saledate) As Dayofmonth, Dayofweek(saledate) As Dayofweek, Dayofyear(saledate) As Dayofyear, Week(saledate) As Week
 from PETSALE;
 ```
+
+# Windows Function
+- syntax:
+
+```
+Windows Functions () OVER (
+[PARTITION BY partition_expression, ... ]
+ORDER BY sort_expression [ASC | DESC], ...)
+```
+
+- Trong đó:
+    + Partition by clause: dùng để nhóm các hàng có liên quan đến nhau thành 1 partition để thực hiện việc tính toán – Order by clause: dùng để sắp xếp các hàng có trong từng partition đó Khi sử dụng Wimdows Functions, các kết quả trả về được tính toán trong từng partition.
+
+### Có 3 loại Windows Functions:
+- Aggregate Functions:
+    + AVG()	- Trả về giá trị trung bình
+    + COUNT() - Đếm các giá trị
+    + MAX() - Trả về giá trị lớn nhất
+    + MIN()	- Trả về giá trị nhỏ nhất
+    + SUM()	- Tính tổng các giá trị
+- Ranking Functions
+    + RANK() - Xếp hạng các giá trị theo thứ tự tăng dần nhưng sẽ trả về thứ hạng giống nhau với các giá trị giống nhau và bỏ qua thứ hạng đó 
+        + Ví dụ: rank(): 1,1,3,4,5
+    + DENSE_RANK() - Xếp hạng các giá trị theo thứ tự tăng dần nhưng sẽ trả về thứ hạng giống nhau với các giá trị giống nhau và không bỏ qua thứ hạng đó
+        + Ví dụ: dense_rank (): 1,1,2,3,4
+    + ROW_NUMBER() - Xếp hạng các giá trị trong từng partition theo thứ tự tăng dần mà không quan tâm đến giá trị giống nhau
+        + Ví dụ: row_number (): 1,2,3,4,5
+    + CUME_DIST() - Tính tỷ lệ các giá trị nhỏ hơn hoặc bằng giá trị hiện tại
+    + PERCENT_RANK() - (rank -1)/ (row-1) 
+        + Trong đó: rank là thứ tự của giá trị đó theo thứ tự tăng dần (các giá trị giống nhau trả về thứ hạng giống nhau) + row: tổng số dòng (xét trong 1 partition)
+- Analytic Functions
+    + FIRST_VALUE (expression) - Lấy giá trị đầu trong từng partition
+    + LAST_VALUE (expression) - Lấy giá trị cuối trong từng partition
+    + LAG (expression, offset) - Sắp xếp các giá trị theo thứ tự tăng dần và trả về các giá trị không bị bỏ qua Trong đó: offset: số giá trị bỏ qua tính từ trên xuống (Nếu tham số này bị bỏ qua, mặc định là 1)
+    + LEAD (expression, offset) - Sắp xếp các giá trị theo thứ tự giảm dần và trả về các giá trị không bị bỏ qua Trong đó: offset: số giá trị bỏ qua tính từ trên xuống (Nếu tham số này bị bỏ qua, mặc định là 1)
 
 # Sub-Query, Nested-Select
 

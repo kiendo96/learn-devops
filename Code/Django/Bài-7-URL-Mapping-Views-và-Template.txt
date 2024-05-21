@@ -1,0 +1,446 @@
+○ View với vai trò thực hiện xử lý logic
+○ Có hai loại views đó là: Function-Based Views và Class-Based Views
+1. Kiến thức với VIEWs
+○ View phát triển dựa trên các hàm, do vậy thuận lợi và viết đơn giản
+○ Nhược điểm là không có tính kế thừa
+2. Kiến thức với Funcion-Based Views
+○ Dựa trên mô hình lớp -> có tính kế thừa
+○ Các class có thuộc tính và phương thức và có thể kế thừa các views
+○ Với dạng này, view viết ít code hơn và tránh duplicate so với function-based view.
+○ Việc dùng class-based view thường khó đọc hơn so với function-based view
+Thí dụ: giả sử cần hiển thị một page html mà không cần chèn dữ liệu vào DB, với trường hợp này chỉ cần kế thừa
+TemplateView của Django và chỉ rõ đường dẫn của file html, như code dưới đây:
+○
+-=========
+from django.views.generic import TemplateView
+class HomePage(TemplateView):
+ template_name = 'home_page.html'
+-=========
+3. Kiến thức với Class-Based Views:
+ Bước 1: check trong file settting.py có biến:
+-==============
+ROOT_URLCONF = 'bookreviews.urls'
+-==============
+ Bước 2: open views.py và add:
+-==========
+from django.http import HttpResponse
+from .models import Book
+def welcome_view(request):
+ message = f"<html><h1>Welcome to Bookr!</h1> "\
+ "<p>{Book.objects.count()} books and counting!</p></html>"
+ return HttpResponse(message)
+-==========
+ Bước 3: tạo một url mapping trong bookreviews/urls.py và add vào urlpatterns:
+-========
+from django.contrib import admin
+from django.urls import include, path
+urlpatterns = [path('admin/', admin.site.urls),
+ path('', include('reviews.urls'))]
+-========
+ Bước 4: ta chưa có module "reviews.urls" -> thực hiện tạo file tên bookreviews/reviews/urls.py với:
+-========
+from django.contrib import admin
+from django.urls import path
+from . import views
+urlpatterns = [
+ path('', views.welcome_view, name='welcome_view'),
+]
+-========
+ Chạy app reviews trên browser http://localhost:8000 -> kết quả
+4. Thực hành 1: thực thi một function-based view
+ Template cho phép hiển thị html với object data
+ Template được cấu hình với biến TEMPALTES trong settings.py:
+-==========
+TEMPLATES = [
+5. Kiến thức với Template
+Bài 7. URL Mapping, Views và Template
+ Python-Web Page 1
+TEMPLATES = [
+ {
+ 'BACKEND': 'django.template.backends.django.DjangoTemplates',
+ 'DIRS': [],
+ 'APP_DIRS': True,
+ 'OPTIONS': {
+ 'context_processors': [
+ 'django.template.context_processors.debug',
+ 'django.template.context_processors.request',
+ 'django.contrib.auth.context_processors.auth',
+ 'django.contrib.messages.context_processors.messages',
+ ],
+ },
+ },
+]
+-==========
+'BACKEND': đề cập tới engine template được sử dụng, engine template là một API sử dụng bởi Django để làm
+việc với HTML template. DjangoTemplates là engine defaut bởi Django. Có nhiều engine khác như jinja2 chẳng hạn
+
+ 'DIR': danh sách các directories mà Django tìm kiếm cho các templates
+'APP_DIRS': True: Cho Django template engine biết có cần tìm kiếm các templates các ứng dụng đã được
+thiết lập trong biến INSTALLED_APPS
+
+'OPTIONS': chứa template engine, trong đó có một list default của context processors , giúp python code tương
+tác với template để tạo và render dynamic HTML templates
+
+Trong đó:
+a. Bước 1: tạo thư mục templates trong reviews và tạo file tên: base.html
+b. Bước 2: thêm đường dẫn tới thưc mục templates trong biến TEMPLATES của setttings.py
+-===============
+TEMPLATES = [
+ {
+ 'BACKEND': 'django.template.backends.django.DjangoTemplates',
+ 'DIRS': [os.path.join(BASE_DIR,'templates')],
+ 'APP_DIRS': True,
+ 'OPTIONS': {
+ 'context_processors': [
+ 'django.template.context_processors.debug',
+ 'django.template.context_processors.request',
+ 'django.contrib.auth.context_processors.auth',
+ 'django.contrib.messages.context_processors.messages',
+ ],
+ },
+ },
+]
+-===============
+Note: trong settings.py ta cần 'import os'
+c. Bước 3: thêm code sau vào file base.html:
+-===========
+<!doctype html>
+<html lang="en">
+<meta charset=»utf-8»>
+<title>Home Page</title>
+<head>
+</head>
+<h1>Welcome to Bookr!</h1>
+<body>
+</body>
+</html>
+-===========
+d. Bước 4: chỉnh sửa code bên trong bookr/reviews/views.py như sau:
+-=========
+from django.shortcuts import render
+def welcome_view (request):
+ return render(request, 'base.html')
+6. Thực hành 2: Sử dụng template hiển thị message
+ Python-Web Page 2
+ return render(request, 'base.html')
+-=========
+e. Bước 5: Chạy app -> thấy kết quả
+Các biến sử dụng: một biến trong template được biểu diễn trong: {{variables}}. Biến giúp mang dữ liệu tới template ->
+render về trình duyệt
+a.
+Template tag: tag trong template khá giống với cấu trúc lập trình. Một tag được diễn đạt qua {% và %}. Thí dụ sau cho
+phép dùng cú pháp for để lặp qua một list:
+b.
+-=========
+{% for element in element_list %}
+{% endfor %}
+#cụ thể:
+<li>{{ element.title }}</li>
+{% for element in element_list %}
+{% endfor %}
+<ul>
+</ul>
+-=========
+c. Comment: comments trong template language có thể sử dụng trong: {% comment %} và {% endcomment %}
+-===========
+<p>This text has been commented out</p>
+{% comment %}
+{% endcomment %}
+-===========
+d. Filtes: Filters được sử dụng để modify một biến. Cú pháp như sau: {{ variable|filter }}
+7. Django Template
+a. Tạo file utils.py under bookreviews/reviews/utils.py và add code sau:
+-==========
+def average_rating(rating_list):
+ if not rating_list:
+ return 0
+ return round(sum(rating_list) / len(rating_list))
+-==========
+b. Xóa hết code trong bookreviews/reviews/views.py và add:
+-=============
+from django.shortcuts import render
+from .models import Book, Review
+from .utils import average_rating
+def book_list(request):
+ books = Book.objects.all()
+ book_list = []
+ for book in books:
+ reviews = book.review_set.all()
+ if reviews:
+ book_rating = average_rating([review.rating for \
+ review in reviews])
+ number_of_reviews = len(reviews)
+ else:
+ book_rating = None
+ number_of_reviews = 0
+ book_list.append({'book': book, \
+ 'book_rating': book_rating, \
+'number_of_reviews': number_of_reviews})
+ context = {
+ 'book_list': book_list
+ }
+ return render(request, 'reviews/books_list.html', context)
+-=============
+8. Thực hành 3: hiển thị một danh sách các books và reviews lên web
+ Python-Web Page 3
+-=============
+c. Bước 3: tạo file books_list.html under bookreviews/reviews/templates/reviews với code như sau:
+-============
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>Book review web application</title>
+</head>
+ <body>
+ <h1>Book Review application</h1>
+ <hr>
+ <ul>
+ {% for item in book_list %}
+ <li>
+ <span>Title: </span> <span>{{ item.book.title }}</span>
+ <br>
+ <span>Publisher: </span><span>{{ item.book.publisher }}</span>
+ <br>
+ <span>Publication Date: </span><span>{{ item.book.publication_date }}
+</span>
+ <br>
+ <span>Rating: </span><span>{{ item.book_rating }}</span>
+ <br>
+ <span>Number of reviews: </span><span>{{ item.number_of_reviews }}</span>
+ <br>
+ {% if item.book_rating is null %}
+ <span>Provide a rating and write the first review for this book.</span>
+ <br>
+ {% endif %}
+ </li>
+ <br>
+ {% endfor %}
+ </ul>
+ </body>
+</html>
+-============
+d. Trong bookreviews/reviews/urls.py ta add url pattern cho books_list.html:
+-=======
+from django.contrib import admin
+from django.urls import path
+from . import views
+urlpatterns = [path('books/', views.book_list, name='book_list')]
+-=======
+e. Chạy app at: http://localhost:8000/books/
+○ Django cho phép kế thừa templates để tránh viết lại code html
+ Ta có file base.html code như sau: (parent)
+-===========
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Hello World</title>
+<head>
+</head>
+<h1>Hello World using Django templates!</h1>
+{% block content %}
+{% endblock %}
+<body>
+</body>
+</html>
+○ Thí dụ:
+9. Template Inheritance
+ Python-Web Page 4
+</html>
+-===========
+ Ta tạo một template con như sau:
+-=======
+{% extends 'base.html' %}
+{% block content %}
+<h1>How are you doing?</h1>
+{% endblock %}
+-=======
+10. Template Styling with Bootstrap và kế thừa template:
+○ Bước 1: mở file base.html trong bookreviews/templates/ và update theo code sau:
+-=========
+<!doctype html>
+{% load static %}
+<html lang="en">
+ <head>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
+ <title>Book Review</title>
+ <style type="text/css">
+ .navbar {
+ min-height: 100px;
+ font-size: 25px;
+ }
+ .navbar-brand {
+ font-size: 25px;
+ }
+ </style>
+ </head>
+ <body>
+ <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+ <a class="navbar-brand" href="/">Book Review</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" datatarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" ariaexpanded="false" aria-label="Toggle navigation">
+ <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+ <ul class="navbar-nav mr-auto">
+ <li class="nav-item active">
+ <a class="nav-link" href="/books/">Home <span class="sr-only">(current)
+</span></a>
+ </li>
+ <li class="nav-item">
+ <a class="nav-link" href="#">Logout</a>
+ </li>
+ </ul>
+ <form class="form-inline my-2 my-lg-0">
+ <input class="form-control mr-sm-2" type="search" placeholder="Search" arialabel="Search">
+ <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+Search</button>
+ </form>
+ Python-Web Page 5
+ </form>
+ </div>
+ </nav>
+ {% block content %}
+ <h1>Welcome to Bookr!</h1>
+ {% endblock %}
+ <!-- Copyright -->
+ <footer class="page-footer font-small blue">
+ <div class="footer-copyright text-center py-3">© 2020 Copyright:
+ <a href="https://solid.edu.vn"> SOLID Technology</a>
+ <p>Website by: https://solid.edu.vn</p>
+ <p>Contact information: <a href="mailto:email@example.com">
+phongtuyensinh.solid@gmail.com</a></p>
+ </div>
+ </footer>
+ <!-- Copyright -->
+ </body>
+</html>
+-=========
+○ Bước 2: Mở file books_list.html trong bookreviews/reviews/templates/reviews/books_list.html và update:
+-===========
+{% extends 'base.html' %}
+{% block content %}
+<ul class="list-group">
+ {% for item in book_list %}
+ <li class="list-group-item">
+ <span class="text-info">Title: </span> <span>{{ item.book.title }}</span>
+ <br>
+ <span class="text-info">Publisher: </span><span>{{ item.book.publisher }}</span>
+ <br>
+ <span class="text-info">Publication Date: </span><span>
+{{ item.book.publication_date }}</span>
+ <br>
+ <span class="text-info">Rating: </span><span class="badge badge-primary badge-pill">
+{{ item.book_rating }}</span>
+ <br>
+ <span class="text-info">Number of reviews: </span><span>{{ item.number_of_reviews }}
+</span>
+ <br>
+ {% if item.book_rating is null %}
+ <span class="text-secondary">Provide a rating and write the first review for this
+book.</span>
+ <br>
+ {% endif %}
+ <a class="btn btn-primary btn-sm active" role="button" aria-pressed="true"
+href="/book/{{ item.book.id }}/">Reviews</a></li>
+ </li>
+ {% endfor %}
+</ul>
+{% endblock %}
+-===========
+○ Bước 3: chạy app http://localhost:8000/books/
+11. Thực hành xử lý nút chi tiết khi click vào nút "Reivew" ở bài tập trên
+Thực thi new view, template, url mapping để hiển thị chi tiết của mỗi book: title, publisher, publication date, và overall
+rating
+○
+○ Trong page chi tiết hiển thị: Review comment, create date, modify date, rating và tên của commenter
+Yêu cầu: các công việc cần thực thi:
+○ Bước 1: Tạo file bookreviews/reviews/templates/reviews/book_detail.html và add code sau:
+-==========
+{% extends 'base.html' %}
+Các bước xử lý:
+ Python-Web Page 6
+{% extends 'base.html' %}
+{% block content %}
+ <br>
+ <h3>Book Details</h3>
+ <hr>
+ <span class="text-info">Title: </span> <span>{{ book.title }}</span>
+ <br>
+ <span class="text-info">Publisher: </span><span>{{ book.publisher }}</span>
+ <br>
+ <span class="text-info">Publication Date: </span><span>{{ book.publication_date }}
+</span>
+ <br>
+ {% if not reviews %}
+ <hr>
+ <h3>Be the first one to write a review.</h3>
+ {% else %}
+ <span class="text-info">Overall Rating: </span><span class="badge badgeprimary badge-pill">{{ book_rating }}</span>
+ <br>
+ <hr>
+ <h3>Review Comments</h3>
+ <ul>
+ {% for review in reviews %}
+ <li class="list-group-item">
+ <span class="text-info">Review comment: </span> <span>
+{{ review.content }}</span>
+ <br>
+<span class="text-info">Created on: </span><span>
+{{ review.date_created }}</span>
+ <br>
+<span class="text-info">Modified on: </span><span>
+{{ review.date_edited }}</span>
+ <br>
+<span class="text-info">Rating: </span><span class="badge badgesecondary badge-pill">{{ review.rating }}</span>
+ <br>
+<span class="text-info">Creator: </span><span>
+{{ review.creator.username }}</span>
+ <br>
+ </li>
+ {% endfor %}
+ </ul>
+ {% endif %}
+{% endblock %}
+-==========
+○ Bước 2: Mở bookreviews/reviews/views.py và append view method:
+-===========
+def book_detail(request, pk):
+ book = get_object_or_404(Book, pk=pk)
+ reviews = book.review_set.all()
+ if reviews:
+ book_rating = average_rating([review.rating for review in reviews])
+ context = {
+ "book": book,
+ "book_rating": book_rating,
+ "reviews": reviews
+ }
+ else:
+ context = {
+ "book": book,
+ "book_rating": None,
+ "reviews": None
+ }
+ return render(request, "reviews/book_detail.html", context)
+ Python-Web Page 7
+ return render(request, "reviews/book_detail.html", context)
+-===========
+Note: import thêm: from django.shortcuts import render, get_object_or_404
+○ Bước 3: Mở bookreviews/reviews/urls.py và add new path:
+-===========
+from django.urls import path
+from . import views
+urlpatterns = [
+ path('books', views.book_list, name='book_list'),
+ path('book/<int:pk>/', views.book_detail, name='book_detail')
+]
+-===========
+○ Bước 4: Chạy app
+ Python-Web Page 8 

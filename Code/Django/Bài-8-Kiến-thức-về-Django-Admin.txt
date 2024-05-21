@@ -1,0 +1,299 @@
+○ Django default phần admin -> cho phép ta quản trị app của người dùng
+○ Admin ở đây là cho phép tương tác với model data bằng interface thay vì console shell
+○ Ta có thể chạy trang admin http://localhost:8000/admin/
+1. Tổng quan về Django Admin
+○ Để tạo supperuser ta thực hiện lệnh sau:
+-============
+(env) PS D:\PYTHON_WEB\bookreviews>python manage.py createsuperuser
+-============
+○ Username: bookadmin
+○ Email: bookadmin@solid.edu.vn
+○ Passs: admin
+2. Tạo một superuser account
+3. Login vào trang admin bằng user và pass trên theo link: http://localhost:8000/admin/
+User superuser (bookadmin) có thể tạo ra các user tương ứng với các quyền khác nhau cho từng user sử
+dụng app
+○
+○ Các thao tác CRUD thuộc về admin app
+○ Bước 1: Tạo user tên alice với pass abcd@1234
+○ Bước 2: click vào "Users" sẽ xuất hiện:=> để chọn user muốn gán quyền tương ứng với chức năng của user
+4. Các thao tác CRUD user với Django Admin
+○ Bước 3: có thể chọn 1 user và update profile của 1 user đó, hoặc xóa user đó trên trang admin này
+a. Xác thực của Django xác định cho users, group và permissions
+b. Một user có thể thuộc về nhiều group khác nhau => chia quyền user
+5. Tìm hiểu về User và Group
+6. Thực hành thêm và chỉnh sửa users và groups thông qua Admin app
+- Tạo nhóm quyền
+Yêu cầu:
+Bài 8. Kiến thức về Django Admin
+1:05 CH
+ Python-Web Page 1
+- Tạo nhóm quyền
+- Tạo user và gán user vào nhóm quyền tương ứng ở trên
+ Bước 1: login vào Admin app tại link: http://localhost:8000/admin/ bằng user bookadmin
+ Bước 2: chọn "Authentication and Authorization" -> Groups
+ Bước 3: click vào "Add Groups" -> add new group
+- Can view log entry
+- Can view permission
+- Can change user
+- Can view user
+ Bước 4: Đặt tên group là "Help Desk User" và gán cho group này một số quyền như:
+ Bước 5: click "Save" -> xuất hiện hộp thoại:
+ Python-Web Page 2
+ Bước 6: Home › Authentication and Authorization › Users -> user Carol
+ Bước 7: Trong permissions chọn nhóm "Help Desk User" -> mũi tên qua Chosen group
+ Bước 8: Logout và về lại trang login của Admin app để login với user Carol.
+Note: nếu quên password của user Carol thì có thể chạy lệnh sau:
+-==========
+(env) PS D:\PYTHON_WEB\bookreviews> python manage.py changepassword carol
+-=============
+ Bước 9: Sau khi login bằng user carol thì interface như sau:
+7. Đăng ký thao tác với Reviews model
+Giả sử user carol được giao nhiệm vụ cải thiện phần đánh giá trong BookReviews app. Tức là những bài review
+nào có liên quan thì giữ lại, trùng lặp hoặc ko liên quan sẽ bị loại => để làm được quyền này, carol cần có quyền
+quy cập vào Review model
+-
+- Để Admin app nhận biết được model trong Review App ta cần đăng ký trong admin
+ Tại Pycharm mở file reviews/admin.py ta sẽ thấy default:
+- Các bước thực hiện đăng ký như sau:
+ Python-Web Page 3
+ Tại Pycharm mở file reviews/admin.py ta sẽ thấy default:
+-===========
+from django.contrib import admin
+# Register your models here.
+-===========
+ Thay đổi file reviews/admin.py như sau:
+-==========
+from django.contrib import admin
+from reviews.models import Publisher, Contributor, Book, BookContributor,
+Review
+# Register your models here.
+admin.site.register(Publisher)
+admin.site.register(Contributor)
+admin.site.register(Book)
+admin.site.register(BookContributor)
+admin.site.register(Review)
+-==========
+ Sau đó login lại bằng user admin ta gặp như sau:
+ Clieck vào "publisher" -> xuất hiện danh sách các nhà xuất bản được lấy từ DB lên như sau:
+ Ta có thể thay đổi một publisher cụ thể -> click vào "Pocket Books" -> màn hình:
+ Python-Web Page 4
+ Ta có thể thêm mới một "publisher" -> xuất hiện:
+ Ta có thể thấy các help text giống như những gì ta tạo model:
+-===========
+class Publisher(models.Model):
+name = models.CharField\
+(help_text="The name of the Publisher.",\
+max_length=50)
+website = models.URLField\
+(help_text="The Publisher's website.")
+email = models.EmailField\
+(help_text="The Publisher's email address.")
+"""A company that publishes books."""
+-===========
+8. Customizing admin interface
+ Mở reviews/admin.py ta thay đổi code như sau:
+-==========
+from django.contrib.admin import AdminSite
+from reviews.models import (Publisher, Contributor, Book,BookContributor, Review)
+class BookrAdminSite(AdminSite):
+ title_header = 'Bookreviews Admin'
+ site_header = 'Bookreviews administration'
+ index_title = 'Bookreviews site admin'
+admin_site = BookrAdminSite(name='bookreviews')
+# Register your models here.
+admin_site.register(Publisher)
+admin_site.register(Contributor)
+admin_site.register(Book)
+ Python-Web Page 5
+admin_site.register(Book)
+admin_site.register(BookContributor)
+admin_site.register(Review)
+-==========
+ Chỉnh sửa trong bookreviews/url.py như sau:
+-==========
+from reviews.admin import admin_site
+from django.contrib import admin
+from django.urls import include, path
+urlpatterns = [path('admin/', admin_site.urls),
+ path('', include('reviews.urls'))]
+-==========
+ Chạy app -> hiển thị
+Note: giao diện admin mới này bị mất giao diện auth object:
+Ta có thể chạy song song 2 quyền admin. Một là nguyên gốc, 2 là admin_site bằng cách sửa file
+bookreviews/url.py như sau:
+
+-=======
+from reviews.admin import admin_site
+from django.contrib import admin
+from django.urls import include, path
+urlpatterns = [path('admin/', admin.site.urls),
+ path('bookreviewsadmin/', admin_site.urls),
+ path('', include('reviews.urls'))]
+-=======
+Ta có thể chạy http://localhost:8000/bookreviewsadmin/sẽ hiển thị trang admin đã customization trong khi vẫn
+duy trì admin cũ (để có quyền thêm users và groups)
+
+ Default khi chọn Contributors model:
+9. Thực hành Customizing Model Admins
+ Python-Web Page 6
+ Chỉnh sửa trong reviews/models.py và add phương thức sau vào Contributor:
+-========
+def initialled_name(self):
+ initials = ''.join([name[0] for name
+ in self.first_names.split(' ')])
+ return "{}, {}".format(self.last_names, initials)
+-========
+ Replace __str__() method như sau:
+-==========
+def __str__(self):
+ return self.initialled_name()
+-==========
+ Tạo thêm ContributorAdmin và BookAdmin class kế thừa admin.ModelAdmin trong reviews/admin.py:
+-========
+class ContributorAdmin(admin.ModelAdmin):
+ list_display = ('last_names', 'first_names')
+ list_filter = ('last_names',)
+ search_fields = ('last_names__startswith', 'first_names')
+class BookAdmin(admin.ModelAdmin):
+ date_hierarchy = 'publication_date'
+ list_display = ('title', 'isbn')
+ list_filter = ('publisher', 'publication_date')
+-========
+ Chỉnh sửa register cho Contributor class:
+-==========
+admin.site.register(Publisher)
+admin.site.register(Contributor, ContributorAdmin)
+admin.site.register(Book, BookAdmin)
+admin.site.register(BookContributor)
+admin.site.register(Review)
+admin_site.register(Publisher)
+admin_site.register(Contributor)
+admin_site.register(Book)
+admin_site.register(BookContributor)
+admin_site.register(Review)
+-==========
+ Chạy http://locahost:8000/bookreviewsadmin
+10. Thực hành Customizing ModelAdmin classes
+ Bước 1: mở Reviews/models.py chỉnh sửa hàm __str__() của Book model như sau:
+-==========
+Login vào user admin (không phải bookreviewsadmin). Ta sẽ sẽ chỉnh sửa hiển thị của Model Book so với hiện tại:
+ Python-Web Page 7
+-==========
+return "{} ({})".format(self.title, self.isbn)
+-==========
+Bước 2: nếu ta muốn hiển thị tên cột tách biệt trong Book khi hiển thị (Title và ISBN) ta tạo subbclass tên
+BookAdmin và chỉnh sửa list_display của ModelAdmin:
+
+Chú ý: list_display có thể xem qua shell như sau:
+-===========
+python manage.py shell
+>>> from django.contrib.admin import ModelAdmin
+>>> ModelAdmin.list_display
+('__str__',)
+-===========
+Ta tạo class BookAdmin kế thừa ModelAdmin như sau trong reviews/admin.py:
+-=============
+class BookAdmin(admin.ModelAdmin):
+ list_display = ('title', 'isbn')
+-=============
+ Bước 3: Đăng ký BookAdmin vào trong admin.site tại reviews/admin.py như sau:
+-=======
+admin.site.register(Book, BookAdmin)
+-=======
+ Bước 4: Chạy app ta được kết quả:
+Bước 5: Mở rộng tạo sự linh hoạt cho title hiển thị như sau: tạo hàm bên ngoài các class trong
+reviews/admin.py:
+
+-=======
+def initialled_name(obj):
+ """ obj.first_names='Jerome David', obj.last_names='Salinger'
+ => 'Salinger, JD' """
+ initials = ''.join([name[0] for name in obj.first_names.split(' ')])
+ return "{}, {}".format(obj.last_names, initials)
+-=======
+Obj: là đối tượng được truyền tự động khi được gọi trong class tương ứng. Thí dụ: khi initialled_name
+được gọi trong Contributor class thì obj là Contributor
+-
+Note:
+ Bước 6: Ta có thể sử dụng hàm ở bước 5 như sau trong ContributorAdmin:
+-========
+list_display = (initialled_name,)
+class ContributorAdmin(admin.ModelAdmin):
+-========
+ Bước 7: trong BookAdmin class của reviews/admin.py ta có thể định nghĩa thêm function như sau:
+Note: tham số obj là instance của model Book
+-========
+ Python-Web Page 8
+-========
+def isbn13(self, obj):
+ """ '9780316769174' => '978-0-31-676917-4' """
+ return "{}-{}-{}-{}-{}".format \
+ (obj.isbn[0:3], obj.isbn[3:4], \
+ obj.isbn[4:6], obj.isbn[6:12], \
+ obj.isbn[12:13])
+-========
+ Bước 8: Trong Book model trong reviews/models.py ta cũng tạo method:
+-========
+def isbn13(self):
+ """ '9780316769174' => '978-0-31-676917-4' """
+ return "{}-{}-{}-{}-{}".format(self.isbn[0:3], self.isbn[3:4],
+ self.isbn[4:6], self.isbn[6:12],
+self.isbn[12:13])
+-========
+Bước 9. Tạo thêm filter Book theo từng Publisher bằng cách thêm thuộc tính list_filter của BookAdmin trong
+reviews/admin.py:
+
+-==============
+list_filter = ('publisher', 'publication_date')
+-==============
+ Bước 10: Reload app ta thấy kết quả:
+ Bước 11: Thêm thuộc tính Date_hierarchy vào BookAdmin như sau:
+-==============
+date_hierarchy = 'publication_date'
+list_display = ('title', 'isbn')
+list_filter = ('publisher', 'publication_date')
+class BookAdmin(admin.ModelAdmin):
+-==============
+Reload web ta được:
+ Python-Web Page 9
+ Bước 12: Tạo thanh tìm kiếm (search bar) cho book
+Thực hiện bằng cách thêm thuộc tính sau vào BookAdmin:
+-============
+search_fields = ('title', 'isbn','publisher__name')
+-============
+Note: Search theo title hoặc isbn hoặc tên của người xuất bản
+Reload web ta được:
+ Bước 13: Excluding và Grouping Fields
+Ta có thể loại trừ một số field không cần nhập dữ liệu trên form. Thí dụ như thêm mới 1 reviews chẳng hạn
+- Tạo ra class ReviewAdmin trong reviews/admin.py như sau:
+-=========
+class ReviewAdmin(admin.ModelAdmin):
+ exclude = ['date_edited']
+-=========
+Field Date Created không xuất hiện do trong model ta để thuộc tính "auto_now_add" và ta muổn ẩn file
+"Date edited" thì thực hiện như sau:
+ Python-Web Page 10
+-=========
+- Đăng ký vào admin.site:
+-========
+admin.site.register(Review, ReviewAdmin)
+-========
+- Reload web add review ta được:
+- Một cách ngược lại ta không dùng exclued như trên mà list kê các field có thể dùng bằng:
+-==========
+fields = ('content', 'rating', 'creator', 'book')
+-==========
+Nhóm fields: ta có thể thực thi option là nhóm các fields có groups. Thí dụ: nhóm book và creator làm
+một nhóm. Để làm điều này, ta thực hiện bổ sung fieldset vào ReviewAdmin:
+-
+-============
+class ReviewAdmin(admin.ModelAdmin):
+ exclude = ['date_edited'] #hoặc
+ #fields = ('content', 'rating', 'creator', 'book')
+ fieldsets = (('Linkage', {'fields': ('creator', 'book')}), \
+ ('Review content', \
+ {'fields': ('content', 'rating')}))
+-============
+Reload web ta được:
+ Python-Web Page 11 
