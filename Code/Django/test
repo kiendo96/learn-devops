@@ -1,0 +1,92 @@
+ content:Publisher publisher_name Packt Publishing Harper Collins Penguin Classics Scribner
+Bay Back Books
+Simon and Schuster
+Houghton Mifflin Harcourt
+CreateSpace Independent Publishing Platform Pocket Books
+content:Book
+book_title
+Advanced Deep Learning with Keras
+Hands-On Machine Learning for Algorithmic Trading Architects of Intelligence
+Deep Reinforcement Learning Hands-On
+Natural Language Processing with TensorFlow Hands-On Reinforcement Learning with Python Brave New World
+The Grapes of Wrath
+For Whom The Bell Tolls
+To Kill A Mocking Bird
+The Great Gatsby
+The Catcher in the Rye
+Farenheit 451
+Pride and Prejudice
+publisher_website
+https://www.packtpub.com/
+https://www.harpercollins.com
+http://www.penguinclassics.com https://www.simonandschusterpublishing.com/scribner/ https://www.hachettebookgroup.com/imprint/little-brown-and-company/back-bay-books/ https://www.simonandschuster.com
+publisher_email
+info@packtpub.com feedback@harpercollins.com contact@penguinclassics.com ScribnerPublicity@SimonandSchuster.com. customer.service@hbgusa.com. contact@simonandschuster.com techsupport@hmhco.com info@createspace.com pocketbook@example.com
+book_isbn
+9.78179E+12 9.78179E+12 9.78179E+12 9.78179E+12 9.78179E+12 9.78179E+12 9.78006E+12 9.78014E+12 9.78148E+12 9.78006E+12 9.78074E+12 9.78032E+12 9.78145E+12 9.78014E+12 9.78133E+12 9.78015E+12 9.78172E+12 9.78145E+12
+contributor_email RowelAtienza@example.com PacktEditor@example.com PacktEditor2@example.com StefanJansen@example.com MartinFord@example.com MaximLapan@example.com ThushanGanegedara@example.com SudharsanRavichandiran@example.com AldousHuxley@example.com JSteinbeck@example.com ErnestHemingway@example.com HarperLee@example.com FScottFitzgerald@example.com JDSalinger@example.com RayBradbury@example.com JaneAusten@example.com TonyTanner@example.com GeorgeOrwell@example.com EdwardBulwerLytton@example.com StephenKing@example.com PeterStraub@example.com
+book_contributor_role AUTHOR
+AUTHOR
+AUTHOR
+AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR AUTHOR COMMENTATOR CO_AUTHOR CO_AUTHOR
+review_date_created
+2020-01-04 16:31:40.376
+2020-01-04 16:31:40.376
+Animal Farm: A Fairy Story Paul Clifford
+The Talisman
+content:Contributor contributor_first_names Rowel
+Packt
+Packtp Jansen Martin
+Maxim Thushan Sudharsan Aldous
+John
+Ernest Harper Franics Scott Jerome David Ray
+Jane Tony George Edward Stephen Peter
+content:BookContributor
+book_contributor_book
+Advanced Deep Learning with Keras
+Hands-On Machine Learning for Algorithmic Trading Architects of Intelligence
+Deep Reinforcement Learning Hands-On
+Natural Language Processing with TensorFlow Hands-On Reinforcement Learning with Python Brave New World
+The Grapes of Wrath
+For Whom The Bell Tolls
+To Kill A Mocking Bird
+The Great Gatsby
+The Catcher in the Rye
+Farenheit 451
+Pride and Prejudice
+Paul Clifford
+Pride and Prejudice The Talisman
+The Talisman
+content:Review review_content
+A must read for all An ok read
+review_date_edited
+review_creator review_book
+peterjones@test.com Advanced Deep Learning with Keras marksandler@test.com Advanced Deep Learning with Keras
+1984
+https://www.hmhco.com https://www.createspace.com https://pocketbookssampleurl.com
+book_publication_date
+contributor_last_names Atienza
+Example Editor
+Editor Example
+Stefan
+Ford
+Lapan Ganegedara Ravichandiran Huxley Steinbeck Hemingway Lee
+Fitzgerald Salinger Bradbury Austen Tanner Orwell Bulwer Lytton King
+Straub
+book_contributor_contributor RowelAtienza@example.com StefanJansen@example.com MartinFord@example.com MaximLapan@example.com ThushanGanegedara@example.com SudharsanRavichandiran@example.com AldousHuxley@example.com JSteinbeck@example.com ErnestHemingway@example.com HarperLee@example.com FScottFitzgerald@example.com JDSalinger@example.com RayBradbury@example.com JaneAusten@example.com GeorgeOrwell@example.com EdwardBulwerLytton@example.com TonyTanner@example.com PeterStraub@example.com StephenKing@example.com
+review_rating
+2018/10/31 2018/12/31 2018/11/23 2018/06/20 2018/05/30 2018/06/27 2006/10/18 2006/03/28 2019/07/16
+2002/1/1 2004/09/30 2001/01/30 2012/01/10 2002/12/31
+2017/4/4 1996/4/18 2018/05/12 2012/09/25
+book_publisher_name Packt Publishing Packt Publishing Packt Publishing Packt Publishing Packt Publishing Packt Publishing Harper Collins Penguin Classics Scribner
+Harper Collins
+Scribner
+Bay Back Books
+Simon and Schuster
+Penguin Classics
+Houghton Mifflin Harcourt
+Houghton Mifflin Harcourt
+CreateSpace Independent Publishing Platform Pocket Books
+1984
+5 3
+2020-01-04 16:31:40.376 2020-01-04 16:31:40.376
