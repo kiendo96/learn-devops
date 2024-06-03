@@ -1,0 +1,263 @@
+Bài 9. Làm việc với Static file
+1:03 CH
+1. Tổng quan
+a. Nộidungnàytasẽlàmthếnàođểứngdụngsửdụngđượccácdữliệutĩnhnhưimage,css,js...
+b. Django hỗ trợ công cụ để thực hiện read các file tĩnh này
+c. Ta cũng nghiên cứu cách mà Django caching các file tĩnh này => tăng hiệu năng của app
+2. TạoprojectmớiđểlàmviệcvớiStaticfile
+○ Tạo một project với project theo lệnh dưới đây: -===========
+(env) PS D:\PYTHON_WEB> django-admin startproject business_site
+(env) PS D:\PYTHON_WEB\business_site>python manage.py startapp landing -===========
+○ Mở pycharm và cấu hình project business_site như hình:
+○ Trong file settings.py ta add 'landing' vào biến INSTALLED_APPS như sau: -=======
+INSTALLED_APPS = [ 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', 'landing'
+]
+-=======
+○ Trong pycharm Right click vào 'landing' -> new -> directory -> nhập tên 'static'
+○ Right click vào 'static' -> new -> directory -> 'landing'
+○ Copy file 'logo.png' vào trong directory 'landing' (giả sử lấy logo solid)
+○ Chạy link sau: http://127.0.0.1:8000/static/landing/logo.png -> thấy kết quả đọc được file static logo.png
+3. GeneratingStaticURLsvớistaticTemplateTag
+a. Tạo directory tên 'templates' trong business_site (project bên ngoài)
+b. Rightclick'templates'->new->html->index.html
+-==============
+<!DOCTYPE html> {% load static %} <html lang="en"> <head>
+<meta charset="UTF-8">
+<title>Business Site</title>
+<link rel="stylesheet" href="{% static 'main.css' %}">
+</head> <body>
+<h1>Welcome to my Business Site</h1>
+<img src="{% static 'landing/logo.png' %}">
+<p>Chào mừng các bạn đến với website eCommerce của chúng tôi!</p>
+</body> </html> -==============
+c. Thiết lập URL để sử dụng render template, ta sử dụng TemplateView để render template mà không cần tạo view (như các bài trước). Bằng cách: mở business_site/urls.py add thêm: -=========
+from django.views.generic import TemplateView from django.urls import path
+urlpatterns = [
+path('', TemplateView.as_view(template_name='index.html')),
+]
+-=========
+d. Mởsetttings.pytathayđổibiếnTEMPLATESnhưsau:
+-==========
+TEMPLATES = [ {
+'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+'APP_DIRS': True,
+'OPTIONS': {
+  Python-Web Page 1
+
+'OPTIONS': { 'context_processors': [
+'django.template.context_processors.debug', 'django.template.context_processors.request', 'django.contrib.auth.context_processors.auth', 'django.contrib.messages.context_processors.messages',
+], },
+}, ]
+-==========
+e. Runapptại:http://localhost:8000
+Note: cách thực hiện như trên ta sử dụng phương pháp AppDirectoresFinder tức là các file tĩnh được gọi bên trong app. 4. CácđọcfiletĩnhquacáchFileSystemFinder:
+Cách đọc này ta có thể độc lập các file nằm ở thư mục mà không nằm trong App (cụ thể là Business_site) để có thể dùng chung cho các app khác. Ta thực hiện các bước sau:
+a. Tại Pycharm -> right click vào business_site project -> new ->directory -> nhập tên 'static'
+b. Tại static folder -> right click -> new -> file -> main.css
+-==========
+body{ font-family:Arial,sans-serif; text-align:center; background-color:#f0f0f0;
+}
+-==========
+c. Ta mở file settings.py ta bổ sung thêm code sau:
+-==========
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+-==========
+d. Chạyapptại:http://localhost:8000/static/main.css->kếtquả
+e. Sau khi link trên chạy trên trình duyệt ok, ta có thể add link này vào index.html như sau:
+-=======
+<!DOCTYPE html> {% load static %} <html lang="en"> <head>
+          <meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+          <title>Business Site</title>
+<link rel="stylesheet" href="{% static 'main.css' %}">
+</head> <body>
+<h1>Welcome to my Business Site</h1>
+<img src="{% static 'landing/logo.png' %}">
+<p>Chào mừng các bạn đến với website eCommerce của chúng tôi!</p>
+</body> </html>
+-=======
+5. ThựchànhCollectingstaticfile
+○ Mở pycharm, ta tạo 1 directory tạm để put tập các file vào bằng cách right click business_site project -> new -> directory -> gõ 'static_prodcution_test' -> ok
+○ Trong file settings.py -> add tham số sau vào cuối file:
+-=======
+STATIC_ROOT=os.path.join(BASE_DIR,'static_production_test')
+-=======
+○ Chạy lệnh sau ở shell: Django sẽ tự động copy toàn bộ file static của installed app vào folder này
+-========
+(env) PS D:\PYTHON_WEB\business_site> python manage.py collectstatic
+-========
+6. CáchsửdụngchếđộStaticfiles_dirprefixed
+○ Theo Django thì thiết lập biến STATICFILES_DIRS trong settings.py cho phép vào các tuple với dạng (prefix, directory). Điều này cho phép ta ánh xạ chính xác một URL vào static file
+○ Thí dụ: ta tạo 2 thư mục 'static_images' và 1 thư mục là 'static_css' với tiền tố tương ứng là images và css và ta thay đổi biến STATICFILES_DIRS trong setting.py như sau:
+-==========
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),\ ('images', os.path.join\
+(BASE_DIR, 'static_images')),\
+('css', os.path.join(BASE_DIR, 'static_css'))] -==========
+○ Sau đó, ta có thể sử dụng 3 file: main.js, main.css và main.jpg ứng với 3 thư mục như sau:
+○ Khi đó, ta sẽ thiết lập URL như sau:
+   Python-Web Page 2
+
+ ○ Khi dùng trong file template tag, ta sẽ sử dụng prefix và filename (không phải là thư mục). Thí dụ: -=========
+{% static 'images/main.jpg' %}
+-=========
+○ Khi static file được tụ lại thì sử dụng lệnh collectstatic như trên, các file trên sẽ được chuyển đến thư mục với prefix name bên trong STATIC_ROOT
+7. Tìm hiểu sử dụng lệnh FindStatic
+Findstatic cho phép ta nhập một đường dẫn tương đối tới static file. Sau đây là các bước thực hành sử dụng findstatic:
+○ Tại windows shell ta nhập lệnh sau:
+-========
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic #sẽ hiển thị:
+usage: manage.py findstatic [-h] [--first] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+staticfile [staticfile ...]
+manage.py findstatic: error: Enter at least one label.
+-========
+○ Giả sử ta cần tìm file tên main.css ta nhập:
+-=======
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic main.css
+#Django sẽ tìm được như sau:
+Found 'main.css' here: D:\PYTHON_WEB\business_site\static\main.css
+-=======
+Note: lệnh này thật hữu ích để tìm file mà dev cần tìm, xem có xung đột gì với file hiện tại đang sử dụng
+○ Để tìm logo.png ta nhập:
+-=========
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic landing/logo.png
+-=========
+○ Ta có thể tìm nhiều file cùng lúc:
+-=========
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic landing/logo.png missing-file.js main.css
+-=========
+○ Thêm cờ -v0 để loại các file không tìm thấy:
+-==========
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic -v0 landing/logo.png missing-file.js main.css
+-==========
+○ Để nhận nhiều thông tin ta dùng lệnh với -v2:
+-======
+(env) PS D:\PYTHON_WEB\business_site> python manage.py findstatic -v2 landing/logo.png missing-file.js main.css
+-======
+8. Tìm hiểu cách sử dụng static file mới nhất (chưa cache)
+○ Django sử dụng kỹ thuật hàm băm để lưu cache và luôn cập nhật file static mới nhất
+○ Django sử dụng ManifestFilesStorage để thực thi kỹ thuật hàm băm này. Ta thực thi theo các bước sau:
+ Bước 1: vẫn ở business_site, ta mở Pycharm mở file setttings.py và bổ sung:
+-========
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage' -========
+ Bước 2: chạy lệnh sau tại window shell -> chọn 'yes' để override -======
+(env) PS D:\PYTHON_WEB\business_site> python manage.py collectstatic
+#output
+You have requested to collect static files at the destination location as specified in your settings:
+D:\PYTHON_WEB\business_site\static_production_test
+This will overwrite existing files! Are you sure you want to do this?
+Type 'yes' to continue, or 'no' to cancel: yes
+ Python-Web Page 3
+
+Type 'yes' to continue, or 'no' to cancel: yes
+0 static files copied to 'D:\PYTHON_WEB\business_site\static_production_test', 130 unmodified, 160 post-processed.
+-======
+Note: do không có file mới được tụ lại, nhưng có '160 post-processed' -> Django tạo hash value
+ Bước 3: mở thư mục staic_production_test ta thấy các static file có file hash tương ứng và file staticfiles.json
+ Bước 4: đến đây ta đã biết cách tạo ra một hash value tương ứng của các static file. Để sử dụng nó thì chế độ development (DEBUG=True) không cho phép. Phải chuyển sang chế độ
+production ta sẽ apply kỹ thuật này
+9. Thực hành add logo cho project bookreviews
+○ Mở file base.html trong reviews/templates bổ sung thêm css như sau: -========
+.navbar-brand > img { height: 60px;
+}
+-========
+○ Thay thế đoạn code sau:
+-============
+<a class="navbar-brand" href="/">Book Review</a> #thay thế bằng
+<a class="navbar-brand" href="/">{% block brand %}<img src="{% static 'reviews/logo.png' %}">{% endblock %}</a>
+-============
+○ Tạo thư mục tên 'static' trong reviews app directory -> tạo thêm thư mục 'reviews' và copy file logo.png vào (lấy file logo solid)
+○ Tạo thư mục "templates" bên trong bookreviews project và thực hiện chuyển file base.html vào thư mục template mới tạo từ reviews/templates/reviews/base.html
+○ Mở settting.py và bổ sung code đã bold như sau:
+-========
+TEMPLATES = [ {
+'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+'APP_DIRS': True,
+'OPTIONS': {
+'context_processors': [ 'django.template.context_processors.debug', 'django.template.context_processors.request', 'django.contrib.auth.context_processors.auth', 'django.contrib.messages.context_processors.messages',
+], },
+}, ]
+-========
+○ Tại thư mục reviews/templates/reviews -> tạo file base.html -> add:
+-===========
+      {% extends 'base.html' %}
+-===========
+○ Ta sử dụng {% static %} template tag để generate img URL , để sử dụng ta cẩn đảm bảo static library được load cụ thể ta bổ sung code sau:
+-=======
+{% extends 'base.html' %} {% load static %}
+-=======
+○ Sau đó, ta override block {% block brand %}, và sử dụng {% static %} template tag để sinh URL reviews/logo.png:
+-=========
+{% block brand %}<img src="{% static 'reviews/logo.png' %}">{% endblock %}
+-=========
+○ Mở views.py, trong reviews app, thay đổi render index view to render base.html thay vì reviews/base.html
+-======
+def index(request):
+return render(request, "base.html")
+-======
+○ Update lại trong book_list.html:
+-==============
+      {% extends 'reviews/base.html' %}
+{% block content %} <ul class="list-group">
+        {% for item in book_list %}
+        <li class="list-group-item">
+<span class="text-info">Title: </span> <span>{{ item.book.title }}</span>
+<br>
+<span class="text-info">Publisher: </span><span>{{ item.book.publisher }}</span>
+<br>
+<span class="text-info">Publication Date: </span><span>{{ item.book.publication_date }}</span>
+<br>
+<span class="text-info">Rating: </span><span class="badge badge-primary badge-pill">{{ item.book_rating }}</span>
+<br>
+<span class="text-info">Number of reviews: </span><span>{{ item.number_of_reviews }}</span>
+<br>
+{% if item.book_rating is null %}
+<span class="text-secondary">Provide a rating and write the first review for this book.</span>
+<br>
+{% endif %}
+<a class="btn btn-primary btn-sm active" role="button" aria-pressed="true" href="/book/{{ item.book.id }}/">Reviews</a></li>
+</li>
+{% endfor %} </ul>
+      {% endblock %}
+Python-Web Page 4
+
+-==============
+○ Chạy app tại http://localhost:8000/books/
+○ Thực hiện tách riêng file CSS ra theo các bước sau: (do bước trên gán trực tiếp vào trong base.html):
+ Tạo thư mục tên 'static' trong bookreviews project tạo file main.css và add: -========
+.navbar {
+         min-height: 100px;
+font-size: 25px; }
+.navbar-brand { font-size: 25px;
+      }
+      .navbar-brand > img {
+height: 60px; }
+body {
+font-family: 'Source Sans Pro', sans-serif; background-color: #e6efe8;
+color: #393939;
+}
+h1, h2, h3, h4, h5, h6 {
+         font-family: 'Libre Baskerville', serif;
+      }
+-======== Note:
+□ cssnàylấytừfilebase.html
+ Thực hiện xóa style css trong file base.html
+ Cũng tại file templates/base.html bổ sung thêm ở line thứ 2 lệnh sau:
+-==========
+{% load static %} -==========
+ Sau đó, có thể sử dụng được {% static %}: -=======
+<link rel="stylesheet" href="{% static 'main.css' %}">
+-=======
+ Dưới link này add thêm font:
+-=========
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
+-=========
+ Mở file settings.py add:
+-==========
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] -==========
+ Start app
+○ Add một Global Logo bằng cách sau:
+ Copy file logo.png vào thư mục static (ở ngoài reviews)
+ Mở templates/base.html (không phải reviews/templates/reviews/base.html) tìm tới thẻ sau:
+-=========
+<a class="navbar-brand" href="/">{% block brand %}<img src="{% static 'reviews/logo.png' %}">{% endblock %}</a> #thay thế bằng:
+<a class="navbar-brand" href="/">{% block brand %}<img src="{% static 'logo.png' %}">{% endblock %}</a>
