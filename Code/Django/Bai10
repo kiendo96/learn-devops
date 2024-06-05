@@ -1,0 +1,311 @@
+Bài 10. Xử lý FORM
+2:02 CH
+1. Thực hành xây dựng form với HTML
+Để thử nghiệm với Form ta tạo ra một app mới trong cùng folder với bookreviews tên "form_project". Cụ thể
+○ Bước 1: tạo project
+-=========
+(env) PS D:\PYTHON_WEB> django-admin startproject form_project
+-=========
+○ Bước 2: tạo app cho form_project bằng lệnh sau:
+-========
+(env) PS D:\PYTHON_WEB\form_project> python manage.py startapp form_example -========
+○ Bước 3: mở pycharm, ta open tới form_project và cấu hình configurations như sau: -==========
+-==========
+○ Bước 4: run at: http://localhost:8000
+○ Bước 5: mở settings.py in form_project directory và thêm "form_example" vào biến INSTALLED_APP
+-======
+INSTALLED_APPS = [ 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', 'form_example'
+]
+-======
+○ Bước 6: right click in 'form_example' -> new -> directory -> tên: templates
+○ Bước 7: right click vào thư mục "templates" -> new -> html file -> form-example.html và add nội dung:
+-========
+<!DOCTYPE html> <html lang="en"> <head>
+<meta charset="UTF-8">
+<title>Title</title> </head>
+       <body>
+         <form method="post">
+<p>
+<label for="id_text_input">Text Input</label><br>
+<input id="id_text_input" type="text" name="text_input" value="" placeholder="Enter some text">
+</p> <p>
+<label for="id_password_input">Password Input</label><br>
+<input id="id_password_input" type="password" name="password_input" value="" placeholder="Your password"> </p>
+<p>
+<input id="id_checkbox_input" type="checkbox" name="checkbox_on" value="Checkbox Checked" checked> <label for="id_checkbox_input">Checkbox</label>
+</p> <p>
+</p>
+<p>
+<label for="id_favorite_book">Favorite Book</label><br> <select id="id_favorite_book" name="favorite_book"> <optgroup label="Non-Fiction">
+<option value="1">Lập trình web với Python Django</option>
+<option value="2">Phân tích dữ liệu với Python</option> </optgroup>
+<optgroup label="Fiction">
+  <input id="id_radio_one_input" type="radio" name="radio_input" value="Value One">
+<label for="id_radio_one_input">Value One</label>
+<input id="id_radio_two_input" type="radio" name="radio_input" value="Value Two" checked> <label for="id_radio_two_input">Value Two</label>
+<input id="id_radio_three_input" type="radio" name="radio_input" value="Value Three"> <label for="id_radio_three_input">Value Three</label>
+Python-Web Page 1
+
+<optgroup label="Fiction">
+<option value="3">Brave New World</option> <option value="4">The Great Gatsby</option>
+</optgroup>
+            </select>
+        </p>
+<p>
+<label for="id_books_you_own">Books You Own</label><br> <select id="id_books_you_own" name="books_you_own" multiple>
+<optgroup label="Non-Fiction">
+<option value="1">Deep Learning with Keras</option> <option value="2">Web Development with Django</option>
+</optgroup>
+<optgroup label="Fiction">
+<option value="3">Tạp chí</option>
+<option value="4">Truyện lập trình</option> </optgroup>
+          </select>
+        </p>
+<p>
+<label for="id_text_area">Text Area</label><br>
+<textarea name="text_area" id="id_text_area" placeholder="Enter multiple lines of text"></textarea>
+</p> <p>
+<label for="id_number_input">Number Input</label><br>
+<input id="id_number_input" type="number" name="number_input" value="" step="any" placeholder="A number"> </p>
+<p>
+<label for="id_email_input">Email Input</label><br>
+<input id="id_email_input" type="email" name="email_input" value="" placeholder="Your email address">
+</p> <p>
+<label for="id_date_input">Date Input</label><br>
+<input id="id_date_input" type="date" name="date_input" value="2021-05-23"> </p>
+<p>
+<input type="submit" name="submit_input" value="Submit Input">
+</p> <p>
+<button type="submit" name="button_element" value="Button Element"> Button With <strong>Styled</strong> Text </button> </p>
+<input type="hidden" name="hidden_input" value="Hidden Value"> </form>
+  </body>
+  </html>
+-========
+○ Bước 8: Mở views.py add thêm lệnh sau:
+-==========
+from django.shortcuts import render
+# Create your views here. def form_example(request):
+return render(request, "form-example.html")
+-==========
+○ Bước 9: mở file urls.py cập nhật thêm:
+-=========
+from django.contrib import admin from django.urls import path import form_example.views
+urlpatterns = [
+path('form-example/', form_example.views.form_example), path('admin/', admin.site.urls),
+]
+-=========
+○ Bước 10: run app: http://127.0.0.1:8000/form-example/
+○ Bước 11: khi click vào "submit" => xuất hiện lỗi:
+  Python-Web Page 2
+
+2. Tìm hiểu về Form Security với Cross-Site Request Forgery Protection (CSRF)
+○ CSRF là kiểu tấn công giả mạo bằng cách nội dung form có thể được submit đến một web khác hoặc thay đổi nội dung trong form sau đó submit. Vì thế, thuộc tính action của form phải thiết lập sao cho phù hợp
+○ Django cung cấp 1 kỹ thuật để ngăn ngừa CSRF bằng cách gửi về form một token nằm ở input. Thí dụ: -==============
+<form method="post" action="http://127.0.0.1:8000/books/4/reviews/">
+         {% csrf_token %}
+<p>
+<textarea id="id_review_text" name="review_text" <label for="id_review_text">Your Review</label><br/> placeholder="Enter your review"></textarea>
+</p> <p>
+             <label for="id_rating">Rating</label><br/>
+             <input id="id_rating" type="number" name="rating"
+             placeholder="Rating 1-5">
+</p> <p>
+<button type="submit">Enter My Website</button> </p>
+</form>
+-==============
+Và khi render về trình duyệt sẽ như sau:
+-==============
+<form method="post" action="http://127.0.0.1:8000/books/4/reviews/">
+<input type="hidden" name="csrfmiddlewaretoken"
+value="tETZjLDUXev1tiYqGCSbMQkhWiesHCnutxpt6mutHI6YH64F0nin5k2JW3B68IeJ"> ...
+</form>
+-==============
+Mỗi lần submit form lên host, host sẽ check xem có đúng không? Nếu không đúng host sẽ reject
+3. Thựchànhxửlýkhipostdatalênhost
+○ Bước 1: mở views.py -> cập nhật method form_example như sau: -======
+def form_example(request): for name in request.POST:
+print("{}: {}".format(name, request.POST.getlist(name)))
+return render(request, "form-example.html", {"method": request.method})
+-======
+○ Bước 2: mở form-example.html trong templates bổ sung:
+-========
+<body>
+<h4>Method: {{ method }}</h4>
+............
+-========
+○ Bước 3: ta add thêm CSRF token bằng cách thêm tag sau bên trong form:
+-=========
+      <form method="post">
+         {% csrf_token %}
+-=========
+○ Bước 4: start web tại: http://127.0.0.1:8000/form-example/
+○ Bước 5: khi nhập các thông tin trên form -> submmit và nhìn và console của pycharm ta thấy:
+-============
+-============ Note:
+- Do trên Form không để thuộc tính Action, thì form sẽ ngầm định vào chính trang hiện tại (cụ thể là form-example.html => chuyển tới view form_example xử lý. ○ Có 2 cách submit:
+- Mộtlàsửdụngnút"submit"
+- Hailàdạngbuttonnhưngtype=submit 4. Thực hành xây dựng và render một Django Form
+○ Bước 1: Mở Pycharm và tạo file forms.py bên trong form_example app và add code như sau: -=========
+from django import forms
+-=========
+○ Bước 2: định nghĩa các lựa chọn cho radio_button bằng cách sau: -=========
+RADIO_CHOICES = (
+("Value One", "Value One Display"),
+("Value Two", "Text For Value Two"),
+("Value Three", "Value Three's Display Text")
+  Python-Web Page 3
+
+("Value Three", "Value Three's Display Text") )
+-=========
+○ Bước 3: định nghĩa các lựa chọn bên trong một book:
+-========
+  BOOK_CHOICES = (
+      (
+"Non-Fiction", (
+("1", "Deep Learning with Keras"), ("2", "Web Development with Django")
+) ),
+      (
+          "Fiction", (
+) )
+    ("3", "Brave New World"),
+("4", "The Great Gatsby") )
+-========
+○ Bước 4: tạo class tên ExampleForm kế thừa form.Form và có thuộc tính sau:
+-===========
+class ExampleForm(forms.Form):
+text_input = forms.CharField()
+password_input = forms.CharField(widget=forms.PasswordInput)
+checkbox_on = forms.BooleanField()
+radio_input = forms.ChoiceField(choices=RADIO_CHOICES, widget=forms.RadioSelect) favorite_book = forms.ChoiceField(choices=BOOK_CHOICES)
+books_you_own = forms.MultipleChoiceField(choices=BOOK_CHOICES)
+text_area = forms.CharField(widget=forms.Textarea)
+integer_input = forms.IntegerField()
+float_input = forms.FloatField()
+decimal_input = forms.DecimalField()
+email_input = forms.EmailField()
+date_input = forms.DateField(widget=forms.DateInput(attrs={"type": "date"})) hidden_input = forms.CharField(widget=forms.HiddenInput, initial="Hidden Value")
+-===========
+○ Bước 5: mở views.py ta chỉnh sửa như sau:
+-==========
+from django.shortcuts import render
+from .forms import ExampleForm
+def form_example(request):
+          form = ExampleForm()
+for name in request.POST:
+print("{}: {}".format(name, request.POST.getlist(name)))
+return render(request, "form-example.html", {"method": request.method, "form": form})
+-==========
+○ Bước 6: mở file form-example.html ta xóa toàn bộ nội dung trong <form> và thay bằng:
+-===========
+       <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <p>
+<input type="submit" name="submit_input" value="Submit Input"> </p>
+<p>
+<button type="submit" name="button_element" value="Button Element">
+Button With <strong>Styled</strong> Text </button>
+</p> </form>
+-===========
+○ Bước 7: run app at: http://127.0.0.1:8000/form-example/
+5. Thựchànhcácbướcvalidatingformtrongviews
+○ Bước 1: mở forms.py chỉnh sửa field decimal_input như sau: -======
+class ExampleForm(forms.Form): ...
+         decimal_input = forms.DecimalField(max_digits=3)
+-======
+○ Bước 2: mở views.py ta update như sau:
+-======
+def form_example(request):
+if request.method == "POST":
+form = ExampleForm(request.POST) else:
+              form = ExampleForm()
+if request.method == "POST":
+form = ExampleForm(request.POST) if form.is_valid():
+for name, value in form.cleaned_data.items():
+print("{}: ({}) {}".format(name, type(value), value))
+return render(request, "form-example.html", {"method": request.method,"form":form})
+ Python-Web Page 4
+
+return render(request, "form-example.html", {"method": request.method,"form":form})
+-======
+Note: form.cleaned_data: thuộc tính giúp chuyển đổi dữ liệu string thành python object ○ Bước 3: chạy app
+6. ThựchànhtạoBooksSearchingtrongAppBookReviews
+○ Bước 1: tạo và mở forms.py trong reviews app và add code như sau: -==========
+from django import forms
+class SearchForm(forms.Form):
+search = forms.CharField(required=False, min_length=3) search_in = forms.ChoiceField(required=False,
+choices=(
+("title", "Title"), ("contributor", "Contributor")
+))
+-==========
+○ Bước 2: Trong reviews app mở views.py. Add code như sau:
+-========
+from .forms import SearchForm from .models import Contributor -========
+def book_search(request):
+search_text = request.GET.get("search", "")
+form = SearchForm(request.GET)
+books = set()
+if form.is_valid() and form.cleaned_data["search"]:
+search = form.cleaned_data["search"]
+search_in = form.cleaned_data.get("search_in") or "title" if search_in == "title":
+books = Book.objects.filter(title__icontains=search) if search_in == "title":
+books = Book.objects.filter(title__icontains=search) else:
+fname_contributors = \ Contributor.objects.filter(first_names__icontains=search)
+for contributor in fname_contributors:
+for book in contributor.book_set.all():
+                          books.add(book)
+lname_contributors = \ Contributor.objects.filter(last_names__icontains=search)
+for contributor in lname_contributors:
+for book in contributor.book_set.all():
+books.add(book)
+return render(request, "reviews/search-results.html", {"form": form, "search_text": search_text, "books": books})
+-========
+○ Bước 3: trong reviews/templates/reviews/ ta tạo file html tên: search-results.html với code như sau:
+-========
+      {% extends 'base.html' %}
+      {% block title %}
+{% if form.is_valid and search_text %} Search Results for "{{ search_text }}"
+{% else %} Book Search
+          {% endif %}
+      {% endblock %}
+{% block content %} <h2>Search for Books</h2> <form>
+          {{ form.as_p }}
+<button type="submit" class="btn btn-primary">Search</button> </form>
+{% if form.is_valid and search_text %}
+<h3>Search Results for <em>{{ search_text }}</em></h3> <ul class="list-group">
+          {% for book in books %}
+          <li class="list-group-item">
+<span class="text-info">Title: </span> <a href="{% url 'book_detail' book.pk %}">{{ book }}</a> <br/>
+<span class="text-info">Contributors: </span>
+{% for contributor in book.contributors.all %}
+{{ contributor.first_names }} {{ contributor.last_names }}{% if not forloop.last %}, {% endif %} {% endfor %}
+          </li>
+          {% empty %}
+<li class="list-group-item">No results found.</li> {% endfor %}
+</ul>
+{% endif %}
+{% endblock %} -========
+○ Bước 4: Mở file base.html (bên ngoài project) tìm tới tag <form> chỉnh sửa action như sau: -========
+<form action="{% url 'book_search' %}" class="form-inline my-2 my-lg-0"> Python-Web Page 5
+
+<form action="{% url 'book_search' %}" class="form-inline my-2 my-lg-0"> -========
+Note: vì là form GET nên ta không cần add thêm {% csrf_token %}
+○ Bước 5: trong <form> tìm thẻ input sau: -========
+<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+-========
+Thay thế bằng:
+-========
+<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ search_text }}" minlength="3">
+-========
+○ Bước 6: tìm và thay thế <title> bằng: -=======
+<title>{% block title %}Bookreviews{% endblock %}</title>
+-=======
+○ Bước 7: Mở urls.py trong reviews app. Bổ sung thêm part như sau:
+-=======
+from django.contrib import admin from django.urls import path from . import views
+  urlpatterns = [
+path('', views.index, name ='index'),
+path('books/', views.book_list, name='book_list'), path('book/<int:pk>/', views.book_detail, name='book_detail'), path('book-search/', views.book_search, name='book_search')
+]
+-=======
+○ Bước 8: chạy app: http://127.0.0.1:8000/book-search/ ra được màn hình sau:
