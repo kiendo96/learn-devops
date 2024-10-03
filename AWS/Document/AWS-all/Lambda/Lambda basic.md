@@ -188,3 +188,13 @@ VD: Chúng ta có 5 Lambda function
     -> Enable "Reserve concurrency" -> Set "Reserve concurrency" cho từng lambda function 
       -> ví dụ có 5 lambda function chia mỗi function là 100 concurrency  -> Nó sẽ không chiếm concurrency của các function khác
 ```
+
+###  Provisioned Concurrency
+- Provisioned Concurrency trong AWS Lambda là một tính năng cho phép bạn duy trì một số lượng phiên bản Lambda đã sẵn sàng để xử lý các yêu cầu ngay lập tức. Điều này giúp giảm thiểu độ trễ khởi động lạnh, một vấn đề thường gặp khi Lambda phải khởi động một phiên bản mới để xử lý yêu cầu.
+
+- Các điểm chính về Provisioned Concurrency:
+  + Khởi động Nhanh: Khi bạn bật Provisioned Concurrency, AWS Lambda sẽ giữ một số phiên bản của hàm Lambda của bạn luôn sẵn sàng. Điều này giúp giảm thời gian phản hồi cho các yêu cầu.
+  + Tính Năng Tự Động: Bạn có thể cấu hình số lượng phiên bản cần thiết để phục vụ lưu lượng truy cập của bạn. AWS sẽ tự động duy trì số phiên bản này.
+  + Chi Phí: Provisioned Concurrency tính phí dựa trên số lượng phiên bản bạn đã cấu hình và thời gian mà chúng được duy trì. Điều này có thể làm tăng chi phí so với việc sử dụng Lambda chỉ trong chế độ tự động.
+  + Tích Hợp với Auto Scaling: Bạn có thể kết hợp Provisioned Concurrency với các giải pháp tự động mở rộng để điều chỉnh số lượng phiên bản theo lưu lượng truy cập.
+  + Thích Hợp cho Ứng Dụng Thực Tế: Tính năng này rất hữu ích cho các ứng dụng yêu cầu thời gian phản hồi nhanh như các dịch vụ web, API, hoặc các tác vụ xử lý dữ liệu theo thời gian thực.
