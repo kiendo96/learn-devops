@@ -13,5 +13,5 @@
 
 # Storage gateway
 - Volume Gateway CACHED vs STORED
-  + Cached = stores a subset of frequently accessed data locally
-  + Stored = Retains the ENTIRE ("all file types") in on prem data centre
+  + Cached = stores a subset of frequently accessed data locally (low latency access to most recent data)
+  + Stored = Retains the ENTIRE ("all file types") in on prem data centre (entire dataset is on premise, scheduled backups to S3 Hence Volume Gateway stored volume is the apt choice)
