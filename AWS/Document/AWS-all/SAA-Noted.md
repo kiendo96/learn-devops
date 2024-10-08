@@ -11,3 +11,7 @@
 
 > link tham khảo: https://aws.amazon.com/caching/session-management/
 
+# Storage gateway
+- Volume Gateway CACHED vs STORED
+  + Cached = stores a subset of frequently accessed data locally
+  + Stored = Retains the ENTIRE ("all file types") in on prem data centre
