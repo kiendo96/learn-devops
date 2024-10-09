@@ -15,3 +15,7 @@
 - Volume Gateway CACHED vs STORED
   + Cached = stores a subset of frequently accessed data locally (low latency access to most recent data)
   + Stored = Retains the ENTIRE ("all file types") in on prem data centre (entire dataset is on premise, scheduled backups to S3 Hence Volume Gateway stored volume is the apt choice)
+
+# Cloudfront and route 53
+- Global, Reduce latency, health checks, no failover = Amazon CloudFront
+- Global ,Reduce latency, health checks, failover, Route traffic = Amazon Route 53
