@@ -19,3 +19,11 @@
 # Cloudfront and route 53
 - Global, Reduce latency, health checks, no failover = Amazon CloudFront
 - Global ,Reduce latency, health checks, failover, Route traffic = Amazon Route 53
+
+
+# Instance Scheduler
+- The Instance Scheduler on AWS solution automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Relational Database Service (Amazon RDS) instances.
+
+- This solution helps reduce operational costs by stopping resources that are not in use and starting them when they are needed. The cost savings can be significant if you leave all of your instances running at full utilization continuously.
+
+> https://aws.amazon.com/solutions/implementations/instance-scheduler-on-aws/
