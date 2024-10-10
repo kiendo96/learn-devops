@@ -30,3 +30,4 @@
 
 # AWS Macie
 - Amazon Macie is a security service that uses machine learning to automatically discover, classify and protect sensitive data in the Amazon Web Services (AWS) Cloud. It currently only supports Amazon Simple Storage Service (Amazon S3), but more AWS data stores are planned.
+- Macie can recognize any PII or Protected Health Information (PHI) that exists in your S3 buckets. Macie also monitors the S3 buckets themselves for security and access control
