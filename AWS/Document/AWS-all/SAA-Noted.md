@@ -27,3 +27,6 @@
 - This solution helps reduce operational costs by stopping resources that are not in use and starting them when they are needed. The cost savings can be significant if you leave all of your instances running at full utilization continuously.
 
 > https://aws.amazon.com/solutions/implementations/instance-scheduler-on-aws/
+
+# AWS Macie
+- Amazon Macie is a security service that uses machine learning to automatically discover, classify and protect sensitive data in the Amazon Web Services (AWS) Cloud. It currently only supports Amazon Simple Storage Service (Amazon S3), but more AWS data stores are planned.
