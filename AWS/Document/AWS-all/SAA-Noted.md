@@ -19,6 +19,8 @@
 # Cloudfront and route 53
 - Global, Reduce latency, health checks, no failover = Amazon CloudFront
 - Global ,Reduce latency, health checks, failover, Route traffic = Amazon Route 53
+- Amazon CloudFront -> S3, EC2, ELB(HTTP,HTTPS is only ALB), Lambda@Edge, API Gateway, Route53, AWS Shield, AWS WAF
+- AWS Global Accelerator -> Elastic Load Balancing (ALB, NLB), EC2, Elastic Beanstalk, ECS, EKS, Lambda, Route53, VPC
 
 
 # Instance Scheduler
@@ -31,3 +33,4 @@
 # AWS Macie
 - Amazon Macie is a security service that uses machine learning to automatically discover, classify and protect sensitive data in the Amazon Web Services (AWS) Cloud. It currently only supports Amazon Simple Storage Service (Amazon S3), but more AWS data stores are planned.
 - Macie can recognize any PII or Protected Health Information (PHI) that exists in your S3 buckets. Macie also monitors the S3 buckets themselves for security and access control
+
