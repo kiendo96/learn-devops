@@ -41,3 +41,7 @@
 - Amazon Transcribe can convert audio to text
 - Amazon Translate can translate text to any language
 - Amazon Comprehend can do sentiment analysis reports
+
+# AWS Trasfer family
+- Use for SFTP, FTPS, FTP user & clients  ---Push----> data to S3 or AWS EFS
+- AWS Transfer Family is a secure transfer service for moving files into and out of AWS storage services, such as Amazon S3 and Amazon EFS.
