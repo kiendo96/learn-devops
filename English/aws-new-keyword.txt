@@ -1,2 +1,9 @@
 moderate: vừa phải
 algorithm: thuật toán
+patch: vá (hay quên vl)
+regular: thường xuyên
+vulnerability: lổ hổng
+exploit: khai thác
+affect: ảnh hưởng
+consume: tiêu thụ
+reveal: tiết lộ
