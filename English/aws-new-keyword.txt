@@ -7,3 +7,7 @@ exploit: khai thác
 affect: ảnh hưởng
 consume: tiêu thụ
 reveal: tiết lộ
+reside: cư trú tại, đặt tại
+forecast: dự báo
+significant: ảnh hưởng đáng kể, quan trọng
+disrupt: làm gián đoạn
