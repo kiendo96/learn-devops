@@ -11,3 +11,7 @@ reside: cư trú tại, đặt tại
 forecast: dự báo
 significant: ảnh hưởng đáng kể, quan trọng
 disrupt: làm gián đoạn
+isolate: cô lập
+promotion: khuyến mại
+campaign: chiến dịch
+attempt: nỗ lực, cố gắng
