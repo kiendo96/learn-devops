@@ -1,3 +1,6 @@
+# Notedddd
+- Asynchronous, Decoupling = Amazon Simple Queue Service
+
 # Security
 - WAF -> `ALB, API GATEWAY & CloudFront`
 - SHIELD -> `Route53, CloudFront & AWS Load Balancer`
