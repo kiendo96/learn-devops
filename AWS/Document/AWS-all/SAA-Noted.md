@@ -48,3 +48,5 @@
 # AWS Trasfer family
 - Use for SFTP, FTPS, FTP user & clients  ---Push----> data to S3 or AWS EFS
 - AWS Transfer Family is a secure transfer service for moving files into and out of AWS storage services, such as Amazon S3 and Amazon EFS.
+- AWS Transfer family use for copying large amounts of data to and from AWS storage
+- AWS datasync use for copying small amounts of data to and from AWS storage 
