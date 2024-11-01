@@ -1,5 +1,6 @@
 # Notedddd
 - Asynchronous, Decoupling = Amazon Simple Queue Service
+- Amazon GuardDuty: is a threat(mối đe dọa) detection service that continuously monitors for malicious activity and unauthorized behavior across your AWS environment.
 
 # Security
 - WAF -> `ALB, API GATEWAY & CloudFront`
