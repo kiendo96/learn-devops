@@ -3,7 +3,7 @@
 
 # Security
 - WAF -> `ALB, API GATEWAY & CloudFront`
-- SHIELD -> `Route53, CloudFront & AWS Load Balancer`
+- SHIELD -> `Route53, CloudFront & AWS Load Balancer` and `it handles the majority of DDoS protection and mitigation responsibilities for layer 3, layer 4, and layer 7 attacks`
 - RDS provides three storage types: Provisioned IOPS SSD (also known as io1 and io2 Block Express), General Purpose SSD (also known as gp2 and gp3), and magnetic (also known as standard)
 
 # Session Management
@@ -50,3 +50,15 @@
 - AWS Transfer Family is a secure transfer service for moving files into and out of AWS storage services, such as Amazon S3 and Amazon EFS.
 - AWS Transfer family use for copying large amounts of data to and from AWS storage
 - AWS datasync use for copying small amounts of data to and from AWS storage 
+
+# AWS Services catalog
+- AWS Service Catalog lets you centrally manage your cloud resources to achieve governance at scale of your infrastructure as code (IaC) templates, written in CloudFormation or Terraform. With AWS Service Catalog, you can meet your compliance requirements while making sure your customers can quickly deploy the cloud resources they need.
+- Some key advantages of using Service Catalog:
+  + Centralized management - Products can be maintained in a single catalog for easy discovery and governance.
+  + Self-service access - Customers can deploy the solutions on their own without manual intervention.
+  + Standardization - Products provide pre-defined templates for consistent deployment.
+  + Access control - Granular permissions can be applied to restrict product visibility and access.
+  + Reporting - Service Catalog provides detailed analytics on product usage and deployments.
+ 
+# Cloudwatch
+- The EventBridge rule initiates the Systems Manager automation and runbooks. The runbooks cancel the deletion
