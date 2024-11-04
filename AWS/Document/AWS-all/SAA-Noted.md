@@ -64,3 +64,18 @@
  
 # Cloudwatch
 - The EventBridge rule initiates the Systems Manager automation and runbooks. The runbooks cancel the deletion
+- 
+
+
+
+
+
+
+## Examptopics
+- 12, 18, 19, 20, 24, 26, 40,50, 51, 56, 
+
+- kinesis:
+  + near-real-time = data firehose => output not support dynamodb
+  + real-time = data stream
+
+- Macie: Use for scan PII data
