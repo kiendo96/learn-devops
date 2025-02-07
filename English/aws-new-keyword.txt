@@ -16,3 +16,53 @@ promotion: khuyến mại
 campaign: chiến dịch
 attempt: nỗ lực, cố gắng
 periodically: định kỳ
+
+import requests
+from opensearchpy import OpenSearch
+import time
+import logging
+
+# Thiết lập logging
+logging.basicConfig(level=logging.INFO)
+
+# Kết nối tới OpenSearch
+os_client = OpenSearch(
+    hosts=[{"host": "localhost", "port": 9200}],
+    http_auth=('admin', 'admin'),  # Thay đổi nếu có xác thực
+)
+
+def get_metrics():
+    """Lấy metrics từ endpoint."""
+    try:
+        response = requests.get("http://localhost:9200/_prometheus/metrics")
+        response.raise_for_status()  # Kiểm tra lỗi HTTP
+        return response.text
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error fetching metrics: {e}")
+        return ""
+
+def send_metrics_to_opensearch(metrics):
+    """Ghi metrics vào OpenSearch."""
+    for line in metrics.splitlines():
+        if line and not line.startswith('#'):
+            try:
+                metric_name, value = line.split(' ', 1)
+                doc = {
+                    "metric": metric_name,
+                    "value": float(value),
+                    "timestamp": int(time.time())
+                }
+                os_client.index(index="prometheus_metrics", body=doc)
+                logging.info(f"Sent metric: {metric_name}, value: {value}")
+            except ValueError as ve:
+                logging.error(f"Error processing line: {line}. Error: {ve}")
+
+def main():
+    while True:
+        metrics = get_metrics()
+        if metrics:
+            send_metrics_to_opensearch(metrics)
+        time.sleep(10)  # Lặp lại sau 10 giây
+
+if __name__ == "__main__":
+    main()
