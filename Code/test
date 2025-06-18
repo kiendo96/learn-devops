@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# --- Configuration ---
+ES_BUNDLED_JDK_PATH="/home/scem/repo/es/jdk"
+TARGET_SERVICE_KEYWORD="elasticsearch"
+THRESHOLD_PERCENT=10
+ALERT_FILE="/home/scem/demo.log"
+
+# --- Function to log errors and exit ---
+log_error_exit() {
+    # Log the error message with a timestamp to the alert file
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - ERROR: $1" >> "$ALERT_FILE"
+    exit 1
+}
+
+# --- Pre-flight Checks ---
+
+# Check for the JDK path variable and the directory itself
+if [ -z "$ES_BUNDLED_JDK_PATH" ]; then
+    log_error_exit "ES_BUNDLED_JDK_PATH variable is not configured."
+fi
+if [ ! -d "$ES_BUNDLED_JDK_PATH/bin" ]; then
+    log_error_exit "Directory 'bin' not found in ES_BUNDLED_JDK_PATH: '$ES_BUNDLED_JDK_PATH'."
+fi
+
+# Define and validate necessary JDK tools
+JPS_CMD="$ES_BUNDLED_JDK_PATH/bin/jps"
+JCMD_CMD="$ES_BUNDLED_JDK_PATH/bin/jcmd"
+JSTAT_CMD="$ES_BUNDLED_JDK_PATH/bin/jstat"
+
+for cmd_path in "$JPS_CMD" "$JCMD_CMD" "$JSTAT_CMD"; do
+    if [ ! -x "$cmd_path" ]; then
+        log_error_exit "Tool '$cmd_path' not found or does not have execute permission."
+    fi
+done
+
+# Check for necessary system commands
+for cmd_sys in awk grep date; do
+    if ! command -v "$cmd_sys" &> /dev/null; then
+        log_error_exit "System command '$cmd_sys' not found. Please install it."
+    fi
+done
+
+# --- Main Logic ---
+
+# Get the PID of the first matching Elasticsearch process
+PID_INFO=$("$JPS_CMD" -l | grep "$TARGET_SERVICE_KEYWORD" | head -n 1)
+if [ -z "$PID_INFO" ]; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - INFO: Elasticsearch service with keyword '$TARGET_SERVICE_KEYWORD' not found." >> "$ALERT_FILE"
+    exit 0
+fi
+
+PID=$(echo "$PID_INFO" | awk '{print $1}')
+SERVICE_NAME=$(echo "$PID_INFO" | awk '{$1=""; print $0}' | xargs) # Get the full service name
+
+# Get Max Heap Size in Gigabytes (GB) - Optimized logic
+# First, try to get the running value from VM.flags (more reliable)
+MAX_HEAP_GB=$("$JCMD_CMD" "$PID" VM.flags -all 2>/dev/null | awk '/MaxHeapSize\s+:=\s+[0-9]+/ { printf "%.2f", $3 / (1024*1024*1024); exit }')
+
+# If the first method fails, fall back to parsing the -Xmx command-line argument
+if [ -z "$MAX_HEAP_GB" ] || [ "$(echo "$MAX_HEAP_GB <= 0" | bc -l)" -eq 1 ]; then
+    MAX_HEAP_GB=$("$JCMD_CMD" "$PID" VM.command_line 2>/dev/null | tr ' ' '\n' | awk '
+        /-Xmx/ {
+            val = substr($0, 5);
+            unit = tolower(substr(val, length(val)));
+            num = substr(val, 1, length(val)-1);
+            if (unit == "g") {
+                gb = num;
+            } else if (unit == "m") {
+                gb = num / 1024;
+            } else if (unit == "k") {
+                gb = num / (1024*1024);
+            } else { # Assumes bytes if no unit is specified
+                gb = val / (1024*1024*1024);
+            }
+            printf "%.2f", gb;
+            exit;
+        }')
+fi
+
+# Final check to ensure a valid Max Heap size was found
+if [ -z "$MAX_HEAP_GB" ] || [ "$(echo "$MAX_HEAP_GB <= 0" | bc -l)" -eq 1 ]; then
+    log_error_exit "Could not determine a valid Max Heap Size for PID $PID ($SERVICE_NAME)."
+fi
+
+# Get Current Used Heap in Gigabytes (GB) - Optimized logic
+# jstat -gc output is in Kilobytes. We sum the relevant columns (S0U, S1U, EU, OU) and convert to GB.
+CURRENT_HEAP_USED_GB=$("$JSTAT_CMD" -gc "$PID" 2>/dev/null | tail -n 1 | awk '{
+    if (NF >= 8) {
+        used_kb = $3 + $4 + $6 + $8;
+        printf "%.2f", used_kb / (1024*1024);
+    } else {
+        print "0";
+    }
+}')
+
+if [ -z "$CURRENT_HEAP_USED_GB" ] || [ "$(echo "$CURRENT_HEAP_USED_GB <= 0" | bc -l)" -eq 1 ]; then
+    log_error_exit "Could not get heap usage information from jstat for PID $PID ($SERVICE_NAME)."
+fi
+
+# Calculate the usage percentage
+CURRENT_HEAP_PERCENTAGE=$(awk -v used="$CURRENT_HEAP_USED_GB" -v max="$MAX_HEAP_GB" 'BEGIN{if (max > 0) printf "%.0f", (used/max)*100; else print 0}')
+
+# Trigger an alert if the usage exceeds the threshold
+if [ "$CURRENT_HEAP_PERCENTAGE" -gt "$THRESHOLD_PERCENT" ]; then
+    TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+    ALERT_MESSAGE="$TIMESTAMP - ERROR! Elasticsearch JVM Heap (PID: $PID, Name: $SERVICE_NAME) is at $CURRENT_HEAP_PERCENTAGE% (Used: ${CURRENT_HEAP_USED_GB}GB, Max: ${MAX_HEAP_GB}GB), exceeding threshold of $THRESHOLD_PERCENT%."
+    echo "$ALERT_MESSAGE" >> "$ALERT_FILE"
+fi
+
+exit 0
